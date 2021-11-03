@@ -6,12 +6,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
+import { GlobalProvider } from 'state/contexts/GlobalContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <App />
+      <GlobalProvider>
+        <App />
+      </GlobalProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

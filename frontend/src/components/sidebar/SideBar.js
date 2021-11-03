@@ -1,18 +1,10 @@
 import { Drawer, IconButton, useMediaQuery } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState } from 'react'
+import useDrawer from 'hooks/useDrawer';
 
 const SideBar = () => {
 
-    const [open, setOpen] = useState(true)
-
-    const handleDrawerClose = () => {
-        setOpen(false)
-    }
-
-    const toggleDrawer = () => {
-        setOpen(!open)
-    }
+    const { drawerOpen, handleDrawerClose, handleDrawerOpen } = useDrawer()
 
     const mobile = useMediaQuery('(max-width: 768px)')
     const drawerWidth = 240
@@ -22,7 +14,7 @@ const SideBar = () => {
             {
                 mobile &&
                 <IconButton
-                    onClick={toggleDrawer}
+                    onClick={handleDrawerOpen}
                 >
                     <MenuIcon />
                 </IconButton>
@@ -37,7 +29,7 @@ const SideBar = () => {
                     color: 'rgb(145,158,171)'
                 }
                 }}
-                open={open}
+                open={drawerOpen}
                 onClose={handleDrawerClose}
             >
                 Dollar Cost Average
