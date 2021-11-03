@@ -13,7 +13,10 @@ const Logo = () => {
                 alignContent: 'center',
                 alignItems: 'center',
                 letterSpacing: '-.5px',
-                color: '#5f6368'
+                color: 'white',
+                svg: {
+                    color: 'orange'
+                }
             }}
         >
             <SiBitcoinsv />

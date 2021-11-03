@@ -8,7 +8,6 @@ const Nav = () => {
     return (
             <AppBar
                 sx={{
-                    backgroundColor: '#FFFFFF',
                     zIndex: 9999,
                 }}
             >
