@@ -13,14 +13,15 @@ const Logo = () => {
                 alignContent: 'center',
                 alignItems: 'center',
                 letterSpacing: '-.5px',
-                color: 'white',
                 svg: {
-                    color: 'orange'
+                    color: 'orange',
+                    width: '24px',
+                    height: '24px'
                 }
             }}
         >
             <SiBitcoinsv />
-            <Typography variant='body1'>Calculating Bitcoin</Typography>
+            <Typography variant='h6'>Calculating Bitcoin</Typography>
         </Box>
     )
 }
