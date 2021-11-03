@@ -1,23 +1,37 @@
 import React from 'react'
-import { Box, AppBar } from '@mui/material/';
+import { Box, AppBar, IconButton, Avatar } from '@mui/material/';
+import Logo from './Logo';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle'
 
 const Nav = () => {
     return (
             <AppBar
                 sx={{
-                    backgroundColor: 'secondary'
+                    backgroundColor: '#FFFFFF'
                 }}
             >
                 <Box
                     sx={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(3, 1fr)',
-                        justifyItems: 'center'
+                        gridTemplateColumns: 'auto auto 1fr auto',
+                        padding: '.5rem 1rem',
+                        gap: '1rem'
                     }}
                 >
-                    <div>hi</div>
-                    <div>hi</div>
-                    <div>hi</div>
+                    <IconButton>
+                        <MenuIcon />
+                    </IconButton>
+                    <Logo />
+                    <Box></Box>
+                    <IconButton>
+                        <Avatar
+                            sx={{
+                                height: '32px',
+                                width: '32px'
+                            }}
+                        />
+                    </IconButton>
 
                 </Box>
             </AppBar>
