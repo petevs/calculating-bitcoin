@@ -14,6 +14,8 @@ const SideBar = () => {
         setOpen(false)
     }
 
+    const drawerWidth = 240
+
     return (
         <>
             <IconButton
@@ -22,6 +24,11 @@ const SideBar = () => {
                 <MenuIcon />
             </IconButton>
             <Drawer
+                sx={{
+                width: drawerWidth,
+                flexShrink: 0,
+                [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+                }}
                 open={open}
                 onClose={handleDrawerClose}
             >

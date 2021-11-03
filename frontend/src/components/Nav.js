@@ -1,14 +1,14 @@
 import React from 'react'
 import { Box, AppBar, IconButton, Avatar } from '@mui/material/';
 import Logo from './Logo';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle'
+import SideBar from './SideBar';
 
 const Nav = () => {
     return (
             <AppBar
                 sx={{
-                    backgroundColor: '#FFFFFF'
+                    backgroundColor: '#FFFFFF',
+                    zIndex: 9999,
                 }}
             >
                 <Box
@@ -19,9 +19,7 @@ const Nav = () => {
                         gap: '1rem'
                     }}
                 >
-                    <IconButton>
-                        <MenuIcon />
-                    </IconButton>
+                    <SideBar />
                     <Logo />
                     <Box></Box>
                     <IconButton>
@@ -32,7 +30,6 @@ const Nav = () => {
                             }}
                         />
                     </IconButton>
-
                 </Box>
             </AppBar>
     )
