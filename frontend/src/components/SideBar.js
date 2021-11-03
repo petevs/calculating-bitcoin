@@ -6,12 +6,12 @@ const SideBar = () => {
 
     const [open, setOpen] = useState(true)
 
-    const handleDrawerOpen = () => {
-        setOpen(true)
-    }
-
     const handleDrawerClose = () => {
         setOpen(false)
+    }
+
+    const toggleDrawer = () => {
+        setOpen(!open)
     }
 
     const drawerWidth = 240
@@ -19,7 +19,7 @@ const SideBar = () => {
     return (
         <>
             <IconButton
-                onClick={handleDrawerOpen}
+                onClick={toggleDrawer}
             >
                 <MenuIcon />
             </IconButton>

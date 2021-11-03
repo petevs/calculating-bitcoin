@@ -1,7 +1,8 @@
 import React from 'react'
-import { Box, AppBar, IconButton, Avatar } from '@mui/material/';
+import { Box, AppBar } from '@mui/material/';
 import Logo from './Logo';
 import SideBar from './SideBar';
+import AvatarMenu from './AvatarMenu';
 
 const Nav = () => {
     return (
@@ -15,21 +16,15 @@ const Nav = () => {
                     sx={{
                         display: 'grid',
                         gridTemplateColumns: 'auto auto 1fr auto',
-                        padding: '.5rem 1rem',
-                        gap: '1rem'
+                        padding: '.5rem',
+                        gap: '.5rem 1rem',
+                        alignItems: 'center'
                     }}
                 >
                     <SideBar />
                     <Logo />
                     <Box></Box>
-                    <IconButton>
-                        <Avatar
-                            sx={{
-                                height: '32px',
-                                width: '32px'
-                            }}
-                        />
-                    </IconButton>
+                    <AvatarMenu />
                 </Box>
             </AppBar>
     )

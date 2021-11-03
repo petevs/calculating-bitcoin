@@ -17,7 +17,7 @@ const Logo = () => {
             }}
         >
             <SiBitcoinsv />
-            <Typography variant='h6'>Calculating Bitcoin</Typography>
+            <Typography variant='body1'>Calculating Bitcoin</Typography>
         </Box>
     )
 }
