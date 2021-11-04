@@ -1,5 +1,8 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer, useEffect } from 'react'
 import useCombinedReducers from 'use-combined-reducers'
+import { auth } from 'firebase'
+import { setUser } from 'state/actions/authActions'
+import { setPending } from 'state/actions/authActions'
 
 //Reducers
 import { appReducer, initialAppState } from 'state/reducers/appReducer'
@@ -15,6 +18,20 @@ export const GlobalProvider= ({children}) => {
         app: useReducer(appReducer, initialAppState),
     })
 
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(setUser(user))
+            } else {
+                dispatch(setUser(initialAuthState))
+            }
+            dispatch(setPending(false))
+        })
+
+        return () => unsubscribe()
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <GlobalContext.Provider

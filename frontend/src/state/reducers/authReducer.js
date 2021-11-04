@@ -2,7 +2,7 @@ export const SET_USER = "SET_USER";
 export const SET_PENDING = "SET_PENDING"
 
 export const initialAuthState = {
-  pending: false
+  pending: true
 };
 
 export const authReducer = (state, action) => {
@@ -19,7 +19,7 @@ export const authReducer = (state, action) => {
     case SET_PENDING:
       return {
         ...state,
-        pending: action.payload.data
+        pending: action.payload
       }
     default:
       return state;

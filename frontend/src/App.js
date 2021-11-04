@@ -9,7 +9,7 @@ import DateAdapter from '@mui/lab/AdapterMoment'
 import DollarCostAverage from 'pages/calculators/dollarCostAverage/DollarCostAverage';
 import MainModal from 'components/MainModal';
 import useModal from 'hooks/useModal';
-import AuthForm from 'components/AuthForm';
+import Login from 'pages/Login';
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
           <Nav />
             <Content>
               <DollarCostAverage />
-            <Button onClick={() => handleModalOpen(<AuthForm />)}>Open Modal</Button>
+            <Button onClick={() => handleModalOpen(<Login />)}>Open Modal</Button>
             </Content>
             <MainModal />
         </>

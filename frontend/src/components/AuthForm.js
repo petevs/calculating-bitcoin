@@ -9,7 +9,7 @@ import useErrors from 'hooks/useErrors'
 import * as yup from 'yup'
 import { useEffect } from 'react'
 
-const AuthForm = () => {
+const AuthForm = (props) => {
 
     const initialFormValues = {
         email: '',
@@ -26,9 +26,19 @@ const AuthForm = () => {
 
     const inputSize= 'medium'
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        try {
+            await props.onSubmit(values.email, values.password)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
     return (
-        <FormBox>
-            <FormHeader heading='Log in' />
+        <FormBox onSubmit={handleSubmit}>
+            <FormHeader heading={props.title} />
 
             <TextField
                 label='Email Address'
@@ -54,7 +64,7 @@ const AuthForm = () => {
                 helperText={errors.password}
             />
 
-                <FormSubmit onClick={() => console.log(values)}>Log in</FormSubmit>
+                <FormSubmit type='submit'>Log in</FormSubmit>
                 <ForgotPassword />
                 <FormFooter
                     heading="Don't have an account?"
