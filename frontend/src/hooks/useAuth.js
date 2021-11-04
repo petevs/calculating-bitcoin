@@ -27,13 +27,21 @@ const useAuth = () => {
         handleModalClose()
     }
 
-    const continueAsGuest = () => {
-        auth.signInAnonymously()
+    const continueAsGuest = async () => {
+        await auth.signInAnonymously()
+        history.push('/')
+        handleModalClose()
     }
 
 
-    const signout = () => {
-        return auth.signOut()
+    const signout = async () => {
+        await auth.signOut()
+        history.push('/')
+    }
+
+    const forgetGuest = async () => {
+        await auth.currentUser.delete()
+        history.push('/')
     }
 
     const sendPasswordResetEmail = (email) => {
@@ -51,8 +59,9 @@ const useAuth = () => {
         signin,
         continueAsGuest,
         signout,
+        forgetGuest,
         sendPasswordResetEmail,
-        confirmPasswordReset
+        confirmPasswordReset,
     }
 
 }
