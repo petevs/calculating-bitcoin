@@ -9,7 +9,7 @@ export const appReducer = (state, action) => {
     case TOGGLE_DRAWER:
         return {
             ...state,
-            drawerOpen: action.payload
+            drawerOpen: action.payload || !state.drawerOpen
         }
     default:
         return state

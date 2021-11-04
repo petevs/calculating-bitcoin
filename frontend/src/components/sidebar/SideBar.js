@@ -4,23 +4,20 @@ import useDrawer from 'hooks/useDrawer';
 
 const SideBar = () => {
 
-    const { drawerOpen, handleDrawerClose, handleDrawerOpen } = useDrawer()
+    const { drawerOpen, handleDrawerClose, handleDrawerToggle } = useDrawer()
 
     const mobile = useMediaQuery('(max-width: 768px)')
     const drawerWidth = 240
 
     return (
         <>
-            {
-                mobile &&
                 <IconButton
-                    onClick={handleDrawerOpen}
+                    onClick={handleDrawerToggle}
                 >
                     <MenuIcon />
                 </IconButton>
-            }
             <Drawer
-                variant={mobile ? 'temporary': 'permanent'}
+                variant={'temporary'}
                 sx={{
                 '& .MuiDrawer-paper': {
                     width: drawerWidth,
@@ -29,6 +26,7 @@ const SideBar = () => {
                     color: 'rgb(145,158,171)'
                 }
                 }}
+                BackdropProps={{ invisible: !mobile ? true : false}}
                 open={drawerOpen}
                 onClose={handleDrawerClose}
             >

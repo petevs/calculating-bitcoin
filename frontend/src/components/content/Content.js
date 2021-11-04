@@ -1,6 +1,9 @@
 import { Box } from '@mui/system'
+import useDrawer from 'hooks/useDrawer';
 
 const Content = ({children}) => {
+
+    const { drawerOpen } = useDrawer()
 
     return (
         <Box
@@ -14,11 +17,10 @@ const Content = ({children}) => {
               sx={{
                 display: 'grid',
                 gridTemplateColumns: '1fr',
-                width: 'calc(100% - 240px)',
+                width: drawerOpen ? 'calc(100% - 240px)' : '100%',
                 minHeight: '100vh',
                 alignContent: 'center',
                 textAlign: 'center',
-                backgroundColor: 'red',
                 '@media screen and (max-width: 768px)': {
                     width: '100%'
                 }

@@ -20,7 +20,7 @@ const Nav = () => {
                         alignItems: 'center',
                         backgroundColor: 'rgb(33, 43, 54)',
                         '@media (min-width: 768px)': {
-                            gridTemplateColumns: 'auto auto 1fr auto',
+                            gridTemplateColumns: 'auto auto auto 1fr auto',
                         }
                     }}
                 >

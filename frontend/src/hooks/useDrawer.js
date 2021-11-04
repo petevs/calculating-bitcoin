@@ -16,8 +16,12 @@ const useDrawer = () => {
         dispatch(toggleDrawer(true))
     }
 
+    const handleDrawerToggle = () => {
+        dispatch(toggleDrawer())
+    }
 
-    return { drawerOpen, handleDrawerClose, handleDrawerOpen }
+
+    return { drawerOpen, handleDrawerClose, handleDrawerOpen, handleDrawerToggle }
 }
 
 export default useDrawer
