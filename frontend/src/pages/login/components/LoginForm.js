@@ -13,7 +13,7 @@ const LoginForm = () => {
             onSubmit={signin}
             footerHeader="Don't have an account?"
             footerButtonText='Sign up'
-            footgerButtonPath='/signup'
+            footerButtonPath='/signup'
         />
     )
 }

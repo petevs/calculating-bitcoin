@@ -65,9 +65,9 @@ const AuthForm = (props) => {
                 <FormSubmit type='submit'>Log in</FormSubmit>
                 <ForgotPassword />
                 <FormFooter
-                    heading="Don't have an account?"
-                    buttonText='Sign up'
-                    to='/signup'
+                    heading={props.footerHeader}
+                    buttonText={props.footerButtonText}
+                    to={props.footerButtonPath}
                 />
         </FormBox>
     )
