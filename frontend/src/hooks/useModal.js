@@ -6,14 +6,14 @@ const useModal = () => {
 
     const { state, dispatch } = useContext(GlobalContext)
 
-    const { modalOpen } = state.app
+    const { modalOpen, modalContent } = state.app
 
-    const handleOpen = (content) => {
+    const handleModalOpen = (content) => {
         dispatch(setModalContent(content))
         dispatch(toggleModal(true))
     }
 
-    const handleClose = () => {
+    const handleModalClose = () => {
         dispatch(toggleModal(false))
     }
 
@@ -21,7 +21,7 @@ const useModal = () => {
         dispatch(toggleModal())
     }
 
-    return { modalOpen, handleOpen, handleClose, handleModalToggle }
+    return { modalOpen, modalContent, handleModalOpen, handleModalClose, handleModalToggle }
 
 }
 

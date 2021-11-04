@@ -1,12 +1,18 @@
 import { Modal } from '@mui/material'
 import { Box } from '@mui/system'
+import useModal from 'hooks/useModal'
 import React from 'react'
 
-const MainModal = ({open, onClose, children}) => {
+const MainModal = () => {
+
+    const { modalOpen, modalContent, handleModalClose } = useModal()
+
+    console.log(modalContent)
+
     return (
         <Modal
-            open={open}
-            onClose={onClose}
+            open={modalOpen}
+            onClose={handleModalClose}
             disableEnforceFocus
         >
             <Box
@@ -25,7 +31,7 @@ const MainModal = ({open, onClose, children}) => {
                     borderRadius: '6px'
                 }}
             >
-                {children}
+                {modalContent}
             </Box>
             
         </Modal>

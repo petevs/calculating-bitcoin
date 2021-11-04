@@ -8,5 +8,5 @@ export const toggleModal = (data) => {
     return { type: TOGGLE_MODAL, payload: data}
 }
 export const setModalContent = (data) => {
-    return { type: TOGGLE_MODAL, payload: data}
+    return { type: SET_MODAL_CONTENT, payload: data}
 }

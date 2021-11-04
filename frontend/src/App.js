@@ -8,8 +8,13 @@ import { LocalizationProvider } from '@mui/lab';
 import DateAdapter from '@mui/lab/AdapterMoment'
 import DollarCostAverage from 'pages/calculators/dollarCostAverage/DollarCostAverage';
 import MainModal from 'components/MainModal';
+import useModal from 'hooks/useModal';
+import AuthForm from 'components/AuthForm';
 
 function App() {
+
+  const  { handleModalOpen } = useModal()
+
   return (
     <LocalizationProvider dateAdapter={DateAdapter}>
       <Router>
@@ -17,7 +22,9 @@ function App() {
           <Nav />
             <Content>
               <DollarCostAverage />
+            <Button onClick={() => handleModalOpen(<AuthForm />)}>Open Modal</Button>
             </Content>
+            <MainModal />
         </>
       </Router>
     </LocalizationProvider>

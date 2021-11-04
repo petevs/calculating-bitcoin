@@ -19,7 +19,7 @@ export const appReducer = (state, action) => {
     case TOGGLE_MODAL:
         return {
             ...state,
-            modalOpen: action.payload || !state.modalOpen
+            modalOpen: action.payload || !state.modalOpen,
         }
     case SET_MODAL_CONTENT:
         return {

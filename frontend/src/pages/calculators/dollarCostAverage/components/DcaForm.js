@@ -16,7 +16,7 @@ const DcaForm = () => {
 
     return (
         <div>
-            <Typography variant='h4' color='primary'>Dollar Cost Average</Typography>
+            <Typography variant='h4'>Dollar Cost Average</Typography>
             <DateField
                 label='Start Date'
                 name='startDate'
