@@ -1,5 +1,6 @@
-import { Avatar, IconButton, Menu, MenuItem } from '@mui/material'
+import { Avatar, Divider, IconButton, Menu, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
+import useAuth from 'hooks/useAuth'
 
 const AvatarMenu = () => {
 
@@ -12,6 +13,8 @@ const AvatarMenu = () => {
     const handleClose = () => {
         setAnchorEl(null)
     }
+
+    const { loggedIn, isGuest, signout } = useAuth()
 
     return (
         <>
@@ -29,6 +32,9 @@ const AvatarMenu = () => {
                 onClick={handleClose}
                 sx={{
                     zIndex: 99999,
+                    '& .MuiPaper-root': {
+                        minWidth: '200px'
+                    }
                 }}
             >
                 <MenuItem>
@@ -41,6 +47,13 @@ const AvatarMenu = () => {
                         }}
                     /> Profile
                 </MenuItem>
+                <Divider />
+                    <Button 
+                        sx={{width: '100%'}}
+                        onClick={() => signout()}
+                    >
+                        Sign Out
+                    </Button>
             </Menu>
         </>
     )

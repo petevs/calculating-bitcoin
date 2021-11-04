@@ -1,6 +1,13 @@
 import { auth } from 'firebase'
+import GlobalContext from 'state/contexts/GlobalContext'
+import { useContext } from 'react'
 
 const useAuth = () => {
+
+    const { state } = useContext(GlobalContext)
+
+    const loggedIn = state.auth.uid ? true : false
+    const isGuest = state.auth.isAnonymous
         
     const signup = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password)
@@ -27,6 +34,8 @@ const useAuth = () => {
         return auth.confirmPasswordReset(code, password)
     } 
     return {
+        loggedIn,
+        isGuest,
         signup,
         signin,
         continueAsGuest,

@@ -7,7 +7,6 @@ import ForgotPassword from './form/ForgotPassword'
 import useForm from 'hooks/useForm'
 import useErrors from 'hooks/useErrors'
 import * as yup from 'yup'
-import { useEffect } from 'react'
 
 const AuthForm = (props) => {
 
@@ -28,7 +27,6 @@ const AuthForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         try {
             await props.onSubmit(values.email, values.password)
         } catch(err) {

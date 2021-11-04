@@ -1,8 +1,12 @@
 import { Box } from "@mui/system"
 import { Button, Typography } from "@mui/material"
 import CenterTextDivider from "./CenterTextDivider"
+import useAuth from "hooks/useAuth"
 
 const FormHeader = ({heading}) => {
+
+    const { continueAsGuest } = useAuth()
+
     return (
         <Box
             sx={{
@@ -18,6 +22,7 @@ const FormHeader = ({heading}) => {
                     sx={{
                         textTransform: 'none'
                     }}
+                    onClick={continueAsGuest}
                 >
                     Continue as Guest
                 </Button>
