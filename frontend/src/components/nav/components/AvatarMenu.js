@@ -34,8 +34,8 @@ const AvatarMenu = () => {
                 <MenuItem>
                     <Avatar 
                         sx={{
-                            width: 32,
-                            height: 32,
+                            width: 24,
+                            height: 24,
                             ml: -0.5,
                             mr: 2
                         }}
