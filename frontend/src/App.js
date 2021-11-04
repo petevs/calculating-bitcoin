@@ -7,6 +7,7 @@ import { BrowserRouter as Router} from 'react-router-dom'
 import { LocalizationProvider } from '@mui/lab';
 import DateAdapter from '@mui/lab/AdapterMoment'
 import DollarCostAverage from 'pages/calculators/dollarCostAverage/DollarCostAverage';
+import MainModal from 'components/MainModal';
 
 function App() {
   return (
