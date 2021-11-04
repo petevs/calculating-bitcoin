@@ -1,9 +1,10 @@
 import { Collapse, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import CalculateIcon from '@mui/icons-material/Calculate';
-import RepeatIcon from '@mui/icons-material/Repeat';
+import CircleIcon from '@mui/icons-material/Circle';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const SideBarMenu = () => {
 
@@ -23,11 +24,19 @@ const SideBarMenu = () => {
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout='auto' unmountOnExit>
-                <ListItemButton sx={{ pl: 4}}>
-                    <ListItemIcon>
-                        <RepeatIcon />
+                <ListItemButton
+                    component={Link}
+                    to='/dca'
+                    sx={{ pl: 4, svg: { height: '6px',}}}>
+                    <ListItemIcon
+                        sx={{fontSize: 14}}
+                    >
+                        <CircleIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Dollar Cost Average" />
+                    <ListItemText 
+                        primary="Dollar Cost Average" 
+                        primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}    
+                    />
                 </ListItemButton>
             </Collapse>
         </List>

@@ -1,10 +1,14 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { SiBitcoinsv } from 'react-icons/si'
+import {Link} from 'react-router-dom'
 
 const Logo = () => {
     return (
         <Box
+            component={Link}
+            style={{textDecoration: 'none', color: 'inherit'}}
+            to='/'
             sx={{
                 display: 'grid',
                 gridTemplateColumns: 'auto 1fr',

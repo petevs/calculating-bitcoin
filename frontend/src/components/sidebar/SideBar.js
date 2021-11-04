@@ -20,8 +20,8 @@ const SideBar = ({children}) => {
                 sx={{
                 '& .MuiDrawer-paper': {
                     width: drawerWidth,
-                    top: '68px',
-                    backgroundColor: 'rgba(22,28,36,1)',
+                    top: '64px',
+                    backgroundColor: mobile ? 'rgba(22,28,36,1)' : 'transparent',
                     backgroundImage: 'none',
                     color: 'rgb(145,158,171)',
                     borderRight: '1px solid rgba(145, 158, 171, 0.24)',
