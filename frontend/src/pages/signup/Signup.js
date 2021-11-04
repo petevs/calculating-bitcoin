@@ -1,25 +1,23 @@
-import useModal from "hooks/useModal"
 import DefaultLayout from "layouts/DefaultLayout"
-import SignupForm from "./components/SignupForm"
-import { useEffect } from 'react'
+import { Box } from "@mui/system"
+import SignupForm from './components/SignupForm'
+
 
 const Signup = () => {
 
-    const { handleModalOpen } = useModal()
-
-
-    useEffect(() => {
-        handleModalOpen(<SignupForm />)
-    }, [])
-
     return(
-        <DefaultLayout 
-            modal={{
-                open: true,
-                onClose: '',
-
-            }}
-        />
+        <DefaultLayout>
+            <Box
+                sx={{
+                    display: 'grid',
+                    justifyContent: 'center',
+                    minHeight: 'calc(100vh - 128px)',
+                    alignItems: 'center'
+                }}
+            >
+                <SignupForm />
+            </Box>
+        </DefaultLayout>
     )
 }
 

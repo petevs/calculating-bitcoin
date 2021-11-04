@@ -7,7 +7,6 @@ import useModal from './useModal'
 const useAuth = () => {
 
     const history = useHistory()
-    const { handleModalClose } = useModal()
 
     const { state } = useContext(GlobalContext)
 
@@ -18,19 +17,16 @@ const useAuth = () => {
     const signup = async (email, password) => {
         await auth.createUserWithEmailAndPassword(email, password)
         history.push('/')
-        handleModalClose()
     }
 
     const signin = async (email, password) => {
         await auth.signInWithEmailAndPassword(email, password)
         history.push('/')
-        handleModalClose()
     }
 
     const continueAsGuest = async () => {
         await auth.signInAnonymously()
         history.push('/')
-        handleModalClose()
     }
 
 
