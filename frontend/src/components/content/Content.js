@@ -19,7 +19,7 @@ const Content = ({children}) => {
                 display: 'grid',
                 gridTemplateColumns: '1fr',
                 width: drawerOpen ? `calc(100% - ${drawerWidth}px)` : '100%',
-                minHeight: '100vh',
+                minHeight: 'calc(100vh - 64px)',
                 alignContent: 'start',
                 marginTop: '64px',
                 padding: '2rem',

@@ -1,6 +1,7 @@
 import { Avatar, Divider, IconButton, Menu, MenuItem, Button } from '@mui/material'
 import { useState } from 'react'
 import useAuth from 'hooks/useAuth'
+import { Link } from 'react-router-dom'
 
 const AvatarMenu = () => {
 
@@ -14,7 +15,7 @@ const AvatarMenu = () => {
         setAnchorEl(null)
     }
 
-    const { loggedIn, isGuest, signout } = useAuth()
+    const { loggedIn, isGuest, signout, forgetGuest } = useAuth()
 
     return (
         <>
@@ -47,13 +48,38 @@ const AvatarMenu = () => {
                         }}
                     /> Profile
                 </MenuItem>
+
+                { loggedIn && isGuest &&
+                    <MenuItem
+                        component={Link}
+                        to='/login'
+                    >
+                        Log in
+                    </MenuItem>
+                }
+
+
+
                 <Divider />
+                    {
+                    loggedIn && !isGuest &&
                     <Button 
                         sx={{width: '100%'}}
                         onClick={() => signout()}
                     >
                         Sign Out
                     </Button>
+                    }
+
+                    {
+                        isGuest &&
+                        <Button 
+                            sx={{width: '100%'}}
+                            onClick={() => forgetGuest()}
+                        >
+                            Forget Me
+                        </Button>
+                    }
             </Menu>
         </>
     )

@@ -23,6 +23,7 @@ const FormHeader = ({heading}) => {
                         textTransform: 'none'
                     }}
                     onClick={continueAsGuest}
+                    size='large'
                 >
                     Continue as Guest
                 </Button>
