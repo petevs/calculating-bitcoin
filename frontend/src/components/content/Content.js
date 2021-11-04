@@ -10,7 +10,8 @@ const Content = ({children}) => {
             sx={{
             display: 'grid',
             gridTemplateColumns: '1fr',
-            justifyItems: 'end'
+            justifyItems: 'end',
+            backgroundColor: 'rgba(22,28,36,1)',
             }}
         >
             <Box
@@ -21,6 +22,7 @@ const Content = ({children}) => {
                 minHeight: '100vh',
                 alignContent: 'center',
                 textAlign: 'center',
+                backgroundColor: 'rgb(22,28,36)',
                 '@media screen and (max-width: 768px)': {
                     width: '100%'
                 }

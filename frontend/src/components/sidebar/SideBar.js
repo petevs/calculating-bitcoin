@@ -22,8 +22,10 @@ const SideBar = () => {
                 '& .MuiDrawer-paper': {
                     width: drawerWidth,
                     top: '64px',
-                    backgroundColor: 'rgb(22, 28, 36)',
-                    color: 'rgb(145,158,171)'
+                    backgroundColor: 'rgba(22,28,36,1)',
+                    backgroundImage: 'none',
+                    color: 'rgb(145,158,171)',
+                    borderRight: '1px solid rgba(145, 158, 171, 0.24)',
                 }
                 }}
                 BackdropProps={{ invisible: !mobile ? true : false}}
