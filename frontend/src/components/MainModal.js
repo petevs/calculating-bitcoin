@@ -7,8 +7,6 @@ const MainModal = () => {
 
     const { modalOpen, modalContent, handleModalClose } = useModal()
 
-    console.log(modalContent)
-
     return (
         <Modal
             open={modalOpen}
