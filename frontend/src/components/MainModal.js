@@ -14,6 +14,7 @@ const MainModal = (props) => {
             open={props.open || modalOpen}
             onClose={props.onClose || handleModalClose}
             disableEnforceFocus
+            disableAutoFocus
         >
             <Box
                 sx={{
