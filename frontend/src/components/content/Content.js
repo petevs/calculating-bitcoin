@@ -20,8 +20,9 @@ const Content = ({children}) => {
                 gridTemplateColumns: '1fr',
                 width: drawerOpen ? `calc(100% - ${drawerWidth}px)` : '100%',
                 minHeight: '100vh',
-                alignContent: 'center',
-                textAlign: 'center',
+                alignContent: 'start',
+                marginTop: '64px',
+                padding: '2rem',
                 backgroundColor: 'rgb(22,28,36)',
                 '@media screen and (max-width: 768px)': {
                     width: '100%'
