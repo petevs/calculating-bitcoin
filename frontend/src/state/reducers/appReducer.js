@@ -1,7 +1,8 @@
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
 
 export const initialAppState = {
-    drawerOpen: true
+    drawerOpen: true,
+    drawerWidth: 300,
 }
 
 export const appReducer = (state, action) => {

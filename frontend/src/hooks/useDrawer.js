@@ -6,7 +6,7 @@ const useDrawer = () => {
 
     const { state, dispatch } = useContext(GlobalContext)
 
-    const { drawerOpen } = state.app
+    const { drawerOpen, drawerWidth } = state.app
 
     const handleDrawerClose = () => {
         dispatch(toggleDrawer(false))
@@ -21,7 +21,7 @@ const useDrawer = () => {
     }
 
 
-    return { drawerOpen, handleDrawerClose, handleDrawerOpen, handleDrawerToggle }
+    return { drawerOpen, drawerWidth, handleDrawerClose, handleDrawerOpen, handleDrawerToggle }
 }
 
 export default useDrawer

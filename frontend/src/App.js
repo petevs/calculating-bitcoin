@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import './App.css';
 import Nav from 'components/nav/Nav';

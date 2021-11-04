@@ -3,7 +3,7 @@ import useDrawer from 'hooks/useDrawer';
 
 const Content = ({children}) => {
 
-    const { drawerOpen } = useDrawer()
+    const { drawerOpen, drawerWidth } = useDrawer()
 
     return (
         <Box
@@ -18,7 +18,7 @@ const Content = ({children}) => {
               sx={{
                 display: 'grid',
                 gridTemplateColumns: '1fr',
-                width: drawerOpen ? 'calc(100% - 240px)' : '100%',
+                width: drawerOpen ? `calc(100% - ${drawerWidth}px)` : '100%',
                 minHeight: '100vh',
                 alignContent: 'center',
                 textAlign: 'center',
