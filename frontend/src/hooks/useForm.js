@@ -4,7 +4,10 @@ const useForm = (initialValues) => {
 
     const [values, setValues] = useState(initialValues)
 
-    const handleFormChange = (e, test) => {
+    const handleFormChange = (e, validation) => {
+        if(validation){
+            validation(e)
+        }
         setValues({
             ...values,
             [e.target.name]: e.target.value

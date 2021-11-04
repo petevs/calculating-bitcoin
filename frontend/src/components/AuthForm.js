@@ -5,6 +5,9 @@ import FormFooter from './form/FormFooter'
 import FormSubmit from './form/FormSubmit'
 import ForgotPassword from './form/ForgotPassword'
 import useForm from 'hooks/useForm'
+import useErrors from 'hooks/useErrors'
+import * as yup from 'yup'
+import { useEffect } from 'react'
 
 const AuthForm = () => {
 
@@ -13,10 +16,15 @@ const AuthForm = () => {
         password: ''
     }
 
+    const schema = yup.object().shape({
+        email: yup.string().email('Invalid email format').required(),
+        password: yup.string().required().min(8)
+    })
+
     const {values, handleFormChange } = useForm(initialFormValues)
+    const {errors, validateChange } = useErrors(initialFormValues, schema)
 
     const inputSize= 'medium'
-
 
     return (
         <FormBox>
@@ -29,7 +37,9 @@ const AuthForm = () => {
                 size={inputSize}
                 placeholder='example@mail.com'
                 value={values.email}
-                onChange={handleFormChange}
+                onChange={(e) => handleFormChange(e, validateChange)}
+                error={errors.email !== ''}
+                helperText={errors.email}
             />
             <TextField
                 label='Password'
@@ -39,7 +49,9 @@ const AuthForm = () => {
                 size={inputSize}
                 placeholder='At least 8 characters'
                 value={values.password}
-                onChange={handleFormChange}
+                onChange={(e) => handleFormChange(e, validateChange)}
+                error={errors.password !== ''}
+                helperText={errors.password}
             />
 
                 <FormSubmit onClick={() => console.log(values)}>Log in</FormSubmit>
