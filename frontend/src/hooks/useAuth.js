@@ -1,20 +1,30 @@
 import { auth } from 'firebase'
 import GlobalContext from 'state/contexts/GlobalContext'
 import { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import useModal from './useModal'
 
 const useAuth = () => {
+
+    const history = useHistory()
+    const { handleModalClose } = useModal()
 
     const { state } = useContext(GlobalContext)
 
     const loggedIn = state.auth.uid ? true : false
     const isGuest = state.auth.isAnonymous
+    const pending = state.auth.pending
         
-    const signup = (email, password) => {
-        return auth.createUserWithEmailAndPassword(email, password)
+    const signup = async (email, password) => {
+        await auth.createUserWithEmailAndPassword(email, password)
+        history.push('/')
+        handleModalClose()
     }
 
-    const signin = (email, password) => {
-        return auth.signInWithEmailAndPassword(email, password)
+    const signin = async (email, password) => {
+        await auth.signInWithEmailAndPassword(email, password)
+        history.push('/')
+        handleModalClose()
     }
 
     const continueAsGuest = () => {
@@ -34,6 +44,7 @@ const useAuth = () => {
         return auth.confirmPasswordReset(code, password)
     } 
     return {
+        pending,
         loggedIn,
         isGuest,
         signup,

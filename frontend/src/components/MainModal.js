@@ -7,8 +7,6 @@ const MainModal = (props) => {
 
     const { modalOpen, modalContent, handleModalClose } = useModal()
 
-
-    console.log(props)
     return (
         <Modal
             open={props.open || modalOpen}
