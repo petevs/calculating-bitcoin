@@ -15,7 +15,6 @@ function App() {
         <>
           <Nav />
             <Content>
-              <Typography variant='h3'>Coming Soon...</Typography>
               <DollarCostAverage />
             </Content>
         </>

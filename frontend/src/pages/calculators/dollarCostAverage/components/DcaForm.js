@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import useForm from 'hooks/useForm'
 import DateField from 'components/DateField'
-import { TextField } from '@mui/material'
+import { TextField, InputAdornment, Typography } from '@mui/material'
 
 const DcaForm = () => {
 
@@ -16,6 +16,7 @@ const DcaForm = () => {
 
     return (
         <div>
+            <Typography variant='h4' color='primary'>Dollar Cost Average</Typography>
             <DateField
                 label='Start Date'
                 name='startDate'
@@ -25,9 +26,14 @@ const DcaForm = () => {
                 handleChange={(e) => handleDateChange(e, 'startDate')}
             />
             <TextField
+                label='Purchase Amount'
                 name='purchaseAmount'
                 value={values.purchaseAmount}
                 onChange={handleFormChange}
+                InputProps={{
+                    startAdornment: (<InputAdornment position='start'>$</InputAdornment>),
+                }}
+                inputProps={{inputMode: 'numeric'}}
             />
         </div>
     )

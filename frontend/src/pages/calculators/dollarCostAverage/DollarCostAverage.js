@@ -7,13 +7,6 @@ import DcaForm from './components/DcaForm'
 
 const DollarCostAverage = () => {
 
-    const [startDate, setStartDate] = useState(moment())
-
-    const handleChange = (event, value) => {
-        console.log(event)
-        setStartDate(value)
-    }
-
     return (
         <div>
             <DcaForm />
