@@ -3,14 +3,16 @@ import { Box } from '@mui/system'
 import useModal from 'hooks/useModal'
 import React from 'react'
 
-const MainModal = () => {
+const MainModal = (props) => {
 
     const { modalOpen, modalContent, handleModalClose } = useModal()
 
+
+    console.log(props)
     return (
         <Modal
-            open={modalOpen}
-            onClose={handleModalClose}
+            open={props.open || modalOpen}
+            onClose={props.onClose || handleModalClose}
             disableEnforceFocus
         >
             <Box

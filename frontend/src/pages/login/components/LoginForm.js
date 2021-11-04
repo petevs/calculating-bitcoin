@@ -1,7 +1,7 @@
 import AuthForm from "components/AuthForm"
 import useAuth from "hooks/useAuth"
 
-const Login = () => {
+const LoginForm = () => {
 
     const { signin } = useAuth()
 
@@ -18,4 +18,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default LoginForm
