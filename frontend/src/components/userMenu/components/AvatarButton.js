@@ -1,7 +1,7 @@
 import React from 'react'
 import { IconButton, Avatar } from '@mui/material'
 
-export const AvatarButton = ({handleClick, src}) => {
+const AvatarButton = ({handleClick, src}) => {
     return (
         <IconButton onClick={handleClick}>
             <Avatar
@@ -11,3 +11,6 @@ export const AvatarButton = ({handleClick, src}) => {
         </IconButton>
     )
 }
+
+
+export default AvatarButton

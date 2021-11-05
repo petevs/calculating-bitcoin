@@ -13,6 +13,21 @@ const useAuth = () => {
     const loggedIn = state.auth.uid ? true : false
     const isGuest = state.auth.isAnonymous
     const pending = state.auth.pending
+
+    const userState = (loggedIn, isGuest) => {
+        if(loggedIn && isGuest){
+            return 'LoggedinGuest'
+        }
+
+        if(loggedIn && !isGuest){
+            return 'Loggedin'
+        }
+
+        if(!loggedIn){
+            return 'NotLoggedin'
+        }
+    }
+
         
     const signup = async (email, password) => {
         await auth.createUserWithEmailAndPassword(email, password)
@@ -51,6 +66,7 @@ const useAuth = () => {
         pending,
         loggedIn,
         isGuest,
+        userState,
         signup,
         signin,
         continueAsGuest,

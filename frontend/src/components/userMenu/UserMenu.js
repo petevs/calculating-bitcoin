@@ -2,6 +2,7 @@ import React from 'react'
 import useMenu from 'hooks/useMenu'
 import AvatarButton from './components/AvatarButton'
 import MenuBox from './components/MenuBox'
+import MenuContent from './components/MenuContent'
 
 const UserMenu = () => {
 
@@ -17,7 +18,7 @@ const UserMenu = () => {
                 onClose={handleClose}
                 onClick={handleClose}
             >
-                Hi there
+                <MenuContent />
             </MenuBox>
         </>
     )

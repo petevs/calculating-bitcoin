@@ -3,6 +3,7 @@ import { Box, AppBar } from '@mui/material/';
 import Logo from './components/Logo';
 import SideBar from '../sidebar/SideBar';
 import AvatarMenu from './components/AvatarMenu';
+import UserMenu from 'components/userMenu/UserMenu';
 
 const Nav = () => {
     return (
@@ -27,7 +28,7 @@ const Nav = () => {
                     <SideBar />
                     <Logo />
                     <Box></Box>
-                    <AvatarMenu />
+                    <UserMenu />
                 </Box>
             </AppBar>
     )
