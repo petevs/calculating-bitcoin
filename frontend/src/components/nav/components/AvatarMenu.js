@@ -50,12 +50,20 @@ const AvatarMenu = () => {
                 </MenuItem>
 
                 { loggedIn && isGuest &&
-                    <MenuItem
-                        component={Link}
-                        to='/login'
-                    >
-                        Log in
-                    </MenuItem>
+                    <>
+                        <MenuItem
+                            component={Link}
+                            to='/login'
+                        >
+                            Log in
+                        </MenuItem>
+                        <MenuItem
+                            component={Link}
+                            to='/signup'
+                        >
+                            Sign up
+                        </MenuItem>
+                    </>
                 }
 
 
