@@ -3,6 +3,7 @@ import useCombinedReducers from 'use-combined-reducers'
 import { auth } from 'firebase'
 import { setUser } from 'state/actions/authActions'
 import { setPending } from 'state/actions/authActions'
+import { db } from 'firebase'
 
 //Reducers
 import { appReducer, initialAppState } from 'state/reducers/appReducer'
@@ -32,6 +33,15 @@ export const GlobalProvider= ({children}) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+
+    // useEffect(() => {
+    //     db.collection('users').doc(state.auth.uid).onSnapshot((doc) => {
+    //         const result = doc.data()
+
+    //         console.log(result)
+    //     })
+    // },[state.auth.uid])
 
     return (
         <GlobalContext.Provider

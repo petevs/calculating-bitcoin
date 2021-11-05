@@ -1,13 +1,17 @@
-import React from 'react'
+import { useContext } from 'react'
 import DefaultLayout from 'layouts/DefaultLayout'
 import PageTitle from 'layouts/components/PageTitle'
 import StyledBox from 'layouts/components/StyledBox'
 import { Box } from '@mui/system'
 import UserAvatar from './components/UserAvatar'
 import { Typography } from '@mui/material'
+import GlobalContext from 'state/contexts/GlobalContext'
 
 const Account = () => {
 
+    const { state } = useContext(GlobalContext)
+
+    console.log(state)
 
     return (
         <>     
@@ -26,12 +30,17 @@ const Account = () => {
                         sx={{
                             '@media (min-width:768px)': {
                                 gridColumn: '1 / span 1'
-                            }
+                            },
+                            display: 'grid',
+                            justifyItems: 'center',
+                            gap: '1rem'
+
                         }}
                     >
                         <UserAvatar />
-                        <Typography variant='caption' sx={{fontSize: '.675rem', textAlign: 'center'}}>
-                            Allowed *.jpeg, *.jpg, *.png, *.gif max size of 3.1 MB
+                        <Typography variant='caption' sx={{fontSize: '.675rem', textAlign: 'center', color: 'rgb(145, 158, 171)'}}>
+                            Allowed *.jpeg, *.jpg, *.png, *.gif 
+                            <br /> max size of 3.1 MB
                         </Typography>
                     </StyledBox>
                     <StyledBox 

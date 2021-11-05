@@ -20,6 +20,7 @@ const UpdateAvatarButton = ({hovering}) => {
             alignContent: 'center',
             backgroundColor: 'rgba(0,0,0,.85)',
             opacity: hovering ? 1 : 0,
+            zIndex: 9999
         }}>
             <Button 
                 component='label' 

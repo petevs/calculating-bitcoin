@@ -8,16 +8,14 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import { GlobalProvider } from 'state/contexts/GlobalContext';
 import { BrowserRouter as Router } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
 
-const history = createBrowserHistory()
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
       <GlobalProvider>
-        <Router history={history}>
+        <Router>
           <App />
         </Router>
       </GlobalProvider>

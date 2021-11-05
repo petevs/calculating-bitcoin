@@ -2,7 +2,8 @@ export const SET_USER = "SET_USER";
 export const SET_PENDING = "SET_PENDING"
 
 export const initialAuthState = {
-  pending: true
+  pending: true,
+  uid: null
 };
 
 export const authReducer = (state, action) => {

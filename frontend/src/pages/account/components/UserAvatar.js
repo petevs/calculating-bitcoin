@@ -2,6 +2,7 @@ import { Box } from '@mui/system'
 import React from 'react'
 import useHover from 'hooks/useHover'
 import UpdateAvatarButton from './UpdateAvatarButton'
+import { Avatar } from '@mui/material'
 
 const UserAvatar = () => {
 
@@ -26,13 +27,14 @@ const UserAvatar = () => {
             }}
         >
                 <UpdateAvatarButton hovering={hovering} />
-            <img
-                alt='avatar' 
-                src="https://images.unsplash.com/photo-1516245834210-c4c142787335?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2669&q=80"
-                style={{
-                    objectFit: 'cover',
+            <Avatar 
+                src=''
+                sx={{
                     width: '100%',
-                    height: '100%'
+                    height: '100%',
+                    '&MuiAvatar-root': {
+                        zIndex: 1,
+                    }
                 }}
             />
         </Box>
