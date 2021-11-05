@@ -1,5 +1,8 @@
 import React from 'react'
 import useAuth from 'hooks/useAuth'
+import LoggedinMenu from './LoggedinMenu'
+import NotLoggedinMenu from './NotLoggedinMenu'
+import LoggedInGuestMenu from './LoggedInGuestMenu'
 
 const MenuContent = () => {
 
@@ -8,11 +11,11 @@ const MenuContent = () => {
     const renderSwitch = () => {
         switch(userState()) {
             case 'LoggedinGuest':
-                return 'do not know him but he is logged in'
+                return <LoggedInGuestMenu />
             case 'Loggedin':
-                return 'this dude is logged in'
+                return <LoggedinMenu />
             case 'NotLoggedin':
-                return <p>he there diddly dan</p>
+                return <NotLoggedinMenu />
             default:
                 return 'not logged in'
         }

@@ -1,9 +1,34 @@
-import React from 'react'
+import { Button, Divider, MenuItem } from '@mui/material'
+import useAuth from 'hooks/useAuth'
+import { Link } from 'react-router-dom'
 
 const LoggedinMenu = () => {
+
+    const { signout } = useAuth()
+
+
     return (
-        <div>
-        </div>
+        <>
+            <MenuItem
+                component={Link}
+                to='/profile'
+            >
+                Profile
+            </MenuItem>
+            <MenuItem
+                component={Link}
+                to='/settings'
+            >
+                Settings
+            </MenuItem>
+            <Divider />
+            <Button 
+                sx={{width: '100%'}}
+                onClick={() => signout()}
+            >
+                Sign Out
+            </Button>
+        </>
     )
 }
 

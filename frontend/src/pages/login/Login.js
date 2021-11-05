@@ -1,7 +1,5 @@
-import useModal from "hooks/useModal"
 import DefaultLayout from "layouts/DefaultLayout"
 import LoginForm from "./components/LoginForm"
-import { useEffect } from 'react'
 import { Box } from "@mui/system"
 
 const Login = () => {

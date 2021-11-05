@@ -2,19 +2,20 @@ import { auth } from 'firebase'
 import GlobalContext from 'state/contexts/GlobalContext'
 import { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import useModal from './useModal'
 
 const useAuth = () => {
 
     const history = useHistory()
 
     const { state } = useContext(GlobalContext)
+    const {
+        uid: loggedIn,
+        isAnonymous: isGuest,
+        pending
+    } = state.auth
 
-    const loggedIn = state.auth.uid ? true : false
-    const isGuest = state.auth.isAnonymous
-    const pending = state.auth.pending
+    const userState = () => {
 
-    const userState = (loggedIn, isGuest) => {
         if(loggedIn && isGuest){
             return 'LoggedinGuest'
         }

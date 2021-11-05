@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, AppBar } from '@mui/material/';
 import Logo from './components/Logo';
 import SideBar from '../sidebar/SideBar';
-import AvatarMenu from './components/AvatarMenu';
 import UserMenu from 'components/userMenu/UserMenu';
 
 const Nav = () => {

@@ -21,6 +21,7 @@ const Content = ({children}) => {
                 width: drawerOpen ? `calc(100% - ${drawerWidth}px)` : '100%',
                 minHeight: 'calc(100vh - 64px)',
                 alignContent: 'start',
+                justifyItems: 'center',
                 marginTop: '64px',
                 padding: '2rem',
                 backgroundColor: 'rgb(22,28,36)',
