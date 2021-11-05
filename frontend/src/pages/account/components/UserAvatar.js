@@ -3,11 +3,13 @@ import React from 'react'
 import useHover from 'hooks/useHover'
 import UpdateAvatarButton from './UpdateAvatarButton'
 import { Avatar } from '@mui/material'
+import useUserDetails from 'hooks/useUserDetails'
 
 const UserAvatar = () => {
 
 
     const {hovering, enter, leave} = useHover()
+    const { avatarURL } = useUserDetails()
 
     return (
         <>
@@ -28,7 +30,7 @@ const UserAvatar = () => {
         >
                 <UpdateAvatarButton hovering={hovering} />
             <Avatar 
-                src=''
+                src={avatarURL}
                 sx={{
                     width: '100%',
                     height: '100%',

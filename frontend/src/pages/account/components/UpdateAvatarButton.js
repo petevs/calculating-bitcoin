@@ -2,11 +2,23 @@ import { Button } from '@mui/material'
 import { Box } from '@mui/system'
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import useFileUpload from 'hooks/useFileUpload';
+import { useEffect } from 'react'
+import useFirebase from 'hooks/useFirebase';
 
 
 const UpdateAvatarButton = ({hovering}) => {
 
     const { handleFileUploadOneStep } = useFileUpload()
+    const { updateUserAccount } = useFirebase()
+
+    // updateUserAccount('avatarURL', url)
+
+    const updatePhoto = async (e) => {
+       const url = await handleFileUploadOneStep(e)
+       updateUserAccount('avatarURL', url)
+       console.log(url)
+    }
+
 
     return (
         <Box sx={{
@@ -34,7 +46,7 @@ const UpdateAvatarButton = ({hovering}) => {
                 <input
                     id='file'
                     type='file'
-                    onChange={handleFileUploadOneStep}
+                    onChange={updatePhoto}
                     hidden
                 />
             </Button>

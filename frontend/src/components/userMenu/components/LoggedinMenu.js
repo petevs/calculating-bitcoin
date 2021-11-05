@@ -11,9 +11,9 @@ const LoggedinMenu = () => {
         <>
             <MenuItem
                 component={Link}
-                to='/profile'
+                to='/account'
             >
-                Profile
+                Account
             </MenuItem>
             <MenuItem
                 component={Link}

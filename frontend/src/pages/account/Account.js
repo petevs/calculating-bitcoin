@@ -1,17 +1,16 @@
-import { useContext } from 'react'
 import DefaultLayout from 'layouts/DefaultLayout'
 import PageTitle from 'layouts/components/PageTitle'
 import StyledBox from 'layouts/components/StyledBox'
 import { Box } from '@mui/system'
 import UserAvatar from './components/UserAvatar'
 import { Typography } from '@mui/material'
-import GlobalContext from 'state/GlobalContext'
+import useUserDetails from 'hooks/useUserDetails'
+
 
 const Account = () => {
 
-    const { state } = useContext(GlobalContext)
+    const { email } = useUserDetails()
 
-    console.log(state)
 
     return (
         <>     
@@ -50,7 +49,7 @@ const Account = () => {
                             }
                         }}
                     >
-                        Hell
+                        {email}
                     </StyledBox>
                 </Box>
         </DefaultLayout>
