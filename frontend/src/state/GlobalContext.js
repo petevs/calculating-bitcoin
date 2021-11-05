@@ -8,6 +8,9 @@ import { db } from 'firebase'
 //Reducers
 import { appReducer, initialAppState } from 'state/app/appReducer'
 import { authReducer, initialAuthState } from 'state/auth/authReducer'
+import { initialUserState, userReducer } from './user/userReducer'
+import { setUser } from './user/userActions'
+import Loading from 'components/Loading'
 
 
 export const GlobalContext = createContext()
@@ -17,6 +20,7 @@ export const GlobalProvider= ({children}) => {
     const [state, dispatch] = useCombinedReducers({
         auth: useReducer(authReducer, initialAuthState),
         app: useReducer(appReducer, initialAppState),
+        user: useReducer(userReducer, initialUserState)
     })
 
     useEffect(() => {
@@ -39,10 +43,17 @@ export const GlobalProvider= ({children}) => {
         db.collection('users').doc(state.auth.uid).onSnapshot((doc) => {
             const result = doc.data()
             if(result){
-                console.log(result)
+                dispatch(setUser(result.account))
             }
         })
     },[state.auth.uid])
+
+    
+    if(state.auth.pending){
+        return(
+            <Loading />
+        )
+    }
 
     return (
         <GlobalContext.Provider

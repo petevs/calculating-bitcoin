@@ -1,6 +1,6 @@
 export const SET_USER = "SET_USER";
 
-export const initialAuthState = {
+export const initialUserState = {
     avatarURL: '',
     currency: 'usd',
     displayName: '',
@@ -14,7 +14,10 @@ export const userReducer = (state, action) => {
       return {
         ...state,
         uid: action.payload.uid,
-        isAnonymous: action.payload.isAnonymous,
+        avatarURL: action.payload.avatarURL,
+        currency: action.payload.currency,
+        displayName: action.payload.displayName,
+        email: action.payload.email,
       };
     default:
       return state;
