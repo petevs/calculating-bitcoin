@@ -1,7 +1,7 @@
 import { createContext, useReducer, useEffect } from 'react'
 import useCombinedReducers from 'use-combined-reducers'
 import { auth } from 'firebase'
-import { setUser } from 'state/actions/authActions'
+import { setAuth } from 'state/actions/authActions'
 import { setPending } from 'state/actions/authActions'
 import { db } from 'firebase'
 
@@ -22,9 +22,9 @@ export const GlobalProvider= ({children}) => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
-                dispatch(setUser(user))
+                dispatch(setAuth(user))
             } else {
-                dispatch(setUser(initialAuthState))
+                dispatch(setAuth(initialAuthState))
             }
             dispatch(setPending(false))
         })
@@ -35,13 +35,14 @@ export const GlobalProvider= ({children}) => {
     }, [])
 
 
-    // useEffect(() => {
-    //     db.collection('users').doc(state.auth.uid).onSnapshot((doc) => {
-    //         const result = doc.data()
-
-    //         console.log(result)
-    //     })
-    // },[state.auth.uid])
+    useEffect(() => {
+        db.collection('users').doc(state.auth.uid).onSnapshot((doc) => {
+            const result = doc.data()
+            if(result){
+                console.log(result)
+            }
+        })
+    },[state.auth.uid])
 
     return (
         <GlobalContext.Provider

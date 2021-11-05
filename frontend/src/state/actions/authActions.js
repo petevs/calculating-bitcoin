@@ -1,7 +1,7 @@
-import { SET_PENDING, SET_USER } from "state/reducers/authReducer";
+import { SET_PENDING, SET_AUTH } from "state/reducers/authReducer";
 
-export const setUser = (data) => {
-  return { type: SET_USER, payload: data };
+export const setAuth = (data) => {
+  return { type: SET_AUTH, payload: data };
 };
 
 
