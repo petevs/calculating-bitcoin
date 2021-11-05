@@ -1,9 +1,13 @@
-import React from 'react'
 import { Button } from '@mui/material'
 import { Box } from '@mui/system'
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import useFileUpload from 'hooks/useFileUpload';
 
-const UpdateAvatarButton = () => {
+
+const UpdateAvatarButton = ({hovering}) => {
+
+    const { handleFileUploadOneStep } = useFileUpload()
+
     return (
         <Box sx={{
             position: 'absolute',
@@ -14,7 +18,8 @@ const UpdateAvatarButton = () => {
             display: 'grid',
             justifyContent: 'center',
             alignContent: 'center',
-            backgroundColor: 'rgba(0,0,0,.85)'
+            backgroundColor: 'rgba(0,0,0,.85)',
+            opacity: hovering ? 1 : 0,
         }}>
             <Button 
                 component='label' 
@@ -26,8 +31,9 @@ const UpdateAvatarButton = () => {
             >
                 Update Avatar
                 <input
-                    accept="image/*"
+                    id='file'
                     type='file'
+                    onChange={handleFileUploadOneStep}
                     hidden
                 />
             </Button>

@@ -2,7 +2,6 @@ import { Box } from '@mui/system'
 import React from 'react'
 import useHover from 'hooks/useHover'
 import UpdateAvatarButton from './UpdateAvatarButton'
-import { Typography } from '@mui/material'
 
 const UserAvatar = () => {
 
@@ -10,6 +9,7 @@ const UserAvatar = () => {
     const {hovering, enter, leave} = useHover()
 
     return (
+        <>
         <Box
             onMouseEnter={enter}
             onMouseLeave={leave}
@@ -25,10 +25,7 @@ const UserAvatar = () => {
                 position: 'relative'
             }}
         >
-                {
-                    hovering &&
-                    <UpdateAvatarButton />
-                }
+                <UpdateAvatarButton hovering={hovering} />
             <img
                 alt='avatar' 
                 src="https://images.unsplash.com/photo-1516245834210-c4c142787335?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2669&q=80"
@@ -39,6 +36,7 @@ const UserAvatar = () => {
                 }}
             />
         </Box>
+        </>
     )
 }
 
