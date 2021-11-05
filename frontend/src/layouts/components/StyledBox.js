@@ -1,7 +1,7 @@
 import { Box } from '@mui/system'
 import React from 'react'
 
-const StyledBox = ({children}) => {
+const StyledBox = (props) => {
     return (
         <Box
             sx={{
@@ -11,11 +11,11 @@ const StyledBox = ({children}) => {
                 backgroundImage: 'none',
                 boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
                 borderRadius: '16px',
-                padding: '2rem'
-
+                padding: '2rem',
+                ...props.sx
             }}
         >
-            {children}
+            {props.children}
         </Box>
     )
 }
