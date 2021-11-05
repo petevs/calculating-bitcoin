@@ -6,7 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
-import { GlobalProvider } from 'state/contexts/GlobalContext';
+import { GlobalProvider } from 'state/GlobalContext';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 

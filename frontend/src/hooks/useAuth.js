@@ -1,5 +1,5 @@
 import { auth } from 'firebase'
-import GlobalContext from 'state/contexts/GlobalContext'
+import GlobalContext from 'state/GlobalContext'
 import { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 

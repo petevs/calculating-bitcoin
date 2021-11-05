@@ -5,7 +5,7 @@ import StyledBox from 'layouts/components/StyledBox'
 import { Box } from '@mui/system'
 import UserAvatar from './components/UserAvatar'
 import { Typography } from '@mui/material'
-import GlobalContext from 'state/contexts/GlobalContext'
+import GlobalContext from 'state/GlobalContext'
 
 const Account = () => {
 

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { toggleDrawer } from 'state/actions/appActions'
-import GlobalContext from 'state/contexts/GlobalContext'
+import { toggleDrawer } from 'state/app/appActions'
+import GlobalContext from 'state/GlobalContext'
 
 const useDrawer = () => {
 

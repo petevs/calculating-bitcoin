@@ -1,4 +1,4 @@
-import { TOGGLE_DRAWER, TOGGLE_MODAL, SET_MODAL_CONTENT } from "state/reducers/appReducer";
+import { TOGGLE_DRAWER, TOGGLE_MODAL, SET_MODAL_CONTENT } from "state/app/appReducer";
 
 export const toggleDrawer = (data) => {
     return { type: TOGGLE_DRAWER, payload: data}

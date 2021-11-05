@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { storage } from 'firebase'
-import GlobalContext from 'state/contexts/GlobalContext'
+import GlobalContext from 'state/GlobalContext'
 
 const useFileUpload = () => {
 

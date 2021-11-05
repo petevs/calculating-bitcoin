@@ -1,13 +1,13 @@
 import { createContext, useReducer, useEffect } from 'react'
 import useCombinedReducers from 'use-combined-reducers'
 import { auth } from 'firebase'
-import { setAuth } from 'state/actions/authActions'
-import { setPending } from 'state/actions/authActions'
+import { setAuth } from 'state/auth/authActions'
+import { setPending } from 'state/auth/authActions'
 import { db } from 'firebase'
 
 //Reducers
-import { appReducer, initialAppState } from 'state/reducers/appReducer'
-import { authReducer, initialAuthState } from 'state/reducers/authReducer'
+import { appReducer, initialAppState } from 'state/app/appReducer'
+import { authReducer, initialAuthState } from 'state/auth/authReducer'
 
 
 export const GlobalContext = createContext()

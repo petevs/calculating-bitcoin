@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { setModalContent, toggleModal } from 'state/actions/appActions'
-import GlobalContext from 'state/contexts/GlobalContext'
+import { setModalContent, toggleModal } from 'state/app/appActions'
+import GlobalContext from 'state/GlobalContext'
 
 const useModal = () => {
 

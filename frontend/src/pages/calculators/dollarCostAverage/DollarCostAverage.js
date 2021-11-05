@@ -3,7 +3,7 @@ import { TextField } from '@mui/material'
 import DateField from 'components/DateField'
 import moment from 'moment'
 import { useContext } from 'react'
-import GlobalContext from 'state/contexts/GlobalContext'
+import GlobalContext from 'state/GlobalContext'
 import DcaForm from './components/DcaForm'
 
 const DollarCostAverage = () => {
