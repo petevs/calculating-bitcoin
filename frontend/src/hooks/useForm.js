@@ -1,8 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const useForm = (initialValues) => {
 
     const [values, setValues] = useState(initialValues)
+    const initial = useRef(initialValues)
+    console.log(initial)
+
+    // useEffect(() => {
+    //     if(initial.current !== initialValues){
+    //         setValues(initialValues)
+    //     }
+    // },[initialValues])
 
     const handleFormChange = (e, validation) => {
         if(validation){
@@ -21,7 +29,7 @@ const useForm = (initialValues) => {
         })
     }
 
-    return { values, handleFormChange, handleDateChange }
+    return { values, setValues, handleFormChange, handleDateChange }
 }
 
 export default useForm

@@ -1,8 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import useForm from 'hooks/useForm'
 import useErrors from 'hooks/useErrors'
 import GlobalContext from 'state/GlobalContext'
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Button, MenuItem, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import * as yup from 'yup'
 import { db } from 'firebase'
@@ -30,13 +30,17 @@ const EditUserDetails = () => {
         displayName: yup.string().min(3, 'Display name must be at least 3 characters')
     })
 
-    const {values, handleFormChange} = useForm(initialFormValues)
+    const {values, setValues, handleFormChange} = useForm(initialFormValues)
     const {errors, validateChange } = useErrors(initialErrors, schema)
 
     const currencies = [
         ['usd', 'USD - United States Dollar'],
         ['cad', 'CAD - Canadian Dollar']
     ]
+
+    useEffect(() => {
+        console.log(initialFormValues)
+    },[initialFormValues])
 
     const handleSubmit = async (e) => {
         e.preventDefault()

@@ -48,7 +48,7 @@ export const GlobalProvider= ({children}) => {
         })
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[state.auth.uid])
+    },[state.auth])
 
     
     if(state.auth.pending){

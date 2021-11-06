@@ -5,7 +5,8 @@ export const initialUserState = {
     currency: 'usd',
     displayName: '',
     email: '',
-    uid: ''
+    uid: '',
+    loading: true,
 };
 
 export const userReducer = (state, action) => {
@@ -18,6 +19,7 @@ export const userReducer = (state, action) => {
         currency: action.payload.currency,
         displayName: action.payload.displayName,
         email: action.payload.email,
+        loading: false
       };
     default:
       return state;
