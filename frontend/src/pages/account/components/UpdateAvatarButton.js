@@ -2,7 +2,6 @@ import { Button } from '@mui/material'
 import { Box } from '@mui/system'
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import useFileUpload from 'hooks/useFileUpload';
-import { useEffect } from 'react'
 import useFirebase from 'hooks/useFirebase';
 
 

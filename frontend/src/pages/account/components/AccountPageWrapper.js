@@ -6,9 +6,9 @@ const AccountPageWrapper = (props) => {
         <Box 
             sx={{
             display: 'grid', 
-            gridTemplateColumns: 'repeat(4, 1fr)', 
+            gridTemplateColumns: 'repeat(6, 1fr)', 
             gap: '1rem',
-            '@media (max-width:768px)': {
+            '@media (max-width:1048px)': {
                 gridTemplateColumns: '1fr'
             }
             }}

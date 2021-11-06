@@ -3,16 +3,12 @@ import PageTitle from 'layouts/components/PageTitle'
 import StyledBox from 'layouts/components/StyledBox'
 import { Box } from '@mui/system'
 import UserAvatar from './components/UserAvatar'
-import { Typography } from '@mui/material'
-import useUserDetails from 'hooks/useUserDetails'
+import { Chip, Typography } from '@mui/material'
 import AccountPageWrapper from './components/AccountPageWrapper'
 import EditUserDetails from './components/EditUserDetails'
 
 
 const Account = () => {
-
-    const { email } = useUserDetails()
-
 
     return (
         <>     
@@ -21,6 +17,7 @@ const Account = () => {
                 <PageTitle>Account</PageTitle>
                 <AccountPageWrapper>
                     <StyledBox sx={leftColumn}>
+                        <Chip label='Member' size='small' color='info' sx={{justifySelf: 'end', fontWeight: 700, borderRadius: '8px', fontSize: '.75rem', textTransform: 'uppercase'}}/>
                         <UserAvatar />
                         <Typography variant='caption' sx={{fontSize: '.675rem', textAlign: 'center', color: 'rgb(145, 158, 171)'}}>
                             Allowed *.jpeg, *.jpg, *.png, *.gif 
@@ -43,8 +40,8 @@ export default Account
 //STYLES
 
 const leftColumn = {
-    '@media (min-width:768px)': {
-        gridColumn: '1 / span 1'
+    '@media (min-width:1048px)': {
+        gridColumn: '1 / span 2'
     },
     display: 'grid',
     justifyItems: 'center',
@@ -53,7 +50,7 @@ const leftColumn = {
 }
 
 const rightColumn = {
-    '@media (min-width:768px)': {
-        gridColumn: '2 / span 3'
+    '@media (min-width:1048px)': {
+        gridColumn: '3 / span 4'
     }
 }
