@@ -17,7 +17,7 @@ const AuthForm = (props) => {
 
     const schema = yup.object().shape({
         email: yup.string().email('Invalid email format').required(),
-        password: yup.string().required().min(8)
+        password: yup.string().required().min(8, 'Password minimum of 8 characters')
     })
 
     const {values, handleFormChange } = useForm(initialFormValues)
