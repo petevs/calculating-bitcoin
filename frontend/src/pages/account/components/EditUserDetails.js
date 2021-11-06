@@ -5,6 +5,7 @@ import GlobalContext from 'state/GlobalContext'
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import * as yup from 'yup'
+import { db } from 'firebase'
 
 const EditUserDetails = () => {
 
@@ -37,9 +38,25 @@ const EditUserDetails = () => {
         ['cad', 'CAD - Canadian Dollar']
     ]
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            await db.collection('users').doc(user.uid).update({
+                account: {
+                    ...user,
+                    ...values
+                }
+            })
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
+
     return (
         <Box>
-            <Box sx={{
+            <Box 
+                sx={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
                 gap: '1rem',
@@ -70,29 +87,28 @@ const EditUserDetails = () => {
                     error={errors.displayName !== ''}
                     helperText={errors.displayName}
                 />
-                <FormControl>
-                    <InputLabel id='currency'>Default Currency</InputLabel>
-                    <Select
-                        id='currency'
-                        name='currency'
-                        label='Default Currency'
-                        type='select'
-                        value={values.currency}
-                        onChange={(e) => handleFormChange(e, validateChange)}
-                        error={errors.currency !== ''}
-                        helperText={errors.currency}
-                    >
-                        {
-                            currencies.map(currency => 
-                                <MenuItem
-                                    value={currency[0]}
-                                >
-                                    {currency[1]}
-                                </MenuItem>
-                                    )
-                        }
-                    </Select>
-                </FormControl>
+                <TextField
+                    select
+                    id='currency'
+                    name='currency'
+                    label='Default Currency'
+                    type='select'
+                    value={values.currency}
+                    onChange={(e) => handleFormChange(e, validateChange)}
+                    error={errors.currency !== ''}
+                    helperText={errors.currency}
+                >
+                    {
+                        currencies.map(currency => 
+                            <MenuItem
+                                key={currency[0]}
+                                value={currency[0]}
+                            >
+                                {currency[1]}
+                            </MenuItem>
+                                )
+                    }
+                </TextField>
             </Box>
             <Box
                 sx={{display: 'grid', marginTop: '1rem'}}
@@ -100,6 +116,7 @@ const EditUserDetails = () => {
                 <Button
                     variant='contained'
                     color='primary'
+                    onClick={(e) => handleSubmit(e)}
                     sx={{
                         gridColumn: '1 / span 2', 
                         justifySelf: 'end'
