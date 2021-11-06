@@ -17,6 +17,7 @@ const Account = () => {
     return (
         <>     
         <DefaultLayout>
+            <Box sx={{display: 'grid', gap: '1rem'}}>
                 <PageTitle>Account</PageTitle>
                 <AccountPageWrapper>
                     <StyledBox sx={leftColumn}>
@@ -30,6 +31,7 @@ const Account = () => {
                         <EditUserDetails />
                     </StyledBox>
                 </AccountPageWrapper>
+            </Box>
         </DefaultLayout>
         </>
     )
