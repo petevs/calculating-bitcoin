@@ -23,7 +23,7 @@ function App() {
 
   const { state } = useContext(GlobalContext)
 
-  if(state.auth.pending || state.user.loading){
+  if(state.user.loading){
     return(
         <Loading />
     )

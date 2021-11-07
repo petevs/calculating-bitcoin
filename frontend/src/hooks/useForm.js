@@ -1,16 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 
-const useForm = (initialValues) => {
+const useForm = (initialValues  = {}) => {
 
     const [values, setValues] = useState(initialValues)
-    const initial = useRef(initialValues)
-    console.log(initial)
-
-    // useEffect(() => {
-    //     if(initial.current !== initialValues){
-    //         setValues(initialValues)
-    //     }
-    // },[initialValues])
 
     const handleFormChange = (e, validation) => {
         if(validation){

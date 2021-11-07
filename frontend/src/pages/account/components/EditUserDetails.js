@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import useForm from 'hooks/useForm'
 import useErrors from 'hooks/useErrors'
 import GlobalContext from 'state/GlobalContext'
@@ -12,16 +12,16 @@ const EditUserDetails = () => {
     const { state } = useContext(GlobalContext)
     const { user } = state
 
-    const initialFormValues = {
-        email: user.email,
-        currency: user.currency,
-        displayName: user.displayName || user.email
-    }
-
     const initialErrors = {
         email: '',
         currency: '',
         displayName: ''
+    }
+
+    const initialFormValues = {
+        email: user.email,
+        currency: user.currency,
+        displayName: user.displayName || user.email
     }
 
     const schema = yup.object().shape({
@@ -30,17 +30,13 @@ const EditUserDetails = () => {
         displayName: yup.string().min(3, 'Display name must be at least 3 characters')
     })
 
-    const {values, setValues, handleFormChange} = useForm(initialFormValues)
+    const {values, handleFormChange} = useForm(initialFormValues)
     const {errors, validateChange } = useErrors(initialErrors, schema)
 
     const currencies = [
         ['usd', 'USD - United States Dollar'],
         ['cad', 'CAD - Canadian Dollar']
     ]
-
-    useEffect(() => {
-        console.log(initialFormValues)
-    },[initialFormValues])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -56,6 +52,8 @@ const EditUserDetails = () => {
             console.log(err)
         }
     }
+
+    console.log(values, initialFormValues)
 
     return (
         <Box>
@@ -115,8 +113,16 @@ const EditUserDetails = () => {
                 </TextField>
             </Box>
             <Box
-                sx={{display: 'grid', marginTop: '1rem'}}
+                sx={{display: 'grid', gridTemplateColumns: '1fr auto auto', marginTop: '1rem', gap: '1rem'}}
             >
+                {/* {
+                values.displayName !== initialFormValues.displayName &&
+                    <Button
+                        onClick={() => setValues(initialFormValues)}
+                    >
+                        Cancel
+                    </Button>
+                } */}
                 <Button
                     variant='contained'
                     color='primary'
