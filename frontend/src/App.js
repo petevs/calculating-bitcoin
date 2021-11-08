@@ -34,7 +34,7 @@ function App() {
         <PrivateRoute exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
-        <Route path='/account' component={Account} />
+        <PrivateRoute path='/account' component={Account} />
     </LocalizationProvider>
   );
 }

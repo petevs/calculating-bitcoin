@@ -6,6 +6,7 @@ import UserAvatar from './components/UserAvatar'
 import { Chip, Typography } from '@mui/material'
 import AccountPageWrapper from './components/AccountPageWrapper'
 import EditUserDetails from './components/EditUserDetails'
+import EditUser from './components/EditUser'
 
 
 const Account = () => {
@@ -52,5 +53,5 @@ const leftColumn = {
 const rightColumn = {
     '@media (min-width:1048px)': {
         gridColumn: '3 / span 4'
-    }
+    },
 }

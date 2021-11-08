@@ -41,10 +41,16 @@ const useAuth = () => {
     }
 
     const updateEmail = async (email) => {
-        await auth.updateProfile({
-            email: email
-        })
-    }
+        const user = auth.currentUser
+        try {
+            await user.updateEmail(email)
+
+            console.log('success')
+        }
+        catch(err) {
+            console.log(err)
+        }
+        }
 
     const continueAsGuest = async () => {
         await auth.signInAnonymously()

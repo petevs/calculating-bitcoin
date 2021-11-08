@@ -6,6 +6,8 @@ import { Button, MenuItem, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import * as yup from 'yup'
 import { db } from 'firebase'
+import useAuth from 'hooks/useAuth'
+import EditUser from './EditUser'
 
 const EditUserDetails = () => {
 
@@ -32,6 +34,7 @@ const EditUserDetails = () => {
 
     const {values, setValues, handleFormChange} = useForm(initialFormValues)
     const {errors, validateChange } = useErrors(initialErrors, schema)
+    const { updateEmail } = useAuth()
 
     const currencies = [
         ['usd', 'USD - United States Dollar'],
@@ -40,17 +43,25 @@ const EditUserDetails = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {
-            await db.collection('users').doc(user.uid).update({
-                account: {
-                    ...user,
-                    ...values
-                }
-            })
-        }
-        catch(err) {
-            console.log(err)
-        }
+            if(initialFormValues.email !== values.email){
+                updateEmail(values.email)
+            }
+        // try {
+
+        //     if(initialFormValues.email !== values.email){
+        //         updateEmail(values.email)
+        //     }
+
+        //     await db.collection('users').doc(user.uid).update({
+        //         account: {
+        //             ...user,
+        //             ...values
+        //         }
+        //     })
+        // }
+        // catch(err) {
+        //     console.log(err)
+        // }
     }
 
     return (
@@ -67,16 +78,7 @@ const EditUserDetails = () => {
                     gap: '1rem'
                 }
             }}>
-                <TextField
-                    sx={{display: 'grid', justifySelf: 'stretch', minWidth: '300px'}}
-                    id='email'
-                    name='email'
-                    label='Email'
-                    value={values.email}
-                    onChange={(e) => handleFormChange(e, validateChange)}
-                    error={errors.email !== ''}
-                    helperText={errors.email}
-                />
+                <EditUser />
                 <TextField
                     sx={{display: 'grid', justifySelf: 'stretch', minWidth: '300px'}}
                     id='displayName'
