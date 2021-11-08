@@ -47,7 +47,10 @@ export const GlobalProvider= ({children}) => {
                     dispatch(setUser(result.account))
                 }
             })
-        } 
+        } else {
+            dispatch(setUser(initialUserState))
+        }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[state.auth])
 

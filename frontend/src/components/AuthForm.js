@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { Alert, TextField } from '@mui/material'
 import FormBox from './form/FormBox'
 import FormHeader from './form/FormHeader'
 import FormFooter from './form/FormFooter'
@@ -7,6 +7,7 @@ import ForgotPassword from './form/ForgotPassword'
 import useForm from 'hooks/useForm'
 import useErrors from 'hooks/useErrors'
 import * as yup from 'yup'
+import { useState } from 'react'
 
 const AuthForm = (props) => {
 
@@ -25,19 +26,22 @@ const AuthForm = (props) => {
 
     const inputSize= 'medium'
 
+    const [formError, setFormError] = useState('')
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             await props.onSubmit(values.email, values.password)
         } catch(err) {
-            console.log(err)
+            console.log(err.message.replace('Firebase:','').split(".")[0])
+            setFormError(err.message.replace('Firebase:','').split(".")[0])
         }
     }
 
     return (
         <FormBox onSubmit={handleSubmit}>
             <FormHeader heading={props.title} />
-
+            {formError && <Alert severity='error'>{formError}</Alert>}
             <TextField
                 label='Email Address'
                 name='email'
@@ -62,7 +66,7 @@ const AuthForm = (props) => {
                 helperText={errors.password}
             />
 
-                <FormSubmit type='submit'>Log in</FormSubmit>
+                <FormSubmit type='submit'>{props.title}</FormSubmit>
                 <ForgotPassword />
                 <FormFooter
                     heading={props.footerHeader}
