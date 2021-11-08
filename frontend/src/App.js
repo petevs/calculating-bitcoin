@@ -17,6 +17,7 @@ import Home from 'pages/home/Home';
 import Login from 'pages/login/Login';
 import Signup from 'pages/signup/Signup';
 import Account from 'pages/account/Account';
+import ResetPassword from 'pages/resetPassword/ResetPassword';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <PrivateRoute exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
+        <Route path='/reset-password' component={ResetPassword} />
         <PrivateRoute path='/account' component={Account} />
     </LocalizationProvider>
   );
