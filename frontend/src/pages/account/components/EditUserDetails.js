@@ -46,22 +46,22 @@ const EditUserDetails = () => {
             if(initialFormValues.email !== values.email){
                 updateEmail(values.email)
             }
-        // try {
+        try {
 
-        //     if(initialFormValues.email !== values.email){
-        //         updateEmail(values.email)
-        //     }
+            if(initialFormValues.email !== values.email){
+                updateEmail(values.email)
+            }
 
-        //     await db.collection('users').doc(user.uid).update({
-        //         account: {
-        //             ...user,
-        //             ...values
-        //         }
-        //     })
-        // }
-        // catch(err) {
-        //     console.log(err)
-        // }
+            await db.collection('users').doc(user.uid).update({
+                account: {
+                    ...user,
+                    ...values
+                }
+            })
+        }
+        catch(err) {
+            console.log(err)
+        }
     }
 
     return (
