@@ -68,8 +68,9 @@ const useAuth = () => {
         history.push('/')
     }
 
-    const sendPasswordResetEmail = (email) => {
-        return auth.sendPasswordResetEmail(email)
+    const sendPasswordResetEmail = async (email) => {
+        auth.sendPasswordResetEmail(email)
+        signout()
     }
 
     const confirmPasswordReset = (code, password) => {
