@@ -5,12 +5,8 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import GlobalContext from 'state/GlobalContext';
-import { useContext } from 'react'
 
 const SideBarMenu = () => {
-
-    const { state} = useContext(GlobalContext)
 
     const [open, setOpen] = useState(true)
 
@@ -20,7 +16,6 @@ const SideBarMenu = () => {
 
     return (
         <>
-            <h2>{state.user.displayName}</h2>
             <List>
                 <ListItemButton onClick={handleClick}>
                     <ListItemIcon>
