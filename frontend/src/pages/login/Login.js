@@ -1,22 +1,12 @@
-import DefaultLayout from "layouts/DefaultLayout"
 import LoginForm from "./components/LoginForm"
-import { Box } from "@mui/system"
+import Page from "components/Page"
 
 const Login = () => {
 
     return(
-        <DefaultLayout>
-            <Box
-                sx={{
-                    display: 'grid',
-                    justifyContent: 'center',
-                    minHeight: 'calc(100vh - 128px)',
-                    alignItems: 'center'
-                }}
-            >
-                <LoginForm />
-            </Box>
-        </DefaultLayout>
+        <Page>
+            <LoginForm />
+        </Page>
     )
 }
 
