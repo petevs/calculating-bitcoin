@@ -40,6 +40,12 @@ const useAuth = () => {
         history.push('/')
     }
 
+    const updateEmail = async (email) => {
+        await auth.updateProfile({
+            email: email
+        })
+    }
+
     const continueAsGuest = async () => {
         await auth.signInAnonymously()
         history.push('/')
@@ -70,6 +76,7 @@ const useAuth = () => {
         userState,
         signup,
         signin,
+        updateEmail,
         continueAsGuest,
         signout,
         forgetGuest,
