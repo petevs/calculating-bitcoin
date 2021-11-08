@@ -1,6 +1,6 @@
 import { auth } from 'firebase'
 import GlobalContext from 'state/GlobalContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 const useAuth = () => {
@@ -29,7 +29,8 @@ const useAuth = () => {
         }
     }
 
-        
+    const [formError, setFormError] = useState('')
+
     const signup = async (email, password) => {
         await auth.createUserWithEmailAndPassword(email, password)
         history.push('/')
@@ -69,14 +70,19 @@ const useAuth = () => {
     }
 
     const sendPasswordResetEmail = async (email) => {
-        auth.sendPasswordResetEmail(email)
-        signout()
+        try {
+            await auth.sendPasswordResetEmail(email)
+            history.push('/reset-password/2')
+        } catch(err){
+            setFormError(err.message.replace('Firebase:','').split(".")[0])
+        }
     }
 
     const confirmPasswordReset = (code, password) => {
         return auth.confirmPasswordReset(code, password)
     } 
     return {
+        formError,
         pending,
         loggedIn,
         isGuest,
