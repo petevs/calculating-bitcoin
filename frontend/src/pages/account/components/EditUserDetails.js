@@ -30,7 +30,7 @@ const EditUserDetails = () => {
         displayName: yup.string().min(3, 'Display name must be at least 3 characters')
     })
 
-    const {values, handleFormChange} = useForm(initialFormValues)
+    const {values, setValues, handleFormChange} = useForm(initialFormValues)
     const {errors, validateChange } = useErrors(initialErrors, schema)
 
     const currencies = [
@@ -52,8 +52,6 @@ const EditUserDetails = () => {
             console.log(err)
         }
     }
-
-    console.log(values, initialFormValues)
 
     return (
         <Box>
@@ -112,27 +110,24 @@ const EditUserDetails = () => {
                     }
                 </TextField>
             </Box>
-            <Box
-                sx={{display: 'grid', gridTemplateColumns: '1fr auto auto', marginTop: '1rem', gap: '1rem'}}
-            >
-                {/* {
-                values.displayName !== initialFormValues.displayName &&
+
+            {
+                JSON.stringify(initialFormValues) !== JSON.stringify(values) &&
+                <Box
+                    sx={{display: 'grid', gridTemplateColumns: 'auto auto', gap: '1rem', marginTop: '1rem', justifyContent: 'end'}}
+                >
+                        <Button
+                            onClick={() => setValues(initialFormValues)}
+                        >
+                            Cancel
+                        </Button>
                     <Button
-                        onClick={() => setValues(initialFormValues)}
-                    >
-                        Cancel
-                    </Button>
-                } */}
-                <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={(e) => handleSubmit(e)}
-                    sx={{
-                        gridColumn: '1 / span 2', 
-                        justifySelf: 'end'
-                    }}
-                >Save Changes</Button>
-            </Box>
+                        variant='contained'
+                        color='primary'
+                        onClick={(e) => handleSubmit(e)}
+                    >Save Changes</Button>
+                </Box>
+            }
         </Box>
     )
 }

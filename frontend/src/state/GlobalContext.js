@@ -10,7 +10,6 @@ import { appReducer, initialAppState } from 'state/app/appReducer'
 import { authReducer, initialAuthState } from 'state/auth/authReducer'
 import { initialUserState, userReducer } from './user/userReducer'
 import { setUser } from './user/userActions'
-import Loading from 'components/Loading'
 
 
 export const GlobalContext = createContext()
@@ -40,22 +39,19 @@ export const GlobalProvider= ({children}) => {
 
 
     useEffect(() => {
-        db.collection('users').doc(state.auth.uid).onSnapshot((doc) => {
-            const result = doc.data()
-            if(result){
-                dispatch(setUser(result.account))
-            }
-        })
+
+        if(state.auth.uid){
+            db.collection('users').doc(state.auth.uid).onSnapshot((doc) => {
+                const result = doc.data()
+                if(result){
+                    dispatch(setUser(result.account))
+                }
+            })
+        }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[state.auth])
 
-    
-    if(state.auth.pending){
-        return(
-            <Loading />
-        )
-    }
 
     return (
         <GlobalContext.Provider
