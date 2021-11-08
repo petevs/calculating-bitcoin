@@ -8,6 +8,7 @@ import useForm from 'hooks/useForm'
 import useErrors from 'hooks/useErrors'
 import * as yup from 'yup'
 import { useState } from 'react'
+import ContinueAsGuest from './form/ContinueAsGuest'
 
 const AuthForm = (props) => {
 
@@ -40,7 +41,9 @@ const AuthForm = (props) => {
 
     return (
         <FormBox onSubmit={handleSubmit}>
-            <FormHeader heading={props.title} />
+            <FormHeader heading={props.title}>
+                 <ContinueAsGuest />
+            </FormHeader>
             {formError && <Alert severity='error'>{formError}</Alert>}
             <TextField
                 label='Email Address'

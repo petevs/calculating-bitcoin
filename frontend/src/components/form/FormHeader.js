@@ -1,11 +1,8 @@
 import { Box } from "@mui/system"
-import { Button, Typography } from "@mui/material"
-import CenterTextDivider from "./CenterTextDivider"
-import useAuth from "hooks/useAuth"
+import { Typography } from "@mui/material"
 
-const FormHeader = ({heading}) => {
+const FormHeader = ({heading, children}) => {
 
-    const { continueAsGuest } = useAuth()
 
     return (
         <Box
@@ -17,17 +14,7 @@ const FormHeader = ({heading}) => {
             }}
         >
                 <Typography variant='h5' sx={{fontWeight: 700}}>{heading}</Typography>
-                <Button
-                    variant='outlined'
-                    sx={{
-                        textTransform: 'none'
-                    }}
-                    onClick={continueAsGuest}
-                    size='large'
-                >
-                    Continue as Guest
-                </Button>
-                <CenterTextDivider>OR</CenterTextDivider>
+                {children}
         </Box>
     )
 }
