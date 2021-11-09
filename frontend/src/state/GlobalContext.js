@@ -9,6 +9,7 @@ import { db } from 'firebase'
 import { appReducer, initialAppState } from 'state/app/appReducer'
 import { authReducer, initialAuthState } from 'state/auth/authReducer'
 import { initialUserState, userReducer } from './user/userReducer'
+import { marketDataReducer, initialMarketDataState } from './marketData/marketDataReducer'
 
 export const GlobalContext = createContext()
 
@@ -18,6 +19,7 @@ export const GlobalProvider= ({children}) => {
         auth: useReducer(authReducer, initialAuthState),
         app: useReducer(appReducer, initialAppState),
         user: useReducer(userReducer, initialUserState),
+        marketData: useReducer(marketDataReducer, initialMarketDataState)
     })
 
     return (
