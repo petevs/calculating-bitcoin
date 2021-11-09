@@ -1,7 +1,13 @@
 import SideBarList from './SideBarList';
 import { sideBarData } from '../sideBarData';
+import GlobalContext from 'state/GlobalContext';
+import { useContext } from 'react'
 
 const SideBarMenu = () => {
+
+    const { state } = useContext(GlobalContext)
+
+    console.log(state.portfolio.portfolioList())
 
     return (
         <>

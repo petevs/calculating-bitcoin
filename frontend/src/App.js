@@ -35,7 +35,7 @@ function App() {
   useMarketData()
   usePortfolio()
 
-  console.log(state.marketData.historicalData)
+  console.log(state)
 
   if(state.user.loading){
     return(
