@@ -41,9 +41,7 @@ const AddPortfolioForm = () => {
         const path = await addPortfolio(values)
         history.push(`/portfolio/${path}`)
         handleModalClose()
-
     }
-
 
     return (
         <Box component='form' onSubmit={handleSubmit} sx={wrapper}>

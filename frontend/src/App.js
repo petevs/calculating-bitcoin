@@ -23,6 +23,7 @@ import useAuthSubscribe from 'hooks/useAuthSubscribe';
 import useMarketData from 'state/marketData/useMarketData';
 import Portfolio from 'pages/portfolio/Portfolio';
 import PortfolioMain from 'pages/portfolio/PortfolioMain';
+import usePortfolio from 'state/portfolio/usePortfolio';
 
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
   useAuthSubscribe()
   useSetUser()
   useMarketData()
+  usePortfolio()
 
-  console.log(state)
+  console.log(state.marketData.historicalData)
 
   if(state.user.loading){
     return(
