@@ -1,4 +1,4 @@
-import { FETCHING_MARKET_DATA_ERROR, FETCHING_MARKET_DATA_SUCCESS, FETCHING_MARKET_DATA_LOADING } from "./marketDataReducer"
+import { FETCHING_MARKET_DATA_ERROR, FETCHING_MARKET_DATA_SUCCESS, FETCHING_HISTORICAL_DATA_SUCCESS, FETCHING_MARKET_DATA_LOADING } from "./marketDataReducer"
 
 export const fetchingMarketDataLoading = (data) => {
     return { type: FETCHING_MARKET_DATA_LOADING, payload: data}
@@ -6,6 +6,10 @@ export const fetchingMarketDataLoading = (data) => {
 
 export const fetchingMarketDataSuccess = (data) => {
     return { type: FETCHING_MARKET_DATA_SUCCESS, payload: data}
+}
+
+export const fetchingHistoricalDataSuccess = (data) => {
+    return { type: FETCHING_HISTORICAL_DATA_SUCCESS, payload: data}
 }
 
 export const fetchingMarketDataError = (data) => {

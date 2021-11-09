@@ -1,9 +1,10 @@
 export const FETCHING_MARKET_DATA_SUCCESS = "FETCHING_MARKET_DATA_SUCCESS"
+export const FETCHING_HISTORICAL_DATA_SUCCESS = "FETCHING FETCHING_HISTORICAL_DATA_SUCCESS"
 export const FETCHING_MARKET_DATA_LOADING = "FETCHING_MARKET_DATA_LOADING"
 export const FETCHING_MARKET_DATA_ERROR = "FETCHING_MARKET_DATA_ERROR"
 
 export const initialMarketDataState = {
-    fetching: undefined
+    fetching: undefined,
 }
 
 export const marketDataReducer = (state, action) => {
@@ -17,7 +18,13 @@ export const marketDataReducer = (state, action) => {
         return {
             ...state,
             fetching: false,
-            data: action.payload
+            marketData: action.payload
+        }
+    case FETCHING_HISTORICAL_DATA_SUCCESS:
+        return {
+            ...state,
+            fetching: false,
+            historicalData: action.payload
         }
     case FETCHING_MARKET_DATA_ERROR:
         return {

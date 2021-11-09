@@ -8,14 +8,14 @@ export const sideBarData = [
         icon: <LibraryBooksIcon />,
         data: []
     },
-    {
-        title: 'Calculators',
-        icon: <CalculateIcon />,
-        data: [
-            {text: 'Dollar Cost Average', to: '/'},
-            {text: 'Retire on Bitcoin', to: '/'},
-            {text: 'Speculative Attack', to: '/'},
-        ]
+//     {
+//         title: 'Calculators',
+//         icon: <CalculateIcon />,
+//         data: [
+//             {text: 'Dollar Cost Average', to: '/'},
+//             {text: 'Retire on Bitcoin', to: '/'},
+//             {text: 'Speculative Attack', to: '/'},
+//         ]
     
-    }
+//     }
 ]
