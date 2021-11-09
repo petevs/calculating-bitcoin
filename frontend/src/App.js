@@ -20,6 +20,7 @@ import Account from 'pages/account/Account';
 import ResetPassword from 'pages/resetPassword/ResetPassword';
 import useSetUser from 'hooks/useSetUser'
 import useAuthSubscribe from 'hooks/useAuthSubscribe';
+import useMarketData from 'state/marketData/useMarketData';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
   useAuthSubscribe()
   useSetUser()
+  useMarketData()
 
   console.log(state)
 
