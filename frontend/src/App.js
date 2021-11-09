@@ -21,6 +21,8 @@ import ResetPassword from 'pages/resetPassword/ResetPassword';
 import useSetUser from 'hooks/useSetUser'
 import useAuthSubscribe from 'hooks/useAuthSubscribe';
 import useMarketData from 'state/marketData/useMarketData';
+import Portfolio from 'pages/portfolio/Portfolio';
+import PortfolioMain from 'pages/portfolio/PortfolioMain';
 
 
 function App() {
@@ -46,6 +48,8 @@ function App() {
         <Route path='/signup' component={Signup} />
         <Route path='/reset-password' component={ResetPassword} />
         <PrivateRoute path='/account' component={Account} />
+        <PrivateRoute exact path='/portfolio' component={PortfolioMain} />
+        <PrivateRoute path='/portfolio/:id' component={Portfolio} />
     </LocalizationProvider>
   );
 }
