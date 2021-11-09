@@ -15,7 +15,7 @@ const SideBarMenu = () => {
             data: state.portfolio.portfolioList().map(item => {
                 return {
                     text: item.portfolioName, 
-                    to: item.id
+                    to: `/portfolio/${item.id}`
                     }
                 })
         }
