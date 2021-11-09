@@ -11,7 +11,6 @@ import { authReducer, initialAuthState } from 'state/auth/authReducer'
 import { initialUserState, userReducer } from './user/userReducer'
 import { setUser } from './user/userActions'
 
-
 export const GlobalContext = createContext()
 
 export const GlobalProvider= ({children}) => {
@@ -19,7 +18,7 @@ export const GlobalProvider= ({children}) => {
     const [state, dispatch] = useCombinedReducers({
         auth: useReducer(authReducer, initialAuthState),
         app: useReducer(appReducer, initialAppState),
-        user: useReducer(userReducer, initialUserState)
+        user: useReducer(userReducer, initialUserState),
     })
 
     useEffect(() => {
@@ -58,6 +57,8 @@ export const GlobalProvider= ({children}) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[state.auth])
+
+    
 
 
     return (

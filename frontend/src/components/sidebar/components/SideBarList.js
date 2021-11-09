@@ -25,6 +25,7 @@ const SideBarList = ({icon, title, data}) => {
                 {
                     data.map(item => 
                         <ListItem
+                            key={item.text}
                             to={item.to}
                             text={item.text}
                         />

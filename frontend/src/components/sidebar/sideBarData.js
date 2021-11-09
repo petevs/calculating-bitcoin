@@ -12,9 +12,9 @@ export const sideBarData = [
         title: 'Calculators',
         icon: <CalculateIcon />,
         data: [
-            {text: 'Dollar Cost Average', path: '/'},
-            {text: 'Retire on Bitcoin', path: '/'},
-            {text: 'Speculative Attack', path: '/'},
+            {text: 'Dollar Cost Average', to: '/'},
+            {text: 'Retire on Bitcoin', to: '/'},
+            {text: 'Speculative Attack', to: '/'},
         ]
     
     }

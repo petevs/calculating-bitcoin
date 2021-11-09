@@ -7,6 +7,7 @@ const SideBarMenu = () => {
         <>
             {sideBarData.map(item => 
                 <SideBarList
+                    key={item.title}
                     title={item.title}
                     icon={item.icon}
                     data={item.data}
