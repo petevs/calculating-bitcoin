@@ -19,13 +19,17 @@ import Signup from 'pages/signup/Signup';
 import Account from 'pages/account/Account';
 import ResetPassword from 'pages/resetPassword/ResetPassword';
 import useSetUser from 'hooks/useSetUser'
+import useAuthSubscribe from 'hooks/useAuthSubscribe';
 
 
 function App() {
 
   const { state } = useContext(GlobalContext)
 
+  useAuthSubscribe()
   useSetUser()
+
+  console.log(state)
 
   if(state.user.loading){
     return(

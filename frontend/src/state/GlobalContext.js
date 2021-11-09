@@ -9,7 +9,6 @@ import { db } from 'firebase'
 import { appReducer, initialAppState } from 'state/app/appReducer'
 import { authReducer, initialAuthState } from 'state/auth/authReducer'
 import { initialUserState, userReducer } from './user/userReducer'
-import { setUser } from './user/userActions'
 
 export const GlobalContext = createContext()
 
@@ -20,46 +19,6 @@ export const GlobalProvider= ({children}) => {
         app: useReducer(appReducer, initialAppState),
         user: useReducer(userReducer, initialUserState),
     })
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
-                dispatch(setAuth(user))
-            } else {
-                dispatch(setAuth(initialAuthState))
-            }
-            dispatch(setPending(false))
-        })
-
-        return () => unsubscribe()
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-
-    useEffect(() => {
-
-        if(!state.auth.pending){
-
-            if(state.auth.uid){
-                db.collection('users').doc(state.auth.uid).onSnapshot((doc) => {
-                    const result = doc.data()
-                    if(result){
-                        dispatch(setUser(result.account))
-                    }
-                })
-            } 
-            else {
-                dispatch(setUser(initialUserState))
-            }
-        }
-
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[state.auth])
-
-    
-
 
     return (
         <GlobalContext.Provider
