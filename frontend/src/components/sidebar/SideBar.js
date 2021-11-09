@@ -2,6 +2,7 @@ import { Drawer, IconButton, useMediaQuery } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import useDrawer from 'hooks/useDrawer';
 import SideBarMenu from './components/SideBarMenu';
+import AddPortfolio from './components/AddPortfolio';
 
 const SideBar = ({children}) => {
 
@@ -33,6 +34,7 @@ const SideBar = ({children}) => {
             >
                 {children}
                 <SideBarMenu />
+                <AddPortfolio />
             </Drawer> 
         </>
     )
