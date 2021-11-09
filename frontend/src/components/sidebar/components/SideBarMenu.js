@@ -1,17 +1,30 @@
 import SideBarList from './SideBarList';
-import { sideBarData } from '../sideBarData';
 import GlobalContext from 'state/GlobalContext';
 import { useContext } from 'react'
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+
 
 const SideBarMenu = () => {
 
     const { state } = useContext(GlobalContext)
 
-    console.log(state.portfolio.portfolioList())
+    const menu = [
+        {
+            title: 'Portfolios',
+            icon: <LibraryBooksIcon />,
+            data: state.portfolio.portfolioList().map(item => {
+                return {
+                    text: item.portfolioName, 
+                    to: item.id
+                    }
+                })
+        }
+    ]
+    
 
     return (
         <>
-            {sideBarData.map(item => 
+            {menu.map(item => 
                 <SideBarList
                     key={item.title}
                     title={item.title}

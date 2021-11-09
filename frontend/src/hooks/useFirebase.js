@@ -19,6 +19,7 @@ const useFirebase = () => {
     const addPortfolio = async (values) => {
         const portfolioId = Date.now()
         await db.collection('portfolios').doc(state.user.uid).set({
+            ...state.portfolio.portfolioObj,
             [portfolioId]: {
                 ...values,
                 transactions: {},
