@@ -1,7 +1,7 @@
 import * as moment from 'moment'
 import axios from 'axios'
 
-const getDaysBetween = (start, end) => {
+const getDaysBetween = (start: moment.MomentInput, end: moment.MomentInput) => {
     const startDate = moment(start)
     let endDate = moment()
 
@@ -9,7 +9,7 @@ const getDaysBetween = (start, end) => {
 
 }
 
-const getPrices = async (currency, days) => {
+const getPrices = async (currency: string | number, days: number) => {
 
     //Get price data from coingecko
     const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${currency}&days=${days}&interval=daily`)
@@ -18,7 +18,7 @@ const getPrices = async (currency, days) => {
     let results = {}
 
     //make object of [date]: price for easier access
-    prices.prices.forEach(item => {
+    prices.prices.forEach((item: any[]) => {
 
         const friendlyDate = moment(item[0]).format('YYYY-MM-DD')
         const price = item [1]
@@ -33,7 +33,7 @@ const getPrices = async (currency, days) => {
     
 }
 
-const getDates = (start, end, frequency ) => {
+const getDates = (start: moment.MomentInput, end: moment.MomentInput, frequency: any ) => {
     let dateObj = {}
     let current: any = moment(start)
     let stopDate = moment().format('YYYY-MM-DD')
@@ -85,7 +85,7 @@ const getDates = (start, end, frequency ) => {
 }
 
 
-const getCurrentPrice = async (currency) => {
+const getCurrentPrice = async (currency: string | number) => {
     const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin?localization=${currency}`)
         
     const result: any = data
@@ -94,7 +94,7 @@ const getCurrentPrice = async (currency) => {
 }
 
 
-const getSummary = (list, price) => {
+const getSummary = (list: string | any[], price: number) => {
     const lastIndex = list.length - 1
     const lastTransaction = list[lastIndex]
 
@@ -116,11 +116,11 @@ const getSummary = (list, price) => {
     return summary
 }
 
-export const calculateDCA = async (details) => {
+export const calculateDCA = async (details: { startDate: moment.MomentInput; endDate: moment.MomentInput; frequency: any; currency: string | number; dollarAmount: number }) => {
 
-    const dates = getDates(details.startDate, details.endDate, details.frequency)
+    const dates: any = getDates(details.startDate, details.endDate, details.frequency)
     const days = getDaysBetween(details.startDate, details.endDate)
-    const prices = await getPrices(details.currency, days + 1)
+    const prices: any = await getPrices(details.currency, days + 1)
 
     let runningBal = 0
     let totalInvested = 0

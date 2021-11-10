@@ -26,7 +26,7 @@ export const updateHistoricalData = functions
     .pubsub.schedule('0 * * * *').onRun( async (context) => {
 
 
-        const getHistorical = async (currency) => {
+        const getHistorical = async (currency: any) => {
 
             let result: any
     
@@ -36,7 +36,7 @@ export const updateHistoricalData = functions
     
             let historical = {}
     
-            await result.prices.forEach( item => {
+            await result.prices.forEach( (item: any) => {
     
                 const friendlyDate:any = moment(item[0]).format('YYYY-MM-DD')
     
