@@ -1,9 +1,5 @@
-import { createContext, useReducer, useEffect } from 'react'
+import { createContext, useReducer } from 'react'
 import useCombinedReducers from 'use-combined-reducers'
-import { auth } from 'firebase'
-import { setAuth } from 'state/auth/authActions'
-import { setPending } from 'state/auth/authActions'
-import { db } from 'firebase'
 
 //Reducers
 import { appReducer, initialAppState } from 'state/app/appReducer'

@@ -2,7 +2,7 @@ import React from 'react'
 import DefaultLayout from 'layouts/DefaultLayout'
 import { Box } from '@mui/system'
 
-const Page = ({children}) => {
+const Page = ({sx, children}) => {
     return (
         <DefaultLayout>
             <Box
@@ -10,7 +10,8 @@ const Page = ({children}) => {
                     display: 'grid',
                     justifyContent: 'center',
                     minHeight: 'calc(100vh - 128px)',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    ...sx
                 }}
             >
                 {children}
