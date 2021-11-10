@@ -26,7 +26,8 @@ const useFirebase = () => {
             [portfolioId]: {
                 ...values,
                 transactions: {},
-                reccuringBuys: {}
+                reccuringBuys: {},
+                visibility: 'private'
             }
         })
 
@@ -37,7 +38,6 @@ const useFirebase = () => {
 
     const deletePortfolio = async (id) => {
 
-        console.log(id)
         const updatedPortfolio = {...state.portfolio.portfolioObj}
         delete updatedPortfolio[id]
 
@@ -58,7 +58,18 @@ const useFirebase = () => {
         addPortfolio(values)
     }
 
-    return { updateUserAccount, addPortfolio, deletePortfolio, clonePortfolio }
+    const toggleVisibility = (portfolioId, visibility) => {
+
+        db.collection('portfolios').doc(state.user.uid).update({
+            ...state.portfolio.portfolioObj,
+            [portfolioId]: {
+                ...state.portfolio.portfolioObj[portfolioId],
+                visibility: visibility === 'public' ? 'private' : 'public'
+            }
+        })
+    }
+
+    return { updateUserAccount, addPortfolio, deletePortfolio, clonePortfolio, toggleVisibility }
 
 }
 

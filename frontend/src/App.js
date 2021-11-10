@@ -1,5 +1,5 @@
 import './App.css';
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Route} from 'react-router-dom'
 import { LocalizationProvider } from '@mui/lab';
 import DateAdapter from '@mui/lab/AdapterMoment'
@@ -25,6 +25,8 @@ import Portfolio from 'pages/portfolio/Portfolio';
 import PortfolioMain from 'pages/portfolio/PortfolioMain';
 import usePortfolio from 'state/portfolio/usePortfolio';
 
+import { db } from 'firebase'
+
 
 function App() {
 
@@ -36,6 +38,14 @@ function App() {
   usePortfolio()
 
   console.log(state)
+
+
+  useEffect(() => {
+    db.collection('portfolios').onSnapshot((snapshot) => {
+      const result = snapshot.docs.map(doc => doc.data())
+      console.log(result)
+    })
+  }, [])
 
   if(state.user.loading){
     return(

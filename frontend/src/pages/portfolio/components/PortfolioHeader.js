@@ -4,10 +4,10 @@ import ModalButton from './ModalButton'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import SendIcon from '@mui/icons-material/Send';
 import { Button } from '@mui/material';
 import PortfolioForm from 'components/PortfolioForm';
 import useFirebase from 'hooks/useFirebase';
+import SharePortfolio from './SharePortfolio';
 
 const PortfolioHeader = (props) => {
 
@@ -41,11 +41,7 @@ const PortfolioHeader = (props) => {
                 >
                     Clone
                 </Button>
-                <Button
-                    startIcon={<SendIcon />}
-                >
-                    Share
-                </Button>
+                <SharePortfolio {...props} />
             </Box>
         </Box>
     )
