@@ -4,6 +4,7 @@ import ModalButton from './ModalButton'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import SendIcon from '@mui/icons-material/Send';
 import { Button } from '@mui/material';
 import PortfolioForm from 'components/PortfolioForm';
 import useFirebase from 'hooks/useFirebase';
@@ -40,6 +41,11 @@ const PortfolioHeader = (props) => {
                 >
                     Clone
                 </Button>
+                <Button
+                    startIcon={<SendIcon />}
+                >
+                    Share
+                </Button>
             </Box>
         </Box>
     )
@@ -51,6 +57,7 @@ export default PortfolioHeader
 const wrapper = {
     display: 'grid',
     gridTemplateColumns: '1fr auto',
+    gap: '1rem',
     '@media (max-width: 1024px)': {
         gridTemplateColumns: '1fr',
         gap: '1rem',
