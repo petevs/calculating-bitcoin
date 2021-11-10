@@ -1,11 +1,14 @@
 import { useContext } from 'react'
 import { db } from 'firebase'
 import GlobalContext from 'state/GlobalContext'
+import { useHistory } from 'react-router-dom'
 
 const useFirebase = () => {
     
     const { state } = useContext(GlobalContext)
     const { user } = state
+
+    const history = useHistory()
 
     const updateUserAccount = (field, value) => {
         db.collection('users').doc(user.uid).update({
@@ -30,7 +33,17 @@ const useFirebase = () => {
         return portfolioId
     }
 
-    return { updateUserAccount, addPortfolio }
+    const deletePortfolio = async (id) => {
+        const updatedPortfolio = {...state.portfolio.portfolioObj}
+        delete updatedPortfolio[id]
+
+        db.collection('portfolios').doc(state.user.uid).set({
+            ...updatedPortfolio
+        })
+        history.push('/portfolio')
+    }
+
+    return { updateUserAccount, addPortfolio, deletePortfolio }
 
 }
 

@@ -6,8 +6,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { Button } from '@mui/material';
 import PortfolioForm from 'components/PortfolioForm';
+import useFirebase from 'hooks/useFirebase';
 
-const PortfolioHeader = ({ title, portfolioDescription }) => {
+const PortfolioHeader = ({ title, portfolioDescription, id }) => {
+
+    const { deletePortfolio } = useFirebase()
+
     return (
         <Box sx={wrapper}>
             <PageTitle>{title}</PageTitle>
@@ -20,10 +24,16 @@ const PortfolioHeader = ({ title, portfolioDescription }) => {
                             title='Edit Portfolio'
                             portfolioName={title}
                             portfolioDescription={portfolioDescription} 
+                            id={id}
                         />
                     }
                 />
-                <Button startIcon={<DeleteIcon />}>Delete</Button>
+                <Button
+                    onClick={() => deletePortfolio(id)} 
+                    startIcon={<DeleteIcon />}
+                >
+                        Delete
+                </Button>
                 <Button startIcon={<ContentCopyIcon />}>Clone</Button>
             </Box>
         </Box>
