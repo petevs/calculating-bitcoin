@@ -32,14 +32,11 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id }) => {
 
     const { addPortfolio } = useFirebase()
 
-    const history = useHistory()
-
     const { handleModalClose} = useModal()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const path = await addPortfolio(values, id)
-        history.push(`/portfolio/${path}`)
+        await addPortfolio(values, id)
         handleModalClose()
     }
 

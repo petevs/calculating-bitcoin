@@ -30,10 +30,14 @@ const useFirebase = () => {
             }
         })
 
+        history.push(`/portfolio/${portfolioId}`)
+
         return portfolioId
     }
 
     const deletePortfolio = async (id) => {
+
+        console.log(id)
         const updatedPortfolio = {...state.portfolio.portfolioObj}
         delete updatedPortfolio[id]
 
@@ -43,7 +47,18 @@ const useFirebase = () => {
         history.push('/portfolio')
     }
 
-    return { updateUserAccount, addPortfolio, deletePortfolio }
+
+    const clonePortfolio = (details) => {
+
+        const values = {
+            ...details,
+            portfolioName: `${details.portfolioName} (COPY)` 
+        }
+
+        addPortfolio(values)
+    }
+
+    return { updateUserAccount, addPortfolio, deletePortfolio, clonePortfolio }
 
 }
 

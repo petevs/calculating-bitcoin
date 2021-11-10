@@ -8,13 +8,13 @@ import { Button } from '@mui/material';
 import PortfolioForm from 'components/PortfolioForm';
 import useFirebase from 'hooks/useFirebase';
 
-const PortfolioHeader = ({ title, portfolioDescription, id }) => {
+const PortfolioHeader = (props) => {
 
-    const { deletePortfolio } = useFirebase()
+    const { deletePortfolio, clonePortfolio } = useFirebase()
 
     return (
         <Box sx={wrapper}>
-            <PageTitle>{title}</PageTitle>
+            <PageTitle>{props.portfolioName}</PageTitle>
             <Box sx={buttonGroup}>
                 <ModalButton
                     text='edit'
@@ -22,19 +22,24 @@ const PortfolioHeader = ({ title, portfolioDescription, id }) => {
                     content={
                         <PortfolioForm 
                             title='Edit Portfolio'
-                            portfolioName={title}
-                            portfolioDescription={portfolioDescription} 
-                            id={id}
+                            portfolioName={props.portfolioName}
+                            portfolioDescription={props.portfolioDescription} 
+                            id={props.id}
                         />
                     }
                 />
                 <Button
-                    onClick={() => deletePortfolio(id)} 
+                    onClick={() => deletePortfolio(props.id)} 
                     startIcon={<DeleteIcon />}
                 >
                         Delete
                 </Button>
-                <Button startIcon={<ContentCopyIcon />}>Clone</Button>
+                <Button
+                    onClick={() => clonePortfolio(props)} 
+                    startIcon={<ContentCopyIcon />}
+                >
+                    Clone
+                </Button>
             </Box>
         </Box>
     )
