@@ -19,7 +19,11 @@ const Portfolio = () => {
 
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start'}}>
-                <PortfolioHeader title={details.portfolioName || ``} />
+                <PortfolioHeader 
+                    title={details.portfolioName || ``} 
+                    descripton={details.portfolioDescription}
+                    id={id} 
+                />
         </Page>
     )
 }

@@ -10,11 +10,11 @@ import useFirebase from 'hooks/useFirebase'
 import { useHistory } from 'react-router-dom'
 import useModal from 'hooks/useModal'
 
-const PortfolioForm = ({title}) => {
+const PortfolioForm = ({title, portfolioName, portfolioDescription, id }) => {
     
     const initialForm = {
-        portfolioName: '',
-        portfolioDescription: ''
+        portfolioName: portfolioName || '',
+        portfolioDescription: portfolioDescription || ''
     }
 
     const initialErrors = {
@@ -38,7 +38,7 @@ const PortfolioForm = ({title}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const path = await addPortfolio(values)
+        const path = await addPortfolio(values, id)
         history.push(`/portfolio/${path}`)
         handleModalClose()
     }

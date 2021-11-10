@@ -5,8 +5,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { Button } from '@mui/material';
+import PortfolioForm from 'components/PortfolioForm';
 
-const PortfolioHeader = ({title}) => {
+const PortfolioHeader = ({ title, portfolioDescription }) => {
     return (
         <Box sx={wrapper}>
             <PageTitle>{title}</PageTitle>
@@ -14,6 +15,13 @@ const PortfolioHeader = ({title}) => {
                 <ModalButton
                     text='edit'
                     icon={<EditIcon />}
+                    content={
+                        <PortfolioForm 
+                            title='Edit Portfolio'
+                            portfolioName={title}
+                            portfolioDescription={portfolioDescription} 
+                        />
+                    }
                 />
                 <Button startIcon={<DeleteIcon />}>Delete</Button>
                 <Button startIcon={<ContentCopyIcon />}>Clone</Button>
