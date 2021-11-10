@@ -50,11 +50,20 @@ export default PortfolioHeader
 
 const wrapper = {
     display: 'grid',
-    gridTemplateColumns: '1fr auto'
+    gridTemplateColumns: '1fr auto',
+    '@media (max-width: 1024px)': {
+        gridTemplateColumns: '1fr',
+        gap: '1rem',
+        textAlign: 'center'
+    }
 }
 
 const buttonGroup = {
     display: 'grid',
     gridAutoFlow: 'column',
-    gap: '1rem'
+    gap: '1rem',
+
+    '@media (max-width: 1024px)': {
+        justifyContent: 'center'
+    }
 }
