@@ -3,7 +3,8 @@ import Page from 'components/Page'
 
 import { useParams } from 'react-router'
 import useGetPortfolio from 'hooks/useGetPortfolio'
-import PageTitle from 'layouts/components/PageTitle'
+import PortfolioHeader from './components/PortfolioHeader'
+import Loading from 'components/Loading'
 
 
 const Portfolio = () => {
@@ -12,11 +13,13 @@ const Portfolio = () => {
 
     const details = useGetPortfolio(id)
 
-    console.log(details)
+    if(!details){
+        return(<Loading />)
+    }
 
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start'}}>
-                <PageTitle>{details.portfolioName}</PageTitle>
+                <PortfolioHeader title={details.portfolioName || ``} />
         </Page>
     )
 }

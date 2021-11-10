@@ -5,7 +5,7 @@ const useGetPortfolio = (id) => {
 
     const { state }  = useContext(GlobalContext)
     const { portfolioObj } = state.portfolio
-    const details = portfolioObj[id]
+    const details = portfolioObj[id] || ''
 
     return details
 
