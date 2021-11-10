@@ -9,8 +9,6 @@ const SharePortfolio = (props) => {
     const { anchorEl, open, handleClick, handleClose} = useMenu()
     const { toggleVisibility } = useFirebase()
 
-    console.log(props)
-
     return (
         <>
                 <Button

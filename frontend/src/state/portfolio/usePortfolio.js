@@ -1,7 +1,7 @@
 import { db } from 'firebase'
 import { useContext, useEffect } from 'react'
 import GlobalContext from 'state/GlobalContext'
-import { fetchingPortfolioSuccess } from './portfolioActions'
+import { fetchingPortfolioSuccess, fetchingPublicPortfoliosSuccess } from './portfolioActions'
 
 const usePortfolio = () => {
 
@@ -19,6 +19,14 @@ const usePortfolio = () => {
             
                 })
             }
+
+            //GET AND SET PUBLIC PORTFOLIOS
+            db.collection('portfolios').doc('public').onSnapshot((doc) => {
+                const result = doc.data()
+                if(result){
+                    dispatch(fetchingPublicPortfoliosSuccess(result))
+                }
+            })
 
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [state.user.uid])

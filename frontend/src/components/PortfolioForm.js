@@ -10,11 +10,12 @@ import useFirebase from 'hooks/useFirebase'
 import { useHistory } from 'react-router-dom'
 import useModal from 'hooks/useModal'
 
-const PortfolioForm = ({title, portfolioName, portfolioDescription, id }) => {
+const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibility }) => {
     
     const initialForm = {
         portfolioName: portfolioName || '',
-        portfolioDescription: portfolioDescription || ''
+        portfolioDescription: portfolioDescription || '',
+        visibility: visibility || 'private'
     }
 
     const initialErrors = {
@@ -24,7 +25,8 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id }) => {
 
     const schema = yup.object().shape({
         portfolioName: yup.string().min(3).required(),
-        portfolioDescription: yup.string()
+        portfolioDescription: yup.string(),
+        visibility: yup.string()
     })
 
     const { values, handleFormChange } = useForm(initialForm)
@@ -36,7 +38,7 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await addPortfolio(values, id)
+        await addPortfolio(values, id, visibility)
         handleModalClose()
     }
 

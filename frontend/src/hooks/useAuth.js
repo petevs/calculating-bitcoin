@@ -45,8 +45,6 @@ const useAuth = () => {
         const user = auth.currentUser
         try {
             await user.updateEmail(email)
-
-            console.log('success')
         }
         catch(err) {
             console.log(err)

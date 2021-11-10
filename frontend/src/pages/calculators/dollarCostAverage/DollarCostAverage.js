@@ -10,8 +10,6 @@ const DollarCostAverage = () => {
 
     const { state } = useContext(GlobalContext)
 
-
-    console.log(state)
     return (
         <div>
             <DcaForm />

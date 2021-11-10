@@ -34,7 +34,6 @@ const AuthForm = (props) => {
         try {
             await props.onSubmit(values.email, values.password)
         } catch(err) {
-            console.log(err.message.replace('Firebase:','').split(".")[0])
             setFormError(err.message.replace('Firebase:','').split(".")[0])
         }
     }

@@ -27,7 +27,6 @@ const useFirebase = () => {
                 ...values,
                 transactions: {},
                 reccuringBuys: {},
-                visibility: 'private'
             }
         })
 

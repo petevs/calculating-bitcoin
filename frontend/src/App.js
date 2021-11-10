@@ -39,14 +39,6 @@ function App() {
 
   console.log(state)
 
-
-  useEffect(() => {
-    db.collection('portfolios').onSnapshot((snapshot) => {
-      const result = snapshot.docs.map(doc => doc.data())
-      console.log(result)
-    })
-  }, [])
-
   if(state.user.loading){
     return(
         <Loading />

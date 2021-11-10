@@ -36,7 +36,6 @@ const useFileUpload = () => {
         setPending(true)
         const downloadURL = await uploadFileToStorage(e.target.files[0], path)
         setPending(false)
-        console.log(downloadURL)
         setUrl(downloadURL)
 
         return downloadURL

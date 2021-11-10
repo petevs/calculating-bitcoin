@@ -6,7 +6,6 @@ const useSkipFirstRender = (callback, dependencies = []) => {
 
     useEffect(() => {
         if (isMounted.current){
-            console.log('running')
             return callback()
         }
     }, dependencies)

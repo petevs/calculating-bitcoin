@@ -24,7 +24,8 @@ const PortfolioHeader = (props) => {
                         <PortfolioForm 
                             title='Edit Portfolio'
                             portfolioName={props.portfolioName}
-                            portfolioDescription={props.portfolioDescription} 
+                            portfolioDescription={props.portfolioDescription}
+                            visibility={props.visibility || 'private'} 
                             id={props.id}
                         />
                     }
