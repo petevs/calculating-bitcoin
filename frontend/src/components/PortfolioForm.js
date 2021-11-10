@@ -10,7 +10,7 @@ import useFirebase from 'hooks/useFirebase'
 import { useHistory } from 'react-router-dom'
 import useModal from 'hooks/useModal'
 
-const AddPortfolioForm = () => {
+const PortfolioForm = ({title}) => {
     
     const initialForm = {
         portfolioName: '',
@@ -45,7 +45,7 @@ const AddPortfolioForm = () => {
 
     return (
         <Box component='form' onSubmit={handleSubmit} sx={wrapper}>
-            <FormHeader heading='Add a Portfolio' />
+            <FormHeader heading={title} />
             <TextField
                 label='Portfolio Name'
                 name='portfolioName'
@@ -68,13 +68,13 @@ const AddPortfolioForm = () => {
                 erorr ={errors.portfolioDescription !== ''}
                 helperText={errors.portfolioDescription}
             />
-            <FormSubmit type='submit'>Add Portfolio</FormSubmit>
+            <FormSubmit type='submit'>{title}</FormSubmit>
 
         </Box>
     )
 }
 
-export default AddPortfolioForm
+export default PortfolioForm
 
 const wrapper = {
     display: 'grid',

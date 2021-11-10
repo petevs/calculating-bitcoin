@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@mui/material'
 import useModal from 'hooks/useModal'
-import AddPortfolioForm from 'components/AddPortfolioForm'
+import PortfolioForm from 'components/PortfolioForm'
 
 const AddPortfolio = () => {
 
@@ -10,7 +10,7 @@ const AddPortfolio = () => {
     return (
         <>
             <Button onClick={() => handleModalOpen(
-                    <AddPortfolioForm />
+                    <PortfolioForm title='Add Portfolio' />
                 )}
             >
                 Add Portfolio

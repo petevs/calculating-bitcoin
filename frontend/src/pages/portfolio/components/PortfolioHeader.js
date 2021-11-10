@@ -3,6 +3,7 @@ import PageTitle from 'layouts/components/PageTitle'
 import ModalButton from './ModalButton'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { Button } from '@mui/material';
 
 const PortfolioHeader = ({title}) => {
@@ -15,6 +16,7 @@ const PortfolioHeader = ({title}) => {
                     icon={<EditIcon />}
                 />
                 <Button startIcon={<DeleteIcon />}>Delete</Button>
+                <Button startIcon={<ContentCopyIcon />}>Clone</Button>
             </Box>
         </Box>
     )
