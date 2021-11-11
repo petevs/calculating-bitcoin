@@ -1,5 +1,5 @@
 import './App.css';
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { Route} from 'react-router-dom'
 import { LocalizationProvider } from '@mui/lab';
 import DateAdapter from '@mui/lab/AdapterMoment'
@@ -24,8 +24,6 @@ import useMarketData from 'state/marketData/useMarketData';
 import Portfolio from 'pages/portfolio/Portfolio';
 import PortfolioMain from 'pages/portfolio/PortfolioMain';
 import usePortfolio from 'state/portfolio/usePortfolio';
-
-import { db } from 'firebase'
 
 
 function App() {

@@ -7,7 +7,6 @@ import * as yup from 'yup'
 import { TextField } from '@mui/material'
 import FormSubmit from './form/FormSubmit'
 import useFirebase from 'hooks/useFirebase'
-import { useHistory } from 'react-router-dom'
 import useModal from 'hooks/useModal'
 
 const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibility }) => {

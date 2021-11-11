@@ -1,8 +1,9 @@
 import { Button, FormControlLabel, Switch } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send';
 import useMenu from 'hooks/useMenu';
-import MenuBox from 'components/userMenu/components/MenuBox';
 import useFirebase from 'hooks/useFirebase';
+import { Box } from '@mui/system'
+import MenuBox from 'components/userMenu/components/MenuBox';
 
 const SharePortfolio = (props) => {
 
@@ -22,8 +23,8 @@ const SharePortfolio = (props) => {
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
-                    onClick={handleClose}
                 >
+                    <Box sx={{padding: '1rem'}}>
                         <FormControlLabel control={
                             <Switch 
                                 checked={ props.visibility === 'public' ? true : false }
@@ -32,6 +33,7 @@ const SharePortfolio = (props) => {
                             } 
                             label='Make Public' 
                         />
+                    </Box>
                 </MenuBox>
             
         </>
