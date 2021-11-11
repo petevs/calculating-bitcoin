@@ -6,32 +6,28 @@ import NumberFormat from 'react-number-format'
 import { SiBitcoinsv } from 'react-icons/si'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import GlobalContext from "state/GlobalContext"
-import { useContext } from 'react'
-import { updateFocus, updateForm, updatePrice } from "state/transactionForm/transactionFormActions"
+import { useReducer } from 'react'
+import { updateBitcoin, updateDollarAmount, updateFocus, updateForm, updatePrice } from "state/transactionForm/transactionFormActions"
 import moment from "moment"
+import { initialTransactionForm, transactionFormReducer } from "state/transactionForm/transactionFormReducer"
 
 const TransactionForm = () => {
-
-    const { state, dispatch } = useContext(GlobalContext)
+    
+    const [state, dispatch] = useReducer(transactionFormReducer, initialTransactionForm)
+    
     const { 
         date,
         dollarAmount,
         price,
         bitcoin,
         useHistoricalPrice,
-    } = state.transactionForm
+    } = state
 
 
+    console.log(state)
 
     const handleFocus = (name) => {
         dispatch(updateFocus(name))
-    }
-
-    const handleChange = (e, name) => {
-        dispatch(updateForm({
-            name: name,
-            value: e.floatValue
-        }))
     }
 
     const handleDateChange = (value) => {
@@ -60,7 +56,7 @@ const TransactionForm = () => {
                         </InputAdornment>),
                     }}
                     value={dollarAmount}
-                    onValueChange={(e) => handleChange(e, 'dollarAmount')}
+                    onValueChange={(e) => dispatch(updateDollarAmount(e.floatValue))}
                     onFocus={() => handleFocus('dollarAmount')}
                 />
                 <Box sx={priceRow}>
@@ -91,7 +87,7 @@ const TransactionForm = () => {
                         </InputAdornment>),
                     }}
                     value={bitcoin}
-                    onValueChange={(e) => handleChange(e, 'bitcoin')}
+                    onValueChange={(e) => dispatch(updateBitcoin(e.floatValue))}
                     onFocus={() => handleFocus('bitcoin')}
                 />
             </Box>

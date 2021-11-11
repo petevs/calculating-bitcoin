@@ -7,7 +7,6 @@ import { authReducer, initialAuthState } from 'state/auth/authReducer'
 import { initialUserState, userReducer } from './user/userReducer'
 import { marketDataReducer, initialMarketDataState } from './marketData/marketDataReducer'
 import { initialPortfolioState, portfolioReducer } from './portfolio/portfolioReducer'
-import { initialTransactionForm, transactionFormReducer } from './transactionForm/transactionFormReducer'
 
 export const GlobalContext = createContext()
 
@@ -19,7 +18,6 @@ export const GlobalProvider= ({children}) => {
         user: useReducer(userReducer, initialUserState),
         marketData: useReducer(marketDataReducer, initialMarketDataState),
         portfolio: useReducer(portfolioReducer, initialPortfolioState),
-        transactionForm: useReducer(transactionFormReducer, initialTransactionForm)
     })
 
     return (

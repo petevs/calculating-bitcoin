@@ -35,8 +35,6 @@ function App() {
   useMarketData()
   usePortfolio()
 
-  console.log(state.transactionForm)
-
   if(state.user.loading){
     return(
         <Loading />
