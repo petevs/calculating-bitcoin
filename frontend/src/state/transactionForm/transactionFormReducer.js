@@ -5,6 +5,7 @@ export const UPDATE_FOCUS = 'UPDATE_FOCUS'
 export const UPDATE_PRICE = 'UPDATE_PRICE'
 export const UPDATE_BITCOIN = 'UPDATE_BITCOIN'
 export const UPDATE_DOLLAR_AMOUNT = 'UPDATE_DOLLAR_AMOUNT'
+export const TOGGLE_TRANSACTION_TYPE = 'TOGGLE_TRANSACTION_TYPE'
 
 export const initialTransactionForm = {
     type: 'sell',
@@ -78,7 +79,8 @@ export const transactionFormReducer = (state, action) => {
             if(lastFocused.includes('bitcoin')){
                 return {
                     ...state,
-                    price: action.payload / state.bitcoin
+                    price: action.payload / state.bitcoin,
+                    dollarAmount: action.payload
                 }
             }
             return {
@@ -93,6 +95,17 @@ export const transactionFormReducer = (state, action) => {
             return {
                 ...state,
                 lastFocused: [...state.lastFocused, action.payload]
+            }
+        case TOGGLE_TRANSACTION_TYPE:
+            if(state.type === 'buy'){
+                return {
+                    ...state,
+                    type: 'sell'
+                }
+            }
+            return {
+                ...state,
+                type: 'buy'
             }
         default:
             return state

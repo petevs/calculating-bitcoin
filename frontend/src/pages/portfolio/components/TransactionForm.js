@@ -5,9 +5,8 @@ import FormHeader from "components/form/FormHeader"
 import NumberFormat from 'react-number-format'
 import { SiBitcoinsv } from 'react-icons/si'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import GlobalContext from "state/GlobalContext"
 import { useReducer } from 'react'
-import { updateBitcoin, updateDollarAmount, updateFocus, updateForm, updatePrice } from "state/transactionForm/transactionFormActions"
+import { updateBitcoin, updateDollarAmount, updateFocus, updateForm, updatePrice, toggleTransactionType } from "state/transactionForm/transactionFormActions"
 import moment from "moment"
 import { initialTransactionForm, transactionFormReducer } from "state/transactionForm/transactionFormReducer"
 
@@ -21,6 +20,7 @@ const TransactionForm = () => {
         price,
         bitcoin,
         useHistoricalPrice,
+        type
     } = state
 
 
@@ -45,9 +45,9 @@ const TransactionForm = () => {
                 value={date || moment()}
                 onChange={handleDateChange}
             />
-            <Box sx={innerFlexBox}>
+            <Box sx={{...innerFlexBox, flexDirection: type === 'buy' ? 'column' : 'column-reverse'}}>
                 <NumberFormat
-                    label='From: Dollars (usd)'
+                    label={type === 'buy' ? 'From: Dollars' : 'To: Dollars'}
                     customInput={TextField}
                     thousandSeparator={true}
                     InputProps={{
@@ -60,7 +60,7 @@ const TransactionForm = () => {
                     onFocus={() => handleFocus('dollarAmount')}
                 />
                 <Box sx={priceRow}>
-                <IconButton><CompareArrowsIcon /></IconButton>
+                <IconButton onClick={() => dispatch(toggleTransactionType())}><CompareArrowsIcon /></IconButton>
                 <Box>
                 <NumberFormat
                     label='Exchange Rate (usd)'
@@ -79,7 +79,7 @@ const TransactionForm = () => {
                 </Box>
                 </Box>
                 <NumberFormat
-                    label='To: Bitcoin'
+                    label={type === 'buy' ? 'To: Bitcoin' : 'From: Bitcoin'}
                     customInput={TextField}
                     InputProps={{
                         startAdornment: (<InputAdornment position='start'>
@@ -107,7 +107,6 @@ const wrapper = {
 
 const innerFlexBox = {
     display: 'flex',
-    flexDirection: 'column',
     gap: '1rem',
 }
 
