@@ -17,6 +17,7 @@ export const createUserDoc = functions.auth.user().onCreate((user) => {
     })
 })
 
+
 export const updatePublic = functions.firestore
     .document('portfolios/{docId}')
     .onUpdate(async (snapshot, context) => {
@@ -25,6 +26,7 @@ export const updatePublic = functions.firestore
 
         for (const portfolioId in after) {
 
+            //If the portfolio still exists
             if(portfolioId in before){
                 const beforeVisibility = before[portfolioId].visibility
                 const afterVisibility = after[portfolioId].visibility
@@ -47,6 +49,23 @@ export const updatePublic = functions.firestore
                     })
                 }
             }
-
         }
     })
+
+
+    export const removePortfolioFromPublicOnDelete = functions.firestore
+        .document('portfolios/{docId}')
+        .onUpdate(async (snapshot, context) => {
+            const before = snapshot.before.data()
+            const after = snapshot.after.data()
+
+            for (const portfolioId in before) {
+
+                if( !(portfolioId in after)) {
+                    db.collection('portfolios').doc('public').update({
+                        [portfolioId]: admin.firestore.FieldValue.delete()
+                    })
+                }
+            }
+
+        })
