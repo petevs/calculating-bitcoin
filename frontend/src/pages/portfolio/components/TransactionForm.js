@@ -7,11 +7,25 @@ import { SiBitcoinsv } from 'react-icons/si'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import GlobalContext from "state/GlobalContext"
 import { useContext } from 'react'
-import { updateForm } from "state/transactionForm/transactionFormActions"
+import { updateFocus, updateForm, updatePrice } from "state/transactionForm/transactionFormActions"
+import moment from "moment"
 
 const TransactionForm = () => {
 
     const { state, dispatch } = useContext(GlobalContext)
+    const { 
+        date,
+        dollarAmount,
+        price,
+        bitcoin,
+        useHistoricalPrice,
+    } = state.transactionForm
+
+
+
+    const handleFocus = (name) => {
+        dispatch(updateFocus(name))
+    }
 
     const handleChange = (e, name) => {
         dispatch(updateForm({
@@ -20,11 +34,20 @@ const TransactionForm = () => {
         }))
     }
 
+    const handleDateChange = (value) => {
+        dispatch(updateForm({
+            name: 'date',
+            value: value
+        }))
+    }
+
     return (
         <Box component='form'  sx={wrapper}>
             <FormHeader heading={'Add Transaction'} />
             <DateField 
                 label='Date'
+                value={date || moment()}
+                onChange={handleDateChange}
             />
             <Box sx={innerFlexBox}>
                 <NumberFormat
@@ -36,6 +59,9 @@ const TransactionForm = () => {
                             $
                         </InputAdornment>),
                     }}
+                    value={dollarAmount}
+                    onValueChange={(e) => handleChange(e, 'dollarAmount')}
+                    onFocus={() => handleFocus('dollarAmount')}
                 />
                 <Box sx={priceRow}>
                 <IconButton><CompareArrowsIcon /></IconButton>
@@ -49,7 +75,9 @@ const TransactionForm = () => {
                             1BTC = $
                         </InputAdornment>),
                     }}
-                    onValueChange={(e) => handleChange(e, 'price')}
+                    value={price}
+                    onValueChange={(e) => dispatch(updatePrice(e.floatValue))}
+                    onFocus={() => handleFocus('price')}
                 />
                 <Switch size='small' /> Use Historical Price
                 </Box>
@@ -62,6 +90,9 @@ const TransactionForm = () => {
                             <SiBitcoinsv />
                         </InputAdornment>),
                     }}
+                    value={bitcoin}
+                    onValueChange={(e) => handleChange(e, 'bitcoin')}
+                    onFocus={() => handleFocus('bitcoin')}
                 />
             </Box>
             <Button variant='contained'>Add Transaction</Button>

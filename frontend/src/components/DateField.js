@@ -11,7 +11,7 @@ const DateField = (props) => {
         minDate,
         maxDate,
         value,
-        handleChange,
+        onChange,
     } = props
 
 
@@ -29,7 +29,7 @@ const DateField = (props) => {
                     minDate={minDate}
                     maxDate={maxDate}
                     value={value}
-                    onChange={handleChange}
+                    onChange={onChange}
                     renderInput={(params) => <TextField {...params} />}
                 />
             :   <DesktopDatePicker
@@ -39,7 +39,7 @@ const DateField = (props) => {
                     minDate={minDate}
                     maxDate={maxDate}
                     value={value}
-                    onChange={handleChange}
+                    onChange={onChange}
                     renderInput={(params) => <TextField {...params} />}
                 />
         }
