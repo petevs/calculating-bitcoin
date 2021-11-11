@@ -1,18 +1,19 @@
 import { Button } from '@mui/material';
 import useModal from 'hooks/useModal';
 
-const ModalButton = ({icon, content, text}) => {
+const ModalButton = (props) => {
 
     const { handleModalOpen } = useModal()
 
     return (
         <Button
-            startIcon={icon}
+            {...props}
+            startIcon={props.icon}
             onClick={() => handleModalOpen(
-                content
+                props.content
             )}
         >
-            {text}
+            {props.text}
         </Button>
     )
 }

@@ -5,6 +5,9 @@ import { useParams } from 'react-router'
 import useGetPortfolio from 'hooks/useGetPortfolio'
 import PortfolioHeader from './components/PortfolioHeader'
 import Loading from 'components/Loading'
+import TransactionForm from './components/TransactionForm'
+import ModalButton from './components/ModalButton'
+import AddIcon from '@mui/icons-material/Add';
 
 
 const Portfolio = () => {
@@ -21,6 +24,12 @@ const Portfolio = () => {
         <Page sx={{justifyContent: 'stretch', alignContent: 'start'}}>
                 <PortfolioHeader 
                     {...details} id={id}
+                />
+                <ModalButton
+                    sx={{justifySelf: 'start'}}
+                    icon={<AddIcon />}
+                    content={<TransactionForm />}
+                    text='Add Transaction'
                 />
         </Page>
     )
