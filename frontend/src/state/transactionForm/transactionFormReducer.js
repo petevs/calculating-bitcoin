@@ -10,6 +10,7 @@ export const TOGGLE_USE_HISTORICAL_PRICE = 'TOGGLE_USE_HISTORICAL_PRICE'
 export const UPDATE_DATE = 'UPDATE_DATE'
 
 export const initialTransactionForm = {
+    id: Date.now(),
     type: 'buy',
     date: moment(),
     dollarAmount: 0,

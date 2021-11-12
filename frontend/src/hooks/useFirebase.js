@@ -68,14 +68,14 @@ const useFirebase = () => {
         })
     }
 
-    const addTransaction = (portfolioId, transactionId, values) => {
+    const addTransaction = (portfolioId, values) => {
         db.collection('portfolios').doc(state.user.uid).update({
             ...state.portfolio.portfolioObj,
             [portfolioId]: {
-                ...state.portfolio.portfolioObj,
+                ...state.portfolio.portfolioObj[portfolioId],
                 transactions: {
-                    ...state.portfolio.portfolioObj.transactions,
-                    [transactionId]: {
+                    ...state.portfolio.portfolioObj[portfolioId].transactions,
+                    [values.id]: {
                         ...values
                     }
                 }

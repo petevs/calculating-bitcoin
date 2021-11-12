@@ -28,7 +28,7 @@ const Portfolio = () => {
                 <ModalButton
                     sx={{justifySelf: 'start'}}
                     icon={<AddIcon />}
-                    content={<TransactionForm />}
+                    content={<TransactionForm portfolioId={id} />}
                     text='Add Transaction'
                 />
         </Page>

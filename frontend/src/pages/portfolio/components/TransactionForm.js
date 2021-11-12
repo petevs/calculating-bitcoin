@@ -10,8 +10,10 @@ import { updateBitcoin, updateDollarAmount, updateFocus, updateForm, updatePrice
 import moment from "moment"
 import { initialTransactionForm, transactionFormReducer } from "state/transactionForm/transactionFormReducer"
 import GlobalContext from "state/GlobalContext"
+import useFirebase from 'hooks/useFirebase'
+import useModal from 'hooks/useModal'
 
-const TransactionForm = () => {
+const TransactionForm = (props) => {
 
     const { state } = useContext(GlobalContext)
 
@@ -21,8 +23,26 @@ const TransactionForm = () => {
     }
     
     const [reducerState, dispatch] = useReducer(transactionFormReducer, initialValues)
+    const { addTransaction } = useFirebase()
+    const { handleModalClose } = useModal()
 
     console.log(reducerState)
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const values = {
+            id: reducerState.id,
+            date: reducerState.date.format('YYYY-MM-DD'),
+            dollarAmount: reducerState.dollarAmount,
+            useHistoricalPrice: reducerState.useHistoricalPrice,
+            price: reducerState.price,
+            type: reducerState.type,
+            bitcoin: reducerState.bitcoin
+        }
+        addTransaction(props.portfolioId, values)
+        handleModalClose()
+    }
 
     const handleFocus = (name) => {
         dispatch(updateFocus(name))
@@ -33,7 +53,7 @@ const TransactionForm = () => {
     },[])
 
     return (
-        <Box component='form'  sx={wrapper}>
+        <Box component='form'  onSubmit={handleSubmit} sx={wrapper}>
             <FormHeader heading={'Add Transaction'} />
             <DateField 
                 label='Date'
@@ -105,7 +125,7 @@ const TransactionForm = () => {
                         />              
                     </Box>
                 </Box>
-            <Button variant='contained' size='large'>Add Transaction</Button>
+            <Button variant='contained' size='large' type='submit'>Add Transaction</Button>
         </Box>
     )
 }
