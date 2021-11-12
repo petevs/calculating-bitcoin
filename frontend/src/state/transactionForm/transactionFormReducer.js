@@ -10,17 +10,17 @@ export const TOGGLE_USE_HISTORICAL_PRICE = 'TOGGLE_USE_HISTORICAL_PRICE'
 export const UPDATE_DATE = 'UPDATE_DATE'
 
 export const initialTransactionForm = {
-    type: 'sell',
+    type: 'buy',
     date: moment(),
     dollarAmount: 0,
-    price: 0,
-    bitcoin: 0,
     historicalPrices: {},
     useHistoricalPrice: true,
     historicalPrice: function (){
         const date = this.date.format('YYYY-MM-DD')
         return this.historicalPrices[date]
     },
+    price: 0,
+    bitcoin: 0,
     lastFocused: [],
     secondLastFocused: ''
 }
@@ -28,6 +28,7 @@ export const initialTransactionForm = {
 export const transactionFormReducer = (state = initialTransactionForm, action) => {
 
     const lastFocused = state.lastFocused
+    const lastFocusedEmpty = lastFocused.length === 1
 
     switch(action.type) {
         case UPDATE_FORM:
@@ -36,6 +37,13 @@ export const transactionFormReducer = (state = initialTransactionForm, action) =
                 [action.payload.name]: action.payload.value
             }
         case UPDATE_DATE:
+            if(state.useHistoricalPrice){
+                return {
+                    ...state,
+                    date: action.payload,
+                    price: state.historicalPrice(action.payload)
+                }
+            }
             return {
                 ...state,
                 date: action.payload
@@ -45,7 +53,8 @@ export const transactionFormReducer = (state = initialTransactionForm, action) =
                 return {
                     ...state,
                     price: action.payload,
-                    bitcoin: state.dollarAmount / action.payload
+                    bitcoin: state.dollarAmount / action.payload,
+                    useHistoricalPrice: false,
                 }
             }
             if(lastFocused.includes('bitcoin')) {
@@ -53,7 +62,8 @@ export const transactionFormReducer = (state = initialTransactionForm, action) =
                 return {
                     ...state,
                     price: action.payload,
-                    dollarAmount: state.bitcoin * action.payload
+                    dollarAmount: state.bitcoin * action.payload,
+                    useHistoricalPrice: false,
     
                 }
             }
@@ -62,7 +72,7 @@ export const transactionFormReducer = (state = initialTransactionForm, action) =
                 price: action.payload
             }
         case UPDATE_BITCOIN:
-            if(lastFocused.includes('price')) {
+            if(lastFocused.includes('price') || lastFocusedEmpty) {
                 return {
                     ...state,
                     dollarAmount: state.price * action.payload,
@@ -81,7 +91,7 @@ export const transactionFormReducer = (state = initialTransactionForm, action) =
                 bitcoin: action.payload
             }
         case UPDATE_DOLLAR_AMOUNT:
-            if(lastFocused.includes('price')){
+            if(lastFocused.includes('price') || lastFocusedEmpty){
                 return {
                     ...state,
                     bitcoin: action.payload / state.price,
@@ -129,7 +139,7 @@ export const transactionFormReducer = (state = initialTransactionForm, action) =
             return {
                 ...state,
                 useHistoricalPrice: true,
-                price: state.historicalPrice(action.payload)
+                price: state.historicalPrice()
             }
         default:
             return state
