@@ -58,6 +58,7 @@ const TransactionForm = () => {
                     value={dollarAmount}
                     onValueChange={(e) => dispatch(updateDollarAmount(e.floatValue))}
                     onFocus={() => handleFocus('dollarAmount')}
+                    decimalScale={2}
                 />
                 <Box sx={priceRow}>
                 <IconButton onClick={() => dispatch(toggleTransactionType())}><CompareArrowsIcon /></IconButton>
@@ -74,6 +75,7 @@ const TransactionForm = () => {
                     value={price}
                     onValueChange={(e) => dispatch(updatePrice(e.floatValue))}
                     onFocus={() => handleFocus('price')}
+                    decimalScale={2}
                 />
                 <Switch size='small' /> Use Historical Price
                 </Box>
@@ -89,6 +91,8 @@ const TransactionForm = () => {
                     value={bitcoin}
                     onValueChange={(e) => dispatch(updateBitcoin(e.floatValue))}
                     onFocus={() => handleFocus('bitcoin')}
+                    decimalScale={8}
+                    fixedDecimalScale={8}
                 />
             </Box>
             <Button variant='contained'>Add Transaction</Button>
