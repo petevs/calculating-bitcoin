@@ -6,17 +6,23 @@ import NumberFormat from 'react-number-format'
 import { SiBitcoinsv } from 'react-icons/si'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { useReducer, useContext } from 'react'
-import { updateBitcoin, updateDollarAmount, updateFocus, updateForm, updatePrice, toggleTransactionType } from "state/transactionForm/transactionFormActions"
+import { updateBitcoin, updateDollarAmount, updateFocus, updateForm, updatePrice, toggleTransactionType, toggleUseHistoricalPrice, updateDate } from "state/transactionForm/transactionFormActions"
 import moment from "moment"
 import { initialTransactionForm, transactionFormReducer } from "state/transactionForm/transactionFormReducer"
 import GlobalContext from "state/GlobalContext"
 
 const TransactionForm = () => {
-    
-    const [reducerState, dispatch] = useReducer(transactionFormReducer, initialTransactionForm)
+
     const { state } = useContext(GlobalContext)
 
-    console.log(reducerState.historicalPrice(state.marketData.historicalData))
+    const initialValues = {
+        ...initialTransactionForm,
+        historicalPrices: state.marketData.historicalData
+    }
+    
+    const [reducerState, dispatch] = useReducer(transactionFormReducer, initialValues)
+
+    console.log(reducerState)
 
     const handleFocus = (name) => {
         dispatch(updateFocus(name))
@@ -35,7 +41,7 @@ const TransactionForm = () => {
             <DateField 
                 label='Date'
                 value={reducerState.date || moment()}
-                onChange={handleDateChange}
+                onChange={(value) => dispatch(updateDate(value))}
             />
             <Box sx={{...innerFlexBox, flexDirection: reducerState.type === 'buy' ? 'column' : 'column-reverse'}}>
                 <NumberFormat
@@ -69,7 +75,11 @@ const TransactionForm = () => {
                     onFocus={() => handleFocus('price')}
                     decimalScale={2}
                 />
-                <Switch size='small' /> Use Historical Price
+                <Switch 
+                    checked={state.useHistoricalPrice}
+                    onChange={() => dispatch(toggleUseHistoricalPrice())}
+                    size='small' 
+                /> Use Historical Price
                 </Box>
                 </Box>
                 <NumberFormat
