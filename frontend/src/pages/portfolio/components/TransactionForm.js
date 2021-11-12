@@ -5,26 +5,18 @@ import FormHeader from "components/form/FormHeader"
 import NumberFormat from 'react-number-format'
 import { SiBitcoinsv } from 'react-icons/si'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import { useReducer } from 'react'
+import { useReducer, useContext } from 'react'
 import { updateBitcoin, updateDollarAmount, updateFocus, updateForm, updatePrice, toggleTransactionType } from "state/transactionForm/transactionFormActions"
 import moment from "moment"
 import { initialTransactionForm, transactionFormReducer } from "state/transactionForm/transactionFormReducer"
+import GlobalContext from "state/GlobalContext"
 
 const TransactionForm = () => {
     
-    const [state, dispatch] = useReducer(transactionFormReducer, initialTransactionForm)
-    
-    const { 
-        date,
-        dollarAmount,
-        price,
-        bitcoin,
-        useHistoricalPrice,
-        type
-    } = state
+    const [reducerState, dispatch] = useReducer(transactionFormReducer, initialTransactionForm)
+    const { state } = useContext(GlobalContext)
 
-
-    console.log(state)
+    console.log(reducerState.historicalPrice(state.marketData.historicalData))
 
     const handleFocus = (name) => {
         dispatch(updateFocus(name))
@@ -42,12 +34,12 @@ const TransactionForm = () => {
             <FormHeader heading={'Add Transaction'} />
             <DateField 
                 label='Date'
-                value={date || moment()}
+                value={reducerState.date || moment()}
                 onChange={handleDateChange}
             />
-            <Box sx={{...innerFlexBox, flexDirection: type === 'buy' ? 'column' : 'column-reverse'}}>
+            <Box sx={{...innerFlexBox, flexDirection: reducerState.type === 'buy' ? 'column' : 'column-reverse'}}>
                 <NumberFormat
-                    label={type === 'buy' ? 'From: Dollars' : 'To: Dollars'}
+                    label={reducerState.type === 'buy' ? 'From: Dollars' : 'To: Dollars'}
                     customInput={TextField}
                     thousandSeparator={true}
                     InputProps={{
@@ -55,7 +47,7 @@ const TransactionForm = () => {
                             $
                         </InputAdornment>),
                     }}
-                    value={dollarAmount}
+                    value={reducerState.dollarAmount}
                     onValueChange={(e) => dispatch(updateDollarAmount(e.floatValue))}
                     onFocus={() => handleFocus('dollarAmount')}
                     decimalScale={2}
@@ -72,7 +64,7 @@ const TransactionForm = () => {
                             1BTC = $
                         </InputAdornment>),
                     }}
-                    value={price}
+                    value={reducerState.price}
                     onValueChange={(e) => dispatch(updatePrice(e.floatValue))}
                     onFocus={() => handleFocus('price')}
                     decimalScale={2}
@@ -81,14 +73,14 @@ const TransactionForm = () => {
                 </Box>
                 </Box>
                 <NumberFormat
-                    label={type === 'buy' ? 'To: Bitcoin' : 'From: Bitcoin'}
+                    label={reducerState.type === 'buy' ? 'To: Bitcoin' : 'From: Bitcoin'}
                     customInput={TextField}
                     InputProps={{
                         startAdornment: (<InputAdornment position='start'>
                             <SiBitcoinsv />
                         </InputAdornment>),
                     }}
-                    value={bitcoin}
+                    value={reducerState.bitcoin}
                     onValueChange={(e) => dispatch(updateBitcoin(e.floatValue))}
                     onFocus={() => handleFocus('bitcoin')}
                     decimalScale={8}

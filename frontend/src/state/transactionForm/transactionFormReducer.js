@@ -9,18 +9,22 @@ export const TOGGLE_TRANSACTION_TYPE = 'TOGGLE_TRANSACTION_TYPE'
 
 export const initialTransactionForm = {
     type: 'sell',
-    date: undefined,
+    date: moment(),
     dollarAmount: 0,
     price: 0,
     bitcoin: 0,
     useHistoricalPrice: true,
+    historicalPrice: function (data){
+        const date = this.date.format('YYYY-MM-DD')
+        return data[date]
+    },
     lastFocused: [],
     secondLastFocused: ''
 }
 
-export const transactionFormReducer = (state, action) => {
+export const transactionFormReducer = (state = initialTransactionForm, action) => {
 
-    const { lastFocused} = state
+    const lastFocused = state.lastFocused
 
     switch(action.type) {
         case UPDATE_FORM:
@@ -110,4 +114,5 @@ export const transactionFormReducer = (state, action) => {
         default:
             return state
     }
+
 }
