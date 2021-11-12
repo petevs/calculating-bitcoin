@@ -68,7 +68,32 @@ const useFirebase = () => {
         })
     }
 
-    return { updateUserAccount, addPortfolio, deletePortfolio, clonePortfolio, toggleVisibility }
+    const addTransaction = (portfolioId, transactionId, values) => {
+        db.collection('portfolios').doc(state.user.uid).update({
+            ...state.portfolio.portfolioObj,
+            [portfolioId]: {
+                ...state.portfolio.portfolioObj,
+                transactions: {
+                    ...state.portfolio.portfolioObj.transactions,
+                    [transactionId]: {
+                        ...values
+                    }
+                }
+            }
+        })
+    }
+
+
+
+
+    return { 
+        updateUserAccount, 
+        addPortfolio, 
+        deletePortfolio, 
+        clonePortfolio, 
+        toggleVisibility,
+        addTransaction 
+    }
 
 }
 
