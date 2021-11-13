@@ -16,8 +16,11 @@ export const initialTransactionForm = {
     dollarAmount: 0,
     historicalPrices: {},
     useHistoricalPrice: true,
-    historicalPrice: function (){
-        const date = this.date.format('YYYY-MM-DD')
+    historicalPrice: function (inputDate){
+        let date = this.date.format('YYYY-MM-DD')
+        if(inputDate){
+            date = inputDate.format('YYYY-MM-DD')
+        }
         return this.historicalPrices[date]
     },
     price: 0,
@@ -38,17 +41,20 @@ export const transactionFormReducer = (state = initialTransactionForm, action) =
                 [action.payload.name]: action.payload.value
             }
         case UPDATE_DATE:
-            if(state.useHistoricalPrice){
+            if(state.useHistoricalPrice && action.payload.isValid()){
                 return {
                     ...state,
                     date: action.payload,
                     price: state.historicalPrice(action.payload)
                 }
             }
-            return {
-                ...state,
-                date: action.payload
+            if(action.payload.isValid()){
+                return {
+                    ...state,
+                    date: action.payload
+                }
             }
+            return state
         case UPDATE_PRICE:
             if(lastFocused.includes('dollarAmount')) {
                 return {
