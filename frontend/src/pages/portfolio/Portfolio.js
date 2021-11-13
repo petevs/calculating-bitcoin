@@ -13,6 +13,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import EditTransaction from './components/EditTransaction'
 import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/system'
+import NumberFormat from 'react-number-format'
 
 
 const Portfolio = () => {
@@ -43,29 +44,51 @@ const Portfolio = () => {
         {
             field: 'date',
             headerName: 'Date',
-            cellClassName: 'super-app-theme--cell'
-        },
-        {
-            field: 'bitcoin',
-            headerName: 'Bitcoin'
-        },
-        {
-            field: 'dollarAmount',
-            headerName: 'Dollars'
-        },
-        {
-            field: 'price',
-            headerName: 'Price'
         },
         {
             field: 'type',
             headerName: 'Type'
         },
         {
+            field: 'bitcoin',
+            headerName: 'Bitcoin',
+            renderCell: (params) => (
+                <NumberFormat 
+                    displayType='text'
+                    value={params.value}
+                    decimalScale={8} 
+                />)
+        },
+        {
+            field: 'dollarAmount',
+            headerName: 'Dollars',
+            renderCell: (params) => (
+                <NumberFormat 
+                    displayType='text'
+                    thousandSeparator={true}
+                    prefix='$' 
+                    value={params.value}
+                    decimalScale={2} 
+                />)
+            
+        },
+        {
+            field: 'price',
+            headerName: 'Price',
+            renderCell: (params) => (
+                <NumberFormat 
+                    displayType='text'
+                    thousandSeparator={true}
+                    prefix='$' 
+                    value={params.value}
+                    decimalScale={2}  
+                />)
+        },
+        {
             field: 'actions',
             headerName: 'Actions',
             renderCell: (params) => (<EditTransaction {...params.row} portfolioId={id} />)
-        }
+        },
     ]
 
     return (
