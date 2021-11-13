@@ -45,7 +45,8 @@ const TransactionForm = (props) => {
             useHistoricalPrice: reducerState.useHistoricalPrice,
             price: reducerState.price,
             type: reducerState.type,
-            bitcoin: reducerState.bitcoin
+            bitcoin: reducerState.bitcoin,
+            historicalPrice: state.marketData.historicalData[reducerState.date.format('YYYY-MM-DD')]
         }
         addTransaction(props.portfolioId, values)
         handleModalClose()

@@ -2,6 +2,8 @@ import { makeFillerTransactions } from "./makeFillerTransactions"
 
 export const createAllTransactions = (transactions, historicalData, currentPrice) => {
 
+    if(transactions.length < 1){return}
+
     const fillerTransactions = makeFillerTransactions(transactions, historicalData, currentPrice)
 
     let allTransactions = [...transactions, ...fillerTransactions]

@@ -14,7 +14,7 @@ export const makeFillerTransactions = (transactions, historicalData, currentPric
                 date: item,
                 price: price,
                 historicalPrice: price,
-                amount: 0,
+                dollarAmount: 0,
                 bitcoin: 0
             }
         }).slice(1)
