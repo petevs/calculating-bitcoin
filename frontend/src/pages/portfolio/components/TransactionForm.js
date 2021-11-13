@@ -65,7 +65,7 @@ const TransactionForm = (props) => {
 
     return (
         <Box component='form'  onSubmit={handleSubmit} sx={wrapper}>
-            <FormHeader heading={'Add Transaction'} />
+            <FormHeader heading={props.formType === 'edit' ? 'Edit Transaction' : 'Add Transaction'} />
             <DateField 
                 label='Date'
                 value={reducerState.date || moment()}
@@ -137,7 +137,7 @@ const TransactionForm = (props) => {
                         />              
                     </Box>
                 </Box>
-            <Button variant='contained' size='large' type='submit'>Add Transaction</Button>
+            <Button variant='contained' size='large' type='submit'>{props.formType === 'edit' ? 'Save Changes' : 'Add Transaction'}</Button>
         </Box>
     )
 }

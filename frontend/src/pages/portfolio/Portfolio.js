@@ -39,9 +39,6 @@ const Portfolio = () => {
         return transactionList
     }
 
-    console.log(transactions(details.transactions))
-
-
     const columns = [
         {
             field: 'date',

@@ -9,7 +9,7 @@ const EditTransaction = (props) => {
         <ModalButton
                     sx={{justifySelf: 'start'}}
                     icon={<EditIcon />}
-                    content={<TransactionForm portfolioId={props.portfolioId} {...props} />}
+                    content={<TransactionForm portfolioId={props.portfolioId} {...props} formType='edit' />}
                     text='Edit'
                 />
     )
