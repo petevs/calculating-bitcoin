@@ -17,17 +17,23 @@ const TransactionForm = (props) => {
 
     const { state } = useContext(GlobalContext)
 
+    console.log(props)
+
     const initialValues = {
         ...initialTransactionForm,
-        id: Date.now(),
+        id: props.id || Date.now(),
         historicalPrices: state.marketData.historicalData,
+        date: moment(props.date) || initialTransactionForm.date,
+        dollarAmount: Math.round(props.dollarAmount) || initialTransactionForm.dollarAmount,
+        useHistoricalPrice: props.useHistoricalPrice || initialTransactionForm.useHistoricalPrice,
+        type: props.type || initialTransactionForm.type,
+        price: props.price || initialTransactionForm.type,
+        bitcoin: props.bitcoin || initialTransactionForm.bitcoin
     }
     
     const [reducerState, dispatch] = useReducer(transactionFormReducer, initialValues)
     const { addTransaction } = useFirebase()
     const { handleModalClose } = useModal()
-
-    console.log(reducerState)
 
 
     const handleSubmit = (e) => {
@@ -45,13 +51,17 @@ const TransactionForm = (props) => {
         handleModalClose()
     }
 
+    console.log(reducerState)
+
     const handleFocus = (name) => {
         dispatch(updateFocus(name))
     }
 
     useEffect(() => {
-        dispatch(updateDate(moment()))
-    },[])
+        if(!props.date){
+            dispatch(updateDate(moment()))
+        }
+    },[props.date])
 
     return (
         <Box component='form'  onSubmit={handleSubmit} sx={wrapper}>

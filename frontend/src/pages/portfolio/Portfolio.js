@@ -33,8 +33,6 @@ const Portfolio = () => {
         return transactionList
     }
 
-    console.log(transactions(details.transactions))
-
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start'}}>
                 <PortfolioHeader 
@@ -48,7 +46,7 @@ const Portfolio = () => {
                 />
                 {
                     transactions(details.transactions).map(item => 
-                        <TransactionRow {...item} />
+                        <TransactionRow portfolioId={id} {...item} />
                     )
                 }
 

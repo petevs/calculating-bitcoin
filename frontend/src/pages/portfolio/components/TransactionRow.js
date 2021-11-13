@@ -1,9 +1,11 @@
 import { Box } from '@mui/system'
 import React from 'react'
+import EditTransaction from './EditTransaction'
 
 const TransactionRow = (props) => {
 
     const columns = Object.keys(props)
+
 
 
     return (
@@ -15,6 +17,7 @@ const TransactionRow = (props) => {
                     </Box>
                     )
             }
+            <EditTransaction {...props}/>
         </Box>
     )
 }
