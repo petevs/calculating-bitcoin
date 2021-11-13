@@ -9,7 +9,7 @@ export const initialPortfolioState = {
     portfolioList: function(){
         return portfolioObjectToArray(this.portfolioObj)
     },
-    publicPortfolios: undefined
+    publicPortfolios: undefined,
 }
 
 export const portfolioReducer = (state = initialPortfolioState, action) => {

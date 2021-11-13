@@ -1,4 +1,4 @@
-import React from 'react'
+import { useContext } from 'react'
 import Page from 'components/Page'
 
 import { useParams } from 'react-router'
@@ -14,6 +14,7 @@ import EditTransaction from './components/EditTransaction'
 import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
+import GlobalContext from 'state/GlobalContext'
 
 
 const Portfolio = () => {
@@ -21,23 +22,12 @@ const Portfolio = () => {
     const classes = useStyles()
 
     let { id } = useParams()
+    const { state } = useContext(GlobalContext)
 
-    const details = useGetPortfolio(id)
+    const { details, transactions } = useGetPortfolio(id)
 
     if(!details){
         return(<Loading />)
-    }
-
-    const transactions = (transactionObject) => {
-        let transactionList = []
-
-        for (const transaction in transactionObject){
-            transactionList.push({
-                ...transactionObject[transaction]
-            })
-        }
-
-        return transactionList
     }
 
     const columns = [
@@ -47,7 +37,7 @@ const Portfolio = () => {
         },
         {
             field: 'type',
-            headerName: 'Type'
+            headerName: 'Type',
         },
         {
             field: 'bitcoin',
@@ -56,19 +46,22 @@ const Portfolio = () => {
                 <NumberFormat 
                     displayType='text'
                     value={params.value}
-                    decimalScale={8} 
+                    decimalScale={8}
+                    fixedDecimalScale={8}  
                 />)
         },
         {
             field: 'dollarAmount',
             headerName: 'Dollars',
+            resizable: true,
             renderCell: (params) => (
                 <NumberFormat 
                     displayType='text'
                     thousandSeparator={true}
                     prefix='$' 
                     value={params.value}
-                    decimalScale={2} 
+                    decimalScale={2}
+                    fixedDecimalScale={2} 
                 />)
             
         },
@@ -81,7 +74,8 @@ const Portfolio = () => {
                     thousandSeparator={true}
                     prefix='$' 
                     value={params.value}
-                    decimalScale={2}  
+                    decimalScale={2}
+                    fixedDecimalScale={2}   
                 />)
         },
         {
@@ -105,7 +99,7 @@ const Portfolio = () => {
                 <Box sx={tableContainerStyle}>
                         <DataGrid
                             className={classes.root}
-                            rows={transactions(details.transactions)}
+                            rows={transactions}
                             columns={columns}
                             rowsPerPageOptions={[5]}
                             checkboxSelection
