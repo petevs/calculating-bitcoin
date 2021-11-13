@@ -24,7 +24,9 @@ const Portfolio = () => {
     let { id } = useParams()
     const { state } = useContext(GlobalContext)
 
-    const { details, transactions } = useGetPortfolio(id)
+    const { details, transactions, allTransactions } = useGetPortfolio(id)
+
+    console.log(allTransactions)
 
     if(!details){
         return(<Loading />)
@@ -53,7 +55,6 @@ const Portfolio = () => {
         {
             field: 'dollarAmount',
             headerName: 'Dollars',
-            resizable: true,
             renderCell: (params) => (
                 <NumberFormat 
                     displayType='text'
