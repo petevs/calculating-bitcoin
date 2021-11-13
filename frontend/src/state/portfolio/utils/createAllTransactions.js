@@ -1,4 +1,5 @@
 import { makeFillerTransactions } from "./makeFillerTransactions"
+import { calculateTransactions } from "./calculateTransactions"
 
 export const createAllTransactions = (transactions, historicalData, currentPrice) => {
 
@@ -13,5 +14,5 @@ export const createAllTransactions = (transactions, historicalData, currentPrice
       })
 
 
-    return allTransactions
+    return calculateTransactions(allTransactions)
 }
