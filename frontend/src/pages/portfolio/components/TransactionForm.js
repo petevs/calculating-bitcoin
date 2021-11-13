@@ -60,6 +60,7 @@ const TransactionForm = (props) => {
                 label='Date'
                 value={reducerState.date || moment()}
                 onChange={(value) => dispatch(updateDate(value))}
+                minDate={moment('2013-05-01')}
             />
             <NumberFormat
                 label='Price'
