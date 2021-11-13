@@ -9,9 +9,15 @@ import TransactionForm from './components/TransactionForm'
 import ModalButton from './components/ModalButton'
 import AddIcon from '@mui/icons-material/Add';
 import TransactionRow from './components/TransactionRow'
+import { DataGrid } from '@mui/x-data-grid'
+import EditTransaction from './components/EditTransaction'
+import { makeStyles } from '@mui/styles'
+import { Box } from '@mui/system'
 
 
 const Portfolio = () => {
+
+    const classes = useStyles()
 
     let { id } = useParams()
 
@@ -33,6 +39,38 @@ const Portfolio = () => {
         return transactionList
     }
 
+    console.log(transactions(details.transactions))
+
+
+    const columns = [
+        {
+            field: 'date',
+            headerName: 'Date',
+            cellClassName: 'super-app-theme--cell'
+        },
+        {
+            field: 'bitcoin',
+            headerName: 'Bitcoin'
+        },
+        {
+            field: 'dollarAmount',
+            headerName: 'Dollars'
+        },
+        {
+            field: 'price',
+            headerName: 'Price'
+        },
+        {
+            field: 'type',
+            headerName: 'Type'
+        },
+        {
+            field: 'actions',
+            headerName: 'Actions',
+            renderCell: (params) => (<EditTransaction {...params.row} />)
+        }
+    ]
+
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start'}}>
                 <PortfolioHeader 
@@ -44,14 +82,29 @@ const Portfolio = () => {
                     content={<TransactionForm portfolioId={id} />}
                     text='Add Transaction'
                 />
-                {
-                    transactions(details.transactions).map(item => 
-                        <TransactionRow portfolioId={id} {...item} />
-                    )
-                }
-
+                <Box sx={{ width: '100%'}}>
+                        <DataGrid
+                            className={classes.root}
+                            rows={transactions(details.transactions)}
+                            columns={columns}
+                            rowsPerPageOptions={[5]}
+                            checkboxSelection
+                            pagination
+                            disableSelectionOnClick
+                        />
+                </Box>
         </Page>
     )
 }
 
 export default Portfolio
+
+const useStyles = makeStyles({
+    root: {
+        '& .MuiDataGrid-cell': {
+            color: '#fff',
+            fontWeight: 700,
+            textTransform: 'uppercase'
+        }
+      },
+})
