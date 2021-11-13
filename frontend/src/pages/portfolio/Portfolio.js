@@ -102,7 +102,7 @@ const Portfolio = () => {
                     content={<TransactionForm portfolioId={id} />}
                     text='Add Transaction'
                 />
-                <Box sx={{ width: '100%'}}>
+                <Box sx={tableContainerStyle}>
                         <DataGrid
                             className={classes.root}
                             rows={transactions(details.transactions)}
@@ -119,8 +119,22 @@ const Portfolio = () => {
 
 export default Portfolio
 
+const tableContainerStyle = {
+    height: '400px',
+    width: '100%',
+    backgroundColor: '212b36',
+    boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
+    borderRadius: '1rem'
+}
+
 const useStyles = makeStyles({
     root: {
+        border: 'none',
+        '& .MuiDataGrid-columnsContainer': {
+            backgroundColor: '#333d48',
+            border: 'none',
+            borderRadius: '0.5rem 0.5rem 0 0'
+        },
         '& .MuiDataGrid-cell': {
             color: '#fff',
             fontWeight: 700,
@@ -128,3 +142,16 @@ const useStyles = makeStyles({
         }
       },
 })
+
+
+// color: #fff;
+//         background-color: #333d48;
+//         border-bottom: none;
+//         padding: 8px 16px;
+//         text-transform: uppercase;
+//         &:first-of-type {
+//             border-radius: 0.5rem 0 0 0.5rem;
+//         }
+//         &:last-of-type {
+//             border-radius: 0 0.5rem 0.5rem 0;
+//         }
