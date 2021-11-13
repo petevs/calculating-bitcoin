@@ -19,6 +19,7 @@ const TransactionForm = (props) => {
 
     const initialValues = {
         ...initialTransactionForm,
+        id: Date.now(),
         historicalPrices: state.marketData.historicalData,
     }
     

@@ -8,6 +8,7 @@ import Loading from 'components/Loading'
 import TransactionForm from './components/TransactionForm'
 import ModalButton from './components/ModalButton'
 import AddIcon from '@mui/icons-material/Add';
+import TransactionRow from './components/TransactionRow'
 
 
 const Portfolio = () => {
@@ -20,6 +21,20 @@ const Portfolio = () => {
         return(<Loading />)
     }
 
+    const transactions = (transactionObject) => {
+        let transactionList = []
+
+        for (const transaction in transactionObject){
+            transactionList.push({
+                ...transactionObject[transaction]
+            })
+        }
+
+        return transactionList
+    }
+
+    console.log(transactions(details.transactions))
+
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start'}}>
                 <PortfolioHeader 
@@ -31,6 +46,12 @@ const Portfolio = () => {
                     content={<TransactionForm portfolioId={id} />}
                     text='Add Transaction'
                 />
+                {
+                    transactions(details.transactions).map(item => 
+                        <TransactionRow {...item} />
+                    )
+                }
+
         </Page>
     )
 }
