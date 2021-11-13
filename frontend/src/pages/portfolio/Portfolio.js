@@ -67,7 +67,7 @@ const Portfolio = () => {
         {
             field: 'actions',
             headerName: 'Actions',
-            renderCell: (params) => (<EditTransaction {...params.row} />)
+            renderCell: (params) => (<EditTransaction {...params.row} portfolioId={id} />)
         }
     ]
 
