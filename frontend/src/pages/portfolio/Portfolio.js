@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import Page from 'components/Page'
 
 import { useParams } from 'react-router'
@@ -8,16 +7,11 @@ import Loading from 'components/Loading'
 import TransactionForm from './components/TransactionForm'
 import ModalButton from './components/ModalButton'
 import AddIcon from '@mui/icons-material/Add';
-import TransactionRow from './components/TransactionRow'
 import { DataGrid } from '@mui/x-data-grid'
-import EditTransaction from './components/EditTransaction'
 import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
-import GlobalContext from 'state/GlobalContext'
 import Summary from './components/Summary'
-import { Button } from '@mui/material'
-import DeleteTransaction from './components/DeleteTransaction'
 import TransactionActions from './components/TransactionActions'
 
 
@@ -26,11 +20,8 @@ const Portfolio = () => {
     const classes = useStyles()
 
     let { id } = useParams()
-    const { state } = useContext(GlobalContext)
 
-    const { details, transactions, allTransactions, summary } = useGetPortfolio(id)
-
-    console.log(summary)
+    const { details, transactions, summary } = useGetPortfolio(id)
 
     if(!details){
         return(<Loading />)
@@ -109,7 +100,6 @@ const Portfolio = () => {
                             className={classes.root}
                             rows={transactions}
                             columns={columns}
-                            rowsPerPageOptions={[5]}
                             checkboxSelection
                             pagination
                             disableSelectionOnClick

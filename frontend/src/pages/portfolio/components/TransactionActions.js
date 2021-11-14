@@ -1,4 +1,4 @@
-import { Button, IconButton } from '@mui/material'
+import { IconButton } from '@mui/material'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import MenuBox from 'components/userMenu/components/MenuBox';
 import useMenu from 'hooks/useMenu';
@@ -9,8 +9,6 @@ import { Box } from '@mui/system';
 const TransactionActions = (props) => {
 
     const { anchorEl, open, handleClick, handleClose } = useMenu()
-
-    console.log(props)
 
     return (
         <>

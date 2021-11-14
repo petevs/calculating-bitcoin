@@ -6,7 +6,7 @@ import NumberFormat from 'react-number-format'
 import { SiBitcoinsv } from 'react-icons/si'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { useReducer, useContext, useEffect } from 'react'
-import { updateBitcoin, updateDollarAmount, updateFocus, updateForm, updatePrice, toggleTransactionType, toggleUseHistoricalPrice, updateDate } from "state/transactionForm/transactionFormActions"
+import { updateBitcoin, updateDollarAmount, updateFocus, updatePrice, toggleTransactionType, toggleUseHistoricalPrice, updateDate } from "state/transactionForm/transactionFormActions"
 import moment from "moment"
 import { initialTransactionForm, transactionFormReducer } from "state/transactionForm/transactionFormReducer"
 import GlobalContext from "state/GlobalContext"
@@ -16,8 +16,6 @@ import useModal from 'hooks/useModal'
 const TransactionForm = (props) => {
 
     const { state } = useContext(GlobalContext)
-
-    console.log(props)
 
     const initialValues = {
         ...initialTransactionForm,
@@ -51,8 +49,6 @@ const TransactionForm = (props) => {
         addTransaction(props.portfolioId, values)
         handleModalClose()
     }
-
-    console.log(reducerState)
 
     const handleFocus = (name) => {
         dispatch(updateFocus(name))

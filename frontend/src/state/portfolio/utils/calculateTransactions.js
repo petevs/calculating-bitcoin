@@ -15,8 +15,6 @@ export const calculateTransactions = (allTransactions) => {
 
     return allTransactions.map( transaction => {
 
-        let bitcoin
-
         if(transaction.type === 'buy' || !transaction.type){
             runningBitcoinBalance = runningBitcoinBalance + transaction.bitcoin
             totalInvested = totalInvested + transaction.dollarAmount

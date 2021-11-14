@@ -4,14 +4,6 @@ import { Box } from '@mui/system'
 const Summary = (props) => {
 
 
-    const fields = [
-        'totalInvested',
-        'averageCost',
-        'runningBitcoinBalance',
-        ''
-    ]
-
-
     return (
         <Box sx={wrapper}>
             
