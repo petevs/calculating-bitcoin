@@ -15,6 +15,7 @@ import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
 import GlobalContext from 'state/GlobalContext'
+import Summary from './components/Summary'
 
 
 const Portfolio = () => {
@@ -87,7 +88,7 @@ const Portfolio = () => {
     ]
 
     return (
-        <Page sx={{justifyContent: 'stretch', alignContent: 'start'}}>
+        <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
                 <PortfolioHeader 
                     {...details} id={id}
                 />
@@ -97,6 +98,7 @@ const Portfolio = () => {
                     content={<TransactionForm portfolioId={id} />}
                     text='Add Transaction'
                 />
+                <Summary />
                 <Box sx={tableContainerStyle}>
                         <DataGrid
                             className={classes.root}
