@@ -24,7 +24,7 @@ const Portfolio = () => {
     let { id } = useParams()
     const { state } = useContext(GlobalContext)
 
-    const { details, transactions, allTransactions } = useGetPortfolio(id)
+    const { details, transactions, allTransactions, summary } = useGetPortfolio(id)
 
     console.log(allTransactions)
 

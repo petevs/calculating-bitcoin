@@ -48,7 +48,7 @@ export const calculateTransactions = (allTransactions) => {
             runningBitcoinBalance: runningBitcoinBalance,
             totalInvested: totalInvested,
             averageCost: averageCost,
-            unrealizeROI: unrealizedROI,
+            unrealizedROI: unrealizedROI,
             realizedProceeds: realizedProceeds,
             realizedCost: realizedCost,
             realizedGain: realizedGain,
