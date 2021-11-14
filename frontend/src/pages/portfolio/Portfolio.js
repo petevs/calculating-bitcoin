@@ -18,6 +18,7 @@ import GlobalContext from 'state/GlobalContext'
 import Summary from './components/Summary'
 import { Button } from '@mui/material'
 import DeleteTransaction from './components/DeleteTransaction'
+import TransactionActions from './components/TransactionActions'
 
 
 const Portfolio = () => {
@@ -86,10 +87,8 @@ const Portfolio = () => {
             field: 'actions',
             headerName: 'Actions',
             width: 150,
-            renderCell: (params) => (<>
-                <EditTransaction {...params.row} portfolioId={id} />
-                <DeleteTransaction portfolioId={id} transactionId={params.row.id} />
-                </>)
+            renderCell: (params) => (
+                <TransactionActions {...params.row} portfolioId={id} />)
         },
     ]
 
@@ -158,3 +157,8 @@ const useStyles = makeStyles({
 //         &:last-of-type {
 //             border-radius: 0 0.5rem 0.5rem 0;
 //         }
+
+
+                /* <EditTransaction {...params.row} portfolioId={id} />
+                <DeleteTransaction portfolioId={id} transactionId={params.row.id} />
+                </>) */

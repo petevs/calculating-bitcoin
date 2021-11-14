@@ -9,6 +9,7 @@ const DeleteTransaction = (props) => {
 
     return (
         <Button
+            sx={{justifyContent: 'start'}}
             onClick={() => deleteTransaction(props.portfolioId, props.transactionId)}
             startIcon={<DeleteIcon />}
         >
