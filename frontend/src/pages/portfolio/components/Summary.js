@@ -1,15 +1,54 @@
 import Scorecard from 'components/Scorecard'
 import { Box } from '@mui/system'
 
-const Summary = () => {
+const Summary = (props) => {
+
+
+    const fields = [
+        'totalInvested',
+        'averageCost',
+        'runningBitcoinBalance',
+        ''
+    ]
+
+
     return (
         <Box sx={wrapper}>
+            
             <Scorecard
-                title='Total Invested'
-                value={234000}
+                title='Bitcoin'
+                value={props.runningBitcoinBalance}
+                numberFormat={{
+                    prefix: '',
+                    decimalScale: 8,
+                    fixedDecimalScale: 8 
+                }}
+            />
+            <Scorecard
+                title='Portfolio Value'
+                value={props.currentValue}
                 numberFormat={{
                     thousandSeparator: true,
-                    prefix: '$'
+                    prefix: '$',
+                    decimalScale: 2,
+                }}
+            />
+            <Scorecard
+                title='Total Invested'
+                value={props.totalInvested}
+                numberFormat={{
+                    thousandSeparator: true,
+                    prefix: '$',
+                    decimalScale: 2,
+                }}
+            />
+            <Scorecard
+                title='Average Cost'
+                value={props.averageCost}
+                numberFormat={{
+                    thousandSeparator: true,
+                    prefix: '$',
+                    decimalScale: 2,
                 }}
             />
         </Box>
@@ -21,6 +60,7 @@ export default Summary
 const wrapper = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(200px,1fr))',
+    gap: '1rem',
 
     '@media (max-width: 1024px)': {
         gridAutoFlow: 'row',

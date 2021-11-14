@@ -20,7 +20,9 @@ const useGetPortfolio = (id) => {
         transactions, historicalData, currentPrice
     )
 
-    return { details, transactions, allTransactions }
+    const summary = allTransactions ? allTransactions[allTransactions.length - 1] : []
+
+    return { details, transactions, allTransactions, summary }
 
 }
 

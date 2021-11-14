@@ -24,7 +24,6 @@ export const calculateTransactions = (allTransactions) => {
         }
         
         if(transaction.type === 'sell') {
-           console.log(averageCost)
             runningBitcoinBalance = runningBitcoinBalance - transaction.bitcoin
             realizedCost = transaction.bitcoin * averageCost
             totalInvested = totalInvested - realizedCost
@@ -48,7 +47,9 @@ export const calculateTransactions = (allTransactions) => {
             runningBitcoinBalance: runningBitcoinBalance,
             totalInvested: totalInvested,
             averageCost: averageCost,
+            currentValue: currentValue,
             unrealizedROI: unrealizedROI,
+            unrealizedGain: unrealizedGain,
             realizedProceeds: realizedProceeds,
             realizedCost: realizedCost,
             realizedGain: realizedGain,

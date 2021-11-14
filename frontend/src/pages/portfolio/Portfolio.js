@@ -16,6 +16,8 @@ import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
 import GlobalContext from 'state/GlobalContext'
 import Summary from './components/Summary'
+import { Button } from '@mui/material'
+import DeleteTransaction from './components/DeleteTransaction'
 
 
 const Portfolio = () => {
@@ -27,7 +29,7 @@ const Portfolio = () => {
 
     const { details, transactions, allTransactions, summary } = useGetPortfolio(id)
 
-    console.log(allTransactions)
+    console.log(summary)
 
     if(!details){
         return(<Loading />)
@@ -83,7 +85,11 @@ const Portfolio = () => {
         {
             field: 'actions',
             headerName: 'Actions',
-            renderCell: (params) => (<EditTransaction {...params.row} portfolioId={id} />)
+            width: 150,
+            renderCell: (params) => (<>
+                <EditTransaction {...params.row} portfolioId={id} />
+                <DeleteTransaction portfolioId={id} transactionId={params.row.id} />
+                </>)
         },
     ]
 
@@ -98,7 +104,7 @@ const Portfolio = () => {
                     content={<TransactionForm portfolioId={id} />}
                     text='Add Transaction'
                 />
-                <Summary />
+                <Summary {...summary} />
                 <Box sx={tableContainerStyle}>
                         <DataGrid
                             className={classes.root}

@@ -83,6 +83,15 @@ const useFirebase = () => {
         })
     }
 
+    const deleteTransaction = (portfolioId, transactionId) => {
+        const updatedPortfolio = {...state.portfolio.portfolioObj}
+        delete updatedPortfolio[portfolioId].transactions[transactionId]
+
+        db.collection('portfolios').doc(state.user.uid).update({
+            ...updatedPortfolio
+        })
+    }
+
 
 
 
@@ -92,7 +101,8 @@ const useFirebase = () => {
         deletePortfolio, 
         clonePortfolio, 
         toggleVisibility,
-        addTransaction 
+        addTransaction,
+        deleteTransaction 
     }
 
 }
