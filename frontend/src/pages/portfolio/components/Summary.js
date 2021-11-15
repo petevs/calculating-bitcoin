@@ -4,7 +4,7 @@ import SummarySelect from './SummarySelect'
 
 const Summary = (props) => {
 
-
+    console.log(props)
     return (
         <Box>
             <SummarySelect />
@@ -12,7 +12,7 @@ const Summary = (props) => {
                 
                 <Scorecard
                     title='Bitcoin'
-                    value={props.runningBitcoinBalance}
+                    value={props.runningBitcoinBalance || ''}
                     numberFormat={{
                         prefix: '',
                         decimalScale: 8,
@@ -21,7 +21,7 @@ const Summary = (props) => {
                 />
                 <Scorecard
                     title='Portfolio Value'
-                    value={props.currentValue}
+                    value={props.currentValue || ''}
                     numberFormat={{
                         thousandSeparator: true,
                         prefix: '$',
@@ -30,7 +30,7 @@ const Summary = (props) => {
                 />
                 <Scorecard
                     title='Total Invested'
-                    value={props.totalInvested}
+                    value={props.totalInvested || ''}
                     numberFormat={{
                         thousandSeparator: true,
                         prefix: '$',
@@ -39,7 +39,7 @@ const Summary = (props) => {
                 />
                 <Scorecard
                     title='Average Cost'
-                    value={props.averageCost}
+                    value={props.averageCost || ''}
                     numberFormat={{
                         thousandSeparator: true,
                         prefix: '$',
