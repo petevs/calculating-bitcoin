@@ -8,6 +8,14 @@ const RealizedSummary = (props) => {
     return (
         <>
             <Scorecard
+                title='Bitcoin Sold'
+                value={props.totalBitcoinSold || ''}
+                numberFormat={{
+                    decimalScale: 8,
+                    fixedDecimalScale: 8 
+                }}
+            />
+            <Scorecard
                 title='Sale Proceeds'
                 value={props.realizedProceeds || ''}
                 numberFormat={{

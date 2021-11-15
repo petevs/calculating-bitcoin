@@ -22,7 +22,6 @@ const useGetPortfolio = (id) => {
     const summary = allTransactions ? allTransactions[allTransactions.length - 1] : []
 
     const [performanceType, setPerformanceType] = useState('Unrealized Performance')
-
     const handlePerformanceChange = (e) => setPerformanceType(e.target.value)
 
     return { details, transactions, allTransactions, summary, performanceType, handlePerformanceChange }

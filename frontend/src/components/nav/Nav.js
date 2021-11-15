@@ -1,10 +1,15 @@
 import React from 'react'
-import { Box, AppBar } from '@mui/material/';
+import { Box, AppBar, useMediaQuery } from '@mui/material/';
 import Logo from './components/Logo';
 import SideBar from '../sidebar/SideBar';
 import UserMenu from 'components/userMenu/UserMenu';
+import CurrentPriceBox from './components/CurrentPriceBox';
 
 const Nav = () => {
+
+
+    const mobile = useMediaQuery('(max-width: 1024px)')
+
     return (
             <AppBar
                 sx={{
@@ -26,7 +31,12 @@ const Nav = () => {
                 >
                     <SideBar />
                     <Logo />
-                    <Box></Box>
+                    <Box sx={{alignSelf: 'center', padding: '0 2rem'}}>
+                        {
+                            !mobile &&
+                            <CurrentPriceBox />
+                        }
+                    </Box>
                     <UserMenu />
                 </Box>
             </AppBar>

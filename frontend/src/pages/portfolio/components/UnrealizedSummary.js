@@ -5,7 +5,7 @@ const UnrealizedSummary = (props) => {
     return (
         <>
                  <Scorecard
-                    title='Bitcoin'
+                    title='Bitcoin Holdings'
                     value={props.runningBitcoinBalance || ''}
                     numberFormat={{
                         prefix: '',
@@ -32,11 +32,29 @@ const UnrealizedSummary = (props) => {
                     }}
                 />
                 <Scorecard
-                    title='Average Cost'
+                    title='Unrealized Gain'
+                    value={props.unrealizedGain || ''}
+                    numberFormat={{
+                        thousandSeparator: true,
+                        prefix: '$',
+                        decimalScale: 2,
+                    }}
+                />
+                <Scorecard
+                    title='Average Bitcoin Cost'
                     value={props.averageCost || ''}
                     numberFormat={{
                         thousandSeparator: true,
                         prefix: '$',
+                        decimalScale: 2,
+                    }}
+                />
+                <Scorecard
+                    title='Unrealized ROI'
+                    value={props.unrealizedROI || ''}
+                    numberFormat={{
+                        thousandSeparator: true,
+                        suffix: '%',
                         decimalScale: 2,
                     }}
                 />

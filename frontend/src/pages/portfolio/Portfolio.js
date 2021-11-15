@@ -77,9 +77,10 @@ const Portfolio = () => {
         {
             field: 'actions',
             headerName: 'Actions',
-            width: 150,
             renderCell: (params) => (
-                <TransactionActions {...params.row} portfolioId={id} />)
+                <TransactionActions {...params.row} portfolioId={id} />),
+            cellClassName: 'right'
+            
         },
     ]
 
@@ -91,13 +92,15 @@ const Portfolio = () => {
                     sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}
                 />
                 <Summary {...summary} performanceType={performanceType} handlePerformanceChange={handlePerformanceChange} />
+                <ModalButton
+                    sx={{justifySelf: 'end'}}
+                    icon={<AddIcon />}
+                    content={<TransactionForm portfolioId={id} />}
+                    text='Add Transaction'
+                    variant='contained'
+                    size='small'
+                />
                 <Box sx={tableContainerStyle}>
-                    <ModalButton
-                        sx={{justifySelf: 'start'}}
-                        icon={<AddIcon />}
-                        content={<TransactionForm portfolioId={id} />}
-                        text='Add Transaction'
-                    />
                         <DataGrid
                             className={classes.root}
                             rows={transactions}
@@ -133,6 +136,9 @@ const useStyles = makeStyles({
             color: '#fff',
             fontWeight: 700,
             textTransform: 'uppercase'
+        },
+        '& .right': {
+            justifyContent: 'flex-end'
         }
       },
 })
