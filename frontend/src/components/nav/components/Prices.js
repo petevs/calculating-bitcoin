@@ -18,35 +18,39 @@ const Prices = () => {
         high_24h,
         low_24h 
     } = state.marketData.marketData
+
+
+    const { currency } = state.user
+
     return (
         <Box sx={wrapper}>
             {
                 !mobile &&
                 <>
                     <CurrentPriceBox 
-                        price={price.cad} 
-                        priceChange={priceChange.cad} 
-                        percentChange={percentChange.cad}
+                        price={price[currency]} 
+                        priceChange={priceChange[currency]} 
+                        percentChange={percentChange[currency]}
                     />
                     <TickerBox
-                        title='24H High'
-                        value={high_24h.cad}
+                        title={`24H High (${currency})`}
+                        value={high_24h[currency]}
                         numberFormat={{
                             thousandSeparator: true,
                             prefix: '$'
                         }}
                     />
                     <TickerBox
-                        title='24H Low'
-                        value={low_24h.cad}
+                        title={`24H Low (${currency})`}
+                        value={low_24h[currency]}
                         numberFormat={{
                             thousandSeparator: true,
                             prefix: '$'
                         }}
                     />
                     <TickerBox
-                        title='ATH'
-                        value={ath.cad}
+                        title={`ATH (${currency})`}
+                        value={ath[currency]}
                         numberFormat={{
                             thousandSeparator: true,
                             prefix: '$'
