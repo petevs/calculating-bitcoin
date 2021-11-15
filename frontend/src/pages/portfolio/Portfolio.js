@@ -21,7 +21,7 @@ const Portfolio = () => {
 
     let { id } = useParams()
 
-    const { details, transactions, summary } = useGetPortfolio(id)
+    const { details, transactions, summary, performanceType, handlePerformanceChange } = useGetPortfolio(id)
 
     if(!details){
         return(<Loading />)
@@ -90,7 +90,7 @@ const Portfolio = () => {
                     id={id}
                     sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}
                 />
-                <Summary {...summary} />
+                <Summary {...summary} performanceType={performanceType} handlePerformanceChange={handlePerformanceChange} />
                 <Box sx={tableContainerStyle}>
                     <ModalButton
                         sx={{justifySelf: 'start'}}

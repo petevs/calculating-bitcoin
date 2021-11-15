@@ -1,51 +1,19 @@
-import Scorecard from 'components/Scorecard'
 import { Box } from '@mui/system'
+import RealizedSummary from './RealizedSummary'
 import SummarySelect from './SummarySelect'
+import UnrealizedSummary from './UnrealizedSummary'
 
 const Summary = (props) => {
 
-    console.log(props)
     return (
         <Box>
-            <SummarySelect />
+            <SummarySelect handlePerformanceChange={props.handlePerformanceChange} performanceType={props.performanceType} />
             <Box sx={wrapper}>
-                
-                <Scorecard
-                    title='Bitcoin'
-                    value={props.runningBitcoinBalance || ''}
-                    numberFormat={{
-                        prefix: '',
-                        decimalScale: 8,
-                        fixedDecimalScale: 8 
-                    }}
-                />
-                <Scorecard
-                    title='Portfolio Value'
-                    value={props.currentValue || ''}
-                    numberFormat={{
-                        thousandSeparator: true,
-                        prefix: '$',
-                        decimalScale: 2,
-                    }}
-                />
-                <Scorecard
-                    title='Total Invested'
-                    value={props.totalInvested || ''}
-                    numberFormat={{
-                        thousandSeparator: true,
-                        prefix: '$',
-                        decimalScale: 2,
-                    }}
-                />
-                <Scorecard
-                    title='Average Cost'
-                    value={props.averageCost || ''}
-                    numberFormat={{
-                        thousandSeparator: true,
-                        prefix: '$',
-                        decimalScale: 2,
-                    }}
-                />
+                {
+                    props.performanceType === 'Unrealized Performance'
+                    ? <UnrealizedSummary {...props} />
+                    : <RealizedSummary {...props} />
+                }
             </Box>
         </Box>
     )

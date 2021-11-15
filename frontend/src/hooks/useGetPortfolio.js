@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import GlobalContext from 'state/GlobalContext'
 import { transactionsObjectToArray } from 'state/portfolio/utils/transactionsObjectToArray'
 import { createAllTransactions } from 'state/portfolio/utils/createAllTransactions'
@@ -21,9 +21,11 @@ const useGetPortfolio = (id) => {
 
     const summary = allTransactions ? allTransactions[allTransactions.length - 1] : []
 
+    const [performanceType, setPerformanceType] = useState('Unrealized Performance')
 
+    const handlePerformanceChange = (e) => setPerformanceType(e.target.value)
 
-    return { details, transactions, allTransactions, summary }
+    return { details, transactions, allTransactions, summary, performanceType, handlePerformanceChange }
 
 }
 

@@ -1,0 +1,44 @@
+import React from 'react'
+import Scorecard from 'components/Scorecard'
+
+const RealizedSummary = (props) => {
+
+    console.log(props)
+    
+    return (
+        <>
+            <Scorecard
+                title='Sale Proceeds'
+                value={props.realizedProceeds || ''}
+                numberFormat={{
+                    prefix: '$',
+                    thousandSeparator: true,
+                    decimalScale: 2,
+                    fixedDecimalScale: 2 
+                }}
+            />
+            <Scorecard
+                title='Realized Cost'
+                value={props.realizedCost || ''}
+                numberFormat={{
+                    prefix: '$',
+                    thousandSeparator: true,
+                    decimalScale: 2,
+                    fixedDecimalScale: 2 
+                }}
+            />
+            <Scorecard
+                title='Net Gain'
+                value={props.realizedGain || ''}
+                numberFormat={{
+                    prefix: '$',
+                    thousandSeparator: true,
+                    decimalScale: 2,
+                    fixedDecimalScale: 2 
+                }}
+            />
+        </>
+    )
+}
+
+export default RealizedSummary
