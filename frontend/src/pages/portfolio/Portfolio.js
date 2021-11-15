@@ -86,16 +86,18 @@ const Portfolio = () => {
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
                 <PortfolioHeader 
-                    {...details} id={id}
-                />
-                <ModalButton
-                    sx={{justifySelf: 'start'}}
-                    icon={<AddIcon />}
-                    content={<TransactionForm portfolioId={id} />}
-                    text='Add Transaction'
+                    {...details}
+                    id={id}
+                    sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}
                 />
                 <Summary {...summary} />
                 <Box sx={tableContainerStyle}>
+                    <ModalButton
+                        sx={{justifySelf: 'start'}}
+                        icon={<AddIcon />}
+                        content={<TransactionForm portfolioId={id} />}
+                        text='Add Transaction'
+                    />
                         <DataGrid
                             className={classes.root}
                             rows={transactions}

@@ -14,7 +14,7 @@ const PortfolioHeader = (props) => {
     const { deletePortfolio, clonePortfolio } = useFirebase()
 
     return (
-        <Box sx={wrapper}>
+        <Box sx={{...wrapper, ...props.sx}}>
             <PageTitle>{props.portfolioName}</PageTitle>
             <Box sx={buttonGroup}>
                 <ModalButton
