@@ -25,12 +25,26 @@ const useFirebase = () => {
             ...state.portfolio.portfolioObj,
             [portfolioId]: {
                 ...values,
-                transactions: state.portfolio.portfolioObj[portfolioId].transactions || {},
-                reccuringBuys: state.portfolio.portfolioObj[portfolioId].recurringBuys || {},
+                transactions: {},
+                reccuringBuys: {},
             }
         })
 
         history.push(`/portfolio/${portfolioId}`)
+
+        return portfolioId
+    }
+
+    const updatePortfolio = async (values, id) => {
+        const portfolioId = id 
+        await db.collection('portfolios').doc(state.user.uid).update({
+            ...state.portfolio.portfolioObj,
+            [portfolioId]: {
+                ...values,
+                transactions: state.portfolio.portfolioObj[portfolioId].transactions,
+                reccuringBuys: state.portfolio.portfolioObj[portfolioId].recurringBuys ? state.portfolio.portfolioObj[portfolioId].recurringBuys : {},
+            }
+        })
 
         return portfolioId
     }
@@ -47,14 +61,23 @@ const useFirebase = () => {
     }
 
 
-    const clonePortfolio = (details) => {
+    const clonePortfolio = async (details) => {
 
-        const values = {
-            ...details,
-            portfolioName: `${details.portfolioName} (COPY)` 
-        }
+        const values = {...details}
+        delete values['sx']
+        delete values['id']
 
-        addPortfolio(values)
+        const portfolioId = Date.now()
+
+        await db.collection('portfolios').doc(state.user.uid).set({
+            ...state.portfolio.portfolioObj,
+            [portfolioId]: {
+                ...values,
+                portfolioName: `${values.portfolioName} (COPY)`
+            }
+        })
+
+        history.push(`/portfolio/${portfolioId}`)
     }
 
     const toggleVisibility = (portfolioId, visibility) => {
@@ -97,7 +120,8 @@ const useFirebase = () => {
 
     return { 
         updateUserAccount, 
-        addPortfolio, 
+        addPortfolio,
+        updatePortfolio, 
         deletePortfolio, 
         clonePortfolio, 
         toggleVisibility,

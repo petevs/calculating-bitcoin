@@ -27,6 +27,7 @@ const PortfolioHeader = (props) => {
                             portfolioDescription={props.portfolioDescription}
                             visibility={props.visibility || 'private'} 
                             id={props.id}
+                            currency={props.currency}
                         />
                     }
                 />

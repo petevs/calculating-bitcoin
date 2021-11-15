@@ -5,7 +5,7 @@ import { fetchingHistoricalDataSuccess, fetchingMarketDataError, fetchingMarketD
 
 const useMarketData = () => {
 
-    const { dispatch } = useContext(GlobalContext)
+    const { state, dispatch } = useContext(GlobalContext)
 
     useEffect(() => {
 
@@ -19,7 +19,7 @@ const useMarketData = () => {
                 dispatch(fetchingMarketDataError(error))
             })
         
-        db.collection('historicalData').doc('usd').onSnapshot((doc) => {
+        db.collection('historicalData').doc(state.user.currency).onSnapshot((doc) => {
             const result = doc.data()
             dispatch(fetchingHistoricalDataSuccess(result))
             },
@@ -28,7 +28,7 @@ const useMarketData = () => {
             })
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [state.user.currency])
 
 
 }

@@ -1,7 +1,7 @@
 import { Box } from '@mui/system'
 import useForm from 'hooks/useForm'
 import useErrors from 'hooks/useErrors'
-import React from 'react'
+import { useContext } from 'react'
 import FormHeader from './form/FormHeader'
 import * as yup from 'yup'
 import { TextField } from '@mui/material'
@@ -9,7 +9,7 @@ import FormSubmit from './form/FormSubmit'
 import useFirebase from 'hooks/useFirebase'
 import useModal from 'hooks/useModal'
 
-const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibility }) => {
+const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibility, currency }) => {
     
     const initialForm = {
         portfolioName: portfolioName || '',
@@ -19,7 +19,8 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibili
 
     const initialErrors = {
         portfolioName: '',
-        portfolioDescription: ''
+        portfolioDescription: '',
+        visibility: ''
     }
 
     const schema = yup.object().shape({
@@ -31,13 +32,18 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibili
     const { values, handleFormChange } = useForm(initialForm)
     const { errors, validateChange } = useErrors(initialErrors, schema)
 
-    const { addPortfolio } = useFirebase()
+    const { addPortfolio, updatePortfolio } = useFirebase()
 
     const { handleModalClose} = useModal()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await addPortfolio(values, id, visibility)
+        if(title === 'Add Portfolio'){
+            await addPortfolio(values, id, visibility)
+        }
+        if(title === 'Edit Portfolio'){
+            updatePortfolio(values, id, visibility)
+        }
         handleModalClose()
     }
 
@@ -66,7 +72,7 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibili
                 erorr ={errors.portfolioDescription !== ''}
                 helperText={errors.portfolioDescription}
             />
-            <FormSubmit type='submit'>{title}</FormSubmit>
+            <FormSubmit type='submit'>{title === 'Add Portfolio' ? title : 'Save Changes'}</FormSubmit>
 
         </Box>
     )
@@ -77,5 +83,6 @@ export default PortfolioForm
 const wrapper = {
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gap: '1rem'
+    gap: '1rem',
+    padding: '1rem'
 }

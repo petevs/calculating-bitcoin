@@ -3,7 +3,6 @@ import Scorecard from 'components/Scorecard'
 
 const RealizedSummary = (props) => {
 
-    console.log(props)
     
     return (
         <>
