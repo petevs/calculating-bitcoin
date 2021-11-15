@@ -13,6 +13,10 @@ export const calculateTransactions = (allTransactions) => {
     let totalRealizedGain = 0
     let totalRealizedProceeds = 0
     let totalBitcoinSold = 0
+    let totalCost = 0
+    let totalGain = 0
+    let totalNetGain = 0
+    let totalROI = 0
 
     return allTransactions.map( transaction => {
 
@@ -37,6 +41,10 @@ export const calculateTransactions = (allTransactions) => {
         currentValue = runningBitcoinBalance * transaction.historicalPrice
         unrealizedGain = currentValue - totalInvested
         unrealizedROI = unrealizedGain / totalInvested * 100
+        totalCost = totalInvested + realizedCost
+        totalGain = realizedGain + unrealizedGain
+        totalNetGain = totalGain - totalCost
+        totalROI = totalNetGain / totalCost * 100
 
         return {
             date: transaction.date,
@@ -56,7 +64,12 @@ export const calculateTransactions = (allTransactions) => {
             totalRealizedProceeds: totalRealizedProceeds,
             totalRealizedGain: totalRealizedGain,
             totalRealizedCost: totalRealizedCost,
-            totalBitcoinSold: totalBitcoinSold
+            totalBitcoinSold: totalBitcoinSold,
+            totalCost: totalCost,
+            totalGain: totalGain,
+            totalNetGain: totalNetGain,
+            totalROI: totalROI
+
         }
     })
 

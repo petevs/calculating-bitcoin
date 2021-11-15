@@ -23,7 +23,7 @@ const UnrealizedSummary = (props) => {
                     }}
                 />
                 <Scorecard
-                    title='Total Invested'
+                    title='Adjusted Cost'
                     value={props.totalInvested || ''}
                     numberFormat={{
                         thousandSeparator: true,

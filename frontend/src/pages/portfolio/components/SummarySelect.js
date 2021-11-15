@@ -12,6 +12,7 @@ const SummarySelect = (props) => {
             size='small'
             sx={{width: '250px'}}
         >
+            <MenuItem value='Total Performance'>Total Performance</MenuItem>
             <MenuItem value='Unrealized Performance'>Unrealized Performance</MenuItem>
             <MenuItem value='Realized Performance'>Realized Performance</MenuItem>
         </TextField>

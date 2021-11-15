@@ -25,8 +25,8 @@ const useFirebase = () => {
             ...state.portfolio.portfolioObj,
             [portfolioId]: {
                 ...values,
-                transactions: {},
-                reccuringBuys: {},
+                transactions: state.portfolio.portfolioObj[portfolioId].transactions || {},
+                reccuringBuys: state.portfolio.portfolioObj[portfolioId].recurringBuys || {},
             }
         })
 
