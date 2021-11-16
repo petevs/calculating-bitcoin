@@ -40,6 +40,27 @@ const Portfolio = () => {
             headerName: 'Type',
         },
         {
+            field: 'description',
+            headerName: 'Transaction',
+            renderCell: (params) => (
+                params.value
+            ),
+            width: 225,
+        },
+        {
+            field: 'price',
+            headerName: 'BTC Price',
+            renderCell: (params) => (
+                <NumberFormat 
+                    displayType='text'
+                    thousandSeparator={true}
+                    prefix='$' 
+                    value={params.value}
+                    decimalScale={2}
+                    fixedDecimalScale={2}   
+                />)
+        },
+        {
             field: 'deposits',
             headerName: 'Deposits',
             renderCell: (params) => (
@@ -68,28 +89,12 @@ const Portfolio = () => {
             
         },
         {
-            field: 'price',
-            headerName: 'BTC Price',
-            renderCell: (params) => (
-                <NumberFormat 
-                    displayType='text'
-                    thousandSeparator={true}
-                    prefix='$' 
-                    value={params.value}
-                    decimalScale={2}
-                    fixedDecimalScale={2}   
-                />)
+            field: 'totalDeposits',
+            headerName: 'Total Deposits'
         },
         {
-            field: 'bitcoin',
-            headerName: 'Bitcoin',
-            renderCell: (params) => (
-                <NumberFormat 
-                    displayType='text'
-                    value={params.value}
-                    decimalScale={8}
-                    fixedDecimalScale={8}  
-                />)
+            field: 'totalProceeds',
+            headerName: 'Total Proceeds'
         },
         {
             field: 'runningBitcoinBalance',

@@ -1,3 +1,8 @@
+import NumberFormat from 'react-number-format'
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import { SiBitcoinsv } from 'react-icons/si'
+
+
 export const calculateTransactions = (allTransactions) => {
 
     
@@ -20,17 +25,32 @@ export const calculateTransactions = (allTransactions) => {
     let totalROI = 0
 
 
+    const createTransactionDescription = (transaction, type) => {
+
+        const dollarAmount = <NumberFormat thousandSeparator={true} value={transaction.dollarAmount} prefix={'$'} displayType={'text'} decimalScale={0} />
+        const bitcoin = <NumberFormat value={transaction.bitcoin} decimalScale={8} fixedDecimalScale={8} displayType={'text'} suffix={' BTC'} />
+
+        if(type === 'buy') {
+            return <> {dollarAmount} <ArrowRightAltIcon /> {bitcoin} </>
+        }
+
+        return <> {bitcoin} <ArrowRightAltIcon /> {dollarAmount} </>
+
+    }
+
 
     return allTransactions.map( transaction => {
 
         let deposits = 0
         let proceeds = 0
+        let description = ''
 
         if(transaction.type === 'buy' || !transaction.type){
             runningBitcoinBalance = runningBitcoinBalance + transaction.bitcoin
             deposits = transaction.dollarAmount
             totalInvested = totalInvested + transaction.dollarAmount
             averageCost = totalInvested / runningBitcoinBalance
+            description = createTransactionDescription(transaction, 'buy')
         }
         
         if(transaction.type === 'sell') {
@@ -44,6 +64,7 @@ export const calculateTransactions = (allTransactions) => {
             totalRealizedProceeds = totalRealizedProceeds + realizedProceeds
             totalRealizedGain = totalRealizedGain + realizedGain
             totalBitcoinSold = totalBitcoinSold + transaction.bitcoin
+            description = createTransactionDescription(transaction, 'sell')
         }
 
         currentValue = runningBitcoinBalance * transaction.historicalPrice
@@ -58,6 +79,7 @@ export const calculateTransactions = (allTransactions) => {
             id: transaction.id || '',
             date: transaction.date,
             type: transaction.type || '',
+            description: description,
             dollarAmount: transaction.dollarAmount,
             deposits: deposits,
             proceeds: proceeds,
