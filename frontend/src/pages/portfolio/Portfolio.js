@@ -12,6 +12,7 @@ import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
 import Summary from './components/Summary'
 import TransactionActions from './components/TransactionActions'
+import { tableTypes } from './components/tableTypes'
 
 
 const Portfolio = () => {
@@ -26,97 +27,17 @@ const Portfolio = () => {
         return(<Loading />)
     }
 
-    const filteredTransactions = allTransactions.filter(item => item.id)
-    console.log(filteredTransactions)
+    const filteredTransactions = allTransactions ? allTransactions.filter(item => item.id) : []
     
-
-    const columns = [
-        {
-            field: 'date',
-            headerName: 'Date',
-        },
-        {
-            field: 'type',
-            headerName: 'Type',
-        },
-        {
-            field: 'description',
-            headerName: 'Transaction',
-            renderCell: (params) => (
-                params.value
-            ),
-            width: 225,
-        },
-        {
-            field: 'price',
-            headerName: 'BTC Price',
-            renderCell: (params) => (
-                <NumberFormat 
-                    displayType='text'
-                    thousandSeparator={true}
-                    prefix='$' 
-                    value={params.value}
-                    decimalScale={2}
-                    fixedDecimalScale={2}   
-                />)
-        },
-        {
-            field: 'deposits',
-            headerName: 'Deposits',
-            renderCell: (params) => (
-                <NumberFormat 
-                    displayType='text'
-                    thousandSeparator={true}
-                    prefix='$' 
-                    value={params.value}
-                    decimalScale={0}
-                    fixedDecimalScale={0} 
-                />)
-            
-        },
-        {
-            field: 'proceeds',
-            headerName: 'Proceeds',
-            renderCell: (params) => (
-                <NumberFormat 
-                    displayType='text'
-                    thousandSeparator={true}
-                    prefix='$' 
-                    value={params.value}
-                    decimalScale={0}
-                    fixedDecimalScale={0} 
-                />)
-            
-        },
-        {
-            field: 'totalDeposits',
-            headerName: 'Total Deposits'
-        },
-        {
-            field: 'totalProceeds',
-            headerName: 'Total Proceeds'
-        },
-        {
-            field: 'runningBitcoinBalance',
-            headerName: 'BTC Holdings',
-            renderCell: (params) => (
-                <NumberFormat 
-                    displayType='text'
-                    value={params.value}
-                    decimalScale={8}
-                    fixedDecimalScale={8}  
-                />),
-                width: 125,
-        },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            renderCell: (params) => (
-                <TransactionActions {...params.row} portfolioId={id} />),
-            cellClassName: 'right'
-            
-        },
-    ]
+    const columns = tableTypes('')
+    columns.push({
+                field: 'actions',
+                headerName: 'Actions',
+                renderCell: (params) => (
+                    <TransactionActions {...params.row} portfolioId={id} />),
+                cellClassName: 'right'
+                
+            })
 
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
@@ -146,6 +67,9 @@ const Portfolio = () => {
                             checkboxSelection
                             pagination
                             disableSelectionOnClick
+                            density='compact'
+                            disableColumnFilter
+                            disable
                         />
                 </Box>
         </Page>

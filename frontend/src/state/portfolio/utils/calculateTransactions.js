@@ -23,6 +23,8 @@ export const calculateTransactions = (allTransactions) => {
     let totalGain = 0
     let totalNetGain = 0
     let totalROI = 0
+    let totalDeposits = 0
+    let totalProceeds = 0
 
 
     const createTransactionDescription = (transaction, type) => {
@@ -51,6 +53,7 @@ export const calculateTransactions = (allTransactions) => {
             totalInvested = totalInvested + transaction.dollarAmount
             averageCost = totalInvested / runningBitcoinBalance
             description = createTransactionDescription(transaction, 'buy')
+            totalDeposits = totalDeposits + transaction.dollarAmount
         }
         
         if(transaction.type === 'sell') {
@@ -65,6 +68,7 @@ export const calculateTransactions = (allTransactions) => {
             totalRealizedGain = totalRealizedGain + realizedGain
             totalBitcoinSold = totalBitcoinSold + transaction.bitcoin
             description = createTransactionDescription(transaction, 'sell')
+            totalProceeds = totalProceeds + transaction.dollarAmount
         }
 
         currentValue = runningBitcoinBalance * transaction.historicalPrice
@@ -102,7 +106,9 @@ export const calculateTransactions = (allTransactions) => {
             totalCost: totalCost,
             totalGain: totalGain,
             totalNetGain: totalNetGain,
-            totalROI: totalROI
+            totalROI: totalROI,
+            totalDeposits: totalDeposits,
+            totalProceeds: totalProceeds
 
         }
     })
