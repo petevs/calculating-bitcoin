@@ -64,6 +64,23 @@ const columns = [
         
     },
     {
+        field: 'totalDeposits',
+        headerName: 'Total Deposits',
+        renderCell: (params) => (
+            <NumberFormat 
+                displayType='text'
+                thousandSeparator={true}
+                prefix='$' 
+                value={params.value}
+                decimalScale={0}
+                fixedDecimalScale={0} 
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'right',
+            align: 'right'
+    },
+    {
         field: 'proceeds',
         headerName: 'Proceeds',
         renderCell: (params) => (
@@ -82,8 +99,8 @@ const columns = [
         
     },
     {
-        field: 'totalDeposits',
-        headerName: 'Total Deposits',
+        field: 'realizedCost',
+        headerName: 'Weighted Cost',
         renderCell: (params) => (
             <NumberFormat 
                 displayType='text'
@@ -99,8 +116,8 @@ const columns = [
             align: 'right'
     },
     {
-        field: 'totalProceeds',
-        headerName: 'Total Proceeds',
+        field: 'realizedGain',
+        headerName: 'Net Proceeds',
         renderCell: (params) => (
             <NumberFormat 
                 displayType='text'
@@ -109,6 +126,55 @@ const columns = [
                 value={params.value}
                 decimalScale={0}
                 fixedDecimalScale={0} 
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'right',
+            align: 'right'
+    },
+    {
+        field: 'totalRealizedGain',
+        headerName: 'Total Net Proceeds',
+        renderCell: (params) => (
+            <NumberFormat 
+                displayType='text'
+                thousandSeparator={true}
+                prefix='$' 
+                value={params.value}
+                decimalScale={0}
+                fixedDecimalScale={0} 
+            />),
+            width: 150,
+            sortable: false,
+            headerAlign: 'right',
+            align: 'right'
+    },
+    {
+        field: 'runningBitcoinBalance',
+        headerName: 'BTC Holdings',
+        renderCell: (params) => (
+            <NumberFormat 
+                displayType='text'
+                value={params.value}
+                decimalScale={8}
+                fixedDecimalScale={8}  
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'right',
+            align: 'right'
+    },
+    {
+        field: 'currentValue',
+        headerName: 'Market Value',
+        renderCell: (params) => (
+            <NumberFormat 
+                displayType='text'
+                value={params.value}
+                decimalScale={0}
+                fixedDecimalScale={0}
+                prefix={'$'}
+                thousandSeparator={true}  
             />),
             width: 125,
             sortable: false,
@@ -133,23 +199,25 @@ const columns = [
             align: 'right'
     },
     {
-        field: 'runningBitcoinBalance',
-        headerName: 'BTC Holdings',
+        field: 'unrealizedGain',
+        headerName: 'Unrealized Gain',
         renderCell: (params) => (
             <NumberFormat 
                 displayType='text'
                 value={params.value}
-                decimalScale={8}
-                fixedDecimalScale={8}  
+                decimalScale={0}
+                fixedDecimalScale={0}
+                prefix={'$'}
+                thousandSeparator={true}  
             />),
-            width: 125,
+            width: 150,
             sortable: false,
             headerAlign: 'right',
             align: 'right'
     },
     {
-        field: 'currentValue',
-        headerName: 'Market Value',
+        field: 'totalPerformance',
+        headerName: 'Total Gain',
         renderCell: (params) => (
             <NumberFormat 
                 displayType='text'

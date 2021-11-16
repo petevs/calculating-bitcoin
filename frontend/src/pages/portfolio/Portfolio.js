@@ -13,6 +13,7 @@ import NumberFormat from 'react-number-format'
 import Summary from './components/Summary'
 import TransactionActions from './components/TransactionActions'
 import { tableTypes } from './components/tableTypes'
+import CustomToolbar from './components/CustomToolbar'
 
 
 const Portfolio = () => {
@@ -35,7 +36,6 @@ const Portfolio = () => {
                 headerName: 'Actions',
                 renderCell: (params) => (
                     <TransactionActions {...params.row} portfolioId={id} />),
-                cellClassName: 'right'
                 
             })
 
@@ -71,7 +71,7 @@ const Portfolio = () => {
                             disableColumnFilter
                             disable
                             components={{
-                                Toolbar: GridToolbar,
+                                Toolbar: CustomToolbar,
                               }}
                         />
                 </Box>

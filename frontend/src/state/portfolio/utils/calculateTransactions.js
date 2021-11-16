@@ -10,11 +10,6 @@ export const calculateTransactions = (allTransactions) => {
     let totalInvested = 0
     let averageCost = 0
     let currentValue = 0
-    let unrealizedGain = 0
-    let unrealizedROI = 0
-    let realizedProceeds = 0
-    let realizedCost = 0
-    let realizedGain = 0
     let totalRealizedCost = 0
     let totalRealizedGain = 0
     let totalRealizedProceeds = 0
@@ -46,6 +41,12 @@ export const calculateTransactions = (allTransactions) => {
         let deposits = 0
         let proceeds = 0
         let description = ''
+        let realizedCost = 0
+        let realizedProceeds = 0
+        let realizedGain = 0
+        let unrealizedGain = 0
+        let unrealizedROI = 0
+        let totalPerformance = 0
 
         if(transaction.type === 'buy' || !transaction.type){
             runningBitcoinBalance = runningBitcoinBalance + transaction.bitcoin
@@ -78,6 +79,7 @@ export const calculateTransactions = (allTransactions) => {
         totalGain = realizedGain + unrealizedGain
         totalNetGain = totalGain - totalCost
         totalROI = totalNetGain / totalCost * 100
+        totalPerformance = unrealizedGain + totalRealizedGain
 
         return {
             id: transaction.id || '',
@@ -108,7 +110,8 @@ export const calculateTransactions = (allTransactions) => {
             totalNetGain: totalNetGain,
             totalROI: totalROI,
             totalDeposits: totalDeposits,
-            totalProceeds: totalProceeds
+            totalProceeds: totalProceeds,
+            totalPerformance: totalPerformance
 
         }
     })
