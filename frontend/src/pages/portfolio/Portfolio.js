@@ -6,7 +6,7 @@ import Loading from 'components/Loading'
 import TransactionForm from './components/TransactionForm'
 import ModalButton from './components/ModalButton'
 import AddIcon from '@mui/icons-material/Add';
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
@@ -70,6 +70,9 @@ const Portfolio = () => {
                             density='compact'
                             disableColumnFilter
                             disable
+                            components={{
+                                Toolbar: GridToolbar,
+                              }}
                         />
                 </Box>
         </Page>
@@ -92,7 +95,12 @@ const useStyles = makeStyles({
         '& .MuiDataGrid-columnsContainer': {
             backgroundColor: '#333d48',
             border: 'none',
-            borderRadius: '0.5rem 0.5rem 0 0'
+        },
+        '& .MuiDataGrid-toolbarContainer': {
+            backgroundColor: '#333d48',
+            borderRadius: '0.5rem 0.5rem 0 0',
+            borderBottom: '1px solid rgba(81, 81, 81, 1)',
+            padding: '.5rem 1rem'
         },
         '& .MuiDataGrid-cell': {
             color: '#fff',

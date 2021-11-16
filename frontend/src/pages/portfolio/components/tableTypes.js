@@ -42,7 +42,7 @@ const columns = [
             />),
             width: 125,
             sortable: false,
-            headerAlign: 'center',
+            headerAlign: 'right',
             align: 'right'
     },
     {
@@ -59,7 +59,7 @@ const columns = [
             />),
             width: 125,
             sortable: false,
-            headerAlign: 'center',
+            headerAlign: 'right',
             align: 'right'
         
     },
@@ -77,7 +77,7 @@ const columns = [
             />),
             width: 125,
             sortable: false,
-            headerAlign: 'center',
+            headerAlign: 'right',
             align: 'right'
         
     },
@@ -95,7 +95,7 @@ const columns = [
             />),
             width: 125,
             sortable: false,
-            headerAlign: 'center',
+            headerAlign: 'right',
             align: 'right'
     },
     {
@@ -112,7 +112,7 @@ const columns = [
             />),
             width: 125,
             sortable: false,
-            headerAlign: 'center',
+            headerAlign: 'right',
             align: 'right'
     },
     {
@@ -129,7 +129,7 @@ const columns = [
             />),
             width: 125,
             sortable: false,
-            headerAlign: 'center',
+            headerAlign: 'right',
             align: 'right'
     },
     {
@@ -144,7 +144,7 @@ const columns = [
             />),
             width: 125,
             sortable: false,
-            headerAlign: 'center',
+            headerAlign: 'right',
             align: 'right'
     },
     {
@@ -161,7 +161,7 @@ const columns = [
             />),
             width: 125,
             sortable: false,
-            headerAlign: 'center',
+            headerAlign: 'right',
             align: 'right'
     },
 ]
