@@ -20,11 +20,15 @@ const Portfolio = () => {
 
     let { id } = useParams()
 
-    const { details, transactions, summary, performanceType, handlePerformanceChange } = useGetPortfolio(id)
+    const { details, transactions, summary, performanceType, handlePerformanceChange, allTransactions } = useGetPortfolio(id)
 
     if(!details){
         return(<Loading />)
     }
+
+    const filteredTransactions = allTransactions.filter(item => item.id)
+    console.log(filteredTransactions)
+    
 
     const columns = [
         {
@@ -34,6 +38,47 @@ const Portfolio = () => {
         {
             field: 'type',
             headerName: 'Type',
+        },
+        {
+            field: 'deposits',
+            headerName: 'Deposits',
+            renderCell: (params) => (
+                <NumberFormat 
+                    displayType='text'
+                    thousandSeparator={true}
+                    prefix='$' 
+                    value={params.value}
+                    decimalScale={0}
+                    fixedDecimalScale={0} 
+                />)
+            
+        },
+        {
+            field: 'proceeds',
+            headerName: 'Proceeds',
+            renderCell: (params) => (
+                <NumberFormat 
+                    displayType='text'
+                    thousandSeparator={true}
+                    prefix='$' 
+                    value={params.value}
+                    decimalScale={0}
+                    fixedDecimalScale={0} 
+                />)
+            
+        },
+        {
+            field: 'price',
+            headerName: 'BTC Price',
+            renderCell: (params) => (
+                <NumberFormat 
+                    displayType='text'
+                    thousandSeparator={true}
+                    prefix='$' 
+                    value={params.value}
+                    decimalScale={2}
+                    fixedDecimalScale={2}   
+                />)
         },
         {
             field: 'bitcoin',
@@ -47,31 +92,16 @@ const Portfolio = () => {
                 />)
         },
         {
-            field: 'dollarAmount',
-            headerName: 'Dollars',
+            field: 'runningBitcoinBalance',
+            headerName: 'BTC Holdings',
             renderCell: (params) => (
                 <NumberFormat 
                     displayType='text'
-                    thousandSeparator={true}
-                    prefix='$' 
                     value={params.value}
-                    decimalScale={2}
-                    fixedDecimalScale={2} 
-                />)
-            
-        },
-        {
-            field: 'price',
-            headerName: 'Price',
-            renderCell: (params) => (
-                <NumberFormat 
-                    displayType='text'
-                    thousandSeparator={true}
-                    prefix='$' 
-                    value={params.value}
-                    decimalScale={2}
-                    fixedDecimalScale={2}   
-                />)
+                    decimalScale={8}
+                    fixedDecimalScale={8}  
+                />),
+                width: 125,
         },
         {
             field: 'actions',
@@ -106,7 +136,7 @@ const Portfolio = () => {
                 <Box sx={tableContainerStyle}>
                         <DataGrid
                             className={classes.root}
-                            rows={transactions}
+                            rows={filteredTransactions}
                             columns={columns}
                             checkboxSelection
                             pagination

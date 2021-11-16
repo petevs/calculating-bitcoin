@@ -23,17 +23,7 @@ const TotalPerformance = (props) => {
                 }}
             />
             <Scorecard
-                title='Net Sale Proceeds'
-                value={props.realizedGain || ''}
-                numberFormat={{
-                    prefix: '$',
-                    thousandSeparator: true,
-                    decimalScale: 2,
-                    fixedDecimalScale: 2 
-                }}
-            />
-            <Scorecard
-                title='Total Gain'
+                title='Total Return'
                 value={props.totalGain || ''}
                 numberFormat={{
                     prefix: '$',

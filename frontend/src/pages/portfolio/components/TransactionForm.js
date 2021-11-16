@@ -17,8 +17,6 @@ const TransactionForm = (props) => {
 
     const { state } = useContext(GlobalContext)
 
-    console.log(state.marketData.historicalData)
-
     const initialValues = {
         ...initialTransactionForm,
         id: props.id || Date.now(),

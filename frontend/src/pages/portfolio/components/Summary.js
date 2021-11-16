@@ -6,7 +6,6 @@ import UnrealizedSummary from './UnrealizedSummary'
 
 const Summary = (props) => {
 
-
     const renderSwitch = () => {
         switch(props.performanceType) {
             case 'Unrealized Performance':

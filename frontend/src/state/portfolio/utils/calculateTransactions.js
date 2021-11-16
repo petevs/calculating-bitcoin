@@ -1,5 +1,6 @@
 export const calculateTransactions = (allTransactions) => {
 
+    
     let runningBitcoinBalance = 0
     let totalInvested = 0
     let averageCost = 0
@@ -18,16 +19,23 @@ export const calculateTransactions = (allTransactions) => {
     let totalNetGain = 0
     let totalROI = 0
 
+
+
     return allTransactions.map( transaction => {
+
+        let deposits = 0
+        let proceeds = 0
 
         if(transaction.type === 'buy' || !transaction.type){
             runningBitcoinBalance = runningBitcoinBalance + transaction.bitcoin
+            deposits = transaction.dollarAmount
             totalInvested = totalInvested + transaction.dollarAmount
             averageCost = totalInvested / runningBitcoinBalance
         }
         
         if(transaction.type === 'sell') {
             runningBitcoinBalance = runningBitcoinBalance - transaction.bitcoin
+            proceeds = transaction.dollarAmount
             realizedCost = transaction.bitcoin * averageCost
             totalInvested = totalInvested - realizedCost
             realizedProceeds = (transaction.bitcoin * transaction.price)
@@ -47,8 +55,12 @@ export const calculateTransactions = (allTransactions) => {
         totalROI = totalNetGain / totalCost * 100
 
         return {
+            id: transaction.id || '',
             date: transaction.date,
             type: transaction.type || '',
+            dollarAmount: transaction.dollarAmount,
+            deposits: deposits,
+            proceeds: proceeds,
             bitcoin: transaction.bitcoin,
             price: transaction.price,
             historicalPrice: transaction.historicalPrice,
