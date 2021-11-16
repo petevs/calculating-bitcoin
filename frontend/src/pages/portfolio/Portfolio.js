@@ -97,11 +97,12 @@ const useStyles = makeStyles({
         '& .MuiDataGrid-cell': {
             color: '#fff',
             fontWeight: 700,
-            textTransform: 'uppercase'
-        },
-        '& .right': {
+            textTransform: 'uppercase',
             justifyContent: 'flex-end'
-        }
+        },
+        '& .MuiDataGrid-cell--withRenderer': {
+            justifyContent: 'flex-end'
+        },
       },
 })
 

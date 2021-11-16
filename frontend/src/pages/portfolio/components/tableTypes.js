@@ -3,46 +3,10 @@ import TransactionActions from './TransactionActions'
 
 export const tableTypes = (tableType) => {
     switch(tableType) {
-        case 'averageCost':
-            return averageCost
         default:
             return columns
     }
 }
-
-
-const averageCost = [
-{
-    field: 'date',
-    headerName: 'Date',
-},
-{
-    field: 'type',
-    headerName: 'Type',
-},
-{
-    field: 'description',
-    headerName: 'Transaction',
-    renderCell: (params) => (
-        params.value
-    ),
-    width: 225,
-},
-{
-    field: 'averageCost',
-    headerName: 'Average Cost',
-    renderCell: (params) => (
-        <NumberFormat 
-            displayType='text'
-            thousandSeparator={true}
-            prefix='$' 
-            value={params.value}
-            decimalScale={0}
-            fixedDecimalScale={0} 
-        />),
-    width: 125,
-},
-]
 
 
 const columns = [
@@ -53,14 +17,16 @@ const columns = [
     {
         field: 'type',
         headerName: 'Type',
+        sortable: false
     },
     {
         field: 'description',
-        headerName: 'Transaction',
+        headerName: 'Description',
         renderCell: (params) => (
             params.value
         ),
         width: 225,
+        sortable: false,
     },
     {
         field: 'price',
@@ -73,7 +39,11 @@ const columns = [
                 value={params.value}
                 decimalScale={2}
                 fixedDecimalScale={2}   
-            />)
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'center',
+            align: 'right'
     },
     {
         field: 'deposits',
@@ -86,7 +56,11 @@ const columns = [
                 value={params.value}
                 decimalScale={0}
                 fixedDecimalScale={0} 
-            />)
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'center',
+            align: 'right'
         
     },
     {
@@ -100,7 +74,11 @@ const columns = [
                 value={params.value}
                 decimalScale={0}
                 fixedDecimalScale={0} 
-            />)
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'center',
+            align: 'right'
         
     },
     {
@@ -114,7 +92,11 @@ const columns = [
                 value={params.value}
                 decimalScale={0}
                 fixedDecimalScale={0} 
-            />)
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'center',
+            align: 'right'
     },
     {
         field: 'totalProceeds',
@@ -127,7 +109,11 @@ const columns = [
                 value={params.value}
                 decimalScale={0}
                 fixedDecimalScale={0} 
-            />)
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'center',
+            align: 'right'
     },
     {
         field: 'averageCost',
@@ -140,7 +126,11 @@ const columns = [
                 value={params.value}
                 decimalScale={0}
                 fixedDecimalScale={0} 
-            />)
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'center',
+            align: 'right'
     },
     {
         field: 'runningBitcoinBalance',
@@ -153,5 +143,25 @@ const columns = [
                 fixedDecimalScale={8}  
             />),
             width: 125,
+            sortable: false,
+            headerAlign: 'center',
+            align: 'right'
+    },
+    {
+        field: 'currentValue',
+        headerName: 'Market Value',
+        renderCell: (params) => (
+            <NumberFormat 
+                displayType='text'
+                value={params.value}
+                decimalScale={0}
+                fixedDecimalScale={0}
+                prefix={'$'}
+                thousandSeparator={true}  
+            />),
+            width: 125,
+            sortable: false,
+            headerAlign: 'center',
+            align: 'right'
     },
 ]
