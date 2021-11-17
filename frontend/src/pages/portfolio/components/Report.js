@@ -77,7 +77,7 @@ const Report = (props) => {
                     />
                     <ReportRow
                         title='Market Weighted Return'
-                        value={(((props.summary.totalRealizedGain + props.summary.unrealizedGain) / props.summary.totalInvested) - 1) * 100}
+                        value={(props.summary.totalRealizedGain + props.summary.unrealizedGain) / props.summary.totalInvested * 100}
                         className='subTotal'
                         numberFormat={{
                             prefix: '',
