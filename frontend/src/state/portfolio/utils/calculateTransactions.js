@@ -1,6 +1,5 @@
 import NumberFormat from 'react-number-format'
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import { SiBitcoinsv } from 'react-icons/si'
 
 
 export const calculateTransactions = (allTransactions) => {
