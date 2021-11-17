@@ -15,6 +15,7 @@ import TransactionActions from './components/TransactionActions'
 import { tableTypes } from './components/tableTypes'
 import CustomToolbar from './components/CustomToolbar'
 import PortfolioChart from './components/PortfolioChart'
+import Report from './components/Report'
 
 
 const Portfolio = () => {
@@ -77,6 +78,7 @@ const Portfolio = () => {
                               }}
                         />
                 </Box>
+                <Report data={allTransactions} summary={summary}/>
         </Page>
     )
 }

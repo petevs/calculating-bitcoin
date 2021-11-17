@@ -76,7 +76,7 @@ const PortfolioChart = ({ data }) => {
 
     const tooltip = {
         custom: function({series, seriesIndex, dataPointIndex, w}){
-            console.log(w)
+            // console.log(w)
             const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex]
             const seriesName = w.globals.seriesNames[0]
             return renderToString(<CustomTooltip {...data} chartType={seriesName} />)

@@ -16,7 +16,7 @@ const RealizedSummary = (props) => {
             />
             <Scorecard
                 title='Sale Proceeds'
-                value={props.realizedProceeds || ''}
+                value={props.totalProceeds || ''}
                 numberFormat={{
                     prefix: '$',
                     thousandSeparator: true,
@@ -25,8 +25,8 @@ const RealizedSummary = (props) => {
                 }}
             />
             <Scorecard
-                title='Realized Cost'
-                value={props.realizedCost || ''}
+                title='Weighted Cost'
+                value={props.totalRealizedCost || ''}
                 numberFormat={{
                     prefix: '$',
                     thousandSeparator: true,
@@ -35,8 +35,8 @@ const RealizedSummary = (props) => {
                 }}
             />
             <Scorecard
-                title='Net Gain'
-                value={props.realizedGain || ''}
+                title='Net Sale Proceeds'
+                value={props.totalRealizedGain || ''}
                 numberFormat={{
                     prefix: '$',
                     thousandSeparator: true,
