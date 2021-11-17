@@ -14,6 +14,7 @@ import Summary from './components/Summary'
 import TransactionActions from './components/TransactionActions'
 import { tableTypes } from './components/tableTypes'
 import CustomToolbar from './components/CustomToolbar'
+import PortfolioChart from './components/PortfolioChart'
 
 
 const Portfolio = () => {
@@ -51,6 +52,7 @@ const Portfolio = () => {
                     performanceType={performanceType} 
                     handlePerformanceChange={handlePerformanceChange} 
                 />
+                <PortfolioChart data={allTransactions} />
                 <ModalButton
                     sx={{justifySelf: 'end'}}
                     icon={<AddIcon />}
