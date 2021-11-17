@@ -1,6 +1,9 @@
 import { Box } from "@mui/system"
 import Chart from 'react-apexcharts'
-import { useMediaQuery } from '@mui/material'
+import { Typography, useMediaQuery } from '@mui/material'
+import NumberFormat from 'react-number-format'
+import { Button } from "@mui/material"
+import { renderToString } from 'react-dom/server'
 
 const PortfolioChart = ({ data }) => {
 
@@ -21,15 +24,20 @@ const PortfolioChart = ({ data }) => {
         }).reverse()
     }]
 
+    const CustomTooltip = (props) => {
+        return (
+            <Box sx={{padding: '1rem', display: 'grid', gridTemplateColumns: '1fr', alignItems: 'start'}}>
+                <Typography variant='body1'>Portfolio Value: <NumberFormat displayType='text' value={props.y} prefix='$' thousandSeparator={true} /></Typography>
+                <Typography variant='body1'>Price: <NumberFormat displayType='text' value={props.price} prefix='$' thousandSeparator={true} /></Typography>
+            </Box>
+        )
+    }
+
+
     const tooltip = {
         custom: function({series, seriesIndex, dataPointIndex, w}){
             const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex]
-            return `
-            <div style='padding: 2rem;'>
-            <br />
-            Portfolio Value: ${data.y} <br /> Price: ${data.price} 
-            </div>
-            `
+            return renderToString(<CustomTooltip {...data} />)
         }
     }
 
