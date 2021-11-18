@@ -165,8 +165,8 @@ const PortfolioChart = ({ data }) => {
 
 
     return (
-        <Box>
-            <Box>
+        <Box sx={containerStyle}>
+            <Box sx={{paddingBottom: '1rem'}}>
                 <TextField
                     select
                     value={chartType}
@@ -199,8 +199,15 @@ const PortfolioChart = ({ data }) => {
     )
 }
 
-export default PortfolioChart
-
 const wrapper = {
-    margin: '0 0 0 -1rem'
+    margin: '0 0 0 -1rem',
 }
+
+const containerStyle = {
+  backgroundColor: '#212B36',
+  boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
+  borderRadius: '1rem',
+  padding: '2rem',
+}
+
+export default PortfolioChart

@@ -94,7 +94,11 @@ const wrapper = {
     color: '#fff',
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gap: '.25rem'
+    gap: '.25rem',
+    backgroundColor: '#212B36',
+    boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
+    borderRadius: '1rem',
+    padding: '2rem',
 }
 
 

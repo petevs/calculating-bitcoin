@@ -1,10 +1,11 @@
 import { Box } from "@mui/system"
 import { makeStyles } from '@mui/styles'
-import { Typography } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import ModalButton from "./ModalButton"
 import TransactionForm from "./TransactionForm"
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import AddIcon from '@mui/icons-material/Add';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const Transactions = ({columns, transactions, id}) => {
 
@@ -13,14 +14,23 @@ const Transactions = ({columns, transactions, id}) => {
     return (
         <Box sx={tableContainerStyle}>
                     <Typography variant='h6'>Transactions</Typography>
-                    <ModalButton
-                        sx={{width: '200px', marginBottom: '1rem'}}
-                        icon={<AddIcon />}
-                        content={<TransactionForm portfolioId={id} />}
-                        text='Add Transaction'
-                        variant='contained'
-                        size='small'
-                    />
+                    <Box sx={{
+                        display: 'grid', 
+                        gridAutoFlow: 'column', 
+                        justifyContent: 'start', 
+                        alignItems: 'center', 
+                        gap: '1rem',
+                        paddingBottom: '1rem'
+                        }}>
+                        <ModalButton
+                            icon={<AddIcon />}
+                            content={<TransactionForm portfolioId={id} />}
+                            text='Add Transaction'
+                            variant='contained'
+                            size='small'
+                        />
+                        <Button startIcon={<CloudUploadIcon />}>Upload CSV</Button>
+                    </Box>
                     <Box sx={{ flexGrow: 1 }}>
                         <DataGrid
                             autoHeight
@@ -50,7 +60,6 @@ export default Transactions
 const tableContainerStyle = {
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
     backgroundColor: '#212B36',
     boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
     borderRadius: '1rem',
@@ -68,7 +77,7 @@ const useStyles = makeStyles({
         '& .MuiDataGrid-columnsContainer': {
             backgroundColor: '#333d48',
             border: 'none',
-            borderRadius: '6px',
+            borderRadius: '8px',
         },
         '& .MuiDataGrid-toolbarContainer': {
             backgroundColor: '#333d48',

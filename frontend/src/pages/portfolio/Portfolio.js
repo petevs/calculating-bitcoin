@@ -9,7 +9,7 @@ import { tableTypes } from './components/tableTypes'
 import PortfolioChart from './components/PortfolioChart'
 import Transactions from './components/Transactions'
 import { Box } from '@mui/system'
-import Scorecard from 'components/Scorecard'
+import Report from './components/Report'
 
 
 const Portfolio = () => {
@@ -50,9 +50,7 @@ const Portfolio = () => {
                 <PortfolioChart data={allTransactions} />
                 <Box sx={style}>
                     <Transactions columns={columns} transactions={filteredTransactions} id={id} />
-                    <Scorecard
-                        title='test'
-                    />
+                    <Report summary={summary} />
                 </Box>
         </Page>
     )
@@ -61,7 +59,11 @@ const Portfolio = () => {
 const style = {
     display: 'grid', 
     gridTemplateColumns: '2fr 1fr',
-    gap: '2rem'
+    alignItems: 'start',
+    gap: '2rem',
+    '@media (max-width: 1024px)': {
+        gridTemplateColumns: '1fr'
+    }
 }
 
 export default Portfolio

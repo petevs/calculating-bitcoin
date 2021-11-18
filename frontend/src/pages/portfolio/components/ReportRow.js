@@ -37,12 +37,12 @@ export default ReportRow
 const row = {
     display: 'grid',
     gridColumn: '1 / span 1',
-    gridTemplateColumns: 'repeat(10, 1fr)',
+    gridTemplateColumns: 'repeat(2, 1fr)',
 }
 
 const style = {
     gridColumn: '1 / span 2', 
-    paddingLeft: '2rem',
+    paddingLeft: '1rem',
 }
 
 const typeStyle = {
