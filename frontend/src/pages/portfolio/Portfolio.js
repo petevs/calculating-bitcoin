@@ -16,6 +16,8 @@ import { tableTypes } from './components/tableTypes'
 import CustomToolbar from './components/CustomToolbar'
 import PortfolioChart from './components/PortfolioChart'
 import Report from './components/Report'
+import NewComponent from './components/NewComponent'
+import PortfolioTabs from './components/PortfolioTabs'
 
 
 const Portfolio = () => {
@@ -62,6 +64,7 @@ const Portfolio = () => {
                     variant='contained'
                     size='small'
                 />
+                <PortfolioTabs />
                 <Box sx={tableContainerStyle}>
                         <DataGrid
                             className={classes.root}
