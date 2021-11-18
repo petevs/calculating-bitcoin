@@ -1,5 +1,6 @@
 import NumberFormat from 'react-number-format'
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Box } from '@mui/system'
 
 
 export const calculateTransactions = (allTransactions) => {
@@ -27,10 +28,13 @@ export const calculateTransactions = (allTransactions) => {
         const bitcoin = <NumberFormat value={transaction.bitcoin} decimalScale={8} fixedDecimalScale={8} displayType={'text'} suffix={' BTC'} />
 
         if(type === 'buy') {
-            return <> {dollarAmount} <ArrowRightAltIcon /> {bitcoin} </>
+            return (
+                <> 
+                    {dollarAmount} <ArrowForwardIcon fontSize='small' /> {bitcoin}
+                </>)
         }
 
-        return <> {bitcoin} <ArrowRightAltIcon /> {dollarAmount} </>
+        return <> {bitcoin} <ArrowForwardIcon fontSize='small' /> {dollarAmount} </>
 
     }
 

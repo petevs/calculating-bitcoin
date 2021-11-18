@@ -19,6 +19,7 @@ const PortfolioTabs = ({ tabs }) => {
             <Box 
                 hidden={value !== index}
                 {...other}
+                sx={{padding: '2rem 1rem'}}
             >
                 {value === index &&     
                     <Box>

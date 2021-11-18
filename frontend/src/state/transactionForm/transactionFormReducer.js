@@ -42,10 +42,21 @@ export const transactionFormReducer = (state = initialTransactionForm, action) =
             }
         case UPDATE_DATE:
             if(state.useHistoricalPrice && action.payload.isValid()){
-                return {
-                    ...state,
-                    date: action.payload,
-                    price: state.historicalPrice(action.payload)
+                if(state.type === 'buy'){
+                    return {
+                        ...state,
+                        date: action.payload,
+                        price: state.historicalPrice(action.payload),
+                        bitcoin: state.dollarAmount / state.historicalPrice(action.payload)
+                    }
+                }
+                if(state.type === 'sell'){
+                    return {
+                        ...state,
+                        date: action.payload,
+                        price: state.historicalPrice(action.payload),
+                        dollarAmount: state.dollarAmount * state.historicalPrice(action.payload)
+                    }
                 }
             }
             if(action.payload.isValid()){

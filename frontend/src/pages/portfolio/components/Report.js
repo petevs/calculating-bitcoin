@@ -7,9 +7,9 @@ const Report = (props) => {
     console.log(props)
     return (
         <Box sx={wrapper}>
-                <Typography sx={{gridColumn: '1 / span 4'}} variant='h6'>Current Holdings</Typography>
+                <Typography sx={{gridColumn: '1 / span 4', textTransform: 'uppercase'}} variant='body-1'>Current Holdings</Typography>
                     <ReportRow
-                        title='Current Price'
+                        title='Current BTC Price'
                         value={props.summary.historicalPrice}
                     />
                     <ReportRow 
@@ -41,7 +41,7 @@ const Report = (props) => {
                         value={props.summary.unrealizedGain}
                         className='subTotal'
                     />
-                <Typography sx={{gridColumn: '1 / span 4', paddingTop: '2rem'}} variant='h6'>Sale Proceeds</Typography>
+                <Typography sx={{gridColumn: '1 / span 4', textTransform: 'uppercase', paddingTop: '2rem'}} variant='body-1'>Sale Proceeds</Typography>
                     <ReportRow 
                         title='Bitcoin Sold' 
                         value={props.summary.totalBitcoinSold} 

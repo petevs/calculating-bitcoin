@@ -18,6 +18,7 @@ import PortfolioChart from './components/PortfolioChart'
 import Report from './components/Report'
 import NewComponent from './components/NewComponent'
 import PortfolioTabs from './components/PortfolioTabs'
+import PortfolioTransactionsSimple from './components/PortfolioTransactionsSimple'
 
 
 const Portfolio = () => {
@@ -56,6 +57,7 @@ const Portfolio = () => {
                     handlePerformanceChange={handlePerformanceChange} 
                 />
                 <PortfolioChart data={allTransactions} />
+                <PortfolioTransactionsSimple data={transactions}/>
                 <PortfolioTabs
                     tabs={
                         [
@@ -87,12 +89,12 @@ const Portfolio = () => {
                                                 checkboxSelection
                                                 pagination
                                                 disableSelectionOnClick
-                                                density='compact'
                                                 disableColumnFilter
                                                 disable
-                                                components={{
-                                                    Toolbar: CustomToolbar,
-                                                }}
+                                                rowHeight={50}
+                                                // components={{
+                                                //     Toolbar: CustomToolbar,
+                                                // }}
                                             />
                                         </Box>
                                     </Box> 
@@ -108,8 +110,8 @@ const Portfolio = () => {
 export default Portfolio
 
 const tableContainerStyle = {
-    height: '400px',
-    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: '1fr',
     backgroundColor: '212b36',
     boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
     borderRadius: '1rem'
@@ -132,7 +134,7 @@ const useStyles = makeStyles({
             color: '#fff',
             fontWeight: 700,
             textTransform: 'uppercase',
-            justifyContent: 'flex-end'
+            justifyContent: 'flex-end',
         },
         '& .MuiDataGrid-cell--withRenderer': {
             justifyContent: 'flex-end'
