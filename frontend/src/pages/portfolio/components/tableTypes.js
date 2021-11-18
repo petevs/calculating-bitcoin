@@ -16,7 +16,7 @@ const columns = [
     {
         field: 'date',
         headerName: 'Date',
-        editable: false
+        editable: false,
     },
     {
         field: 'type',
@@ -33,7 +33,8 @@ const columns = [
         renderCell: (params) => (
             params.value
         ),
-        width: 225,
+        minWidth: 225,
+        flex: 1,
         sortable: false,
         editable: false
     },
