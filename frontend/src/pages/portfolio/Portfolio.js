@@ -56,32 +56,51 @@ const Portfolio = () => {
                     handlePerformanceChange={handlePerformanceChange} 
                 />
                 <PortfolioChart data={allTransactions} />
-                <ModalButton
-                    sx={{justifySelf: 'end'}}
-                    icon={<AddIcon />}
-                    content={<TransactionForm portfolioId={id} />}
-                    text='Add Transaction'
-                    variant='contained'
-                    size='small'
+                <PortfolioTabs
+                    tabs={
+                        [
+                            {
+                                title: 'Market Weighted Return', 
+                                content: 
+                                    <Report 
+                                        data={allTransactions} 
+                                        summary={summary} 
+                                    />
+                            },
+                            {
+                                title: 'Transactions', 
+                                content:
+                                    <Box sx={{display: 'grid'}}>
+                                        <ModalButton
+                                            sx={{justifySelf: 'end', marginBottom: '1rem'}}
+                                            icon={<AddIcon />}
+                                            content={<TransactionForm portfolioId={id} />}
+                                            text='Add Transaction'
+                                            variant='contained'
+                                            size='small'
+                                        />
+                                        <Box sx={tableContainerStyle}>
+                                            <DataGrid
+                                                className={classes.root}
+                                                rows={filteredTransactions}
+                                                columns={columns}
+                                                checkboxSelection
+                                                pagination
+                                                disableSelectionOnClick
+                                                density='compact'
+                                                disableColumnFilter
+                                                disable
+                                                components={{
+                                                    Toolbar: CustomToolbar,
+                                                }}
+                                            />
+                                        </Box>
+                                    </Box> 
+                            }
+                        ]
+                    }
+                
                 />
-                <PortfolioTabs />
-                <Box sx={tableContainerStyle}>
-                        <DataGrid
-                            className={classes.root}
-                            rows={filteredTransactions}
-                            columns={columns}
-                            checkboxSelection
-                            pagination
-                            disableSelectionOnClick
-                            density='compact'
-                            disableColumnFilter
-                            disable
-                            components={{
-                                Toolbar: CustomToolbar,
-                              }}
-                        />
-                </Box>
-                <Report data={allTransactions} summary={summary}/>
         </Page>
     )
 }

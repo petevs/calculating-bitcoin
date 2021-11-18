@@ -3,7 +3,7 @@ import { Tabs, Tab, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { TabPanel } from '@mui/lab'
 
-const PortfolioTabs = () => {
+const PortfolioTabs = ({ tabs }) => {
 
     const [value, setValue] = useState(0)
 
@@ -32,15 +32,13 @@ const PortfolioTabs = () => {
     return (
         <Box>
             <Tabs value={value} onChange={handleChange}>
-                <Tab label='Market Weighted Return' />
-                <Tab label='Transactions' />
+                {
+                    tabs.map(tab => <Tab label={tab.title} />)
+                }
             </Tabs>
-            <TabPanel value={value} index={0}>
-                Market Weighted Return
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                Transactions
-            </TabPanel>
+                {
+                    tabs.map((tab,idx) => <TabPanel value={value} index={idx}>{tab.content}</TabPanel>)
+                }
         </Box>
     )
 }
