@@ -42,26 +42,6 @@ const TotalPerformance = (props) => {
                     fixedDecimalScale: 2 
                 }}
             />
-            <Scorecard
-                title='Net Gain'
-                value={props.totalNetGain || ''}
-                numberFormat={{
-                    prefix: '$',
-                    thousandSeparator: true,
-                    decimalScale: 2,
-                    fixedDecimalScale: 2 
-                }}
-            />
-            <Scorecard
-                title='ROI'
-                value={props.totalROI || ''}
-                numberFormat={{
-                    suffix: '%',
-                    thousandSeparator: true,
-                    decimalScale: 2,
-                    fixedDecimalScale: 2 
-                }}
-            />
         </>
     )
 }

@@ -32,28 +32,34 @@ const ReportRow = (props) => {
         )
     }
 
+    const row = {
+        display: 'grid',
+        gridColumn: '1 / span 1',
+        gridTemplateColumns: '1fr 100px 100px',
+        gap: '.5rem',
+        '@media (max-width: 768px)': {
+            gridTemplateColumns: '1fr',
+            fontSize: '.875rem'
+        }
+    }
+    
+    const style = {
+        gridColumn: '1 / span 1', 
+        paddingLeft: '1rem',
+    }
+    
+    const typeStyle = {
+        textAlign: 'right',
+        gridColumn: '2 / span 1',
+        '&.last': {
+            borderBottom: '1px solid #fff',
+            paddingBottom: '.5rem',
+            marginBottom: '.25rem'
+        },
+        '&.subTotal': {
+            gridColumn: '3 / span 1'
+        }
+    }
+
 export default ReportRow
 
-const row = {
-    display: 'grid',
-    gridColumn: '1 / span 1',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-}
-
-const style = {
-    gridColumn: '1 / span 2', 
-    paddingLeft: '1rem',
-}
-
-const typeStyle = {
-    textAlign: 'right',
-    gridColumn: '3 / span 1',
-    '&.last': {
-        borderBottom: '1px solid #fff',
-        paddingBottom: '.5rem',
-        marginBottom: '.25rem'
-    },
-    '&.subTotal': {
-        gridColumn: '4 / span 1'
-    }
-}

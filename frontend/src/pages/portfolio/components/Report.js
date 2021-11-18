@@ -7,7 +7,7 @@ const Report = (props) => {
     console.log(props)
     return (
         <Box sx={wrapper}>
-                <Typography sx={{gridColumn: '1 / span 4', textTransform: 'uppercase'}} variant='body-1'>Current Holdings</Typography>
+                <Typography sx={{gridColumn: '1 / span 4', textTransform: 'uppercase'}} variant='body-1'>Unrealized Performance</Typography>
                     <ReportRow
                         title='Current BTC Price'
                         value={props.summary.historicalPrice}
@@ -41,7 +41,7 @@ const Report = (props) => {
                         value={props.summary.unrealizedGain}
                         className='subTotal'
                     />
-                <Typography sx={{gridColumn: '1 / span 4', textTransform: 'uppercase', paddingTop: '2rem'}} variant='body-1'>Sale Proceeds</Typography>
+                <Typography sx={{gridColumn: '1 / span 4', textTransform: 'uppercase', paddingTop: '2rem'}} variant='body-1'>Realized Performance</Typography>
                     <ReportRow 
                         title='Bitcoin Sold' 
                         value={props.summary.totalBitcoinSold} 
@@ -95,10 +95,10 @@ const wrapper = {
     display: 'grid',
     gridTemplateColumns: '1fr',
     gap: '.25rem',
-    backgroundColor: '#212B36',
-    boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
-    borderRadius: '1rem',
-    padding: '2rem',
+    // backgroundColor: '#212B36',
+    // boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
+    // borderRadius: '1rem',
+    // padding: '2rem',
 }
 
 

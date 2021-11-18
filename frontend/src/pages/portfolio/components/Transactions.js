@@ -38,11 +38,12 @@ const Transactions = ({columns, transactions, id}) => {
                             rows={transactions}
                             columns={columns}
                             // checkboxSelection
+                            pageSize={5}
                             pagination
                             disableSelectionOnClick
                             disableColumnFilter
                             disable
-                            hideFooter={true}
+                            // hideFooter={true}
                             disableColumnSelector
                             disableColumnMenu
                             // components={{

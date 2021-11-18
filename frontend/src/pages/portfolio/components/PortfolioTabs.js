@@ -19,7 +19,7 @@ const PortfolioTabs = ({ tabs }) => {
             <Box 
                 hidden={value !== index}
                 {...other}
-                sx={{padding: '2rem 1rem'}}
+                sx={{display: 'grid', gridTemplateColumns: '1fr', padding: value !== index ? '0' : '2rem 1rem'}}
             >
                 {value === index &&     
                     <Box>
@@ -31,8 +31,8 @@ const PortfolioTabs = ({ tabs }) => {
     }
 
     return (
-        <Box>
-            <Tabs value={value} onChange={handleChange}>
+        <Box sx={tabsStyle}>
+            <Tabs value={value} onChange={handleChange} variant='scrollable'>
                 {
                     tabs.map(tab => <Tab label={tab.title} />)
                 }
@@ -45,3 +45,13 @@ const PortfolioTabs = ({ tabs }) => {
 }
 
 export default PortfolioTabs
+
+
+const tabsStyle = {
+    display: 'grid', 
+    gridTemplateColumns: '1fr',
+    backgroundColor: '#212B36',
+    boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
+    borderRadius: '1rem',
+    padding: '2rem',
+}

@@ -32,7 +32,7 @@ const UnrealizedSummary = (props) => {
                     }}
                 />
                 <Scorecard
-                    title='Unrealized Gain'
+                    title='Unrealized Return'
                     value={props.unrealizedGain || ''}
                     numberFormat={{
                         thousandSeparator: true,
@@ -49,7 +49,7 @@ const UnrealizedSummary = (props) => {
                         decimalScale: 2,
                     }}
                 />
-                <Scorecard
+                {/* <Scorecard
                     title='Unrealized ROI'
                     value={props.unrealizedROI || ''}
                     numberFormat={{
@@ -57,7 +57,7 @@ const UnrealizedSummary = (props) => {
                         suffix: '%',
                         decimalScale: 2,
                     }}
-                />
+                /> */}
         </>
     )
 }

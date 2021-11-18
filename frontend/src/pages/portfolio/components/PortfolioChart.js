@@ -165,7 +165,7 @@ const PortfolioChart = ({ data }) => {
 
 
     return (
-        <Box sx={containerStyle}>
+        <>
             <Box sx={{paddingBottom: '1rem'}}>
                 <TextField
                     select
@@ -195,7 +195,7 @@ const PortfolioChart = ({ data }) => {
                     height="400px"
                 />
             </Box>
-        </Box>
+        </>
     )
 }
 

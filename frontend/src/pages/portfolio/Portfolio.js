@@ -11,6 +11,7 @@ import Transactions from './components/Transactions'
 import { Box } from '@mui/system'
 import Report from './components/Report'
 import RecurringTransactions from './components/RecurringTransactions'
+import PortfolioTabs from './components/PortfolioTabs'
 
 
 const Portfolio = () => {
@@ -53,7 +54,13 @@ const Portfolio = () => {
                     <Transactions columns={columns} transactions={filteredTransactions} id={id} />
                     <RecurringTransactions />
                 </Box>
-                <Report summary={summary} />
+                    <PortfolioTabs 
+                        tabs={[
+                            {title: 'Total Performance', content: <Report summary={summary} />},
+                            {title: 'Tax Liability', content: 'Coming soon...'},
+                            {title: 'Weighted Cost Table', content: 'Coming soon...'},
+                        ]}
+                    />
         </Page>
     )
 }
