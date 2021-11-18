@@ -1,5 +1,5 @@
 import { IconButton } from '@mui/material'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuBox from 'components/userMenu/components/MenuBox';
 import useMenu from 'hooks/useMenu';
 import EditTransaction from './EditTransaction';
@@ -15,7 +15,7 @@ const TransactionActions = (props) => {
         <IconButton
             onClick={handleClick}
         >
-            <MoreHorizIcon />
+            <MoreVertIcon />
         </IconButton>
         
         <MenuBox

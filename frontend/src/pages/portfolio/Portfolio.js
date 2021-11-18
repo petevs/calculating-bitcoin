@@ -19,6 +19,7 @@ import Report from './components/Report'
 import NewComponent from './components/NewComponent'
 import PortfolioTabs from './components/PortfolioTabs'
 import PortfolioTransactionsSimple from './components/PortfolioTransactionsSimple'
+import { Typography } from '@mui/material'
 
 
 const Portfolio = () => {
@@ -38,7 +39,8 @@ const Portfolio = () => {
     const columns = tableTypes('')
     columns.push({
                 field: 'actions',
-                headerName: 'Actions',
+                headerName: ' ',
+                align: 'end',
                 renderCell: (params) => (
                     <TransactionActions {...params.row} portfolioId={id} />),
                 
@@ -57,8 +59,38 @@ const Portfolio = () => {
                     handlePerformanceChange={handlePerformanceChange} 
                 />
                 <PortfolioChart data={allTransactions} />
-                <PortfolioTransactionsSimple data={transactions}/>
-                <PortfolioTabs
+                <Box sx={tableContainerStyle}>
+                    <Typography variant='h6'>Transactions</Typography>
+                    <ModalButton
+                        sx={{width: '200px', marginBottom: '1rem'}}
+                        icon={<AddIcon />}
+                        content={<TransactionForm portfolioId={id} />}
+                        text='Add Transaction'
+                        variant='contained'
+                        size='small'
+                    />
+                    <Box sx={{ flexGrow: 1 }}>
+                        <DataGrid
+                            autoHeight
+                            className={classes.root}
+                            rows={filteredTransactions}
+                            columns={columns}
+                            checkboxSelection
+                            pagination
+                            disableSelectionOnClick
+                            disableColumnFilter
+                            disable
+                            hideFooter={true}
+                            // components={{
+                            //     Toolbar: CustomToolbar,
+                            // }}
+                        />
+                    </Box>
+                    <Box sx={{display: 'grid', alignContent: 'center', height: '50px'}}>
+                        Footer
+                    </Box>
+                </Box>
+                {/* <PortfolioTabs
                     tabs={
                         [
                             {
@@ -81,28 +113,12 @@ const Portfolio = () => {
                                             variant='contained'
                                             size='small'
                                         />
-                                        <Box sx={tableContainerStyle}>
-                                            <DataGrid
-                                                className={classes.root}
-                                                rows={filteredTransactions}
-                                                columns={columns}
-                                                checkboxSelection
-                                                pagination
-                                                disableSelectionOnClick
-                                                disableColumnFilter
-                                                disable
-                                                rowHeight={50}
-                                                // components={{
-                                                //     Toolbar: CustomToolbar,
-                                                // }}
-                                            />
-                                        </Box>
                                     </Box> 
                             }
                         ]
                     }
                 
-                />
+                /> */}
         </Page>
     )
 }
@@ -110,11 +126,17 @@ const Portfolio = () => {
 export default Portfolio
 
 const tableContainerStyle = {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    backgroundColor: '212b36',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    backgroundColor: '#212B36',
     boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
-    borderRadius: '1rem'
+    borderRadius: '1rem',
+    padding: '1rem',
+    color: '#fff',
+    '& h6': {
+        padding: '1rem 0',
+    }
 }
 
 const useStyles = makeStyles({
@@ -123,6 +145,7 @@ const useStyles = makeStyles({
         '& .MuiDataGrid-columnsContainer': {
             backgroundColor: '#333d48',
             border: 'none',
+            borderRadius: '6px 6px 0 0',
         },
         '& .MuiDataGrid-toolbarContainer': {
             backgroundColor: '#333d48',
@@ -130,15 +153,28 @@ const useStyles = makeStyles({
             borderBottom: '1px solid rgba(81, 81, 81, 1)',
             padding: '.5rem 1rem'
         },
+        '& .MuiDataGrid-row:hover': {
+            backgroundColor: 'transparent'
+        },
         '& .MuiDataGrid-cell': {
             color: '#fff',
             fontWeight: 700,
             textTransform: 'uppercase',
             justifyContent: 'flex-end',
+            borderBottom: 'none'
+        },
+        '& .MuiDataGrid-cell:focus': {
+            outline: 'none'
+        },
+        '& .MuiDataGrid-cell:focus-within': {
+            outline: 'none'
         },
         '& .MuiDataGrid-cell--withRenderer': {
             justifyContent: 'flex-end'
         },
+        '& .MuiDataGrid-columnSeparator': {
+            display: 'none'
+        }
       },
 })
 

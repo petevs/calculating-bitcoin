@@ -14,12 +14,14 @@ const columns = [
     {
         field: 'date',
         headerName: 'Date',
+        editable: false
     },
     {
         field: 'type',
         headerName: 'Type',
         sortable: false,
         width: 75,
+        editable: false
     },
     {
         field: 'description',
@@ -29,24 +31,25 @@ const columns = [
         ),
         width: 225,
         sortable: false,
+        editable: false
     },
-    // {
-    //     field: 'price',
-    //     headerName: 'BTC Price',
-    //     renderCell: (params) => (
-    //         <NumberFormat 
-    //             displayType='text'
-    //             thousandSeparator={true}
-    //             prefix='$' 
-    //             value={params.value}
-    //             decimalScale={2}
-    //             fixedDecimalScale={2}   
-    //         />),
-    //         width: 100,
-    //         sortable: false,
-    //         headerAlign: 'right',
-    //         align: 'right'
-    // },
+    {
+        field: 'price',
+        headerName: 'BTC Price',
+        renderCell: (params) => (
+            <NumberFormat 
+                displayType='text'
+                thousandSeparator={true}
+                prefix='$' 
+                value={params.value}
+                decimalScale={2}
+                fixedDecimalScale={2}   
+            />),
+            width: 100,
+            sortable: false,
+            headerAlign: 'right',
+            align: 'right'
+    },
     // {
     //     field: 'deposits',
     //     headerName: 'Deposits',
