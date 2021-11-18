@@ -23,6 +23,7 @@ const TransactionActions = (props) => {
             open={open}
             onClose={handleClose}
             onClick={handleClose}
+            style={{minWidth: '150px'}}
         >
             <Box sx={innerBox}>
                 <EditTransaction 

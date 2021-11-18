@@ -43,7 +43,8 @@ const Portfolio = () => {
                 align: 'end',
                 renderCell: (params) => (
                     <TransactionActions {...params.row} portfolioId={id} />),
-                
+                sortable: false,
+                editable: false
             })
 
     return (
@@ -75,20 +76,22 @@ const Portfolio = () => {
                             className={classes.root}
                             rows={filteredTransactions}
                             columns={columns}
-                            checkboxSelection
+                            // checkboxSelection
                             pagination
                             disableSelectionOnClick
                             disableColumnFilter
                             disable
                             hideFooter={true}
+                            disableColumnSelector
+                            disableColumnMenu
                             // components={{
                             //     Toolbar: CustomToolbar,
                             // }}
                         />
                     </Box>
-                    <Box sx={{display: 'grid', alignContent: 'center', height: '50px'}}>
+                    {/* <Box sx={{display: 'grid', alignContent: 'center', height: '50px', borderTop: '1px solid rgba(145, 158, 171, 0.24)'}}>
                         Footer
-                    </Box>
+                    </Box> */}
                 </Box>
                 {/* <PortfolioTabs
                     tabs={
@@ -136,6 +139,7 @@ const tableContainerStyle = {
     color: '#fff',
     '& h6': {
         padding: '1rem 0',
+        fontWeight: 700,
     }
 }
 
@@ -145,7 +149,7 @@ const useStyles = makeStyles({
         '& .MuiDataGrid-columnsContainer': {
             backgroundColor: '#333d48',
             border: 'none',
-            borderRadius: '6px 6px 0 0',
+            borderRadius: '6px',
         },
         '& .MuiDataGrid-toolbarContainer': {
             backgroundColor: '#333d48',

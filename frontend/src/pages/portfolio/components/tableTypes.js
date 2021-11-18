@@ -3,12 +3,14 @@ import NumberFormat from 'react-number-format'
 import TransactionActions from './TransactionActions'
 
 export const tableTypes = (tableType) => {
-    switch(tableType) {
-        default:
-            return columns
-    }
+   return columns.map(item => {
+        return {
+            ...item,
+            editable: false,
+            sortable: false
+        }
+    })
 }
-
 
 const columns = [
     {
@@ -21,7 +23,9 @@ const columns = [
         headerName: 'Type',
         sortable: false,
         width: 75,
-        editable: false
+        editable: false,
+        headerAlign: 'center',
+        align: 'center'
     },
     {
         field: 'description',
@@ -45,10 +49,10 @@ const columns = [
                 decimalScale={2}
                 fixedDecimalScale={2}   
             />),
-            width: 100,
-            sortable: false,
-            headerAlign: 'right',
-            align: 'right'
+        width: 100,
+        sortable: false,
+        headerAlign: 'right',
+        align: 'right'
     },
     // {
     //     field: 'deposits',
