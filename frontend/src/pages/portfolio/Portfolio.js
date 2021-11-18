@@ -10,6 +10,7 @@ import PortfolioChart from './components/PortfolioChart'
 import Transactions from './components/Transactions'
 import { Box } from '@mui/system'
 import Report from './components/Report'
+import RecurringTransactions from './components/RecurringTransactions'
 
 
 const Portfolio = () => {
@@ -50,8 +51,9 @@ const Portfolio = () => {
                 <PortfolioChart data={allTransactions} />
                 <Box sx={style}>
                     <Transactions columns={columns} transactions={filteredTransactions} id={id} />
-                    <Report summary={summary} />
+                    <RecurringTransactions />
                 </Box>
+                <Report summary={summary} />
         </Page>
     )
 }
