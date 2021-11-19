@@ -6,6 +6,7 @@ import TransactionForm from "./TransactionForm"
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import AddIcon from '@mui/icons-material/Add';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import UploadCsvForm from "./UploadCsvForm"
 
 const Transactions = ({columns, transactions, id}) => {
 
@@ -31,7 +32,7 @@ const Transactions = ({columns, transactions, id}) => {
                         />
                         <ModalButton
                             icon={<CloudUploadIcon />}
-                            content={'I am the upload form'}
+                            content={<UploadCsvForm />}
                             text='Upload CSV'
                             variant='text'
                             size='small'
