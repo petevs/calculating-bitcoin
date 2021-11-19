@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material'
+import { Button, LinearProgress, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import FormHeader from 'components/form/FormHeader'
 import React from 'react'
@@ -8,7 +8,7 @@ import useFileUpload from 'hooks/useFileUpload';
 
 const UploadCsvForm = () => {
 
-    const { handleFileChange, file } = useFileUpload()
+    const { handleFileUpload, file, pending } = useFileUpload()
 
     return (
         <Box component='form' sx={wrapper}>
@@ -22,11 +22,12 @@ const UploadCsvForm = () => {
                 Upload CSV
                 <input
                     type='file'
-                    onChange={handleFileChange}
+                    onChange={handleFileUpload}
                     hidden
                 />
             </Button>
-            <Typography variant='body-2'>{file.name}</Typography>
+            {pending && <LinearProgress />}
+            <Typography variant='caption'>{file.name}</Typography>
             <Button variant='contained' disabled>Submit</Button>
         </Box>
     )

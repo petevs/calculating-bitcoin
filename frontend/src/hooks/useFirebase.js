@@ -2,6 +2,8 @@ import { useContext } from 'react'
 import { db } from 'firebase'
 import GlobalContext from 'state/GlobalContext'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
+import { csvToArray } from 'state/portfolio/utils/csvToArray'
 
 const useFirebase = () => {
     
@@ -115,6 +117,12 @@ const useFirebase = () => {
         })
     }
 
+    const uploadCsvTransactions = async (url) => {
+        const { data } = await axios.get(url)
+        const parsedData = csvToArray(data)
+
+        console.log(parsedData)
+    }
 
 
 
@@ -126,7 +134,8 @@ const useFirebase = () => {
         clonePortfolio, 
         toggleVisibility,
         addTransaction,
-        deleteTransaction 
+        deleteTransaction,
+        uploadCsvTransactions
     }
 
 }

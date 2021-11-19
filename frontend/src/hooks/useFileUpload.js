@@ -8,7 +8,7 @@ const useFileUpload = () => {
     
 
     const [file, setFile] = useState('')
-    const [pending, setPending] = useState()
+    const [pending, setPending] = useState(false)
     const [url, setUrl] = useState('')
 
     const handleFileChange = (e) => setFile(e.target.files[0])
@@ -23,10 +23,14 @@ const useFileUpload = () => {
     const handleFileUpload = async (e, path, callback) => {
         
         e.preventDefault()
+        handleFileChange(e)
         setPending(true)
         const downloadURL = await uploadFileToStorage(path)
-        setPending(false)
         setUrl(downloadURL)
+        if(callback){
+            callback()
+        }
+        setPending(false)
 
         return downloadURL
     }
