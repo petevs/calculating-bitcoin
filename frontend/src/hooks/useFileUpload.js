@@ -38,9 +38,13 @@ const useFileUpload = () => {
     const handleFileUploadOneStep = async (e, path, callback) => {
         e.preventDefault()
         setPending(true)
+        handleFileChange(e)
         const downloadURL = await uploadFileToStorage(e.target.files[0], path)
-        setPending(false)
         setUrl(downloadURL)
+        if(callback){
+            callback(downloadURL)
+        }
+        setPending(false)
 
         return downloadURL
     }

@@ -32,7 +32,7 @@ const Transactions = ({columns, transactions, id}) => {
                         />
                         <ModalButton
                             icon={<CloudUploadIcon />}
-                            content={<UploadCsvForm />}
+                            content={<UploadCsvForm portfolioId={id} />}
                             text='Upload CSV'
                             variant='text'
                             size='small'

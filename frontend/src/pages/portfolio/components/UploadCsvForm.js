@@ -6,14 +6,17 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import useFileUpload from 'hooks/useFileUpload';
 import useFirebase from 'hooks/useFirebase';
 
-const UploadCsvForm = () => {
+const UploadCsvForm = (props) => {
 
-    const { handleFileUpload, file, pending } = useFileUpload()
+    const { handleFileUploadOneStep, file, pending } = useFileUpload()
     const { uploadCsvTransactions } = useFirebase()
 
     const handleCSVUpload = async (e) => {
-        const url = await handleFileUpload(e)
-        uploadCsvTransactions(url)
+        await handleFileUploadOneStep(
+                e, 
+                `csvFiles/${props.portfolioId}`, 
+                uploadCsvTransactions
+            )
     }
 
 
