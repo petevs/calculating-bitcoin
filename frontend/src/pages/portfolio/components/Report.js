@@ -4,7 +4,6 @@ import ReportRow from './ReportRow'
 
 const Report = (props) => {
 
-    console.log(props)
     return (
         <Box sx={wrapper}>
                 <Typography sx={{gridColumn: '1 / span 4', textTransform: 'uppercase'}} variant='body-1'>Unrealized Performance</Typography>

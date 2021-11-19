@@ -8,14 +8,15 @@ import useFirebase from 'hooks/useFirebase';
 
 const UploadCsvForm = (props) => {
 
-    const { handleFileUploadOneStep, file, pending } = useFileUpload()
+    const { handleCsvFileUpload, file, pending } = useFileUpload()
     const { uploadCsvTransactions } = useFirebase()
 
     const handleCSVUpload = async (e) => {
-        await handleFileUploadOneStep(
+        await handleCsvFileUpload(
                 e, 
                 `csvFiles/${props.portfolioId}`, 
-                uploadCsvTransactions
+                uploadCsvTransactions,
+                props.portfolioId
             )
     }
 

@@ -58,7 +58,7 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibili
                 placeholder='Enter a portfolio name'
                 value={values.portfolioName}
                 onChange={(e) => handleFormChange(e, validateChange)}
-                erorr ={errors.portfolioName !== ''}
+                error ={errors.portfolioName !== ''}
                 helperText={errors.portfolioName}
             />
             <TextField
@@ -69,7 +69,7 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibili
                 placeholder='Enter a portfolio description'
                 value={values.portfolioDescription}
                 onChange={(e) => handleFormChange(e, validateChange)}
-                erorr ={errors.portfolioDescription !== ''}
+                error ={errors.portfolioDescription !== ''}
                 helperText={errors.portfolioDescription}
             />
             <FormSubmit type='submit'>{title === 'Add Portfolio' ? title : 'Save Changes'}</FormSubmit>

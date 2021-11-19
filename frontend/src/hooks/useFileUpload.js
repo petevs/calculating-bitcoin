@@ -49,8 +49,22 @@ const useFileUpload = () => {
         return downloadURL
     }
 
+    const handleCsvFileUpload = async (e, path, callback, portfolioId) => {
+        e.preventDefault()
+        setPending(true)
+        handleFileChange(e)
+        const downloadURL = await uploadFileToStorage(e.target.files[0], path)
+        setUrl(downloadURL)
+        if(callback){
+            callback(downloadURL, portfolioId)
+        }
+        setPending(false)
 
-    return {file, pending, url, handleFileChange, handleFileUpload, handleFileUploadOneStep}
+        return downloadURL
+    }
+
+
+    return {file, pending, url, handleFileChange, handleFileUpload, handleFileUploadOneStep, handleCsvFileUpload}
 }
 
 export default useFileUpload

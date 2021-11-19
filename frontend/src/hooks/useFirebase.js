@@ -3,7 +3,7 @@ import { db } from 'firebase'
 import GlobalContext from 'state/GlobalContext'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { csvToArray } from 'state/portfolio/utils/csvToArray'
+import { parseCsvToTransactions } from 'state/portfolio/utils/parseCsvToTransactions'
 
 const useFirebase = () => {
     
@@ -117,11 +117,20 @@ const useFirebase = () => {
         })
     }
 
-    const uploadCsvTransactions = async (url) => {
+    const uploadCsvTransactions = async (url, portfolioId) => {
         const { data } = await axios.get(url)
-        const parsedData = csvToArray(data)
+        const parsedData = parseCsvToTransactions(data)
 
-        console.log(parsedData)
+        db.collection('portfolios').doc(state.user.uid).update({
+            ...state.portfolio.portfolioObj,
+            [portfolioId]: {
+                ...state.portfolio.portfolioObj[portfolioId],
+                transactions: {
+                    ...state.portfolio.portfolioObj[portfolioId].transactions,
+                    ...parsedData
+                }
+            }
+        })
     }
 
 
