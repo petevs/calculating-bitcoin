@@ -85,7 +85,7 @@ const useStyles = makeStyles({
         '& .MuiDataGrid-columnsContainer': {
             backgroundColor: '#333d48',
             border: 'none',
-            borderRadius: '8px',
+            borderRadius: '8px 8px 0 0',
         },
         '& .MuiDataGrid-toolbarContainer': {
             backgroundColor: '#333d48',
@@ -114,6 +114,6 @@ const useStyles = makeStyles({
         },
         '& .MuiDataGrid-columnSeparator': {
             display: 'none'
-        }
+        },
       },
 })

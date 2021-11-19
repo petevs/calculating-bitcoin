@@ -16,7 +16,7 @@ const PortfolioChart = ({ data }) => {
     const mobile = useMediaQuery('(min-width:1024px')
 
     if(!data) {
-      return <>...loading</>
+      return <></>
     }
 
     const categories = data.map(item => item.date).reverse()
