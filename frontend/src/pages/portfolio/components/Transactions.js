@@ -29,7 +29,13 @@ const Transactions = ({columns, transactions, id}) => {
                             variant='contained'
                             size='small'
                         />
-                        <Button startIcon={<CloudUploadIcon />}>Upload CSV</Button>
+                        <ModalButton
+                            icon={<CloudUploadIcon />}
+                            content={'I am the upload form'}
+                            text='Upload CSV'
+                            variant='text'
+                            size='small'
+                        />
                     </Box>
                     <Box sx={{ flexGrow: 1 }}>
                         <DataGrid

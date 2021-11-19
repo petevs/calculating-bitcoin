@@ -35,7 +35,7 @@ const ReportRow = (props) => {
     const row = {
         display: 'grid',
         gridColumn: '1 / span 1',
-        gridTemplateColumns: '1fr 100px 100px',
+        gridTemplateColumns: '1fr 125px 125px',
         gap: '.5rem',
         '@media (max-width: 768px)': {
             gridTemplateColumns: '1fr',

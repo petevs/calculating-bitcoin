@@ -31,6 +31,8 @@ const PortfolioChart = ({ data }) => {
                 return 'Total Performance'
             case ('averageCost'):
                 return 'Average Cost'
+            case ('historicalPrice'):
+                return 'Prices'
             default:
                 return 'Portfolio Value'
         }
@@ -165,7 +167,7 @@ const PortfolioChart = ({ data }) => {
 
 
     return (
-        <>
+        <Box sx={containerStyle}>
             <Box sx={{paddingBottom: '1rem'}}>
                 <TextField
                     select
@@ -181,6 +183,7 @@ const PortfolioChart = ({ data }) => {
                 >
                     <MenuItem value='currentValue'>Portfolio Market Value</MenuItem>
                     <MenuItem value='runningBitcoinBalance'>Bitcoin Holdings</MenuItem>
+                    <MenuItem value='historicalPrice'>Bitcoin Price</MenuItem>
                     <MenuItem value='unrealizedGain'>Unrealized Performance</MenuItem>
                     <MenuItem value='totalPerformance'>Total Performance</MenuItem>
                     <MenuItem value='averageCost'>Average Cost Per 1 BTC</MenuItem>
@@ -195,19 +198,26 @@ const PortfolioChart = ({ data }) => {
                     height="400px"
                 />
             </Box>
-        </>
+        </Box>
     )
 }
 
 const wrapper = {
-    margin: '0 0 0 -1rem',
+    margin: '0 -1rem 0 -1rem',
+    '@media (max-width: 768px)': {
+      margin: '0 0 0 -1rem'
+    }
 }
 
 const containerStyle = {
-  backgroundColor: '#212B36',
-  boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
-  borderRadius: '1rem',
-  padding: '2rem',
+  '@media (min-width: 768px)': {
+    backgroundColor: '#212B36',
+    boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
+    borderRadius: '1rem',
+    padding: '2rem',
+  }
+
+
 }
 
 export default PortfolioChart
