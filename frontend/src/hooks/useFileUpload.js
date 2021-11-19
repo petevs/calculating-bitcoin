@@ -14,7 +14,7 @@ const useFileUpload = () => {
     const handleFileChange = (e) => setFile(e.target.files[0])
 
     const uploadFileToStorage = async (newFile, path) => {
-        const fileRef = storage.ref(`${state.auth.uid}/${path}`)
+        const fileRef = storage.ref(`${state.auth.uid}/${path}/${newFile.name || file.name}`)
         await fileRef.put(newFile || file)
 
         return await fileRef.getDownloadURL()

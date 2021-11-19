@@ -13,7 +13,7 @@ const UpdateAvatarButton = ({hovering}) => {
     // updateUserAccount('avatarURL', url)
 
     const updatePhoto = async (e) => {
-       const url = await handleFileUploadOneStep(e)
+       const url = await handleFileUploadOneStep(e, 'avatar')
        updateUserAccount('avatarURL', url)
     }
 

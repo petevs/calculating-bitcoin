@@ -3,12 +3,19 @@ import { Box } from '@mui/system'
 import FormHeader from 'components/form/FormHeader'
 import React from 'react'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { DropzoneAreaBase } from "material-ui-dropzone";
 import useFileUpload from 'hooks/useFileUpload';
+import useFirebase from 'hooks/useFirebase';
 
 const UploadCsvForm = () => {
 
     const { handleFileUpload, file, pending } = useFileUpload()
+    const { uploadCsvTransactions } = useFirebase()
+
+    const handleCSVUpload = async (e) => {
+        const url = await handleFileUpload(e)
+        uploadCsvTransactions(url)
+    }
+
 
     return (
         <Box component='form' sx={wrapper}>
@@ -22,7 +29,7 @@ const UploadCsvForm = () => {
                 Upload CSV
                 <input
                     type='file'
-                    onChange={handleFileUpload}
+                    onChange={handleCSVUpload}
                     hidden
                 />
             </Button>
