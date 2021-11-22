@@ -7,7 +7,6 @@ export const tableTypes = (tableType) => {
         return {
             ...item,
             editable: false,
-            sortable: false
         }
     })
 }

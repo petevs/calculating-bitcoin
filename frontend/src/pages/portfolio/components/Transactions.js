@@ -48,11 +48,10 @@ const Transactions = ({columns, transactions, id}) => {
                             pageSize={5}
                             pagination
                             disableSelectionOnClick
-                            disableColumnFilter
-                            disable
+                            // disableColumnFilter
                             // hideFooter={true}
-                            disableColumnSelector
-                            disableColumnMenu
+                            // disableColumnSelector
+                            // disableColumnMenu
                             // components={{
                             //     Toolbar: CustomToolbar,
                             // }}

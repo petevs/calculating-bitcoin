@@ -38,13 +38,22 @@ const PortfolioChart = ({ data }) => {
         }
     }
 
+    const formatY = (chartType, x) => {
+      switch(chartType) {
+        case ('runningBitcoinBalance'):
+          return Math.round(x  * 100000000) / 100000000
+        default:
+          return Math.round(x)
+      }
+    }
+
     const series = [
         {
             name: handleChartName(chartType),
             data: data.map((item) => {
                 return {
                     x: item.date,
-                    y: Math.round(item[chartType]),
+                    y: formatY(chartType, item[chartType]),
                     price: Math.round(item.historicalPrice),
                     bitcoinHoldings: item.runningBitcoinBalance,
                     currentValue: item.currentValue,
@@ -67,14 +76,17 @@ const PortfolioChart = ({ data }) => {
 ]
 
     const CustomTooltip = (props) => {
-        // console.log(props)
         return (
             <Box sx={{padding: '1rem', display: 'grid', gridTemplateColumns: '1fr', alignItems: 'start'}}>
                 <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', paddingBottom: '.5rem', marginBottom: '.5rem'}}>
                     <Typography variant='body2'>{props.x}</Typography>
                 </Box>
-                <Typography variant='body1'>{props.chartType} <NumberFormat displayType='text' value={props.y} prefix='$' thousandSeparator={true} /></Typography>
-                <Typography variant='body1'>Price: <NumberFormat displayType='text' value={props.price} prefix='$' thousandSeparator={true} /></Typography>
+                {
+                  props.chartType === 'Bitcoin Holdings'
+                  ? <Typography variant='body1'>{props.chartType} {props.y} </Typography>
+                  :<Typography variant='body1'>{props.chartType} <NumberFormat displayType='text' value={props.y} prefix='$' thousandSeparator={true} /></Typography>
+                }
+                <Typography variant='body1'>Price: <NumberFormat displayType='text' value={props.price} prefix='$' thousandSeparator={true} decimalScale={2} /></Typography>
             </Box>
         )
     }
@@ -82,7 +94,6 @@ const PortfolioChart = ({ data }) => {
 
     const tooltip = {
         custom: function({series, seriesIndex, dataPointIndex, w}){
-            // console.log(w)
             const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex]
             const seriesName = w.globals.seriesNames[0]
             return renderToString(<CustomTooltip {...data} chartType={seriesName} />)
@@ -114,16 +125,8 @@ const PortfolioChart = ({ data }) => {
             yaxis: {
               labels: {
                 show: true,
-                formatter: function (value) {
-                  return "$" + Math.round(value);
-                },
-                type: 'numeric',
-                // style: {
-                //   colors: ["#fff"],
-                // },
+                formatter: (value) => { return `$ ${value}`},
               },
-              type: 'numerice',
-              min: 0,
               // opposite: true,
             },
             xaxis: {
