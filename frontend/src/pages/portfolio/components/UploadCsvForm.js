@@ -20,15 +20,15 @@ const UploadCsvForm = (props) => {
             )
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        await uploadCsvTransactions(url, props.portfolioId)
-        handleModalClose()
-    }
-
     const [ source, setSource ] = useState('')
 
     const sources = ['Shakepay CSV', 'Bull Bitcoin CSV', 'Custom CSV'] 
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await uploadCsvTransactions(url, props.portfolioId, source)
+        handleModalClose()
+    }
 
     return (
         <Box component='form' sx={wrapper} onSubmit={handleSubmit}>

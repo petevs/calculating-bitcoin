@@ -4,6 +4,7 @@ import GlobalContext from 'state/GlobalContext'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { parseCsvToTransactions } from 'state/portfolio/utils/parseCsvToTransactions'
+import { shakepayParse } from 'state/portfolio/utils/csvParsers'
 
 const useFirebase = () => {
     
@@ -117,9 +118,17 @@ const useFirebase = () => {
         })
     }
 
-    const uploadCsvTransactions = async (url, portfolioId) => {
+    const uploadCsvTransactions = async (url, portfolioId, source) => {
         const { data } = await axios.get(url)
-        const parsedData = parseCsvToTransactions(data)
+
+        const parsedData = () => {
+            switch(source) {
+                case('Shakepay CSV'):
+                    return shakepayParse(data)
+                default:
+                    return parseCsvToTransactions(data)
+            }
+        }
 
         db.collection('portfolios').doc(state.user.uid).update({
             ...state.portfolio.portfolioObj,
@@ -127,7 +136,7 @@ const useFirebase = () => {
                 ...state.portfolio.portfolioObj[portfolioId],
                 transactions: {
                     ...state.portfolio.portfolioObj[portfolioId].transactions,
-                    ...parsedData
+                    ...parsedData()
                 }
             }
         })
