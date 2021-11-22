@@ -1,6 +1,4 @@
-import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
-import TransactionActions from './TransactionActions'
 
 export const tableTypes = (tableType) => {
    return columns.map(item => {

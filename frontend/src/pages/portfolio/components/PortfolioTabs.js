@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Tabs, Tab, Typography } from '@mui/material'
+import { Tabs, Tab } from '@mui/material'
 import { Box } from '@mui/system'
-import { TabPanel } from '@mui/lab'
 
 const PortfolioTabs = ({ tabs }) => {
 
@@ -34,11 +33,11 @@ const PortfolioTabs = ({ tabs }) => {
         <Box sx={tabsStyle}>
             <Tabs value={value} onChange={handleChange} variant='scrollable'>
                 {
-                    tabs.map(tab => <Tab label={tab.title} />)
+                    tabs.map(tab => <Tab key={tab.key} label={tab.title} />)
                 }
             </Tabs>
                 {
-                    tabs.map((tab,idx) => <TabPanel value={value} index={idx}>{tab.content}</TabPanel>)
+                    tabs.map((tab,idx) => <TabPanel key={tab.key} value={value} index={idx}>{tab.content}</TabPanel>)
                 }
         </Box>
     )

@@ -1,9 +1,9 @@
 import { Box } from "@mui/system"
 import { makeStyles } from '@mui/styles'
-import { Button, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 import ModalButton from "./ModalButton"
 import TransactionForm from "./TransactionForm"
-import { DataGrid, GridToolbar } from '@mui/x-data-grid'
+import { DataGrid } from '@mui/x-data-grid'
 import AddIcon from '@mui/icons-material/Add';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import UploadCsvForm from "./UploadCsvForm"
@@ -45,8 +45,9 @@ const Transactions = ({columns, transactions, id}) => {
                             rows={transactions}
                             columns={columns}
                             // checkboxSelection
-                            pageSize={5}
                             pagination
+                            rowsPerPageOptions={[5]}
+                            pageSize={5}
                             disableSelectionOnClick
                             // disableColumnFilter
                             // hideFooter={true}

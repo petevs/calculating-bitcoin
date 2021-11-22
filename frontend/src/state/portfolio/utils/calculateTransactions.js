@@ -1,6 +1,5 @@
 import NumberFormat from 'react-number-format'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Box } from '@mui/system'
 
 
 export const calculateTransactions = (allTransactions) => {

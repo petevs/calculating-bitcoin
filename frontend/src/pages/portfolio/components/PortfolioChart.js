@@ -1,6 +1,6 @@
 import { Box } from "@mui/system"
 import Chart from 'react-apexcharts'
-import { Typography, useMediaQuery, TextField, MenuItem, InputAdornment, Divider } from '@mui/material'
+import { Typography, useMediaQuery, TextField, MenuItem, InputAdornment } from '@mui/material'
 import NumberFormat from 'react-number-format'
 import { renderToString } from 'react-dom/server'
 import { useState } from 'react'

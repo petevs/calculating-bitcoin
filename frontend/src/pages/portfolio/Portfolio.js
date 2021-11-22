@@ -18,7 +18,7 @@ const Portfolio = () => {
 
     let { id } = useParams()
 
-    const { details, transactions, summary, performanceType, handlePerformanceChange, allTransactions } = useGetPortfolio(id)
+    const { details, summary, performanceType, handlePerformanceChange, allTransactions } = useGetPortfolio(id)
 
     if(!details){
         return(<Loading />)
@@ -56,9 +56,9 @@ const Portfolio = () => {
                 </Box>
                     <PortfolioTabs 
                         tabs={[
-                            {title: 'Total Performance', content: <Report summary={summary} />},
-                            {title: 'Tax Liability', content: 'Coming soon...'},
-                            {title: 'Weighted Cost Table', content: 'Coming soon...'},
+                            {key: 1, title: 'Total Performance', content: <Report summary={summary} />},
+                            {key: 2, title: 'Tax Liability', content: 'Coming soon...'},
+                            {key: 3, title: 'Weighted Cost Table', content: 'Coming soon...'},
                         ]}
                     />
         </Page>
