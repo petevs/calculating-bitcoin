@@ -69,8 +69,9 @@ export const bullBitcoinParse = (data) => {
   const transactions = res.data.filter(transaction => transaction['to-currency'] === 'BTC')
 
   const formattedTransactions = transactions.map(transaction => {
+
     return {
-      data: moment(transaction['created-at']),
+      date: moment(transaction['created-at']).format('YYYY-MM-DD'),
       type: 'buy',
       dollarAmount: Number(transaction['from-amount']),
       price: Number(transaction['from-amount']) / Number(transaction['to-amount']),

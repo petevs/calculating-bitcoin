@@ -4,7 +4,7 @@ import GlobalContext from 'state/GlobalContext'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { parseCsvToTransactions } from 'state/portfolio/utils/parseCsvToTransactions'
-import { shakepayParse } from 'state/portfolio/utils/csvParsers'
+import { bullBitcoinParse, shakepayParse } from 'state/portfolio/utils/csvParsers'
 
 const useFirebase = () => {
     
@@ -125,6 +125,8 @@ const useFirebase = () => {
             switch(source) {
                 case('Shakepay CSV'):
                     return shakepayParse(data)
+                case('Bull Bitcoin CSV'):
+                    return bullBitcoinParse(data)
                 default:
                     return parseCsvToTransactions(data)
             }
