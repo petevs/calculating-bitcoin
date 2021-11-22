@@ -1,10 +1,12 @@
-import { Button, LinearProgress, TextField, Typography, Autocomplete } from '@mui/material'
+import { Button, LinearProgress, TextField, Typography, Autocomplete, Link } from '@mui/material'
 import { Box } from '@mui/system'
 import FormHeader from 'components/form/FormHeader'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import useFileUpload from 'hooks/useFileUpload';
 import useFirebase from 'hooks/useFirebase';
 import useModal from 'hooks/useModal';
+import { useState } from 'react'
+
 const UploadCsvForm = (props) => {
 
     const { handleCsvFileUpload, file, pending, url, readyToSubmit } = useFileUpload()
@@ -24,21 +26,31 @@ const UploadCsvForm = (props) => {
         handleModalClose()
     }
 
+    const [ source, setSource ] = useState('')
 
-    const source = [
-        { label: 'Shakepay'},
-        { label: 'Bull Bitcoin'},
-        { label: 'Custom'},
-
-    ] 
+    const sources = ['Shakepay CSV', 'Bull Bitcoin CSV', 'Custom CSV'] 
 
     return (
         <Box component='form' sx={wrapper} onSubmit={handleSubmit}>
             <FormHeader heading='Upload CSV' />
             <Autocomplete
-                options={source}
+                value={source}
+                onChange={(event, newValue) => {
+                    setSource(newValue)
+                }}
+                options={sources}
                 renderInput={(params) => <TextField {...params} label='Data Source' />}
             />
+            {
+                source === 'Custom CSV' && 
+                <Link
+                    underline='hover' 
+                    sx={linkStyle}
+                    href='https://firebasestorage.googleapis.com/v0/b/calculatingbitcoin.appspot.com/o/Sample_Template.csv?alt=media&token=8546429e-a5b2-4cd7-9bf8-b4228d20e4b7'
+                >
+                Download Sample Template
+                </Link>
+            }
             <Button
                 variant='contained'
                 component='label'
@@ -78,4 +90,8 @@ const buttonStyle = {
         boxShadow: 'none',
         opacity: 0.72,
     }
+}
+
+const linkStyle = {
+    fontSize: '.75rem'
 }
