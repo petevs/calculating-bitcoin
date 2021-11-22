@@ -10,6 +10,7 @@ const useFileUpload = () => {
     const [file, setFile] = useState('')
     const [pending, setPending] = useState(false)
     const [url, setUrl] = useState('')
+    const [readyToSubmit, setReadyToSubmit] = useState(false)
 
     const handleFileChange = (e) => setFile(e.target.files[0])
 
@@ -59,12 +60,13 @@ const useFileUpload = () => {
             callback(downloadURL, portfolioId)
         }
         setPending(false)
+        setReadyToSubmit(true)
 
         return downloadURL
     }
 
 
-    return {file, pending, url, handleFileChange, handleFileUpload, handleFileUploadOneStep, handleCsvFileUpload}
+    return {file, pending, url, readyToSubmit, handleFileChange, handleFileUpload, handleFileUploadOneStep, handleCsvFileUpload}
 }
 
 export default useFileUpload

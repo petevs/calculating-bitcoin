@@ -5,24 +5,30 @@ import React from 'react'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import useFileUpload from 'hooks/useFileUpload';
 import useFirebase from 'hooks/useFirebase';
+import useModal from 'hooks/useModal';
 
 const UploadCsvForm = (props) => {
 
-    const { handleCsvFileUpload, file, pending } = useFileUpload()
+    const { handleCsvFileUpload, file, pending, url, readyToSubmit } = useFileUpload()
     const { uploadCsvTransactions } = useFirebase()
+    const { handleModalClose } = useModal()
 
     const handleCSVUpload = async (e) => {
         await handleCsvFileUpload(
                 e, 
-                `csvFiles/${props.portfolioId}`, 
-                uploadCsvTransactions,
-                props.portfolioId
+                `csvFiles/${props.portfolioId}`
             )
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await uploadCsvTransactions(url, props.portfolioId)
+        handleModalClose()
     }
 
 
     return (
-        <Box component='form' sx={wrapper}>
+        <Box component='form' sx={wrapper} onSubmit={handleSubmit}>
             <FormHeader heading='Upload CSV' />
             <Button
                 variant='contained'
@@ -39,7 +45,7 @@ const UploadCsvForm = (props) => {
             </Button>
             {pending && <LinearProgress />}
             <Typography variant='caption'>{file.name}</Typography>
-            <Button variant='contained' disabled>Submit</Button>
+            <Button variant='contained' type='submit' disabled={!readyToSubmit}>Submit</Button>
         </Box>
     )
 }
