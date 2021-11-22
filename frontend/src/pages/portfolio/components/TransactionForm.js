@@ -1,4 +1,4 @@
-import { TextField, InputAdornment, IconButton, Button, Switch, Divider, FormControlLabel } from "@mui/material"
+import { TextField, InputAdornment, IconButton, Button, Switch, Divider, FormControlLabel, ToggleButtonGroup, ToggleButton } from "@mui/material"
 import { Box } from "@mui/system"
 import DateField from "components/DateField"
 import FormHeader from "components/form/FormHeader"
@@ -62,7 +62,17 @@ const TransactionForm = (props) => {
 
     return (
         <Box component='form'  onSubmit={handleSubmit} sx={wrapper}>
-            <FormHeader heading={props.formType === 'edit' ? 'Edit Transaction' : 'Add Transaction'} />
+            <FormHeader heading={props.formType === 'edit' ? 'Edit Transaction' : 'Add Transaction'} sx={{textAlign: 'center', paddingBottom: '0px'}}/>
+            <ToggleButtonGroup
+                value={reducerState.type}
+                onChange={() => dispatch(toggleTransactionType())}
+                size='small'
+                color='primary'
+                sx={{justifySelf: 'center', marginBottom: '1rem'}}
+            >
+                <ToggleButton value='buy'>Buy</ToggleButton>
+                <ToggleButton value='sell'>Sell</ToggleButton>
+            </ToggleButtonGroup>
             <DateField 
                 label='Date'
                 value={reducerState.date || moment()}
@@ -82,6 +92,7 @@ const TransactionForm = (props) => {
                 onValueChange={(e) => dispatch(updatePrice(e.floatValue))}
                 onFocus={() => handleFocus('price')}
                 decimalScale={2}
+                fixedDecimalScale={2}
             />
             <FormControlLabel 
                 sx={historicalSwitch} 
