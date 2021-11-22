@@ -17,7 +17,7 @@ export const updateMarketData = functions
         
         result = data
 
-        db.collection('marketData').doc('data').set({...result.market_data})
+        return db.collection('marketData').doc('data').set({...result.market_data})
 
     })
 
@@ -52,6 +52,6 @@ export const updateHistoricalData = functions
 
         const currencies = ['cad', 'usd']
 
-        currencies.forEach(curr => getHistorical(curr))
+        return currencies.forEach(curr => getHistorical(curr))
 
     })
