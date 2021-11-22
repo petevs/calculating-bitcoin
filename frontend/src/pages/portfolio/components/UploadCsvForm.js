@@ -1,12 +1,10 @@
-import { Button, LinearProgress, Typography } from '@mui/material'
+import { Button, LinearProgress, TextField, Typography, Autocomplete } from '@mui/material'
 import { Box } from '@mui/system'
 import FormHeader from 'components/form/FormHeader'
-import React from 'react'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import useFileUpload from 'hooks/useFileUpload';
 import useFirebase from 'hooks/useFirebase';
 import useModal from 'hooks/useModal';
-
 const UploadCsvForm = (props) => {
 
     const { handleCsvFileUpload, file, pending, url, readyToSubmit } = useFileUpload()
@@ -27,9 +25,20 @@ const UploadCsvForm = (props) => {
     }
 
 
+    const source = [
+        { label: 'Shakepay'},
+        { label: 'Bull Bitcoin'},
+        { label: 'Custom'},
+
+    ] 
+
     return (
         <Box component='form' sx={wrapper} onSubmit={handleSubmit}>
             <FormHeader heading='Upload CSV' />
+            <Autocomplete
+                options={source}
+                renderInput={(params) => <TextField {...params} label='Data Source' />}
+            />
             <Button
                 variant='contained'
                 component='label'
@@ -57,25 +66,13 @@ const wrapper = {
     gridTemplateColumns: '1fr',
     gap: '1rem',
     padding: '1rem',
-    '& .MuiDropzoneArea-root': {
-        minHeight: '150px',
-        backgroundColor: 'rgba(145, 158, 171, 0.16)',
-        border: '1px dashed rgba(145, 158, 171, 0.32)',
-        borderRadius: '8px',
-        '& svg': {
-            color: '#fff'
-        }
-    },
-    '& .MuiDropzoneArea-text': {
-        fontSize: '1rem',
-    }
 }
 
 const buttonStyle = {
     backgroundColor: 'rgba(145, 158, 171, 0.16)',
-    border: '1px dashed rgba(145, 158, 171, 0.32)',
     boxShadow: 'none',
     minHeight: '150px',
+    border: '1px dashed rgba(145, 158, 171, 0.32)',
     '&:hover': {
         backgroundColor: 'rgba(145, 158, 171, 0.16)',
         boxShadow: 'none',
