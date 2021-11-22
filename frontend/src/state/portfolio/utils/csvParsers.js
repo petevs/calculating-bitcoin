@@ -57,3 +57,28 @@ export const shakepayParse = (data) => {
 
         return convertToObject(formattedTransactions)
 }
+
+
+export const bullBitcoinParse = (data) => {
+
+  const res = Papa.parse(data, {
+    delimiter: ';',
+    header: true,
+  })
+
+  const transactions = res.data.filter(transaction => transaction['to-currency'] === 'BTC')
+
+  const formattedTransactions = transactions.map(transaction => {
+    return {
+      data: moment(transaction['created-at']),
+      type: 'buy',
+      dollarAmount: Number(transaction['from-amount']),
+      price: Number(transaction['from-amount']) / Number(transaction['to-amount']),
+      bitcoin: Number(transaction['to-amount']),
+      useHistoricalPrice: false
+    }
+  })
+
+  return convertToObject(formattedTransactions)
+
+}
