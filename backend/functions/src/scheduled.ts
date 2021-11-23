@@ -21,22 +21,20 @@ export const updateMarketData = functions
 
     })
 
-export const updateHistoricalData = functions
+export const updateHistoricalDataCAD = functions
     .runWith({ memory: '1GB', timeoutSeconds: 300})
-    .pubsub.schedule('0 * * * *').onRun( async (context) => {
+    .pubsub.schedule('0 */4 * * *').onRun( async (context) => {
 
-
-        const getHistorical = async (currency: any) => {
 
             let result: any
     
-            const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${currency}&days=3650&interval=daily`)
+            const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=cad&days=3650&interval=daily`)
     
             result = data
     
             let historical = {}
     
-            await result.prices.forEach( (item: any) => {
+            result.prices.forEach( (item: any) => {
     
                 const friendlyDate:any = moment(item[0]).format('YYYY-MM-DD')
     
@@ -46,12 +44,33 @@ export const updateHistoricalData = functions
                 }
             })
     
-            db.collection('historicalData').doc(currency).set(historical)
-        }
+            return db.collection('historicalData').doc('cad').update(historical)
+
+    })
+
+export const updateHistoricalDataUSD = functions
+    .runWith({ memory: '1GB', timeoutSeconds: 300})
+    .pubsub.schedule('0 */4 * * *').onRun( async (context) => {
 
 
-        const currencies = ['cad', 'usd']
-
-        return currencies.forEach(curr => getHistorical(curr))
+            let result: any
+    
+            const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=3650&interval=daily`)
+    
+            result = data
+    
+            let historical = {}
+    
+            result.prices.forEach( (item: any) => {
+    
+                const friendlyDate:any = moment(item[0]).format('YYYY-MM-DD')
+    
+                historical = {
+                    ...historical,
+                    [friendlyDate]: item[1]
+                }
+            })
+    
+            return db.collection('historicalData').doc('usd').update(historical)
 
     })
