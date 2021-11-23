@@ -22,7 +22,7 @@ const UploadCsvForm = (props) => {
 
     const [ source, setSource ] = useState('')
 
-    const sources = ['Shakepay CSV', 'Bull Bitcoin CSV', 'Custom CSV'] 
+    const sources = ['Shakepay CSV', 'Bull Bitcoin CSV', 'Bitbuy CSV', 'Custom CSV'] 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
