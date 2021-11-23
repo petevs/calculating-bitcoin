@@ -106,3 +106,26 @@ export const bitbuyParse = (data) => {
 
   return convertToObject(formattedTransactions)
 }
+
+export const coinbaseParse = (data) => {
+  const res = Papa.parse(data, {
+    delimiter: ',',
+    header: true,
+  })
+
+  const transactions = res.data.filter(transaction => transaction['Transaction Type'] === 'Buy')
+
+  const formattedTransactions = transactions.map(transaction => {
+
+    return {
+      date: moment(transaction['Timestamp']).format('YYYY-MM-DD'),
+      type: 'buy',
+      dollarAmount: Number(transaction['Total (inclusive of fees)']),
+      price: Number(transaction['Spot Price at Transaction']),
+      bitcoin: Number(transaction['Quantity Transacted']),
+      useHistoricalPrice: false
+    }
+  })
+
+  return convertToObject(formattedTransactions)
+}
