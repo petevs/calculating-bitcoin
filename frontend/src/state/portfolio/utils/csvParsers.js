@@ -129,3 +129,26 @@ export const coinbaseParse = (data) => {
 
   return convertToObject(formattedTransactions)
 }
+
+export const blockfiParse = (data) => {
+  const res = Papa.parse(data, {
+    delimiter: ',',
+    header: true,
+  })
+
+  const transactions = res.data.filter(transaction => transaction['Transaction Type'] === 'Interest Payment')
+
+  const formattedTransactions = transactions.map(transaction => {
+
+    return {
+      date: moment(transaction['Confirmed At']).format('YYYY-MM-DD'),
+      type: 'buy',
+      dollarAmount: 0,
+      price: 0,
+      bitcoin: Number(transaction['Amount']),
+      useHistoricalPrice: false
+    }
+  })
+
+  return convertToObject(formattedTransactions)
+}
