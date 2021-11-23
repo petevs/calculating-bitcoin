@@ -15,18 +15,28 @@ const useGetPortfolio = (id) => {
     
     const transactions = transactionsObjectToArray(details.transactions)
 
-    const recurringTransactions = transactionsObjectToArray(details.recurringTransactions)
+    const recurringTransactionsList = transactionsObjectToArray(details.recurringTransactions)
 
     const allTransactions = createAllTransactions(
-        transactions, historicalData, currentPrice
+        transactions, historicalData, currentPrice, recurringTransactionsList
     )
 
     const summary = allTransactions ? allTransactions[allTransactions.length - 1] : []
 
     const [performanceType, setPerformanceType] = useState('Unrealized Performance')
+    
     const handlePerformanceChange = (e) => setPerformanceType(e.target.value)
 
-    return { details, transactions, recurringTransactions, allTransactions, summary, performanceType, handlePerformanceChange }
+    return { 
+        details, 
+        transactions, 
+        recurringTransactionsList, 
+        allTransactions, 
+        summary, 
+        performanceType, 
+        handlePerformanceChange 
+    }
+
 
 }
 
