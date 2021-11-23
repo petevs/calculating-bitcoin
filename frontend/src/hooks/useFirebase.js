@@ -29,7 +29,7 @@ const useFirebase = () => {
             [portfolioId]: {
                 ...values,
                 transactions: {},
-                reccuringBuys: {},
+                reccuringTransactions: {},
             }
         })
 
@@ -45,7 +45,7 @@ const useFirebase = () => {
             [portfolioId]: {
                 ...values,
                 transactions: state.portfolio.portfolioObj[portfolioId].transactions,
-                reccuringBuys: state.portfolio.portfolioObj[portfolioId].recurringBuys ? state.portfolio.portfolioObj[portfolioId].recurringBuys : {},
+                reccuringTransactions: state.portfolio.portfolioObj[portfolioId].recurringTransactions ? state.portfolio.portfolioObj[portfolioId].recurringTransactions : {},
             }
         })
 
@@ -150,6 +150,29 @@ const useFirebase = () => {
         })
     }
 
+    const addRecurringTransaction = (portfolioId, values) => {
+        db.collection('portfolios').doc(state.user.uid).update({
+            ...state.portfolio.portfolioObj,
+            [portfolioId]: {
+                ...state.portfolio.portfolioObj[portfolioId],
+                recurringTransactions: {
+                    ...state.portfolio.portfolioObj[portfolioId].recurringTransactions,
+                    [values.id]: {
+                        ...values
+                    }
+                }
+            }
+        })
+    }
+
+    const deleteRecurringTransaction = (portfolioId, transactionId) => {
+        const updatedPortfolio = {...state.portfolio.portfolioObj}
+        delete updatedPortfolio[portfolioId].recurringTransactions[transactionId]
+
+        db.collection('portfolios').doc(state.user.uid).update({
+            ...updatedPortfolio
+        })
+    }
 
 
     return { 
@@ -161,7 +184,9 @@ const useFirebase = () => {
         toggleVisibility,
         addTransaction,
         deleteTransaction,
-        uploadCsvTransactions
+        uploadCsvTransactions,
+        addRecurringTransaction,
+        deleteRecurringTransaction
     }
 
 }

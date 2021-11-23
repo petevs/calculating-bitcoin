@@ -5,10 +5,18 @@ import NumberFormat from 'react-number-format'
 import { TextField, MenuItem, Button, FormControlLabel, Switch, InputAdornment } from '@mui/material'
 import DateField from 'components/DateField'
 import { initialRecurringTransaction, recurringTransactionReducer, toggleUseEndDate, updateValue } from 'state/recurringTransactionForm/recurringTransactionReducer'
+import useModal from 'hooks/useModal'
 
 const RecurringTransactionForm = (props) => {
 
-    const [reducerState, dispatch ] = useReducer(recurringTransactionReducer, initialRecurringTransaction)
+
+    const initialValues = {
+        ...initialRecurringTransaction
+    }
+
+
+    const [reducerState, dispatch ] = useReducer(recurringTransactionReducer, initialValues)
+    const { handleModalClose } = useModal()
 
     const handleDateChange = (value, name) => {
 
@@ -19,8 +27,14 @@ const RecurringTransactionForm = (props) => {
         return dispatch(updateValue(payload))
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(reducerState)
+        handleModalClose()
+    }
+
     return (
-        <Box component='form' sx={wrapper}>
+        <Box component='form' sx={wrapper} onSubmit={handleSubmit}>
             <FormHeader heading='Add Recurring Transaction' />
             <DateField
                 label='Start Date'
@@ -85,7 +99,7 @@ const RecurringTransactionForm = (props) => {
                 <MenuItem value={'weekly'}>Weekly</MenuItem>
                 <MenuItem value={'monthly'}>Monthly</MenuItem>
             </TextField>
-            <Button variant='contained' size='large'>Add Recurring Transaction</Button>        
+            <Button variant='contained' size='large' type='submit'>Add Recurring Transaction</Button>        
             </Box>
     )
 }

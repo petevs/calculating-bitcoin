@@ -11,7 +11,7 @@ export const portfolioObjectToArray = (portfolioObj) => {
                     portfolioDescription: currentPortfolio.description,
                     portfolioName: currentPortfolio.portfolioName,
                     transactions: currentPortfolio.transactions,
-                    recurringBuys: currentPortfolio.recurringBuys
+                    recurringTransactions: currentPortfolio.recurringTransactions
                 }
             )
         }
