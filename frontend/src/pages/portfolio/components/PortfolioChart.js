@@ -33,6 +33,8 @@ const PortfolioChart = ({ data }) => {
                 return 'Average Cost'
             case ('historicalPrice'):
                 return 'Prices'
+            case ('totalInvested'):
+                return 'Total Invested'
             default:
                 return 'Portfolio Value'
         }
@@ -190,6 +192,7 @@ const PortfolioChart = ({ data }) => {
                     <MenuItem value='unrealizedGain'>Unrealized Performance</MenuItem>
                     <MenuItem value='totalPerformance'>Total Performance</MenuItem>
                     <MenuItem value='averageCost'>Average Cost Per 1 BTC</MenuItem>
+                    <MenuItem value='totalInvested'>Total Invested</MenuItem>
                 </TextField>
             </Box>
             <Box sx={wrapper}>
