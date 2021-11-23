@@ -4,27 +4,51 @@ import FormHeader from 'components/form/FormHeader'
 import NumberFormat from 'react-number-format'
 import { TextField, MenuItem, Button, FormControlLabel, Switch, InputAdornment } from '@mui/material'
 import DateField from 'components/DateField'
+import { initialRecurringTransaction, recurringTransactionReducer, toggleUseEndDate, updateValue } from 'state/recurringTransactionForm/recurringTransactionReducer'
 
-const RecurringTransactionForm = () => {
+const RecurringTransactionForm = (props) => {
+
+    const [reducerState, dispatch ] = useReducer(recurringTransactionReducer, initialRecurringTransaction)
+
+    const handleDateChange = (value, name) => {
+
+        const payload = {
+            name: name,
+            value: value
+        }
+        return dispatch(updateValue(payload))
+    }
+
     return (
         <Box component='form' sx={wrapper}>
             <FormHeader heading='Add Recurring Transaction' />
             <DateField
                 label='Start Date'
+                value={reducerState.startDate}
+                onChange={(value) => handleDateChange(value, 'startDate')}
             />
             <FormControlLabel
                 sx={switchStyle}
                 control={
                     <Switch
                         size='small'
-                        checked={false}
+                        checked={reducerState.useEndDate}
+                        onChange={() => dispatch(toggleUseEndDate())}
                     />
                 }
                 label='Set End Date'
             />
-            <DateField
-                label='End Date'
-            />
+            {
+                reducerState.useEndDate &&
+                <DateField
+                    label='End Date'
+                    value={reducerState.endDate}
+                    onChange={(value) => handleDateChange(value, 'endDate')}
+                    params={
+                        {disableFuture: false}
+                    }
+                />
+            }
             <NumberFormat
                 label='Purchase Amount' 
                 customInput={TextField}
@@ -35,16 +59,33 @@ const RecurringTransactionForm = () => {
                         $
                     </InputAdornment>),
                 }}
+                inputProps={{
+                    type: 'numeric'
+                }}
+                value={reducerState.purchaseAmount}
+                onValueChange={(e) => dispatch(
+                    updateValue({
+                        name: 'purchaseAmount', 
+                        value: e.floatValue
+                    })
+                    )}
             />
             <TextField
                 label='Frequency'
                 select
+                value={reducerState.frequency}
+                onChange={(e) => dispatch(
+                    updateValue({
+                        name: 'frequency', 
+                        value: e.target.value
+                    })
+                    )}
             >
-                <MenuItem>Daily</MenuItem>
-                <MenuItem>Weekly</MenuItem>
-                <MenuItem>Monthly</MenuItem>
+                <MenuItem value={'daily'}>Daily</MenuItem>
+                <MenuItem value={'weekly'}>Weekly</MenuItem>
+                <MenuItem value={'monthly'}>Monthly</MenuItem>
             </TextField>
-            <Button variant='contained'>Add Recurring Transaction</Button>        
+            <Button variant='contained' size='large'>Add Recurring Transaction</Button>        
             </Box>
     )
 }

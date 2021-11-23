@@ -31,6 +31,7 @@ const DateField = (props) => {
                     value={value}
                     onChange={onChange}
                     renderInput={(params) => <TextField {...params} />}
+                    {...props.params}
                 />
             :   <DesktopDatePicker
                     disableFuture
@@ -41,6 +42,7 @@ const DateField = (props) => {
                     value={value}
                     onChange={onChange}
                     renderInput={(params) => <TextField {...params} />}
+                    {...props.params}
                 />
         }
         </>
