@@ -6,6 +6,7 @@ import { TextField, MenuItem, Button, FormControlLabel, Switch, InputAdornment }
 import DateField from 'components/DateField'
 import { initialRecurringTransaction, recurringTransactionReducer, toggleUseEndDate, updateValue } from 'state/recurringTransactionForm/recurringTransactionReducer'
 import useModal from 'hooks/useModal'
+import useFirebase from 'hooks/useFirebase'
 
 const RecurringTransactionForm = (props) => {
 
@@ -17,6 +18,7 @@ const RecurringTransactionForm = (props) => {
 
     const [reducerState, dispatch ] = useReducer(recurringTransactionReducer, initialValues)
     const { handleModalClose } = useModal()
+    const { addRecurringTransaction } = useFirebase()
 
     const handleDateChange = (value, name) => {
 
@@ -29,7 +31,12 @@ const RecurringTransactionForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(reducerState)
+        const values = {
+            ...reducerState,
+            startDate: reducerState.startDate.format('YYYY-MM-DD'),
+            endDate: reducerState.endDate.format('YYYY-MM-DD')
+        }
+        addRecurringTransaction(props.portfolioId, values)
         handleModalClose()
     }
 

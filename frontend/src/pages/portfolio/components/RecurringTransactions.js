@@ -4,23 +4,31 @@ import { Typography } from '@mui/material';
 import ModalButton from './ModalButton'
 import AddIcon from '@mui/icons-material/Add';
 import RecurringTransactionForm from './RecurringTransactionForm';
+import RecurringTransaction from './RecurringTransaction';
+import { DataGrid } from '@mui/x-data-grid'
 
-const RecurringTransactions = () => {
+const RecurringTransactions = (props) => {
+
     return (
         <Box sx={tableContainerStyle}>
-        <Typography variant='h6' sx={{textAlign: 'center'}}>Recurring Transactions</Typography>
+        <Typography variant='h6'>Recurring Transactions</Typography>
         <Box sx={{
             display: 'grid', 
-            gridAutoFlow: 'column', 
-            justifyContent: 'center', 
-            alignItems: 'center', 
+            gridAutoFlow: 'row', 
             gap: '1rem',
             paddingBottom: '1rem'
             }}>
+            {
+                props.recurringTransactions.map( item => 
+                
+                    <RecurringTransaction key={item.id} {...item} />
+                    
+                )
+            }
             <ModalButton
                 icon={<AddIcon />}
-                content={<RecurringTransactionForm />}
-                text='Add Transaction'
+                content={<RecurringTransactionForm {...props} />}
+                text='Add Recurring Transaction'
                 variant='contained'
                 size='small'
             />
@@ -32,8 +40,6 @@ const RecurringTransactions = () => {
 export default RecurringTransactions
 
 const tableContainerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
     backgroundColor: '#212B36',
     boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
     borderRadius: '1rem',

@@ -18,7 +18,9 @@ const Portfolio = () => {
 
     let { id } = useParams()
 
-    const { details, summary, performanceType, handlePerformanceChange, allTransactions } = useGetPortfolio(id)
+    const { details, summary, performanceType, handlePerformanceChange, allTransactions, recurringTransactions } = useGetPortfolio(id)
+
+    console.log(recurringTransactions)
 
     if(!details){
         return(<Loading />)
@@ -52,7 +54,7 @@ const Portfolio = () => {
                 <PortfolioChart data={allTransactions} />
                 <Box sx={style}>
                     <Transactions columns={columns} transactions={filteredTransactions} id={id} />
-                    <RecurringTransactions />
+                    <RecurringTransactions portfolioId={id} recurringTransactions={recurringTransactions}/>
                 </Box>
                     <PortfolioTabs 
                         tabs={[
