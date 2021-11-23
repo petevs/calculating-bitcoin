@@ -15,12 +15,6 @@ const LoggedinMenu = () => {
             >
                 Account
             </MenuItem>
-            <MenuItem
-                component={Link}
-                to='/settings'
-            >
-                Settings
-            </MenuItem>
             <Divider />
             <Button 
                 sx={{width: '100%'}}
