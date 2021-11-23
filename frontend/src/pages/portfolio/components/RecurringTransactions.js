@@ -3,6 +3,7 @@ import { Box } from '@mui/system'
 import { Typography } from '@mui/material';
 import ModalButton from './ModalButton'
 import AddIcon from '@mui/icons-material/Add';
+import RecurringTransactionForm from './RecurringTransactionForm';
 
 const RecurringTransactions = () => {
     return (
@@ -18,7 +19,7 @@ const RecurringTransactions = () => {
             }}>
             <ModalButton
                 icon={<AddIcon />}
-                content={<>I will be the recurring form</>}
+                content={<RecurringTransactionForm />}
                 text='Add Transaction'
                 variant='contained'
                 size='small'
