@@ -83,3 +83,26 @@ export const bullBitcoinParse = (data) => {
   return convertToObject(formattedTransactions)
 
 }
+
+export const bitbuyParse = (data) => {
+  const res = Papa.parse(data, {
+    delimiter: ',',
+    header: true,
+  })
+
+  const transactions = res.data.filter(transaction => transaction['side'] === 'BUY')
+
+  const formattedTransactions = transactions.map(transaction => {
+
+    return {
+      date: moment(transaction['date']).format('YYYY-MM-DD'),
+      type: 'buy',
+      dollarAmount: Number(transaction['weightedAverageFillPrice'] * Number(transaction['quantity'])),
+      price: Number(transaction['weightedAverageFillPrice']),
+      bitcoin: Number(transaction['quantity']),
+      useHistoricalPrice: false
+    }
+  })
+
+  return convertToObject(formattedTransactions)
+}
