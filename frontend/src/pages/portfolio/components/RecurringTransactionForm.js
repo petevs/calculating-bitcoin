@@ -7,12 +7,19 @@ import DateField from 'components/DateField'
 import { initialRecurringTransaction, recurringTransactionReducer, toggleUseEndDate, updateValue } from 'state/recurringTransactionForm/recurringTransactionReducer'
 import useModal from 'hooks/useModal'
 import useFirebase from 'hooks/useFirebase'
+import moment from 'moment'
 
 const RecurringTransactionForm = (props) => {
 
 
     const initialValues = {
-        ...initialRecurringTransaction
+        id: props.id || initialRecurringTransaction.id,
+        useEndDate: props.useEndDate || initialRecurringTransaction.useEndDate,
+        startDate: moment(props.startDate) || initialRecurringTransaction.startDate,
+        endDate: moment(props.endDate) || initialRecurringTransaction.endDate,
+        purchaseAmount: props.purchaseAmount || initialRecurringTransaction.purchaseAmount,
+        frequency: props.frequency || initialRecurringTransaction.frequency
+
     }
 
 
@@ -42,7 +49,7 @@ const RecurringTransactionForm = (props) => {
 
     return (
         <Box component='form' sx={wrapper} onSubmit={handleSubmit}>
-            <FormHeader heading='Add Recurring Transaction' />
+            <FormHeader heading={props.formType === 'edit' ? 'Edit Recurring Transaction' : 'Add Recurring Transaction'} />
             <DateField
                 label='Start Date'
                 value={reducerState.startDate}
@@ -106,7 +113,7 @@ const RecurringTransactionForm = (props) => {
                 <MenuItem value={'weekly'}>Weekly</MenuItem>
                 <MenuItem value={'monthly'}>Monthly</MenuItem>
             </TextField>
-            <Button variant='contained' size='large' type='submit'>Add Recurring Transaction</Button>        
+            <Button variant='contained' size='large' type='submit'>{props.formType === 'edit' ? 'Save Changes' : 'Add Recurring Transaction'}</Button>        
             </Box>
     )
 }

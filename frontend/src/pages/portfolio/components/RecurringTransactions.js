@@ -5,7 +5,6 @@ import ModalButton from './ModalButton'
 import AddIcon from '@mui/icons-material/Add';
 import RecurringTransactionForm from './RecurringTransactionForm';
 import RecurringTransaction from './RecurringTransaction';
-import { DataGrid } from '@mui/x-data-grid'
 
 const RecurringTransactions = (props) => {
 
@@ -21,7 +20,7 @@ const RecurringTransactions = (props) => {
             {
                 props.recurringTransactions.map( item => 
                 
-                    <RecurringTransaction key={item.id} {...item} />
+                    <RecurringTransaction key={item.id} {...item} portfolioId={props.portfolioId} />
                     
                 )
             }

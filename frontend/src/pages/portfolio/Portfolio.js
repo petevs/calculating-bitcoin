@@ -20,8 +20,6 @@ const Portfolio = () => {
 
     const { details, summary, performanceType, handlePerformanceChange, allTransactions, recurringTransactions } = useGetPortfolio(id)
 
-    console.log(recurringTransactions)
-
     if(!details){
         return(<Loading />)
     }
