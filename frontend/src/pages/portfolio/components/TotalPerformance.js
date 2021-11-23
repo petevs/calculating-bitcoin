@@ -1,7 +1,13 @@
-import React from 'react'
+import { useContext } from 'react'
 import Scorecard from 'components/Scorecard'
+import GlobalContext from 'state/GlobalContext'
+
 
 const TotalPerformance = (props) => {
+
+    const { state } = useContext(GlobalContext)
+    const { currency } = state.user
+
     return (
         <>
            <Scorecard
@@ -14,7 +20,7 @@ const TotalPerformance = (props) => {
                     }}
             />
             <Scorecard
-                title='Portfolio Value'
+                title={`Portfolio Value (${currency})`}
                 value={props.currentValue || ''}
                 numberFormat={{
                     thousandSeparator: true,
@@ -23,7 +29,7 @@ const TotalPerformance = (props) => {
                 }}
             />
             <Scorecard
-                title='Total Return'
+                title={`Total Return (${currency})`}
                 value={props.totalGain || ''}
                 numberFormat={{
                     prefix: '$',
@@ -33,7 +39,7 @@ const TotalPerformance = (props) => {
                 }}
             />
             <Scorecard
-                title='Total Invested'
+                title={`Total Invested (${currency})`}
                 value={props.totalCost || ''}
                 numberFormat={{
                     prefix: '$',
