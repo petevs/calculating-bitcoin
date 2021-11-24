@@ -4,13 +4,14 @@ import { useContext } from 'react'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import AddPortfolio from './AddPortfolio';
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 
 
 const SideBarMenu = () => {
 
     const { state } = useContext(GlobalContext)
 
-    const menu = [
+    const portfolioMenu = [
         {
             title: 'Portfolios',
             icon: <LibraryBooksIcon />,
@@ -20,21 +21,45 @@ const SideBarMenu = () => {
                     to: `/portfolio/${item.id}`
                     }
                 })
-        },
-        // {
-        //     title: 'Calculators',
-        //     icon: <CalculateIcon />,
-        //     data: [{
-        //         text: 'Retirement Calculator',
-        //         to: `/calculators`
-        //     }]
-        // }
+        }
     ]
     
+    const calculatorMenu = [
+        {
+            title: 'Calculators',
+            icon: <CalculateIcon />,
+            data: [
+                {
+                    text: 'Retire on Bitcoin',
+                    to: '/calculators/'
+                },
+                {
+                    text: 'Tax Liability',
+                    to: '/calculators/'
+                },
+                {
+                    text: 'Trade Preview',
+                    to: '/calculators/'
+                },
+                {
+                    text: 'Speculative Attack',
+                    to: '/calculators/'
+                },
+
+            ]
+        }
+    ]
+
+    const bookmarks = [
+        {
+            title: 'My Bookmarks',
+            icon: <CollectionsBookmarkIcon />,
+        }
+    ]
 
     return (
         <>
-            {menu.map(item => 
+            {portfolioMenu.map(item => 
                 <SideBarList
                     key={item.title}
                     title={item.title}
@@ -42,6 +67,26 @@ const SideBarMenu = () => {
                     data={item.data}
                 >
                     <AddPortfolio />
+                </SideBarList>
+                )
+            }
+            {calculatorMenu.map(item => 
+                <SideBarList
+                    key={item.title}
+                    title={item.title}
+                    icon={item.icon}
+                    data={item.data}
+                >
+                </SideBarList>
+                )
+            }
+            {bookmarks.map(item => 
+                <SideBarList
+                    key={item.title}
+                    title={item.title}
+                    icon={item.icon}
+                    data={item.data}
+                >
                 </SideBarList>
                 )
             }

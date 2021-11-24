@@ -21,18 +21,21 @@ const SideBarList = ({icon, title, data, children}) => {
                 <ListItemText primary={title} />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-            <Collapse in={open} timeout='auto' unmountOnExit>
-                {
-                    data.map(item => 
-                        <ListItem
-                            key={item.text}
-                            to={item.to}
-                            text={item.text}
-                        />
-                    )
-                }
-                {children}
-            </Collapse>
+            {
+                data &&
+                <Collapse in={open} timeout='auto' unmountOnExit>
+                    {
+                        data.map(item => 
+                            <ListItem
+                                key={item.text}
+                                to={item.to}
+                                text={item.text}
+                            />
+                        )
+                    }
+                    {children}
+                </Collapse>
+            }
         </List>
     )
 }
