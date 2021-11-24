@@ -12,6 +12,7 @@ import { Box } from '@mui/system'
 import Report from './components/Report'
 import RecurringTransactions from './components/RecurringTransactions'
 import PortfolioTabs from './components/PortfolioTabs'
+import { Alert, AlertTitle } from '@mui/material'
 
 
 const Portfolio = () => {
@@ -49,6 +50,12 @@ const Portfolio = () => {
                     performanceType={performanceType} 
                     handlePerformanceChange={handlePerformanceChange} 
                 />
+                {
+                    !allTransactions && 
+                    <Alert severity='warning'>
+                        <AlertTitle>Add a Transaction to Populate Report</AlertTitle>
+                    </Alert>
+                }
                 <PortfolioChart data={allTransactions} />
                 <Box sx={style}>
                     <Transactions columns={columns} transactions={filteredTransactions} id={id} />
