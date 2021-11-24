@@ -2,6 +2,9 @@ import React from 'react'
 import { Button } from '@mui/material'
 import useModal from 'hooks/useModal'
 import PortfolioForm from 'components/PortfolioForm'
+import AddIcon from '@mui/icons-material/Add';
+import { ListItemButton } from '@mui/material';
+import { ListItemIcon, ListItemText } from '@material-ui/core';
 
 const AddPortfolio = () => {
 
@@ -9,14 +12,30 @@ const AddPortfolio = () => {
 
     return (
         <>
-            <Button onClick={() => handleModalOpen(
+            <ListItemButton 
+                fullWidth 
+                sx={buttonStyle}
+                onClick={() => handleModalOpen(
                     <PortfolioForm title='Add Portfolio' />
                 )}
             >
+                <ListItemIcon>
+                    <AddIcon />
+                </ListItemIcon>
                 Add Portfolio
-            </Button>
+            </ListItemButton>
         </>
     )
 }
 
 export default AddPortfolio
+
+
+const buttonStyle = {
+    paddingLeft: '2rem',
+    fontSize: '1rem',
+    color: 'orange',
+    '& .MuiSvgIcon-root': {
+        color: 'orange'
+    }
+}

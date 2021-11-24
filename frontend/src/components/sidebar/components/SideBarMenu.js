@@ -2,6 +2,8 @@ import SideBarList from './SideBarList';
 import GlobalContext from 'state/GlobalContext';
 import { useContext } from 'react'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import AddPortfolio from './AddPortfolio';
 
 
 const SideBarMenu = () => {
@@ -18,7 +20,15 @@ const SideBarMenu = () => {
                     to: `/portfolio/${item.id}`
                     }
                 })
-        }
+        },
+        // {
+        //     title: 'Calculators',
+        //     icon: <CalculateIcon />,
+        //     data: [{
+        //         text: 'Retirement Calculator',
+        //         to: `/calculators`
+        //     }]
+        // }
     ]
     
 
@@ -30,7 +40,9 @@ const SideBarMenu = () => {
                     title={item.title}
                     icon={item.icon}
                     data={item.data}
-                />
+                >
+                    <AddPortfolio />
+                </SideBarList>
                 )
             }
         </>

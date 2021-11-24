@@ -4,7 +4,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItem from './ListItem'
 
-const SideBarList = ({icon, title, data}) => {
+const SideBarList = ({icon, title, data, children}) => {
 
     const [open, setOpen] = useState(true)
 
@@ -13,7 +13,7 @@ const SideBarList = ({icon, title, data}) => {
     }
 
     return (
-        <List>
+        <List sx={{'& svg': {color: '#fff'}}}>
             <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
                     {icon}
@@ -31,6 +31,7 @@ const SideBarList = ({icon, title, data}) => {
                         />
                     )
                 }
+                {children}
             </Collapse>
         </List>
     )
