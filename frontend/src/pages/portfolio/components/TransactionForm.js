@@ -117,6 +117,7 @@ const TransactionForm = (props) => {
                                     $
                                 </InputAdornment>),
                             }}
+                            inputProps={{type: 'numeric'}}
                             value={reducerState.dollarAmount}
                             onValueChange={(e) => dispatch(updateDollarAmount(e.floatValue))}
                             onFocus={() => handleFocus('dollarAmount')}

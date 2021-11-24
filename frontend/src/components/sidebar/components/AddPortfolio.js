@@ -11,7 +11,7 @@ const AddPortfolio = () => {
     return (
         <>
             <ListItemButton 
-                fullWidth 
+                fullwidth 
                 sx={buttonStyle}
                 onClick={() => handleModalOpen(
                     <PortfolioForm title='Add Portfolio' />

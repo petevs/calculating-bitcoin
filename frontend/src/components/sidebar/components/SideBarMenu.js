@@ -47,7 +47,7 @@ const SideBarMenu = () => {
                 },
                 {
                     text: 'Tax Liability',
-                    to: '/calculators/'
+                    to: '/calculators/tax-liability'
                 },
                 {
                     text: 'Trade Preview',
