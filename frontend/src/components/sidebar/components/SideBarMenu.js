@@ -43,7 +43,7 @@ const SideBarMenu = () => {
             data: [
                 {
                     text: 'Retire on Bitcoin',
-                    to: '/calculators/'
+                    to: '/calculators/retire-on-bitcoin'
                 },
                 {
                     text: 'Tax Liability',

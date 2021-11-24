@@ -1,11 +1,13 @@
-import React from 'react'
-import Page from 'components/Page'
+import { Route} from 'react-router-dom'
+import CalculatorsMain from './CalculatorsMain'
+import RetireOnBitcoin from './retireOnBitcoin/RetireOnBitcoin'
 
 const Calculators = () => {
     return (
-        <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
-            I'm the main calculator page
-        </Page>
+        <>
+            <Route exact path='/calculators' component={CalculatorsMain} />
+            <Route path='/calculators/retire-on-bitcoin' component={RetireOnBitcoin}/> 
+        </>
     )
 }
 
