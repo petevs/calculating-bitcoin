@@ -10,9 +10,6 @@ const ReportRow = (props) => {
     //             gridColumn:
     //         }
     //     default:
-
-
-
     
         return (
             <Box sx={row}>
