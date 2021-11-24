@@ -17,12 +17,22 @@ const SideBarMenu = () => {
         {
             title: 'Portfolios',
             icon: <LibraryBooksIcon />,
-            data: state.portfolio.portfolioList().map(item => {
-                return {
-                    text: item.portfolioName, 
-                    to: `/portfolio/${item.id}`
-                    }
-                })
+            // data: state.portfolio.portfolioList().map(item => {
+            //     return {
+            //         text: item.portfolioName, 
+            //         to: `/portfolio/${item.id}`
+            //         }
+            //     })
+            data: [
+                {
+                    text: 'My Portfolios',
+                    to: '/portfolio'
+                },
+                {
+                    text: 'Public Portfolios',
+                    to: '/portfolio/browse-portfolios'
+                },
+            ]
         }
     ]
     
@@ -49,13 +59,6 @@ const SideBarMenu = () => {
                 },
 
             ]
-        }
-    ]
-
-    const bookmarks = [
-        {
-            title: 'My Bookmarks',
-            icon: <CollectionsBookmarkIcon />,
         }
     ]
 

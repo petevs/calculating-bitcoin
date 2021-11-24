@@ -11,6 +11,30 @@ const LoggedinMenu = () => {
         <>
             <MenuItem
                 component={Link}
+                to='/portfolio'
+            >
+                Portfolios
+            </MenuItem>
+            <MenuItem
+                component={Link}
+                to='/calculators'
+            >
+                Comparisons
+            </MenuItem>
+            <MenuItem
+                component={Link}
+                to='/calculators'
+            >
+                Calculations
+            </MenuItem>
+            <MenuItem
+                component={Link}
+                to='/bookmarks'
+            >
+                Bookmarks
+            </MenuItem>
+            <MenuItem
+                component={Link}
                 to='/account'
             >
                 Account

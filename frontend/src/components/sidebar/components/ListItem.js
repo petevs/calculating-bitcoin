@@ -15,7 +15,7 @@ const ListItem = ({to, text}) => {
         </ListItemIcon>
         <ListItemText 
             primary={text}
-            primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}    
+            primaryTypographyProps={{ fontWeight: 'medium' }}    
         />
     </ListItemButton>
     )

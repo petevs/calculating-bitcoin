@@ -12,7 +12,7 @@ const SideBarListItem = (props) => {
                 <ListItemIcon>
                     {props.icon}
                 </ListItemIcon>
-                <ListItemText primary={props.text} />
+                {props.text}
             </ListItemButton>
         </List>
     )

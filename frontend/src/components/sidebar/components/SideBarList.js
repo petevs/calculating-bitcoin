@@ -6,7 +6,7 @@ import ListItem from './ListItem'
 
 const SideBarList = ({icon, title, data, children}) => {
 
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
 
     const handleClick = () => {
         setOpen(!open)
