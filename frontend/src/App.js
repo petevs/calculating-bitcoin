@@ -24,6 +24,8 @@ import useMarketData from 'state/marketData/useMarketData';
 import Portfolio from 'pages/portfolio/Portfolio';
 import PortfolioMain from 'pages/portfolio/PortfolioMain';
 import usePortfolio from 'state/portfolio/usePortfolio';
+import Calculators from 'pages/calculators/Calculators';
+import Bookmarks from 'pages/bookmarks/Bookmarks';
 
 
 function App() {
@@ -47,6 +49,8 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/reset-password' component={ResetPassword} />
+        <Route path='/calculators' component={Calculators} />
+        <Route path='/bookmarks' component={Bookmarks} />
         <PrivateRoute path='/account' component={Account} />
         <PrivateRoute exact path='/portfolio' component={PortfolioMain} />
         <PrivateRoute path='/portfolio/:id' component={Portfolio} />

@@ -10,6 +10,13 @@ const Prices = () => {
 
     const mobile = useMediaQuery('(max-width: 1024px)')
     const { state } = useContext(GlobalContext)
+
+    if(!state.marketData.marketData){
+        return (
+            <>
+            </>
+    )}
+    
     const {         
         current_price: price,
         price_change_24h_in_currency: priceChange,

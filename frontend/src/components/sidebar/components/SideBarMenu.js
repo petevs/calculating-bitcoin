@@ -5,6 +5,8 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import AddPortfolio from './AddPortfolio';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import SideBarListItem from './SideBarListItem';
+import { Link } from 'react-router-dom';
 
 
 const SideBarMenu = () => {
@@ -80,16 +82,14 @@ const SideBarMenu = () => {
                 </SideBarList>
                 )
             }
-            {bookmarks.map(item => 
-                <SideBarList
-                    key={item.title}
-                    title={item.title}
-                    icon={item.icon}
-                    data={item.data}
-                >
-                </SideBarList>
-                )
-            }
+            <SideBarListItem
+                icon={<CollectionsBookmarkIcon />}
+                text='My Bookmarks'
+                button={{
+                    component: Link,
+                    to: '/bookmarks'
+                }}
+            />
         </>
     )
 }
