@@ -1,17 +1,11 @@
 import { Box } from '@mui/system'
-import { useReducer } from 'react'
 import NumberFormat from 'react-number-format'
 import { TextField, InputAdornment, Button } from '@mui/material'
 import FormBox from 'components/form/FormBox'
-import { retirementReducer, initialRetirement, updateValue } from './retireOnBitcoinReducer'
 import FormHeader from 'components/form/FormHeader'
 
-const RetirementForm = () => {
+const RetirementForm = ({state, dispatch, updateValue}) => {
 
-
-    const [state, dispatch] = useReducer(retirementReducer, initialRetirement)
-
-    console.log(`PV Required at Retirement: ${state.presentValueNow()}`)
 
     return (
         <FormBox>

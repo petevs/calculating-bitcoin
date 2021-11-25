@@ -5,13 +5,22 @@ export const updateValue = (data) => {
     return { type: UPDATE_VALUE, payload: data }
 }
 
+const pvAnnuity = (pmt, i, n) => {
+    return pmt * ((1 - ((1 + i)** (n * -1))) / i)
+}
+
+const pv = (fv, i, n) => {
+    return fv / ((1 + i) ** n)
+}
+
+
 export const initialRetirement = {
     currentAge: 20,
     retirementAge: 55,
     ageOfDeath: 100,
     currentBitcoinHoldings: 0,
-    bitcoinYearlyGrowthRate: 80,
-    annualInflationRate: 5,
+    bitcoinYearlyGrowthRate: 20,
+    annualInflationRate: 10,
     requiredYearlyIncome: 100000,
     currentPriceOfBitcoin: 1,
     yearsOfGrowth: function() {
@@ -26,14 +35,23 @@ export const initialRetirement = {
     realGrowthRate: function(){
         return (this.bitcoinYearlyGrowthRate - this.annualInflationRate) / 100
     },
-    numberOfRetirementPayments: function() {
-        return this.yearsOfConsumption() * -1 
-    },
     presentValueAtRetirement: function(){
-        return this.requiredIncomeAtRetirement() * ((1 - (1 + this.realGrowthRate()) ** this.numberOfRetirementPayments()) / this.realGrowthRate()) * ( 1 + this.realGrowthRate())
+        const pmt = this.requiredYearlyIncome
+        const i = this.realGrowthRate()
+        const n = this.yearsOfConsumption()
+
+        return pvAnnuity(pmt, i , n)
     },
     presentValueNow: function(){
-        return  this.presentValueAtRetirement()
+        const fv = this.presentValueAtRetirement()
+        const i = this.realGrowthRate()
+        const n = this.yearsOfGrowth()
+        
+        return pv(fv, i, n)
+    
+    },
+    bitcoinRequired: function(){
+        return this.presentValueNow() / this.currentPriceOfBitcoin
     }
 }
 
