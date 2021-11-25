@@ -93,28 +93,31 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
             </ToggleButtonGroup>
             Now Until Retirement {`(${state.currentYear} - ${state.yearOfRetirement()})`}:
             <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
-            <NumberFormat
-                    label='Bitcoin Yearly Growth Rate'
-                    customInput={TextField}
-                    inputProps={{type: 'numeric'}}
-                    InputProps={{
-                        endAdornment: (<InputAdornment position='start'>
-                            %
-                        </InputAdornment>),
-                    }}
-                    decimalScale={0}
-                    isAllowed={(values) => {
-                        const {floatValue} = values
-                        return floatValue >= 0 && floatValue <= 1000
-                    }}
-                    value={state.bitcoinGrowthRateUntilRetirement}
-                    onValueChange={(e) => dispatch(
-                        updateValue({
-                            name: 'bitcoinGrowthRateUntilRetirement', 
-                            value: e.floatValue
-                        })
-                        )}
-                />
+                {
+                    state.calculationMethod === 'growthRate' &&
+                    <NumberFormat
+                        label='Bitcoin Yearly Growth Rate'
+                        customInput={TextField}
+                        inputProps={{type: 'numeric'}}
+                        InputProps={{
+                            endAdornment: (<InputAdornment position='start'>
+                                %
+                            </InputAdornment>),
+                        }}
+                        decimalScale={0}
+                        isAllowed={(values) => {
+                            const {floatValue} = values
+                            return floatValue >= 0 && floatValue <= 1000
+                        }}
+                        value={state.bitcoinGrowthRateUntilRetirement}
+                        onValueChange={(e) => dispatch(
+                            updateValue({
+                                name: 'bitcoinGrowthRateUntilRetirement', 
+                                value: e.floatValue
+                            })
+                            )}
+                    />
+                }
                 <NumberFormat
                     label='Annual Inflation Rate'
                     customInput={TextField}
@@ -138,30 +141,35 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
                         )}
                 />
                 </Box>
-                At Retirement: 
-                <NumberFormat
-                    label={`Estimated Bitcoin Price in ${state.yearOfRetirement()}`}
-                    customInput={TextField}
-                    inputProps={{type: 'numeric'}}
-                    InputProps={{
-                        startAdornment: (<InputAdornment position='start'>
-                            $
-                        </InputAdornment>),
-                    }}
-                    decimalScale={0}
-                    thousandSeparator={true}
-                    isAllowed={(values) => {
-                        const {floatValue} = values
-                        return floatValue >= 0
-                    }}
-                    value={state.bitcoinPriceAtRetirement}
-                    onValueChange={(e) => dispatch(
-                        updateValue({
-                            name: 'bitcoinPriceAtRetirement', 
-                            value: e.floatValue
-                        })
-                        )}
-                />
+                {
+                    state.calculationMethod === 'priceTarget' && 
+                    <>
+                        At Retirement: 
+                        <NumberFormat
+                            label={`Estimated Bitcoin Price in ${state.yearOfRetirement()}`}
+                            customInput={TextField}
+                            inputProps={{type: 'numeric'}}
+                            InputProps={{
+                                startAdornment: (<InputAdornment position='start'>
+                                    $
+                                </InputAdornment>),
+                            }}
+                            decimalScale={0}
+                            thousandSeparator={true}
+                            isAllowed={(values) => {
+                                const {floatValue} = values
+                                return floatValue >= 0
+                            }}
+                            value={state.bitcoinPriceAtRetirement}
+                            onValueChange={(e) => dispatch(
+                                updateValue({
+                                    name: 'bitcoinPriceAtRetirement', 
+                                    value: e.floatValue
+                                })
+                                )}
+                        />
+                    </>
+                }
             During Retirement {`(${state.yearOfRetirement()} - ${state.yearOfDeath()})`}: 
             <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
                 <NumberFormat

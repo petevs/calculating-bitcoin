@@ -6,6 +6,7 @@ import { retirementReducer, initialRetirement, updateValue } from './retireOnBit
 import RetirementSummary from './RetirementSummary'
 import GlobalContext from 'state/GlobalContext'
 import Forecast from './Forecast'
+import { Box } from '@mui/system'
 
 const RetirementCalc = () => {
 
@@ -24,8 +25,10 @@ const RetirementCalc = () => {
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
             <PageHeader title='Retire on Bitcoin Calculator' />
-            <RetirementForm state={reducerState} dispatch={dispatch} updateValue={updateValue}/>
-            <RetirementSummary state={reducerState} />
+            <Box sx={{display: 'grid', gridAutoFlow: 'column', gap: '1rem'}}>
+                <RetirementForm state={reducerState} dispatch={dispatch} updateValue={updateValue}/>
+                <RetirementSummary state={reducerState} />
+            </Box>
         </Page>
     )
 }
