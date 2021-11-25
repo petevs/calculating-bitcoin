@@ -6,9 +6,12 @@ import Bitcoin from 'components/Bitcoin'
 
 const RetirementSummary = ({state}) => {
 
+
+    // console.log(((5000000 / 50000) ** (1/10))-1
+
     return (
         <Box sx={boxStyle}>
-            Bitcoin Needed: <Bitcoin value={state.bitcoinRequired()} />
+            Bitcoin Needed to Retire Today: <Bitcoin value={state.bitcoinRetireToday()} />
             <br />
             Portfolio Value Required: <Currency value={state.presentValueNow()} />
             <br />

@@ -1,13 +1,16 @@
 import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
-import { TextField, InputAdornment, Button } from '@mui/material'
+import { TextField, InputAdornment, Button, Typography } from '@mui/material'
 import FormBox from 'components/form/FormBox'
 import FormHeader from 'components/form/FormHeader'
+import ArrowRow from './ArrowRow'
+import AddIcon from '@mui/icons-material/Add';
 
 const RetirementForm = ({state, dispatch, updateValue}) => {
 
 
     return (
+        <>
         <FormBox>
             <FormHeader heading='Enter Details' />
             <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem'}}>
@@ -60,7 +63,7 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
                         )}
                 />
             </Box>
-            <NumberFormat
+            {/* <NumberFormat
                 label='Current Bitcoin Holdings'
                 customInput={TextField}
                 inputProps={{type: 'numeric'}}
@@ -124,9 +127,9 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
                         })
                         )}
                 />
-            </Box>
+            </Box> */}
             <NumberFormat
-                label="Required Yearly Income (In Today's Dollars Before Tax)"
+                label="Required Yearly Retirement Income (In Today's Dollars Before Tax)"
                 customInput={TextField}
                 inputProps={{type: 'numeric'}}
                 InputProps={{
@@ -145,7 +148,78 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
             />
             <Button size='large' variant='contained'>Calculate</Button>
         </FormBox>
+
+        <Box sx={boxStyle}>
+            <Typography variant='body-2' sx={{color: '#fff'}}>Starting Year:</Typography>
+            <Box sx={{display: 'grid', gridAutoFlow: 'column', gap: '1rem', marginTop: '1rem'}}>
+                <NumberFormat
+                    label='End of Year'
+                    customInput={TextField}
+                    value={2021}
+                />
+                <NumberFormat
+                    label='Bitcoin Annual Growth Rate'
+                    customInput={TextField}
+                    value={58}
+                    suffix='%'
+                />
+                <NumberFormat
+                    label='Inflation Rate'
+                    customInput={TextField}
+                    suffix='%'
+                    value={6}
+                />
+                <NumberFormat
+                    label='Bitcoin Price'
+                    customInput={TextField}
+                    value={125000}
+                    prefix='$'
+                    thousandSeparator={true}
+                />
+            </Box>
+            <Box sx={{display: 'grid', gridTemplateColumns: '1fr', justifyContent: 'center', margin: '.75rem 0'}}>
+                <Button size='small' startIcon={<AddIcon />} sx={{border: '1px dotted rgb(145,158,171)'}}> Add Row </Button>
+            </Box>
+            <ArrowRow />
+            <Typography variant='body-2' sx={{color: '#fff'}}>Year of Retirement:</Typography>
+            <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginTop: '1rem'}}>
+                <NumberFormat
+                    label='End of Year'
+                    customInput={TextField}
+                    value={2056}
+                />
+                <NumberFormat
+                    label='Bitcoin Annual Growth Rate'
+                    customInput={TextField}
+                    value={58}
+                    suffix='%'
+                />
+                <NumberFormat
+                    label='Annual Inflation Rate'
+                    customInput={TextField}
+                    suffix='%'
+                    value={6}
+                />
+                <NumberFormat
+                    label='Bitcoin Price Estimate'
+                    customInput={TextField}
+                    value={125000}
+                    prefix='$'
+                    thousandSeparator={true}
+                />
+            </Box>
+            <ArrowRow />
+        </Box>
+        </>
     )
 }
 
 export default RetirementForm
+
+const boxStyle = {
+    backgroundColor: '#212B36',
+    boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
+    borderRadius: '1rem',
+    padding: '2rem',
+    color: '#fff',
+}

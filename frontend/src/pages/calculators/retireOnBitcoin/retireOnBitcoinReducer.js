@@ -13,6 +13,10 @@ const pv = (fv, i, n) => {
     return fv / ((1 + i) ** n)
 }
 
+const fv = (pv, i, n) => {
+    return pv * ((1 + i) ** n)
+}
+
 
 export const initialRetirement = {
     currentAge: 20,
@@ -50,7 +54,7 @@ export const initialRetirement = {
         return pv(fv, i, n)
     
     },
-    bitcoinRequired: function(){
+    bitcoinRetireToday: function(){
         return this.presentValueNow() / this.currentPriceOfBitcoin
     }
 }
