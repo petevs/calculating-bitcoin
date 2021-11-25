@@ -17,14 +17,24 @@ const fv = (pv, i, n) => {
     return pv * ((1 + i) ** n)
 }
 
+const cagr = (vFinal, vBegin, time) => {
+    return ((vFinal / vBegin)**(1/time)) - 1
+}
+
+const toPercent = (x) => { return x / 100}
+
 
 export const initialRetirement = {
+    currentYear: 2021,
     currentAge: 20,
     retirementAge: 55,
     ageOfDeath: 100,
     currentBitcoinHoldings: 0,
+    bitcoinGrowthRateUntilRetirement: 58,
     bitcoinYearlyGrowthRate: 20,
-    annualInflationRate: 10,
+    bitcoinPriceAtRetirement: 0,
+    inflationUntilRetirement: 10,
+    inflationAfterRetirement: 5,
     requiredYearlyIncome: 100000,
     currentPriceOfBitcoin: 1,
     yearsOfGrowth: function() {
@@ -33,15 +43,21 @@ export const initialRetirement = {
     yearsOfConsumption: function() {
         return this.ageOfDeath - this.retirementAge
     },
-    requiredIncomeAtRetirement: function (){
-        return this.requiredYearlyIncome * ((1 + this.annualInflationRate / 100) ** this.yearsOfGrowth())
+    yearOfRetirement: function () {
+        return this.currentYear + this.yearsOfGrowth()
     },
-    realGrowthRate: function(){
-        return (this.bitcoinYearlyGrowthRate - this.annualInflationRate) / 100
+    yearOfDeath: function(){
+        return this.yearOfRetirement() + this.yearsOfConsumption()
+    },
+    requiredIncomeAtRetirement: function (){
+        return fv(this.requiredYearlyIncome, toPercent(this.inflationAfterRetirement), this.yearsOfGrowth())
+    },
+    realGrowthRateRetirement: function(){
+        return (this.bitcoinYearlyGrowthRate - this.inflationAfterRetirement) / 100
     },
     presentValueAtRetirement: function(){
-        const pmt = this.requiredYearlyIncome
-        const i = this.realGrowthRate()
+        const pmt = this.requiredIncomeAtRetirement()
+        const i = this.realGrowthRateRetirement()
         const n = this.yearsOfConsumption()
 
         return pvAnnuity(pmt, i , n)

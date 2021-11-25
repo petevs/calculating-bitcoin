@@ -5,6 +5,7 @@ import { useReducer, useContext } from 'react'
 import { retirementReducer, initialRetirement, updateValue } from './retireOnBitcoinReducer'
 import RetirementSummary from './RetirementSummary'
 import GlobalContext from 'state/GlobalContext'
+import Forecast from './Forecast'
 
 const RetirementCalc = () => {
 
