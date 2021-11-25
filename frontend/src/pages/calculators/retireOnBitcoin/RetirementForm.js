@@ -1,12 +1,21 @@
 import { Box } from '@mui/system'
-import React from 'react'
+import { useReducer } from 'react'
 import NumberFormat from 'react-number-format'
-import { TextField, InputAdornment } from '@mui/material'
+import { TextField, InputAdornment, Button } from '@mui/material'
 import FormBox from 'components/form/FormBox'
+import { retirementReducer, initialRetirement, updateValue } from './retireOnBitcoinReducer'
+import FormHeader from 'components/form/FormHeader'
 
 const RetirementForm = () => {
+
+
+    const [state, dispatch] = useReducer(retirementReducer, initialRetirement)
+
+    console.log(`PV Required at Retirement: ${state.presentValueNow()}`)
+
     return (
         <FormBox>
+            <FormHeader heading='Enter Details' />
             <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem'}}>
                 <NumberFormat
                     label='Current Age'
@@ -14,8 +23,15 @@ const RetirementForm = () => {
                     inputProps={{type: 'numeric'}}
                     isAllowed={(values) => {
                         const {floatValue} = values
-                        return floatValue >= 0 && floatValue <= 1000
+                        return floatValue >= 0 && floatValue <= 100
                     }}
+                    value={state.currentAge}
+                    onValueChange={(e) => dispatch(
+                        updateValue({
+                            name: 'currentAge', 
+                            value: e.floatValue
+                        })
+                        )}
                 />
                 <NumberFormat
                     label='Retirement Age'
@@ -25,6 +41,13 @@ const RetirementForm = () => {
                         const {floatValue} = values
                         return floatValue >= 0 && floatValue <= 1000
                     }}
+                    value={state.retirementAge}
+                    onValueChange={(e) => dispatch(
+                        updateValue({
+                            name: 'retirementAge', 
+                            value: e.floatValue
+                        })
+                        )}
                 />
                 <NumberFormat
                     label='Age of Death'
@@ -34,6 +57,13 @@ const RetirementForm = () => {
                         const {floatValue} = values
                         return floatValue >= 0 && floatValue <= 1000
                     }}
+                    value={state.ageOfDeath}
+                    onValueChange={(e) => dispatch(
+                        updateValue({
+                            name: 'ageOfDeath', 
+                            value: e.floatValue
+                        })
+                        )}
                 />
             </Box>
             <NumberFormat
@@ -47,6 +77,13 @@ const RetirementForm = () => {
                 }}
                 decimalScale={8}
                 fixedDecimalScale={8}
+                value={state.currentBitcoinHoldings}
+                onValueChange={(e) => dispatch(
+                    updateValue({
+                        name: 'currentBitcoinHoldings', 
+                        value: e.floatValue
+                    })
+                    )}
             />
             <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
                 <NumberFormat
@@ -63,6 +100,13 @@ const RetirementForm = () => {
                         const {floatValue} = values
                         return floatValue >= 0 && floatValue <= 1000
                     }}
+                    value={state.bitcoinYearlyGrowthRate}
+                    onValueChange={(e) => dispatch(
+                        updateValue({
+                            name: 'bitcoinYearlyGrowthRate', 
+                            value: e.floatValue
+                        })
+                        )}
                 />
                 <NumberFormat
                     label='Annual Inflation Rate'
@@ -78,6 +122,13 @@ const RetirementForm = () => {
                         const {floatValue} = values
                         return floatValue >= 0 && floatValue <= 100
                     }}
+                    value={state.annualInflationRate}
+                    onValueChange={(e) => dispatch(
+                        updateValue({
+                            name: 'annualInflationRate', 
+                            value: e.floatValue
+                        })
+                        )}
                 />
             </Box>
             <NumberFormat
@@ -90,8 +141,15 @@ const RetirementForm = () => {
                     </InputAdornment>),
                 }}
                 thousandSeparator={true}
-                
+                value={state.requiredYearlyIncome}
+                onValueChange={(e) => dispatch(
+                    updateValue({
+                        name: 'requiredYearlyIncome', 
+                        value: e.floatValue
+                    })
+                    )}
             />
+            <Button size='large' variant='contained'>Calculate</Button>
         </FormBox>
     )
 }

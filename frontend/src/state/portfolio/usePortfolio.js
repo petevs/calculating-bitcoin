@@ -9,24 +9,24 @@ const usePortfolio = () => {
     
         useEffect(() => {
 
-            if(state.user.uid){
-                db.collection('portfolios').doc(state.user.uid).onSnapshot((doc) => {
-                    const result = doc.data()
-                    
-                    if(result){
-                        dispatch(fetchingPortfolioSuccess(result))
-                    }
-            
-                })
-            }
-
-            //GET AND SET PUBLIC PORTFOLIOS
-            db.collection('portfolios').doc('public').onSnapshot((doc) => {
-                const result = doc.data()
-                if(result){
-                    dispatch(fetchingPublicPortfoliosSuccess(result))
+                if(state.user.uid){
+                    db.collection('portfolios').doc(state.user.uid).onSnapshot((doc) => {
+                        const result = doc.data()
+                        
+                        if(result){
+                            dispatch(fetchingPortfolioSuccess(result))
+                        }
+                
+                    })
                 }
-            })
+    
+                //GET AND SET PUBLIC PORTFOLIOS
+                db.collection('portfolios').doc('public').onSnapshot((doc) => {
+                    const result = doc.data()
+                    if(result){
+                        dispatch(fetchingPublicPortfoliosSuccess(result))
+                    }
+                })
 
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [state.user.uid])
