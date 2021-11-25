@@ -5,6 +5,7 @@ import FormBox from 'components/form/FormBox'
 import FormHeader from 'components/form/FormHeader'
 import ArrowRow from './ArrowRow'
 import AddIcon from '@mui/icons-material/Add';
+import { toggleCalculationMethod } from './retireOnBitcoinReducer'
 
 const RetirementForm = ({state, dispatch, updateValue}) => {
 
@@ -63,25 +64,6 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
                         )}
                 />
             </Box>
-            {/* <NumberFormat
-                label='Current Bitcoin Holdings'
-                customInput={TextField}
-                inputProps={{type: 'numeric'}}
-                InputProps={{
-                    endAdornment: (<InputAdornment position='start'>
-                        BTC
-                    </InputAdornment>),
-                }}
-                decimalScale={8}
-                fixedDecimalScale={8}
-                value={state.currentBitcoinHoldings}
-                onValueChange={(e) => dispatch(
-                    updateValue({
-                        name: 'currentBitcoinHoldings', 
-                        value: e.floatValue
-                    })
-                    )}
-            /> */}
             <NumberFormat
                 label="Required Yearly Retirement Income (In Today's Dollars Before Tax)"
                 customInput={TextField}
@@ -103,7 +85,8 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
             Calculate Using: 
             <ToggleButtonGroup
                     size='small'
-                    value='priceTarget'
+                    value={state.calculationMethod}
+                    onChange={() => dispatch(toggleCalculationMethod())}
             >
                 <ToggleButton value='priceTarget'>Bitcoin Price Target</ToggleButton>
                 <ToggleButton value='growthRate'>Bitcoin Growth Rate</ToggleButton>

@@ -1,10 +1,18 @@
 const UPDATE_VALUE = 'UPDATE_VALUE'
+const TOGGLE_CALCULATION_METHOD = 'TOGGLE_CALCULATION_METHOD'
 
 
+//ACTIONS
 export const updateValue = (data) => {
     return { type: UPDATE_VALUE, payload: data }
 }
 
+export const toggleCalculationMethod = (data) => {
+    return { type: TOGGLE_CALCULATION_METHOD, payload: data}
+}
+
+
+//HELPERS
 const pvAnnuity = (pmt, i, n) => {
     return pmt * ((1 - ((1 + i)** (n * -1))) / i)
 }
@@ -23,7 +31,7 @@ const cagr = (vFinal, vBegin, time) => {
 
 const toPercent = (x) => { return x / 100}
 
-
+//INITIAL STATE
 export const initialRetirement = {
     currentYear: 2021,
     currentAge: 30,
@@ -37,6 +45,7 @@ export const initialRetirement = {
     inflationAfterRetirement: 2,
     requiredYearlyIncome: 150000,
     currentPriceOfBitcoin: 1,
+    calculationMethod: 'priceTarget',
     yearsOfGrowth: function() {
         return this.retirementAge - this.currentAge
     },
@@ -87,6 +96,17 @@ export const retirementReducer = (state = initialRetirement, action) => {
             return {
                 ...state,
                 [action.payload.name]: action.payload.value
+            }
+        case TOGGLE_CALCULATION_METHOD:
+            if(state.calculationMethod === 'priceTarget'){
+                return {
+                    ...state,
+                    calculationMethod:'growthRate'
+                }
+            }
+            return {
+                ...state,
+                calculationMethod: 'priceTarget'
             }
         default:
             return state
