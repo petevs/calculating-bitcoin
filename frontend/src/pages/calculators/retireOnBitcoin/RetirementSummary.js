@@ -9,8 +9,6 @@ import { Repeat } from '@mui/icons-material'
 const RetirementSummary = ({state}) => {
 
 
-    // console.log(((5000000 / 50000) ** (1/10))-1
-
     return (
         <Box sx={boxStyle}>
             <Scorecard
@@ -42,6 +40,15 @@ const RetirementSummary = ({state}) => {
             <Scorecard
                 title='Current Price of Bitcoin'
                 value={state.currentPriceOfBitcoin}
+                numberFormat={{
+                    thousandSeparator: true,
+                    decimalScale: 0,
+                    prefix: '$'
+                }}
+            />
+            <Scorecard
+                title='Current Investment Required'
+                value={state.currentInvestmentRequired()}
                 numberFormat={{
                     thousandSeparator: true,
                     decimalScale: 0,

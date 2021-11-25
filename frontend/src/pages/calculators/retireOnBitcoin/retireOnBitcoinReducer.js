@@ -83,13 +83,19 @@ export const initialRetirement = {
     
     },
     bitcoinPrice: function() {
-        return fv(this.currentPriceOfBitcoin, this.realGrowthRate(), this.yearsOfGrowth())
+        return fv(this.currentPriceOfBitcoin, (this.bitcoinGrowthRateUntilRetirement / 100), this.yearsOfGrowth())
     }, 
     bitcoinRetireToday: function(){
         return this.presentValueAtRetirement() / this.bitcoinPriceAtRetirement
     },
     bitcoinRetireTodayUsingGR: function(){
-        return this.presentValueNow() / this.currentPriceOfBitcoin
+        return this.presentValueAtRetirement() / this.bitcoinPrice()
+    },
+    currentInvestmentRequired: function(){
+        if(this.calculationMethod === 'priceTarget'){
+            return this.bitcoinRetireToday() * this.currentPriceOfBitcoin
+        }
+        return this.bitcoinRetireTodayUsingGR() * this.currentPriceOfBitcoin
     }
 }
 
