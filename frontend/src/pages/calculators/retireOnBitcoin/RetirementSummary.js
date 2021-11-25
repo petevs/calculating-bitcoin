@@ -13,7 +13,9 @@ const RetirementSummary = ({state}) => {
         <Box sx={boxStyle}>
             Required Income at Retirement: <Currency value={state.requiredIncomeAtRetirement()} />
             <br />
-            Portfolio Value Required: <Currency value={state.presentValueAtRetirement()} />
+            Portfolio Value Required at the Time of Retiring: <Currency value={state.presentValueAtRetirement()} />
+            <br />
+            Bitcoin Required: <Bitcoin value={state.bitcoinRetireToday()} />
             {/* Bitcoin Needed to Retire Today: <Bitcoin value={state.bitcoinRetireToday()} /> */}
             {/* <br />
             Portfolio Value Required: <Currency value={state.presentValueNow()} />

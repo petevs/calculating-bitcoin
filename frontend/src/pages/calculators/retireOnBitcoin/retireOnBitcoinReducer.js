@@ -26,16 +26,16 @@ const toPercent = (x) => { return x / 100}
 
 export const initialRetirement = {
     currentYear: 2021,
-    currentAge: 20,
+    currentAge: 30,
     retirementAge: 55,
     ageOfDeath: 100,
     currentBitcoinHoldings: 0,
     bitcoinGrowthRateUntilRetirement: 58,
-    bitcoinYearlyGrowthRate: 20,
+    bitcoinYearlyGrowthRate: 7,
     bitcoinPriceAtRetirement: 0,
     inflationUntilRetirement: 10,
-    inflationAfterRetirement: 5,
-    requiredYearlyIncome: 100000,
+    inflationAfterRetirement: 2,
+    requiredYearlyIncome: 150000,
     currentPriceOfBitcoin: 1,
     yearsOfGrowth: function() {
         return this.retirementAge - this.currentAge
@@ -50,7 +50,10 @@ export const initialRetirement = {
         return this.yearOfRetirement() + this.yearsOfConsumption()
     },
     requiredIncomeAtRetirement: function (){
-        return fv(this.requiredYearlyIncome, toPercent(this.inflationAfterRetirement), this.yearsOfGrowth())
+        return fv(this.requiredYearlyIncome, toPercent(this.inflationUntilRetirement), this.yearsOfGrowth())
+    },
+    realGrowthRate: function(){
+        return (this.bitcoinGrowthRateUntilRetirement - this.inflationAfterRetirement) / 100
     },
     realGrowthRateRetirement: function(){
         return (this.bitcoinYearlyGrowthRate - this.inflationAfterRetirement) / 100
@@ -71,7 +74,7 @@ export const initialRetirement = {
     
     },
     bitcoinRetireToday: function(){
-        return this.presentValueNow() / this.currentPriceOfBitcoin
+        return this.presentValueAtRetirement() / this.bitcoinPriceAtRetirement
     }
 }
 

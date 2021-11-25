@@ -1,6 +1,6 @@
 import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
-import { TextField, InputAdornment, Button, Typography } from '@mui/material'
+import { TextField, InputAdornment, Button, Typography, ToggleButtonGroup, ToggleButton } from '@mui/material'
 import FormBox from 'components/form/FormBox'
 import FormHeader from 'components/form/FormHeader'
 import ArrowRow from './ArrowRow'
@@ -100,9 +100,17 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
                     })
                     )}
             />
-            Growth Until Retirement {`(${state.currentYear} - ${state.yearOfRetirement()})`}:
+            Calculate Using: 
+            <ToggleButtonGroup
+                    size='small'
+                    value='priceTarget'
+            >
+                <ToggleButton value='priceTarget'>Bitcoin Price Target</ToggleButton>
+                <ToggleButton value='growthRate'>Bitcoin Growth Rate</ToggleButton>
+            </ToggleButtonGroup>
+            Now Until Retirement {`(${state.currentYear} - ${state.yearOfRetirement()})`}:
             <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
-                <NumberFormat
+            <NumberFormat
                     label='Bitcoin Yearly Growth Rate'
                     customInput={TextField}
                     inputProps={{type: 'numeric'}}
@@ -146,8 +154,32 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
                         })
                         )}
                 />
-            </Box>
-            Growth During Retirement {`(${state.yearOfRetirement()} - ${state.yearOfDeath()})`}: 
+                </Box>
+                At Retirement: 
+                <NumberFormat
+                    label={`Estimated Bitcoin Price in ${state.yearOfRetirement()}`}
+                    customInput={TextField}
+                    inputProps={{type: 'numeric'}}
+                    InputProps={{
+                        startAdornment: (<InputAdornment position='start'>
+                            $
+                        </InputAdornment>),
+                    }}
+                    decimalScale={0}
+                    thousandSeparator={true}
+                    isAllowed={(values) => {
+                        const {floatValue} = values
+                        return floatValue >= 0
+                    }}
+                    value={state.bitcoinPriceAtRetirement}
+                    onValueChange={(e) => dispatch(
+                        updateValue({
+                            name: 'bitcoinPriceAtRetirement', 
+                            value: e.floatValue
+                        })
+                        )}
+                />
+            During Retirement {`(${state.yearOfRetirement()} - ${state.yearOfDeath()})`}: 
             <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
                 <NumberFormat
                     label='Bitcoin Yearly Growth Rate'
@@ -194,7 +226,6 @@ const RetirementForm = ({state, dispatch, updateValue}) => {
                         )}
                 />
             </Box>
-            <Button size='large' variant='contained'>Calculate</Button>
         </FormBox>
 
         </>
