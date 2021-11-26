@@ -1,3 +1,5 @@
+import { inputUnstyledClasses } from "@mui/core"
+
 const UPDATE_VALUE = 'UPDATE_VALUE'
 const TOGGLE_CALCULATION_METHOD = 'TOGGLE_CALCULATION_METHOD'
 
@@ -98,24 +100,35 @@ export const initialRetirement = {
         return this.bitcoinRetireTodayUsingGR() * this.currentPriceOfBitcoin
     },
     resultsTable: function (){
-        let results = []
+        let results = [
+            {
+                id: 0,
+                age: this.currentAge,
+                year: this.currentYear,
+                bitcoinPrice: this.currentPriceOfBitcoin,
+                bitcoinGrowthRate: this.bitcoinGrowthRateUntilRetirement / 100,
+                nextYearBitcoinPrice: function(){
+                    return this.bitcoinPrice * (1 + this.bitcoinGrowthRate)
+                }
+            }
+        ]
 
-        let currentAge = this.currentAge
-        let currentYear = this.currentYear
+        for ( let i = 0; results[i].age <= this.ageOfDeath; i++){
 
-        while (currentAge <= this.ageOfDeath) {
+            const current = results[i]
 
-            const result = {
-                age: currentAge,
-                year: currentYear,
+            const row = {
+                ...results[i],
+                id: current.id + 1,
+                age: current.age + 1,
+                year: current.year + 1,
+                bitcoinPrice: current.nextYearBitcoinPrice(),
+                bitcoinGrowthRate: current.age < this.retirementAge ? current.bitcoinGrowthRate : (this.bitcoinYearlyGrowthRate / 100)
             }
 
-            currentAge = currentAge + 1
-            currentYear = currentYear + 1
-
-            results.push(result)
+            results.push(row)
         }
-        
+
         return results
     }
 }
