@@ -30,7 +30,7 @@ const SideBarMenu = () => {
                 },
                 {
                     text: 'Public Portfolios',
-                    to: '/portfolio/browse-portfolios'
+                    to: '/portfolios/public'
                 },
             ]
         }

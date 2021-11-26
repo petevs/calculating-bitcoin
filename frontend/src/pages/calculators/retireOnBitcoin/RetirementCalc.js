@@ -33,9 +33,17 @@ const RetirementCalc = () => {
             <RetirementCalcTabs
                 tabs={[
                     {
-                        key: 1, title: 'Retirement Payment Schedule', 
+                        key: 1, 
+                        title: 'Retirement Payment Schedule', 
                         content: <RetirementPaymentSchedule 
-                        rows={reducerState.resultsTable()} />},
+                                    rows={reducerState.resultsTable()} 
+                                />
+                    },
+                    {
+                        key: 2,
+                        title: 'Inflation Adjusted Income Schedule',
+                        content: 'hi'
+                    }
                 ]}
             />
 

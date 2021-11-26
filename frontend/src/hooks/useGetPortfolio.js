@@ -10,8 +10,8 @@ const useGetPortfolio = (id) => {
     const { historicalData } = state.marketData
 
 
-    const { portfolioObj } = state.portfolio
-    const details = portfolioObj[id] || ''
+    const { portfolioObj, publicPortfolios } = state.portfolio
+    const details = portfolioObj[id] || publicPortfolios[id] || 'Not Authorized'
     
     const transactions = transactionsObjectToArray(details.transactions)
 

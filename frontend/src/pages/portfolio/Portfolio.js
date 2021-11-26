@@ -25,6 +25,10 @@ const Portfolio = () => {
         return(<Loading />)
     }
 
+    if(details === 'Not Authorized') {
+        return(<Page>You do not have permission to view this portfolio</Page>)
+    }
+
     const filteredTransactions = allTransactions ? allTransactions.filter(item => item.id) : []
     
     const columns = tableTypes('')

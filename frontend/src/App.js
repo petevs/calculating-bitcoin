@@ -23,6 +23,7 @@ import useAuthSubscribe from 'hooks/useAuthSubscribe';
 import useMarketData from 'state/marketData/useMarketData';
 import Portfolio from 'pages/portfolio/Portfolio';
 import PortfolioMain from 'pages/portfolio/PortfolioMain';
+import PublicPortfolios from 'pages/portfolio/PublicPortfolios'
 import usePortfolio from 'state/portfolio/usePortfolio';
 import Calculators from 'pages/calculators/Calculators';
 import Bookmarks from 'pages/bookmarks/Bookmarks';
@@ -53,6 +54,7 @@ function App() {
         <Route path='/bookmarks' component={Bookmarks} />
         <PrivateRoute path='/account' component={Account} />
         <PrivateRoute exact path='/portfolio' component={PortfolioMain} />
+        <PrivateRoute path='/portfolios/public' component={PublicPortfolios} testProps='hi'/>
         <PrivateRoute path='/portfolio/:id' component={Portfolio} />
     </LocalizationProvider>
   );
