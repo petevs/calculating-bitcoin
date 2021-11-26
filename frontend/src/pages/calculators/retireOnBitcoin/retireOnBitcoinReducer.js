@@ -99,23 +99,43 @@ export const initialRetirement = {
         }
         return this.bitcoinRetireTodayUsingGR() * this.currentPriceOfBitcoin
     },
+    bitcoinSoldYearOneRetire: function() {
+        const price = this.calculationMethod === 'priceTarget' ? this.bitcoinPriceAtRetirement : this.bitcoinPrice()
+
+        return this.requiredIncomeAtRetirement() / price
+    },
     resultsTable: function (){
+
+        const startingBitcoinBalance = this.calculationMethod === 'priceTarget' 
+        ? this.bitcoinRetireToday() 
+        : this.bitcoinRetireTodayUsingGR()
+
         let results = [
             {
                 id: 0,
-                age: this.currentAge,
-                year: this.currentYear,
-                bitcoinPrice: this.currentPriceOfBitcoin,
+                age: this.retirementAge,
+                year: this.currentYear + this.yearsOfGrowth(),
+                bitcoinPrice: this.calculationMethod === 'priceTarget' ? this.bitcoinPriceAtRetirement : this.bitcoinPrice(),
                 bitcoinGrowthRate: this.bitcoinGrowthRateUntilRetirement / 100,
                 nextYearBitcoinPrice: function(){
                     return this.bitcoinPrice * (1 + this.bitcoinGrowthRate)
                 },
                 requiredIncomeAtRetirement: this.requiredYearlyIncome,
                 inflationRate: this.inflationUntilRetirement / 100,
-                inflationAdjustedIncome: this.requiredYearlyIncome,
+                inflationAdjustedIncome: this.requiredIncomeAtRetirement(),
                 nextYearInflationAdjustedIncome: function (){
                         return this.inflationAdjustedIncome * (1 + this.inflationRate)
-                }
+                },
+                bitcoinBalance: startingBitcoinBalance,
+                getPortfolioValue: function(){
+                    return this.bitcoinBalance * this.bitcoinPrice
+                },
+                portfolioValue: this.presentValueAtRetirement(),
+                bitcoinSold: this.bitcoinSoldYearOneRetire(),
+                calculateBitcoinSold: function() {
+                    return this.inflationAdjustedIncome / this.bitcoinPrice
+                },
+                endingBitcoinBalance: startingBitcoinBalance - this.bitcoinSoldYearOneRetire()
             }
         ]
 
@@ -131,7 +151,11 @@ export const initialRetirement = {
                 bitcoinPrice: current.nextYearBitcoinPrice(),
                 bitcoinGrowthRate: current.age < this.retirementAge ? current.bitcoinGrowthRate : (this.bitcoinYearlyGrowthRate / 100),
                 inflationRate: current.age < this.retirementAge ? current.inflationRate : (this.inflationAfterRetirement / 100),
-                inflationAdjustedIncome: current.nextYearInflationAdjustedIncome()
+                inflationAdjustedIncome: current.nextYearInflationAdjustedIncome(),
+                portfolioValue: current.getPortfolioValue(),
+                bitcoinSold: current.calculateBitcoinSold(),
+                bitcoinBalance: current.endingBitcoinBalance,
+                endingBitcoinBalance: current.endingBitcoinBalance - current.calculateBitcoinSold()
             }
 
             results.push(row)
