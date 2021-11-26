@@ -96,6 +96,27 @@ export const initialRetirement = {
             return this.bitcoinRetireToday() * this.currentPriceOfBitcoin
         }
         return this.bitcoinRetireTodayUsingGR() * this.currentPriceOfBitcoin
+    },
+    resultsTable: function (){
+        let results = []
+
+        let currentAge = this.currentAge
+        let currentYear = this.currentYear
+
+        while (currentAge <= this.ageOfDeath) {
+
+            const result = {
+                age: currentAge,
+                year: currentYear,
+            }
+
+            currentAge = currentAge + 1
+            currentYear = currentYear + 1
+
+            results.push(result)
+        }
+        
+        return results
     }
 }
 
