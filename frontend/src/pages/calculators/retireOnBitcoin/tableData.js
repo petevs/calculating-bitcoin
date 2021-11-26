@@ -3,11 +3,13 @@ import NumberFormat from 'react-number-format'
 export const columns = [
     {
         field: 'age',
-        headerName: 'Age'
+        headerName: 'Age',
+        flex: 0.5
     },
     {
         field: 'year',
-        headerName: 'Year'
+        headerName: 'Year',
+        flex: 0.5,
     },
     {
         field: 'bitcoinPrice',
@@ -23,11 +25,12 @@ export const columns = [
         width: 100,
         sortable: false,
         headerAlign: 'right',
-        align: 'right'
+        align: 'right',
+        flex: 1
     },
     {
         field: 'bitcoinBalance',
-        headerName: 'BTC Balance',
+        headerName: 'Starting BTC Balance',
         renderCell: (params) => (
             <NumberFormat 
                 displayType='text'
@@ -38,7 +41,8 @@ export const columns = [
         width: 100,
         sortable: false,
         headerAlign: 'right',
-        align: 'right'
+        align: 'right',
+        flex: 1
     },
     {
         field: 'portfolioValue',
@@ -54,7 +58,8 @@ export const columns = [
         width: 100,
         sortable: false,
         headerAlign: 'right',
-        align: 'right'
+        align: 'right',
+        flex: 1
     },
     {
         field: 'bitcoinSold',
@@ -69,7 +74,8 @@ export const columns = [
         width: 100,
         sortable: false,
         headerAlign: 'right',
-        align: 'right'
+        align: 'right',
+        flex: 1
     },
     {
         field: 'inflationAdjustedIncome',
@@ -85,7 +91,8 @@ export const columns = [
         width: 100,
         sortable: false,
         headerAlign: 'right',
-        align: 'right'
+        align: 'right',
+        flex: 1
     },
     {
         field: 'endingBitcoinBalance',
@@ -100,6 +107,7 @@ export const columns = [
         width: 100,
         sortable: false,
         headerAlign: 'right',
-        align: 'right'
+        align: 'right',
+        flex: 1
     },
 ]
