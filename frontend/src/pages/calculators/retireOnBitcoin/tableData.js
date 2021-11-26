@@ -73,7 +73,7 @@ export const columns = [
     },
     {
         field: 'inflationAdjustedIncome',
-        headerName: 'Inflation Adjusted Retirement Income',
+        headerName: 'Payment (Inflation Adjusted)',
         renderCell: (params) => (
             <NumberFormat 
                 displayType='text'
