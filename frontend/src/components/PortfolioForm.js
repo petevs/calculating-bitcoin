@@ -7,13 +7,22 @@ import { TextField } from '@mui/material'
 import FormSubmit from './form/FormSubmit'
 import useFirebase from 'hooks/useFirebase'
 import useModal from 'hooks/useModal'
+import GlobalContext from 'state/GlobalContext'
+import { useContext } from 'react'
 
 const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibility, currency }) => {
     
+    const {state} = useContext(GlobalContext)
+
+    console.log(state)
+
+
     const initialForm = {
         portfolioName: portfolioName || '',
         portfolioDescription: portfolioDescription || '',
-        visibility: visibility || 'private'
+        visibility: visibility || 'private',
+        displayName: state.user.displayName,
+        uid: state.auth.uid
     }
 
     const initialErrors = {

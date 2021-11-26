@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom'
 
 const PortfolioCard = (props) => {
     return (
-        <Card sx={{backgroundColor: '#212B36'}}>
+        <Card sx={{backgroundColor: '#212B36', maxWidth: 275}}>
             <CardActionArea
+                sx={{padding: '.5rem'}}
                 component={Link}
                 to={`/portfolio/${props.id}`}
             >
             <CardContent>
                 <Typography sx={headingStyle} variant='h6'>{props.portfolioName}</Typography>
-                <Typography variant='body-2'>{props.portfolioDescription || 'No Description'}</Typography>
+                <Typography variant='body-2' sx={{fontSize: '.875rem'}}>{props.portfolioDescription || 'No Description'}</Typography>
             </CardContent>
         </CardActionArea>
     </Card>

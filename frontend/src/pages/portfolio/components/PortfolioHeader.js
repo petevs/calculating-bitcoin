@@ -30,10 +30,12 @@ const PortfolioHeader = (props) => {
                             currency={props.currency}
                         />
                     }
+                    disabled={props.disableEditing}
                 />
                 <Button
                     onClick={() => deletePortfolio(props.id)} 
                     startIcon={<DeleteIcon />}
+                disabled={props.disableEditing}
                 >
                         Delete
                 </Button>

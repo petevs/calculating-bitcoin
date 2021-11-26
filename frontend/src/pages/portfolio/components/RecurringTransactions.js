@@ -30,6 +30,7 @@ const RecurringTransactions = (props) => {
                 text='Add Recurring Transaction'
                 variant='contained'
                 size='small'
+                disabled={props.disableEditing}
             />
         </Box>
     </Box>

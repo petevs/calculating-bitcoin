@@ -8,7 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import UploadCsvForm from "./UploadCsvForm"
 
-const Transactions = ({columns, transactions, id}) => {
+const Transactions = ({columns, transactions, id, disableEditing}) => {
 
     const classes = useStyles()
 
@@ -29,6 +29,7 @@ const Transactions = ({columns, transactions, id}) => {
                             text='Add Transaction'
                             variant='contained'
                             size='small'
+                            disabled={disableEditing}
                         />
                         <ModalButton
                             icon={<CloudUploadIcon />}
@@ -36,6 +37,7 @@ const Transactions = ({columns, transactions, id}) => {
                             text='Upload CSV'
                             variant='text'
                             size='small'
+                            disabled={disableEditing}
                         />
                     </Box>
                     <Box sx={{ flexGrow: 1 }}>

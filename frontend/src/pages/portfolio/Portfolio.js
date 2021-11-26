@@ -13,13 +13,19 @@ import Report from './components/Report'
 import RecurringTransactions from './components/RecurringTransactions'
 import PortfolioTabs from './components/PortfolioTabs'
 import { Alert, AlertTitle, TextField } from '@mui/material'
+import GlobalContext from 'state/GlobalContext'
+import { useContext } from 'react'
 
 
 const Portfolio = () => {
 
     let { id } = useParams()
 
+    const { state } = useContext(GlobalContext)
+
     const { details, summary, performanceType, handlePerformanceChange, allTransactions, recurringTransactionsList } = useGetPortfolio(id)
+
+    const disableEditing = state.auth.uid !== details.uid ? true : false
 
     if(!details){
         return(<Loading />)
@@ -48,6 +54,7 @@ const Portfolio = () => {
                     {...details}
                     id={id}
                     sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}
+                    disableEditing={disableEditing}
                 />
                 <Summary 
                     {...summary} 
@@ -62,8 +69,8 @@ const Portfolio = () => {
                 }
                 <PortfolioChart data={allTransactions} />
                 <Box sx={style}>
-                    <Transactions columns={columns} transactions={filteredTransactions} id={id} />
-                    <RecurringTransactions portfolioId={id} recurringTransactions={recurringTransactionsList}/>
+                    <Transactions columns={columns} transactions={filteredTransactions} id={id} disableEditing={disableEditing} />
+                    <RecurringTransactions portfolioId={id} recurringTransactions={recurringTransactionsList} disableEditing={disableEditing} />
                 </Box>
                     <PortfolioTabs 
                         tabs={[
