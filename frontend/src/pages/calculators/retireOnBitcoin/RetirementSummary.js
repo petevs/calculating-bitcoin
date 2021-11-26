@@ -8,8 +8,6 @@ import { Repeat } from '@mui/icons-material'
 
 const RetirementSummary = ({state}) => {
 
-    console.log(state.resultsTable())
-
     return (
         <Box sx={boxStyle}>
             <Scorecard

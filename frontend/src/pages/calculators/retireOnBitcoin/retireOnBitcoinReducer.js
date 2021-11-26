@@ -109,6 +109,12 @@ export const initialRetirement = {
                 bitcoinGrowthRate: this.bitcoinGrowthRateUntilRetirement / 100,
                 nextYearBitcoinPrice: function(){
                     return this.bitcoinPrice * (1 + this.bitcoinGrowthRate)
+                },
+                requiredIncomeAtRetirement: this.requiredYearlyIncome,
+                inflationRate: this.inflationUntilRetirement / 100,
+                inflationAdjustedIncome: this.requiredYearlyIncome,
+                nextYearInflationAdjustedIncome: function (){
+                        return this.inflationAdjustedIncome * (1 + this.inflationRate)
                 }
             }
         ]
@@ -123,7 +129,9 @@ export const initialRetirement = {
                 age: current.age + 1,
                 year: current.year + 1,
                 bitcoinPrice: current.nextYearBitcoinPrice(),
-                bitcoinGrowthRate: current.age < this.retirementAge ? current.bitcoinGrowthRate : (this.bitcoinYearlyGrowthRate / 100)
+                bitcoinGrowthRate: current.age < this.retirementAge ? current.bitcoinGrowthRate : (this.bitcoinYearlyGrowthRate / 100),
+                inflationRate: current.age < this.retirementAge ? current.inflationRate : (this.inflationAfterRetirement / 100),
+                inflationAdjustedIncome: current.nextYearInflationAdjustedIncome()
             }
 
             results.push(row)
