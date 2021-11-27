@@ -76,7 +76,10 @@ const useFirebase = () => {
             ...state.portfolio.portfolioObj,
             [portfolioId]: {
                 ...values,
-                portfolioName: `${values.portfolioName} (COPY)`
+                portfolioName: `${values.portfolioName} (COPY)`,
+                displayName: user.displayName,
+                visibility: 'private',
+                uid: state.auth.uid
             }
         })
 
