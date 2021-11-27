@@ -5,7 +5,7 @@ const PortfolioCard = (props) => {
     return (
         <Card sx={{backgroundColor: '#212B36', maxWidth: 275}}>
             <CardActionArea
-                sx={{padding: '.5rem'}}
+                sx={{height: '100%', padding: '.5rem'}}
                 component={Link}
                 to={`/portfolio/${props.id}`}
             >
@@ -22,7 +22,9 @@ export default PortfolioCard
 
 const headingStyle = {
     borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
+    paddingBottom: '.5rem',
     marginBottom: '.5rem',
     fontSize: '1rem',
     fontWeight: 700,
+    textTransform: 'capitalize'
 }

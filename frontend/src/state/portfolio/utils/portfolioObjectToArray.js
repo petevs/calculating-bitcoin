@@ -7,11 +7,13 @@ export const portfolioObjectToArray = (portfolioObj) => {
             const currentPortfolio = portfolioObj[key]
             portfolioList.push(
                 {
+                    ...currentPortfolio,
                     id: key,
                     portfolioDescription: currentPortfolio.portfolioDescription,
                     portfolioName: currentPortfolio.portfolioName,
                     transactions: currentPortfolio.transactions,
-                    recurringTransactions: currentPortfolio.recurringTransactions
+                    recurringTransactions: currentPortfolio.recurringTransactions,
+                    
                 }
             )
         }

@@ -15,13 +15,26 @@ const PublicPortfolios = () => {
             <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}>
                 <PageTitle>Browse Portfolios</PageTitle>
             </Box>
-            {
-                state.portfolio.publicPortfoliosList().map(item => 
-                    <PortfolioCard key={item.id} {...item} />
-                )
-            }
+            <Box sx={style}>
+                {
+                    state.portfolio.publicPortfoliosList().map(item => 
+                        <PortfolioCard key={item.id} {...item} />
+                    )
+                }
+            </Box>
         </Page>
     )
 }
 
 export default PublicPortfolios
+
+
+const style = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(275px,1fr))',
+    gap: '1rem',
+    '@media (max-width: 1024px)': {
+        gridAutoFlow: 'row',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'
+    }
+}
