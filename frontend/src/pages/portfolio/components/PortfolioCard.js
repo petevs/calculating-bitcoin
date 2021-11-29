@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const PortfolioCard = (props) => {
     return (
-        <Card sx={{backgroundColor: '#212B36', maxWidth: 275}}>
+        <Card sx={{backgroundColor: '#212B36', maxWidth: 275, boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px'}}>
             <CardActionArea
                 sx={{height: '100%', padding: '.5rem'}}
                 component={Link}
@@ -26,5 +26,5 @@ const headingStyle = {
     marginBottom: '.5rem',
     fontSize: '1rem',
     fontWeight: 700,
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
 }

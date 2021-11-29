@@ -1,5 +1,8 @@
 import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import { renderToString } from 'react-dom/server';
 
 const CurrentPriceBox = (props) => {
 
@@ -12,10 +15,12 @@ const CurrentPriceBox = (props) => {
                 prefix='$'
             />
             <NumberFormat
-                style={{fontSize: '.675rem', color: props.priceChange < 0 ? 'red' : 'green'}}
+                style={{fontSize: '.675rem', color: props.priceChange < 0 ? 'red' : 'green', paddingLeft: '.5rem'}}
                 value={props.priceChange}
                 displayType='text'
-                decimalScale={2}
+                prefix={props.priceChange > 0 ? '+ ' : '- '}
+                thousandSeparator={true}
+                decimalScale={0}
             />
             <NumberFormat
                 style={{fontSize: '.675rem', color: props.percentChange < 0 ? 'red' : 'green'}}
