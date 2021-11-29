@@ -1,8 +1,5 @@
 import { Box } from '@mui/system'
 import NumberFormat from 'react-number-format'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import { renderToString } from 'react-dom/server';
 
 const CurrentPriceBox = (props) => {
 

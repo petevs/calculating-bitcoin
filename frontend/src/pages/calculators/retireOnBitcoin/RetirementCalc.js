@@ -26,7 +26,7 @@ const RetirementCalc = () => {
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
             <PageHeader title='Retire on Bitcoin Calculator' />
-            <Box sx={{display: 'grid', gridAutoFlow: 'column', gap: '1rem'}}>
+            <Box sx={{display: 'grid', gridAutoFlow: 'column', gap: '1rem', alignItems: 'start'}}>
                 <RetirementForm state={reducerState} dispatch={dispatch} updateValue={updateValue}/>
             </Box>
             <RetirementSummary state={reducerState} />

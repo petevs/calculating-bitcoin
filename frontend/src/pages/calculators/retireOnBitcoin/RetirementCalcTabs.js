@@ -18,7 +18,7 @@ const RetirementCalcTabs = ({ tabs }) => {
             <Box 
                 hidden={value !== index}
                 {...other}
-                sx={{display: 'grid', gridTemplateColumns: '1fr', paddingTop: '2rem'}}
+                sx={{display: 'grid', gridTemplateColumns: '1fr', padding: value !== index ? '0' : '2rem 1rem'}}
             >
                 {value === index &&     
                     <Box>
