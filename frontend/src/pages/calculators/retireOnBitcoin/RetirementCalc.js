@@ -13,6 +13,8 @@ import SavedCalcs from './SavedCalcs'
 import InputSlider from './InputSlider'
 import { Drawer, Typography } from '@mui/material'
 import RetirementDrawer from './RetirementDrawer'
+import CalculatorHeader from './CalculatorHeader'
+import { useState } from 'react'
 
 const RetirementCalc = () => {
 
@@ -28,11 +30,19 @@ const RetirementCalc = () => {
 
     const [reducerState, dispatch] = useReducer(retirementReducer, initialValues)
 
+
+    const [open, setOpen] = useState(true)
+
+    const toggleDrawer = () => {
+        setOpen(!open)
+    }
+
+
     return (
         <>
-        <RetirementDrawer state={reducerState} dispatch={dispatch} updateValue={updateValue} />
+        <RetirementDrawer state={reducerState} dispatch={dispatch} updateValue={updateValue} open={open} toggleDrawer={toggleDrawer} />
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
-            <PageHeader title='Retire on Bitcoin Calculator' />
+            <CalculatorHeader title='Retire on Bitcoin Calculator' open={open} toggleDrawer={toggleDrawer} />
             <RetirementSummary state={reducerState} />
             <Box sx={{display: 'grid', gridTemplateColumns: '1fr', alignItems: 'start'}}>
                 <RetirementChart data={reducerState.resultsTable()} />
