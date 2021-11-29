@@ -1,16 +1,14 @@
 import React from 'react'
-import FormBox from 'components/form/FormBox'
-import NumberFormat from 'react-number-format'
-import FormHeader from 'components/form/FormHeader'
 import { Box } from '@mui/system'
-import { TextField, InputAdornment, Typography } from '@mui/material'
+import { TextField, Typography } from '@mui/material'
+import NumberFormat from 'react-number-format'
 
-const RetirementGoals = ({state, dispatch, updateValue}) => {
+const InputSlider = ({state, dispatch, updateValue}) => {
     return (
-            <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', padding: '1rem'}}>
-                <Typography sx={{fontSize: '1rem', fontWeight: '700'}}>Retirement Goals</Typography>
-                <NumberFormat
-                    label='Current Age'
+    <Box sx={wrapper}>
+        <Box sx={card}>
+            <Typography variant='h3' sx={title}>Current Age</Typography>
+            <NumberFormat
                     customInput={TextField}
                     inputProps={{type: 'numeric'}}
                     isAllowed={(values) => {
@@ -26,8 +24,10 @@ const RetirementGoals = ({state, dispatch, updateValue}) => {
                         )}
                     size='small'
                 />
-                <NumberFormat
-                    label='Retirement Age'
+        </Box>
+        <Box sx={card}>
+            <Typography variant='h3' sx={title}>Retirement Age</Typography>
+            <NumberFormat
                     customInput={TextField}
                     inputProps={{type: 'numeric'}}
                     isAllowed={(values) => {
@@ -43,8 +43,10 @@ const RetirementGoals = ({state, dispatch, updateValue}) => {
                         )}
                     size='small'
                 />
-                <NumberFormat
-                    label='Age of Death'
+        </Box>
+        <Box sx={card}>
+            <Typography variant='h3' sx={title}>Age of Death</Typography>
+            <NumberFormat
                     customInput={TextField}
                     inputProps={{type: 'numeric'}}
                     isAllowed={(values) => {
@@ -59,28 +61,43 @@ const RetirementGoals = ({state, dispatch, updateValue}) => {
                         })
                         )}
                     size='small'
-                />
-            <NumberFormat
-                label="Retirement Income (Today's Dollars)"
-                customInput={TextField}
-                inputProps={{type: 'numeric'}}
-                InputProps={{
-                    startAdornment: (<InputAdornment position='start'>
-                        $
-                    </InputAdornment>),
-                }}
-                thousandSeparator={true}
-                value={state.requiredYearlyIncome}
-                onValueChange={(e) => dispatch(
-                    updateValue({
-                        name: 'requiredYearlyIncome', 
-                        value: e.floatValue
-                    })
-                    )}
-                size='small'
             />
-            </Box>
+        </Box>
+    </Box>
     )
 }
 
-export default RetirementGoals
+export default InputSlider
+
+const wrapper = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(150px,1fr))',
+    gap: '1rem',
+
+    '@media (max-width: 1024px)': {
+        gridAutoFlow: 'row',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'
+    }
+}
+
+const card = {
+    display: 'grid',
+    backgroundColor: 'rgb(33, 43, 54)',
+    padding: '1rem',
+    borderRadius: '6px',
+    boxShadow: '0 0 0 1px rgba(63, 63, 68, 0.05)',
+
+    '& span': {
+        fontSize: '1.5rem',
+        color: '#fff',
+        fontWeight: '600'
+    }
+}
+
+const title = {
+    fontSize: '.75rem',
+    color: '#fff',
+    fontWeight: '500',
+    textTransform: 'uppercase',
+    paddingBottom: '.5rem'
+}

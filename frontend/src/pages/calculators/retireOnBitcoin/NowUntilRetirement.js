@@ -1,12 +1,13 @@
 
 import NumberFormat from 'react-number-format'
 import { Box } from '@mui/system'
-import { TextField, InputAdornment} from '@mui/material'
+import { TextField, InputAdornment, Typography} from '@mui/material'
 
 const NowUntilRetirement = ({state, dispatch, updateValue}) => {
     return (
         <>
-    <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem'}}>
+    <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', padding: '1rem'}}>
+        <Typography sx={{fontSize: '1rem', fontWeight: '700'}}>Expectations {`(2021-2041)`}</Typography>
             <NumberFormat
                 label='Bitcoin Yearly Growth Rate'
                 customInput={TextField}
@@ -28,6 +29,7 @@ const NowUntilRetirement = ({state, dispatch, updateValue}) => {
                         value: e.floatValue
                     })
                     )}
+                size='small'
             />
         <NumberFormat
             label='Annual Inflation Rate'
@@ -50,6 +52,7 @@ const NowUntilRetirement = ({state, dispatch, updateValue}) => {
                     value: e.floatValue
                 })
                 )}
+            size='small'
         />
         </Box>
         </>

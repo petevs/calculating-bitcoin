@@ -92,15 +92,17 @@ const categories = data.map(item => item.year).reverse()
 
 
     return (
-        <Box sx={wrapper}>
-        <Chart
-            series={series}
-            options={options}
-            type='area'
-            width='100%'
-            height="400px"
-        />
-    </Box>
+        <Box sx={containerStyle}>
+            <Box sx={wrapper}>
+                <Chart
+                    series={series}
+                    options={options}
+                    type='area'
+                    width='100%'
+                    height="400px"
+                />
+            </Box>
+        </Box>
     )
 }
 
@@ -112,3 +114,14 @@ const wrapper = {
       margin: '0 0 0 -1rem'
     }
 }
+
+const containerStyle = {
+    '@media (min-width: 768px)': {
+      backgroundColor: '#212B36',
+      boxShadow: 'rgb(0 0 0 / 24%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 16px 32px -4px',
+      borderRadius: '1rem',
+      padding: '2rem',
+    }
+  
+  
+  }
