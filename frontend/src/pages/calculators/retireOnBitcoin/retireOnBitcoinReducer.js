@@ -47,7 +47,7 @@ export const initialRetirement = {
     inflationAfterRetirement: 2,
     requiredYearlyIncome: 150000,
     currentPriceOfBitcoin: 1,
-    calculationMethod: 'priceTarget',
+    calculationMethod: 'growthRate',
     yearsOfGrowth: function() {
         return this.retirementAge - this.currentAge
     },

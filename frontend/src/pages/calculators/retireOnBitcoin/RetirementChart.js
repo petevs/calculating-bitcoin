@@ -1,15 +1,49 @@
 import { Box } from "@mui/system"
 import Chart from 'react-apexcharts'
+import { TextField, MenuItem, InputAdornment } from "@mui/material"
+import { useState } from 'react'
 
 const RetirementChart = ({ data }) => {
 
+  const [chartType, setChartType] = useState('bitcoinBalance')
+    
+  const handleChartTypeChange = (e) => {
+      setChartType(e.target.value)
+  }
+
+  const handleChartName = (chartName) => {
+    switch(chartName) {
+        case ('portfolioValue'):
+            return 'Portfolio Value'
+        case ('bitcoinSold'):
+            return 'Bitcoin Sold'
+        case ('inflationAdjustedIncome'):
+            return 'Payment (Inflation Adjusted)'
+        case ('bitcoinPrice'):
+            return 'Bitcoin Prices'
+        default:
+            return 'Bitcoin Holdings'
+    }
+}
+
+const formatY = (chartType, x) => {
+  switch(chartType) {
+    case ('bitcoinBalance'):
+      return Math.round(x  * 100000000) / 100000000
+    case ('bitcoinSold'):
+      return Math.round(x  * 100000000) / 100000000
+    default:
+      return Math.round(x)
+  }
+}
+
     const series = [
         {
-            name: 'Bitcoin Balance',
+            name: handleChartName(chartType),
             data: data.map((item) => {
                 return {
                     x: item.year,
-                    y: item['bitcoinBalance'],
+                    y: formatY(chartType, item[chartType]),
                 }
             }).reverse()
         },
@@ -46,7 +80,7 @@ const categories = data.map(item => item.year).reverse()
         yaxis: {
           labels: {
             show: true,
-            formatter: (value) => { return `$ ${value}`},
+            // formatter: (value) => { return `$ ${value}`},
           },
           // opposite: true,
         },
@@ -93,6 +127,26 @@ const categories = data.map(item => item.year).reverse()
 
     return (
         <Box sx={containerStyle}>
+              <Box sx={{paddingBottom: '1rem'}}>
+                <TextField
+                    select
+                    value={chartType}
+                    onChange={handleChartTypeChange}
+                    size='small'
+                    sx={{width: '350px'}}
+                    InputProps={{
+                        startAdornment: (<InputAdornment position='start'>
+                            Chart Type:
+                        </InputAdornment>),
+                    }}
+                >
+                    <MenuItem value='bitcoinBalance'>Bitcoin Holdings</MenuItem>
+                    <MenuItem value='portfolioValue'>Portfolio Value</MenuItem>
+                    <MenuItem value='bitcoinSold'>Bitcoin Sold</MenuItem>
+                    <MenuItem value='bitcoinPrice'>Bitcoin Price</MenuItem>
+                    <MenuItem value='inflationAdjustedIncome'>Payment (Inflation Adjusted)</MenuItem>
+                </TextField>
+            </Box>
             <Box sx={wrapper}>
                 <Chart
                     series={series}
