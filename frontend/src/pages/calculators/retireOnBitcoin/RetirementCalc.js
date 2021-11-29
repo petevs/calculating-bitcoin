@@ -8,6 +8,7 @@ import GlobalContext from 'state/GlobalContext'
 import { Box } from '@mui/system'
 import RetirementPaymentSchedule from './RetirementPaymentSchedule'
 import RetirementCalcTabs from './RetirementCalcTabs'
+import RetirementChart from './RetirementChart'
 
 const RetirementCalc = () => {
 
@@ -26,10 +27,11 @@ const RetirementCalc = () => {
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
             <PageHeader title='Retire on Bitcoin Calculator' />
-            <Box sx={{display: 'grid', gridAutoFlow: 'column', gap: '1rem', alignItems: 'start'}}>
-                <RetirementForm state={reducerState} dispatch={dispatch} updateValue={updateValue}/>
-            </Box>
             <RetirementSummary state={reducerState} />
+            <Box sx={{display: 'grid', gridTemplateColumns: '1fr', alignItems: 'start'}}>
+                <RetirementChart data={reducerState.resultsTable()} />
+                {/* <RetirementForm state={reducerState} dispatch={dispatch} updateValue={updateValue}/> */}
+            </Box>
             <RetirementCalcTabs
                 tabs={[
                     {

@@ -24,7 +24,7 @@ const RetirementForm = (props) => {
                         content: <AtRetirement {...props} />
                     },
                     {
-                        key: 2,
+                        key: 3,
                         title: 'During Retirement',
                         content: <DuringRetirement {...props} />
                     }

@@ -7,7 +7,7 @@ import { TextField, InputAdornment } from '@mui/material'
 
 const RetirementGoals = ({state, dispatch, updateValue}) => {
     return (
-<FormBox>
+<Box>
             <FormHeader heading='Retirement Goals' />
             <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem'}}>
                 <NumberFormat
@@ -77,7 +77,7 @@ const RetirementGoals = ({state, dispatch, updateValue}) => {
                     })
                     )}
             />
-            </FormBox>
+            </Box>
     )
 }
 
