@@ -7,7 +7,9 @@ const NowUntilRetirement = ({state, dispatch, updateValue}) => {
     return (
         <>
     <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', padding: '1rem'}}>
-        <Typography sx={{fontSize: '1rem', fontWeight: '700'}}>Expectations {`(2021-2041)`}</Typography>
+        <Typography sx={{fontSize: '1rem', fontWeight: '700'}}>
+            Expectations {`(${state.currentYear} - ${state.yearOfRetirement()})`}
+        </Typography>
             <NumberFormat
                 label='Bitcoin Yearly Growth Rate'
                 customInput={TextField}

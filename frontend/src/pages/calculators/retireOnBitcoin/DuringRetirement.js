@@ -1,11 +1,14 @@
 import NumberFormat from 'react-number-format'
 import { Box } from '@mui/system'
-import { TextField, InputAdornment } from '@mui/material'
+import { TextField, InputAdornment, Typography } from '@mui/material'
 
 const DuringRetirement = ({state, dispatch, updateValue}) => {
+
     return (
-        <>
-        <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem'}}>
+        <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', padding: '1rem'}}>
+                <Typography sx={{fontSize: '1rem', fontWeight: '700'}}>
+                    Expectations {`(${state.yearOfRetirement()} - ${state.yearOfDeath()})`}
+                </Typography>
             <NumberFormat
                 label='Bitcoin Yearly Growth Rate'
                 customInput={TextField}
@@ -51,7 +54,6 @@ const DuringRetirement = ({state, dispatch, updateValue}) => {
                     )}
             />
         </Box>
-    </>
     )
 }
 
