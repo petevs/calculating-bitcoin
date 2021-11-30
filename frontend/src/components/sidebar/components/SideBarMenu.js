@@ -89,14 +89,14 @@ const SideBarMenu = () => {
                 </SideBarList>
                 )
             }
-            <SideBarListItem
+            {/* <SideBarListItem
                 icon={<CollectionsBookmarkIcon />}
                 text='My Bookmarks'
                 button={{
                     component: Link,
                     to: '/bookmarks'
                 }}
-            />
+            /> */}
         </>
     )
 }
