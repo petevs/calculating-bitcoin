@@ -1,11 +1,12 @@
 import { Box } from "@mui/system"
 import Chart from 'react-apexcharts'
-import { TextField, MenuItem, InputAdornment } from "@mui/material"
+import { TextField, MenuItem, InputAdornment, RadioGroup, FormControlLabel, Radio } from "@mui/material"
 import { useState } from 'react'
 
 const RetirementChart = ({ data }) => {
 
   const [chartType, setChartType] = useState('bitcoinBalance')
+  const [xAxisType, setXAxisType] = useState('age')
     
   const handleChartTypeChange = (e) => {
       setChartType(e.target.value)
@@ -42,10 +43,10 @@ const formatY = (chartType, x) => {
             name: handleChartName(chartType),
             data: data.map((item) => {
                 return {
-                    x: item.year,
+                    x: item[xAxisType],
                     y: formatY(chartType, item[chartType]),
                 }
-            }).reverse()
+            })
         },
         // {
         //     name: `Total Invested`,
@@ -59,7 +60,7 @@ const formatY = (chartType, x) => {
 
 ]
 
-const categories = data.map(item => item.year).reverse()
+const categories = data.map(item => item[xAxisType])
 
 
     const defaultOptions = {
@@ -85,7 +86,7 @@ const categories = data.map(item => item.year).reverse()
           // opposite: true,
         },
         xaxis: {
-          type: "datetime",
+          // type: "datetime",
           categories: categories,
           labels: {
             style: {
@@ -156,6 +157,16 @@ const categories = data.map(item => item.year).reverse()
                     height="400px"
                 />
             </Box>
+            <Box sx={{display: 'grid', justifyContent: 'center'}}>
+              <RadioGroup 
+                  row sx={radioStyle}
+                  value={xAxisType}
+                  onChange={(e) => setXAxisType(e.target.value)}
+              >
+                  <FormControlLabel value='age' control={<Radio />} label='Age' />
+                  <FormControlLabel value='year' control={<Radio />} label='Year' />
+              </RadioGroup>
+            </Box>
         </Box>
     )
 }
@@ -179,3 +190,13 @@ const containerStyle = {
   
   
   }
+
+  const radioStyle = {
+    '& .MuiSvgIcon-root': {
+      fontSize: '1rem',
+    },
+    '& .MuiFormControlLabel-label': {
+        fontSize: '.875rem',
+        color: '#fff'
+    }
+}
