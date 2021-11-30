@@ -1,7 +1,10 @@
 import { Box } from "@mui/system"
 import Chart from 'react-apexcharts'
-import { TextField, MenuItem, InputAdornment, RadioGroup, FormControlLabel, Radio } from "@mui/material"
+import { TextField, MenuItem, InputAdornment, RadioGroup, FormControlLabel, Radio, Typography } from "@mui/material"
+import { renderToString } from 'react-dom/server'
 import { useState } from 'react'
+import Bitcoin from "components/Bitcoin"
+import Currency from "components/Currency"
 
 const RetirementChart = ({ data }) => {
 
@@ -62,6 +65,32 @@ const formatY = (chartType, x) => {
 
 const categories = data.map(item => item[xAxisType])
 
+const CustomTooltip = (props) => {
+  return (
+    <Box sx={{padding: '1rem', display: 'grid', gridTemplateColumns: '1fr', alignItems: 'start'}}>
+      <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', paddingBottom: '.5rem', marginBottom: '.5rem'}}>
+          <Typography variant='body2'>{props.x}</Typography>
+      </Box>
+      <Typography variant='body1'>
+        <span style={{paddingRight: '.15rem'}}>{props.chartType}</span>
+        {
+          props.chartType === 'Bitcoin Sold' || props.chartType === 'Bitcoin Holdings'
+          ? <Bitcoin value={props.y} />
+          : <Currency value={props.y} />
+        }
+      </Typography>
+    </Box>
+  )
+}
+
+const tooltip = {
+  custom: function({series, seriesIndex, dataPointIndex, w}){
+      const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex]
+      const seriesName = w.globals.seriesNames[0]
+      return renderToString(<CustomTooltip {...data} chartType={seriesName} />)
+  }
+}
+
 
     const defaultOptions = {
         chart: {
@@ -96,6 +125,7 @@ const categories = data.map(item => item[xAxisType])
         },
         colors: ["#2E99FE", "#FF2F30"],
         tooltip: {
+          ...tooltip,
           x: {
             format: "dd MMM HH:mm",
           },
