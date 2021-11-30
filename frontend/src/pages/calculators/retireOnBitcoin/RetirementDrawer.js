@@ -7,6 +7,8 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const RetirementDrawer = ({state, dispatch, updateValue, open, toggleDrawer}) => {
 
+    console.log(state)
+
     return (
         <>
         <Box
