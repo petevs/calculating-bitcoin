@@ -18,11 +18,11 @@ const CalculatorHeader = (props) => {
                 >
                     Edit Details
                 </Button>
-                <Button
+                {/* <Button
                     startIcon={<ContentCopyIcon />}
                 >
                     Clone
-                </Button>
+                </Button> */}
             </Box>
         </Box>
     )

@@ -15,9 +15,6 @@ app.get('/cat', (req, res) => {
 
     res.send('HI CAT')
 })
-app.get('/dog', (req, res) => {
-    res.send('DOG')
-})
 
 app.post('/dca', async (req, res, next) => {
 
