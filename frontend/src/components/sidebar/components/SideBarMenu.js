@@ -42,6 +42,10 @@ const SideBarMenu = () => {
             icon: <CalculateIcon />,
             data: [
                 {
+                    text: 'All Calculators',
+                    to: '/calculators'
+                },
+                {
                     text: 'Retire on Bitcoin',
                     to: '/calculators/retire-on-bitcoin'
                 },
