@@ -15,7 +15,7 @@ const CurrentPriceBox = (props) => {
                 style={{fontSize: '.675rem', color: props.priceChange < 0 ? 'red' : 'green', paddingLeft: '.5rem'}}
                 value={props.priceChange}
                 displayType='text'
-                prefix={props.priceChange > 0 ? '+ ' : '- '}
+                prefix={props.priceChange > 0 ? '+ ' : ''}
                 thousandSeparator={true}
                 decimalScale={0}
             />
