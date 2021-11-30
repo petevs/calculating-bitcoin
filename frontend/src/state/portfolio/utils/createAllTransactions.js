@@ -10,7 +10,15 @@ export const createAllTransactions = (transactions, historicalData, currentPrice
     let sortedTransactions = []
 
     if(transactions.length > 1){
-      sortedTransactions = transactions.sort((a,b) => {
+
+      let updatedTransactions = transactions.map(transaction => {
+        return {
+          ...transaction,
+          historicalPrice: historicalData[transaction.date]
+        }
+      })
+
+      sortedTransactions = updatedTransactions.sort((a,b) => {
         return new Date(a.date).getTime() - new Date(b.date).getTime()
       })
     }
@@ -35,7 +43,7 @@ export const createAllTransactions = (transactions, historicalData, currentPrice
     const fillerTransactions = makeFillerTransactions(sortedTransactions, historicalData, currentPrice)
 
     //All Transactions
-    let allTransactions = [...transactions, ...fillerTransactions, ...generatedRecurringTransactions]
+    let allTransactions = [...sortedTransactions, ...fillerTransactions]
 
 
     //Sort All Transactions

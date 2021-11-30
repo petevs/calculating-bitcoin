@@ -47,7 +47,7 @@ const Portfolio = () => {
                 sortable: false,
                 editable: false
             })
-
+            
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
                 <PortfolioHeader 

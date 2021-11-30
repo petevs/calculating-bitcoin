@@ -9,12 +9,12 @@ const PortfolioCard = (props) => {
                 component={Link}
                 to={`/portfolio/${props.id}`}
             >
-            <CardContent>
-                <Typography sx={headingStyle} variant='h6'>{props.portfolioName}</Typography>
-                <Typography variant='body-2' sx={{fontSize: '.875rem'}}>{props.portfolioDescription || 'No Description'}</Typography>
-            </CardContent>
-        </CardActionArea>
-    </Card>
+                <CardContent>
+                    <Typography sx={headingStyle} variant='h6'>{props.portfolioName}</Typography>
+                    <Typography variant='body-2' sx={{fontSize: '.875rem'}}>{props.portfolioDescription || 'No Description'}</Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
     )
 }
 
