@@ -11,7 +11,6 @@ const RetirementForm = (props) => {
         <Box sx={{display: 'grid', gap: '1rem'}}>
             <RetirementGoals {...props} />
             <NowUntilRetirement {...props} />
-            <AtRetirement {...props} />
             <DuringRetirement {...props} />
         </Box>
     )
