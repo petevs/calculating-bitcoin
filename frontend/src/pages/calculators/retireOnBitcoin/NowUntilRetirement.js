@@ -7,7 +7,7 @@ import { toggleCalculationMethod } from './retireOnBitcoinReducer'
 const NowUntilRetirement = ({state, dispatch, updateValue}) => {
     return (
         <>
-    <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', padding: '1rem'}}>
+    <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem'}}>
         <Typography sx={{fontSize: '1rem', fontWeight: '700'}}>
             Expectations {`(${state.currentYear} - ${state.yearOfRetirement()})`}
         </Typography>
@@ -40,7 +40,7 @@ const NowUntilRetirement = ({state, dispatch, updateValue}) => {
                 onChange={(e) => dispatch(toggleCalculationMethod(e.target.value))}
             >
                 <FormControlLabel value='priceTarget' control={<Radio />} label='Price Target' />
-                <FormControlLabel value='growthRate' control={<Radio />} label='Growth Rate' />
+                <FormControlLabel value='growthRate' control={<Radio />} label='Annual Growth Rate' />
             </RadioGroup>
             {
                 state.calculationMethod === 'growthRate' 
@@ -105,7 +105,7 @@ const radioStyle = {
     '& .MuiSvgIcon-root': {
       fontSize: '1rem',
     },
-    '& MuiFormControlLabel-label': {
+    '& .MuiFormControlLabel-label': {
         fontSize: '.875rem'
     }
 }

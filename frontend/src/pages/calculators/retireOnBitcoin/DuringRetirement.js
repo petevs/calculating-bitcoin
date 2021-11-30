@@ -5,7 +5,7 @@ import { TextField, InputAdornment, Typography } from '@mui/material'
 const DuringRetirement = ({state, dispatch, updateValue}) => {
 
     return (
-        <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', padding: '1rem'}}>
+        <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem'}}>
                 <Typography sx={{fontSize: '1rem', fontWeight: '700'}}>
                     Expectations {`(${state.yearOfRetirement()} - ${state.yearOfDeath()})`}
                 </Typography>
@@ -30,6 +30,7 @@ const DuringRetirement = ({state, dispatch, updateValue}) => {
                         value: e.floatValue
                     })
                     )}
+                    size='small'
             />
             <NumberFormat
                 label='Annual Inflation Rate'
@@ -52,6 +53,7 @@ const DuringRetirement = ({state, dispatch, updateValue}) => {
                         value: e.floatValue
                     })
                     )}
+                    size='small'
             />
         </Box>
     )

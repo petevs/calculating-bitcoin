@@ -7,7 +7,7 @@ import { TextField, InputAdornment, Typography } from '@mui/material'
 
 const RetirementGoals = ({state, dispatch, updateValue}) => {
     return (
-            <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', padding: '1rem'}}>
+            <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gap: '1rem'}}>
                 <Typography sx={{fontSize: '1rem', fontWeight: '700'}}>Retirement Goals</Typography>
                 <NumberFormat
                     label='Current Age'

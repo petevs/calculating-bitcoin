@@ -1,5 +1,3 @@
-import { inputUnstyledClasses } from "@mui/core"
-
 const UPDATE_VALUE = 'UPDATE_VALUE'
 const TOGGLE_CALCULATION_METHOD = 'TOGGLE_CALCULATION_METHOD'
 
@@ -47,7 +45,7 @@ export const initialRetirement = {
     inflationAfterRetirement: 2,
     requiredYearlyIncome: 150000,
     currentPriceOfBitcoin: 1,
-    calculationMethod: 'growthRate',
+    calculationMethod: 'priceTarget',
     yearsOfGrowth: function() {
         return this.retirementAge - this.currentAge
     },
