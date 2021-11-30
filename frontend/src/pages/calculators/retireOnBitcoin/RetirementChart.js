@@ -6,7 +6,7 @@ import { useState } from 'react'
 const RetirementChart = ({ data }) => {
 
   const [chartType, setChartType] = useState('bitcoinBalance')
-  const [xAxisType, setXAxisType] = useState('age')
+  const [xAxisType, setXAxisType] = useState('year')
     
   const handleChartTypeChange = (e) => {
       setChartType(e.target.value)
@@ -81,12 +81,12 @@ const categories = data.map(item => item[xAxisType])
         yaxis: {
           labels: {
             show: true,
-            // formatter: (value) => { return `$ ${value}`},
+            formatter: (value) => Math.round(value),
           },
           // opposite: true,
         },
         xaxis: {
-          // type: "datetime",
+          type: xAxisType === 'year' ? "datetime" : "",
           categories: categories,
           labels: {
             style: {
