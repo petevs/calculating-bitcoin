@@ -56,7 +56,7 @@ export const initialRetirement = {
     yearOfDeath: function(){
         return this.yearOfRetirement() + this.yearsOfConsumption()
     },
-    previousState: {}
+    previousState: {},
 }
 
 
@@ -81,7 +81,6 @@ export const retirementReducer = (state = initialRetirement, action) => {
         case CANCEL_CHANGES:
             return {
                 ...state.previousState,
-                previousState: {},
             }
         case TOGGLE_CALCULATION_METHOD:
             if(state.calculationMethod === 'priceTarget'){
