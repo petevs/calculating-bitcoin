@@ -1,7 +1,4 @@
-import React from 'react'
-import FormBox from 'components/form/FormBox'
 import NumberFormat from 'react-number-format'
-import FormHeader from 'components/form/FormHeader'
 import { Box } from '@mui/system'
 import { TextField, InputAdornment, Typography } from '@mui/material'
 

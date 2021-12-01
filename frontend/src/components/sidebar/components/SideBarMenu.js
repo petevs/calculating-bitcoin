@@ -1,17 +1,13 @@
 import SideBarList from './SideBarList';
-import GlobalContext from 'state/GlobalContext';
-import { useContext } from 'react'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import AddPortfolio from './AddPortfolio';
-import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
-import SideBarListItem from './SideBarListItem';
-import { Link } from 'react-router-dom';
+// import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+// import SideBarListItem from './SideBarListItem';
+// import { Link } from 'react-router-dom';
 
 
 const SideBarMenu = () => {
-
-    const { state } = useContext(GlobalContext)
 
     const portfolioMenu = [
         {

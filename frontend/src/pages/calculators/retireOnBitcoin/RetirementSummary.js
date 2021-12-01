@@ -1,10 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/system'
-import NumberFormat from 'react-number-format'
-import Currency from 'components/Currency'
-import Bitcoin from 'components/Bitcoin'
 import Scorecard from 'components/Scorecard'
-import { Repeat } from '@mui/icons-material'
 
 const RetirementSummary = ({state}) => {
 

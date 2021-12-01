@@ -3,8 +3,6 @@ import NowUntilRetirement from './NowUntilRetirement'
 import DuringRetirement from './DuringRetirement'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
-import { useState, useEffect } from 'react'
-
 
 const RetirementForm = (props) => {
 

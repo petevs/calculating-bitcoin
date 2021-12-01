@@ -3,8 +3,8 @@ import { Box } from '@mui/system'
 import PageTitle from 'layouts/components/PageTitle'
 import { Button } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const CalculatorHeader = (props) => {
     return (

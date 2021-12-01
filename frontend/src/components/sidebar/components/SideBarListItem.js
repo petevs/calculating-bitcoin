@@ -1,4 +1,4 @@
-import { List, ListItemText } from '@material-ui/core'
+import { List } from '@material-ui/core'
 import { ListItemButton, ListItemIcon } from '@mui/material'
 import React from 'react'
 

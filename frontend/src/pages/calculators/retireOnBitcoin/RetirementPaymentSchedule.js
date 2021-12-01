@@ -2,7 +2,6 @@ import { Box } from '@mui/system'
 import { columns } from './tableData'
 import { DataGrid } from '@mui/x-data-grid'
 import { makeStyles } from '@mui/styles'
-import { Typography } from '@mui/material'
 
 const RetirementPaymentSchedule = (props) => {
 

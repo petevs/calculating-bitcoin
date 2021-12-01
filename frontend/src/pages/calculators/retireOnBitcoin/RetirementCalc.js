@@ -43,6 +43,7 @@ const RetirementCalc = () => {
 
     useEffect(() => {
         updateCalculation()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const Content = () => {

@@ -30,9 +30,9 @@ const fv = (pv, i, n) => {
     return pv * ((1 + i) ** n)
 }
 
-const cagr = (vFinal, vBegin, time) => {
-    return ((vFinal / vBegin)**(1/time)) - 1
-}
+// const cagr = (vFinal, vBegin, time) => {
+//     return ((vFinal / vBegin)**(1/time)) - 1
+// }
 
 const toPercent = (x) => { return x / 100}
 
