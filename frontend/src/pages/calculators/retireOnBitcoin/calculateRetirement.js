@@ -168,6 +168,7 @@ export const calculateRetirement = (inputs) => {
     const results = {
       portfolioValueAtRetirement: calculation.presentValueAtRetirement(),
       calculatedBitcoinPriceAtRetirement: calculation.bitcoinPrice(),
+      bitcoinPriceAtRetirement: calculation.bitcoinPriceAtRetirement,
       paymentSchedule: calculation.resultsTable(),
       bitcoinRequiredUsingPriceTarget: calculation.bitcoinRetireToday(),
       bitcoinRequiredUsingGrowthRate: calculation.bitcoinRetireTodayUsingGR(),

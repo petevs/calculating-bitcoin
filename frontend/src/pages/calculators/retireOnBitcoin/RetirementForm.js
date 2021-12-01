@@ -3,25 +3,22 @@ import NowUntilRetirement from './NowUntilRetirement'
 import DuringRetirement from './DuringRetirement'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
-import { calculateRetirement } from './calculateRetirement'
+import { useState, useEffect } from 'react'
+
 
 const RetirementForm = (props) => {
 
-    const updateResults = () => {
-        props.dispatch(props.updateStatus('calculating'))
-        const results = calculateRetirement(props.state)
-        props.dispatch(props.updateResults(results))
-    }
-
-
+    console.log(props.state)
 
     return (
         <Box sx={{display: 'grid', gap: '2rem', padding: '1rem'}}>
             <RetirementGoals {...props} />
             <NowUntilRetirement {...props} />
             <DuringRetirement {...props} />
-            <Button variant='contained' onClick={updateResults}>Update</Button>
-            <Button variant='outlined'>Cancel</Button>
+            <Box sx={{display: 'grid', gap: '1rem'}}>
+                <Button variant='contained' size='small' disabled={!props.state.editing} onClick={props.updateCalculation}>Update</Button>
+                <Button variant='outlined' size='small' disabled={!props.state.editing} onClick={() => props.dispatch(props.cancelChanges())}>Cancel</Button>
+            </Box>
         </Box>
     )
 }

@@ -1,6 +1,6 @@
 import Page from 'components/Page'
-import { useReducer, useContext } from 'react'
-import { retirementReducer, initialRetirement, updateValue, updateStatus, updateResults } from './retireOnBitcoinReducer'
+import { useReducer, useContext, useEffect } from 'react'
+import { retirementReducer, initialRetirement, updateValue, updateStatus, updateResults, cancelChanges } from './retireOnBitcoinReducer'
 import RetirementSummary from './RetirementSummary'
 import GlobalContext from 'state/GlobalContext'
 import { Box } from '@mui/system'
@@ -11,6 +11,7 @@ import RetirementDrawer from './RetirementDrawer'
 import CalculatorHeader from './CalculatorHeader'
 import { useState } from 'react'
 import Loading from 'components/Loading';
+import { calculateRetirement } from './calculateRetirement'
 
 const RetirementCalc = () => {
 
@@ -33,7 +34,16 @@ const RetirementCalc = () => {
         setOpen(!open)
     }
 
-    console.log(reducerState)
+    const updateCalculation = () => {
+        dispatch(updateStatus('calculating'))
+        const results = calculateRetirement(reducerState)
+        dispatch(updateResults(results))
+    }
+
+
+    useEffect(() => {
+        updateCalculation()
+    },[])
 
     const Content = () => {
         switch(reducerState.status) {
@@ -76,8 +86,8 @@ const RetirementCalc = () => {
             state={reducerState} 
             dispatch={dispatch} 
             updateValue={updateValue}
-            updateStatus={updateStatus}
-            updateResults={updateResults} 
+            updateCalculation={updateCalculation}
+            cancelChanges={cancelChanges}
             open={open} 
             toggleDrawer={toggleDrawer} 
         />

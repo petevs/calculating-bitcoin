@@ -2,6 +2,7 @@ const UPDATE_VALUE = 'UPDATE_VALUE'
 const TOGGLE_CALCULATION_METHOD = 'TOGGLE_CALCULATION_METHOD'
 const UPDATE_RESULTS = 'UPDATE_RESULTS'
 const UPDATE_STATUS = 'UPDATE_STATUS'
+const CANCEL_CHANGES = 'CANCEL_CHANGES'
 
 
 //ACTIONS
@@ -17,9 +18,12 @@ export const updateStatus = (data) => {
     return { type: UPDATE_STATUS, payload: data}
 }
 
-
 export const updateResults = (data) => {
     return { type: UPDATE_RESULTS, payload: data }
+}
+
+export const cancelChanges = (data) => {
+    return { type: CANCEL_CHANGES, payload: data}
 }
 
 //INITIAL STATE
@@ -38,6 +42,7 @@ export const initialRetirement = {
     currentPriceOfBitcoin: 1,
     calculationMethod: 'priceTarget',
     status: 'idle',
+    editing: false,
     results: {},
     yearsOfGrowth: function() {
         return this.retirementAge - this.currentAge
@@ -51,6 +56,7 @@ export const initialRetirement = {
     yearOfDeath: function(){
         return this.yearOfRetirement() + this.yearsOfConsumption()
     },
+    previousState: {}
 }
 
 
@@ -59,9 +65,23 @@ export const initialRetirement = {
 export const retirementReducer = (state = initialRetirement, action) => {
     switch(action.type) {
         case UPDATE_VALUE:
+            if(!state.editing){
+                return {
+                    ...state,
+                    previousState: {...state},
+                    [action.payload.name]: action.payload.value,
+                    editing: true, 
+                }
+            }
             return {
                 ...state,
-                [action.payload.name]: action.payload.value
+                [action.payload.name]: action.payload.value,
+                editing: true,
+            }
+        case CANCEL_CHANGES:
+            return {
+                ...state.previousState,
+                previousState: {},
             }
         case TOGGLE_CALCULATION_METHOD:
             if(state.calculationMethod === 'priceTarget'){
@@ -83,7 +103,8 @@ export const retirementReducer = (state = initialRetirement, action) => {
             return {
                 ...state,
                 results: {...action.payload},
-                status: 'done'
+                status: 'done',
+                editing: false
             }
         default:
             return state

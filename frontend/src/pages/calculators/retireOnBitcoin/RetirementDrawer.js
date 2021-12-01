@@ -5,7 +5,7 @@ import { Box } from '@mui/system'
 import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from '@mui/icons-material/Edit';
 
-const RetirementDrawer = ({state, dispatch, updateValue, updateStatus, updateResults, open, toggleDrawer}) => {
+const RetirementDrawer = ({state, dispatch, updateValue, updateCalculation, cancelChanges, open, toggleDrawer}) => {
 
     return (
         <>
@@ -80,8 +80,8 @@ const RetirementDrawer = ({state, dispatch, updateValue, updateStatus, updateRes
                 state={state} 
                 dispatch={dispatch} 
                 updateValue={updateValue}
-                updateStatus={updateStatus}
-                updateResults={updateResults} 
+                updateCalculation={updateCalculation}
+                cancelChanges={cancelChanges}
             />
         </Drawer>
         </>
