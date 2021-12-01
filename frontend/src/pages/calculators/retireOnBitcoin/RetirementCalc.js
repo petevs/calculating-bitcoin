@@ -1,6 +1,6 @@
 import Page from 'components/Page'
 import { useReducer, useContext } from 'react'
-import { retirementReducer, initialRetirement, updateValue } from './retireOnBitcoinReducer'
+import { retirementReducer, initialRetirement, updateValue, updateStatus, updateResults } from './retireOnBitcoinReducer'
 import RetirementSummary from './RetirementSummary'
 import GlobalContext from 'state/GlobalContext'
 import { Box } from '@mui/system'
@@ -10,6 +10,7 @@ import RetirementChart from './RetirementChart'
 import RetirementDrawer from './RetirementDrawer'
 import CalculatorHeader from './CalculatorHeader'
 import { useState } from 'react'
+import Loading from 'components/Loading';
 
 const RetirementCalc = () => {
 
@@ -32,33 +33,57 @@ const RetirementCalc = () => {
         setOpen(!open)
     }
 
+    console.log(reducerState)
+
+    const Content = () => {
+        switch(reducerState.status) {
+            case 'calculating':
+                return <Loading />
+            case 'done':
+                return ( 
+                <>
+                    <RetirementSummary state={reducerState} />
+                    <Box sx={{display: 'grid', gridTemplateColumns: '1fr', alignItems: 'start'}}>
+                        <RetirementChart data={reducerState.results.paymentSchedule} />
+                    </Box>
+                    <RetirementCalcTabs
+                        tabs={[
+                            {
+                                key: 1, 
+                                title: 'Retirement Payment Schedule', 
+                                content: <RetirementPaymentSchedule 
+                                            rows={reducerState.results.paymentSchedule} 
+                                        />
+                            },
+                            {
+                                key: 2,
+                                title: 'Inflation Adjusted Income Schedule',
+                                content: 'hi'
+                            }
+                        ]}
+                    />
+                </>
+            )
+            default:
+                return <>Enter Your Details...</>
+        } 
+    }
+
 
     return (
         <>
-        <RetirementDrawer state={reducerState} dispatch={dispatch} updateValue={updateValue} open={open} toggleDrawer={toggleDrawer} />
+        <RetirementDrawer 
+            state={reducerState} 
+            dispatch={dispatch} 
+            updateValue={updateValue}
+            updateStatus={updateStatus}
+            updateResults={updateResults} 
+            open={open} 
+            toggleDrawer={toggleDrawer} 
+        />
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
             <CalculatorHeader title='Retire on Bitcoin Calculator' open={open} toggleDrawer={toggleDrawer} />
-            <RetirementSummary state={reducerState} />
-            <Box sx={{display: 'grid', gridTemplateColumns: '1fr', alignItems: 'start'}}>
-                <RetirementChart data={reducerState.resultsTable()} />
-            </Box>
-            <RetirementCalcTabs
-                tabs={[
-                    {
-                        key: 1, 
-                        title: 'Retirement Payment Schedule', 
-                        content: <RetirementPaymentSchedule 
-                                    rows={reducerState.resultsTable()} 
-                                />
-                    },
-                    {
-                        key: 2,
-                        title: 'Inflation Adjusted Income Schedule',
-                        content: 'hi'
-                    }
-                ]}
-            />
-
+            <Content />
         </Page>
         </>
     )

@@ -12,7 +12,7 @@ const RetirementSummary = ({state}) => {
         <Box sx={boxStyle}>
             <Scorecard
                 title='Portfolio Value Required at Retirement'
-                value={state.presentValueAtRetirement()}
+                value={state.results.portfolioValueAtRetirement}
                 numberFormat={{
                     thousandSeparator: true,
                     decimalScale: 0,
@@ -21,7 +21,7 @@ const RetirementSummary = ({state}) => {
             />
             <Scorecard
                 title='Estimated Bitcoin Price at Retirement'
-                value={state.calculationMethod === 'priceTarget' ? state.bitcoinPriceAtRetirement : state.bitcoinPrice()}
+                value={state.calculationMethod === 'priceTarget' ? state.results.bitcoinPriceAtRetirement : state.results.calculatedBitcoinPriceAtRetirement}
                 numberFormat={{
                     thousandSeparator: true,
                     decimalScale: 0,
@@ -30,7 +30,7 @@ const RetirementSummary = ({state}) => {
             />
             <Scorecard
                 title='Bitcoin Needed to Retire'
-                value={state.calculationMethod === 'priceTarget' ? state.bitcoinRetireToday() : state.bitcoinRetireTodayUsingGR()}
+                value={state.calculationMethod === 'priceTarget' ? state.results.bitcoinRequiredUsingPriceTarget : state.results.bitcoinRequiredUsingGrowthRate}
                 numberFormat={{
                     decimalScale: 8,
                     fixedDecimalScale: 8,
@@ -47,7 +47,7 @@ const RetirementSummary = ({state}) => {
             />
             <Scorecard
                 title='Current Investment Required'
-                value={state.currentInvestmentRequired()}
+                value={state.results.currentInvestmentRequired}
                 numberFormat={{
                     thousandSeparator: true,
                     decimalScale: 0,

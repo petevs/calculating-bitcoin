@@ -2,8 +2,17 @@ import RetirementGoals from './RetirementGoals'
 import NowUntilRetirement from './NowUntilRetirement'
 import DuringRetirement from './DuringRetirement'
 import { Box } from '@mui/system'
+import { Button } from '@mui/material'
+import { calculateRetirement } from './calculateRetirement'
 
 const RetirementForm = (props) => {
+
+    const updateResults = () => {
+        props.dispatch(props.updateStatus('calculating'))
+        const results = calculateRetirement(props.state)
+        props.dispatch(props.updateResults(results))
+    }
+
 
 
     return (
@@ -11,6 +20,8 @@ const RetirementForm = (props) => {
             <RetirementGoals {...props} />
             <NowUntilRetirement {...props} />
             <DuringRetirement {...props} />
+            <Button variant='contained' onClick={updateResults}>Update</Button>
+            <Button variant='outlined'>Cancel</Button>
         </Box>
     )
 }
