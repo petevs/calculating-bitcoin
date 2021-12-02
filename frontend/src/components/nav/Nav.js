@@ -4,13 +4,17 @@ import Logo from './components/Logo';
 import SideBar from '../sidebar/SideBar';
 import UserMenu from 'components/userMenu/UserMenu';
 import Prices from './components/Prices';
+import { SiBox } from 'react-icons/si';
 
 const Nav = () => {
 
     return (
-            <AppBar
+            <Box
+                position='fixed'
                 sx={{
                     zIndex: 9999,
+                    color: '#fff',
+                    width: '100%'
                 }}
             >
                 <Box
@@ -31,7 +35,7 @@ const Nav = () => {
                     <Prices />
                     <UserMenu />
                 </Box>
-            </AppBar>
+            </Box>
     )
 }
 
