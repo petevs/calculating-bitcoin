@@ -108,7 +108,7 @@ class RetirementCalculation extends RetirementInputs {
   
           let results = [
               {
-                  id: 0,
+                  id: 1,
                   age: this.retirementAge,
                   year: this.currentYear + this.yearsOfGrowth(),
                   bitcoinPrice: this.calculationMethod === 'priceTarget' ? this.bitcoinPriceAtRetirement : this.bitcoinPrice(),
@@ -156,9 +156,25 @@ class RetirementCalculation extends RetirementInputs {
   
               results.push(row)
           }
+
+          //Add start place
+
+          const startingRow = {
+              id: 0,
+              age: this.currentAge,
+              year: this.currentYear,
+              bitcoinPrice: this.currentPriceOfBitcoin,
+              portfolioValue: this.currentBitcoinHoldings * this.currentPriceOfBitcoin,
+              bitcoinBalance: this.currentBitcoinHoldings,
+              inflationAdjustedIncome: this.requiredYearlyIncome,
+              bitcoinSold: 0
+          }
+
+          results.unshift(startingRow)
   
           return results
     }
+
 }
 
 
@@ -172,7 +188,7 @@ export const calculateRetirement = (inputs) => {
       paymentSchedule: calculation.resultsTable(),
       bitcoinRequiredUsingPriceTarget: calculation.bitcoinRetireToday(),
       bitcoinRequiredUsingGrowthRate: calculation.bitcoinRetireTodayUsingGR(),
-      currentInvestmentRequired: calculation.currentInvestmentRequired()
+      currentInvestmentRequired: calculation.currentInvestmentRequired(),
     }
 
 

@@ -76,6 +76,24 @@ const RetirementGoals = ({state, dispatch, updateValue}) => {
                     )}
                 size='small'
             />
+            <NumberFormat
+                label="Current Bitcoin Holdings"
+                customInput={TextField}
+                inputProps={{type: 'numeric'}}
+                InputProps={{
+                    endAdornment: (<InputAdornment position='end'>
+                        BTC
+                    </InputAdornment>),
+                }}
+                value={state.currentBitcoinHoldings}
+                onValueChange={(e) => dispatch(
+                    updateValue({
+                        name: 'currentBitcoinHoldings', 
+                        value: e.floatValue
+                    })
+                    )}
+                size='small'
+            />
             </Box>
     )
 }

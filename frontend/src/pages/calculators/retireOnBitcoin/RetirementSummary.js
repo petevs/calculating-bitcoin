@@ -7,16 +7,15 @@ const RetirementSummary = ({state}) => {
     return (
         <Box sx={boxStyle}>
             <Scorecard
-                title='Portfolio Value Required at Retirement'
-                value={state.results.portfolioValueAtRetirement}
+                title='Bitcoin Needed to Retire'
+                value={state.calculationMethod === 'priceTarget' ? state.results.bitcoinRequiredUsingPriceTarget : state.results.bitcoinRequiredUsingGrowthRate}
                 numberFormat={{
-                    thousandSeparator: true,
-                    decimalScale: 0,
-                    prefix: '$'
+                    decimalScale: 8,
+                    fixedDecimalScale: 8,
                 }}
             />
             <Scorecard
-                title='Estimated Bitcoin Price at Retirement'
+                title='BTC Price at Retirement'
                 value={state.calculationMethod === 'priceTarget' ? state.results.bitcoinPriceAtRetirement : state.results.calculatedBitcoinPriceAtRetirement}
                 numberFormat={{
                     thousandSeparator: true,
@@ -25,11 +24,12 @@ const RetirementSummary = ({state}) => {
                 }}
             />
             <Scorecard
-                title='Bitcoin Needed to Retire'
-                value={state.calculationMethod === 'priceTarget' ? state.results.bitcoinRequiredUsingPriceTarget : state.results.bitcoinRequiredUsingGrowthRate}
+                title='Portfolio Value Required'
+                value={state.results.portfolioValueAtRetirement}
                 numberFormat={{
-                    decimalScale: 8,
-                    fixedDecimalScale: 8,
+                    thousandSeparator: true,
+                    decimalScale: 0,
+                    prefix: '$'
                 }}
             />
             <Scorecard
@@ -42,7 +42,7 @@ const RetirementSummary = ({state}) => {
                 }}
             />
             <Scorecard
-                title='Current Investment Required'
+                title='Investment Required'
                 value={state.results.currentInvestmentRequired}
                 numberFormat={{
                     thousandSeparator: true,

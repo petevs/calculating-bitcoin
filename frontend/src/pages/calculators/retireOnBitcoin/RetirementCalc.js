@@ -46,6 +46,8 @@ const RetirementCalc = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
+    console.log(reducerState)
+
     const Content = () => {
         switch(reducerState.status) {
             case 'calculating':
@@ -66,11 +68,6 @@ const RetirementCalc = () => {
                                             rows={reducerState.results.paymentSchedule} 
                                         />
                             },
-                            {
-                                key: 2,
-                                title: 'Inflation Adjusted Income Schedule',
-                                content: 'hi'
-                            }
                         ]}
                     />
                 </>
