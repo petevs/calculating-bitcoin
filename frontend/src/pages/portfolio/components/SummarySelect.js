@@ -4,13 +4,13 @@ import { Box } from "@mui/system"
 const SummarySelect = (props) => {
 
     return (
-        <Box sx={{display: 'grid', justifyItems: 'end', padding: '0 0 1rem 0'}}>
+        <Box sx={selectStyle}>
         <TextField
             select
             value={props.performanceType}
             onChange={props.handlePerformanceChange}
             size='small'
-            sx={{width: '250px'}}
+            sx={{width: '250px', '@media (max-width: 768px)': { width: '100%'}}}
         >
             <MenuItem value='Total Performance'>Total Performance</MenuItem>
             <MenuItem value='Unrealized Performance'>Unrealized Performance</MenuItem>
@@ -21,3 +21,10 @@ const SummarySelect = (props) => {
 }
 
 export default SummarySelect
+
+
+const selectStyle = {
+    display: 'grid', 
+    justifyItems: 'end', 
+    padding: '0 0 1rem 0',
+}

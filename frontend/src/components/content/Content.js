@@ -26,7 +26,8 @@ const Content = ({children}) => {
                 padding: '2rem',
                 backgroundColor: 'rgb(22,28,36)',
                 '@media screen and (max-width: 768px)': {
-                    width: '100%'
+                    width: '100%',
+                    padding: '2rem 0',
                 }
               }}
             >

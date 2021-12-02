@@ -179,7 +179,7 @@ const PortfolioChart = ({ data }) => {
                     value={chartType}
                     onChange={handleChartTypeChange}
                     size='small'
-                    sx={{width: '350px'}}
+                    sx={{width: '350px', '@media (max-width: 768px)': { width: '100%'}}}
                     InputProps={{
                         startAdornment: (<InputAdornment position='start'>
                             Chart Type:
