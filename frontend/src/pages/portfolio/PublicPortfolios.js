@@ -8,8 +8,6 @@ const PublicPortfolios = () => {
 
     const { state } = useContext(GlobalContext)
 
-    console.log(state.portfolio.publicPortfoliosList())
-
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
             <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}>

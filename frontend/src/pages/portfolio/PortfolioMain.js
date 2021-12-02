@@ -9,7 +9,6 @@ const PortfolioMain = () => {
 
     const { state } = useContext(GlobalContext)
 
-    console.log(state)
 
    return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>

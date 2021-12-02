@@ -14,8 +14,6 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibili
     
     const {state} = useContext(GlobalContext)
 
-    console.log(state)
-
     const initialForm = {
         portfolioName: portfolioName || '',
         portfolioDescription: portfolioDescription || '',

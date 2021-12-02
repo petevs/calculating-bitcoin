@@ -4,7 +4,6 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const ArrowRow = () => {
 
-    console.log(Array(4))
     return (
         <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem'}}>
             {
