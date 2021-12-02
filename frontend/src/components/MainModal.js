@@ -17,6 +17,9 @@ const MainModal = (props) => {
             onClose={props.onClose || handleModalClose}
             disableEnforceFocus
             disableAutoFocus
+            sx={{
+                zIndex: 99999
+            }}
         >
             <Box
                 sx={{
@@ -36,10 +39,9 @@ const MainModal = (props) => {
                         width: '100%',
                         height: '100%',
                         borderTop: '1px solid #fff',
-                        zIndex: 999999,
                         borderRadius: 0,
                         border: 'none',
-                        overflowY: 'scroll'
+                        overflowY: 'scroll',
                     }
                 }}
             >
