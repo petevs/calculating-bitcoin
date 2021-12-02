@@ -9,7 +9,7 @@ export const createAllTransactions = (transactions, historicalData, currentPrice
     //Sort one off transactions
     let sortedTransactions = []
 
-    if(transactions.length > 1){
+    if(transactions.length >= 1){
 
       let updatedTransactions = transactions.map(transaction => {
         return {
