@@ -27,7 +27,10 @@ const MainModal = (props) => {
                     p: 4,
                     color: '#fff',
                     padding: '1rem',
-                    borderRadius: '6px'
+                    borderRadius: '6px',
+                    '@media (max-width: 640px)': {
+                        maxWidth: '100%'
+                    }
                 }}
             >
                 {modalContent}

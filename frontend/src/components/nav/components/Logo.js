@@ -25,9 +25,16 @@ const Logo = () => {
             }}
         >
             <SiBitcoinsv />
-            <Typography variant='h6'>Calculating Bitcoin</Typography>
+            <Typography variant='h6' sx={logoStyle}>Calculating Bitcoin</Typography>
         </Box>
     )
 }
 
 export default Logo
+
+
+const logoStyle = {
+    '@media (max-width: 640px)': {
+        fontSize: '1.1rem'
+    }
+}

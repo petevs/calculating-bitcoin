@@ -27,6 +27,9 @@ import PublicPortfolios from 'pages/portfolio/PublicPortfolios'
 import usePortfolio from 'state/portfolio/usePortfolio';
 import Calculators from 'pages/calculators/Calculators';
 import Bookmarks from 'pages/bookmarks/Bookmarks';
+import useDrawer from 'hooks/useDrawer';
+import { useMediaQuery } from '@mui/material';
+import { useEffect } from 'react'
 
 
 function App() {
@@ -37,6 +40,16 @@ function App() {
   useSetUser()
   useMarketData()
   usePortfolio()
+
+
+  const mobile = useMediaQuery('(max-width: 768px)')
+  const { handleDrawerClose } = useDrawer()
+
+  useEffect(() => {
+    if(mobile){
+      handleDrawerClose()
+    }
+  },[mobile])
 
   if(state.user.loading){
     return(
