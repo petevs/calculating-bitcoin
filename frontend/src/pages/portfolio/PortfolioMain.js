@@ -35,5 +35,9 @@ const style = {
     '@media (max-width: 1024px)': {
         gridAutoFlow: 'row',
         gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'
+    },
+    '@media (max-width: 650px)': {
+        gridAutFlow: 'row',
+        gridTemplateColumns: '1fr'
     }
 }
