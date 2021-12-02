@@ -9,6 +9,7 @@ import useFirebase from 'hooks/useFirebase'
 import useModal from 'hooks/useModal'
 import GlobalContext from 'state/GlobalContext'
 import { useContext } from 'react'
+import { Button } from '@mui/material'
 
 const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibility, currency }) => {
     
@@ -78,6 +79,7 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibili
                 helperText={errors.portfolioDescription}
             />
             <FormSubmit type='submit'>{title === 'Add Portfolio' ? title : 'Save Changes'}</FormSubmit>
+            <Button variant='outlined' size='large' onClick={handleModalClose}>Cancel</Button>
 
         </Box>
     )

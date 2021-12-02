@@ -113,7 +113,8 @@ const RecurringTransactionForm = (props) => {
                 <MenuItem value={'weekly'}>Weekly</MenuItem>
                 <MenuItem value={'monthly'}>Monthly</MenuItem>
             </TextField>
-            <Button variant='contained' size='large' type='submit'>{props.formType === 'edit' ? 'Save Changes' : 'Add Recurring Transaction'}</Button>        
+            <Button variant='contained' size='large' type='submit'>{props.formType === 'edit' ? 'Save Changes' : 'Add Recurring Transaction'}</Button>
+            <Button variant='outlined' size='large' onClick={handleModalClose}>Cancel</Button>        
             </Box>
     )
 }

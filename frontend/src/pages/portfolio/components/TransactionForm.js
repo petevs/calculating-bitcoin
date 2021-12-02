@@ -147,6 +147,7 @@ const TransactionForm = (props) => {
                     </Box>
                 </Box>
             <Button variant='contained' size='large' type='submit'>{props.formType === 'edit' ? 'Save Changes' : 'Add Transaction'}</Button>
+            <Button variant='outlined' size='large' onClick={handleModalClose}>Cancel</Button>
         </Box>
     )
 }

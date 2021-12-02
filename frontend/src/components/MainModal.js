@@ -1,11 +1,15 @@
-import { Modal } from '@mui/material'
+import { iconButtonClasses, Modal } from '@mui/material'
 import { Box } from '@mui/system'
 import useModal from 'hooks/useModal'
 import React from 'react'
+import { useMediaQuery, IconButton } from '@mui/material'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const MainModal = (props) => {
 
     const { modalOpen, modalContent, handleModalClose } = useModal()
+
+    const mobile = useMediaQuery('(max-width:768px')
 
     return (
         <Modal
@@ -29,10 +33,24 @@ const MainModal = (props) => {
                     padding: '1rem',
                     borderRadius: '6px',
                     '@media (max-width: 640px)': {
-                        maxWidth: '100%'
+                        width: '100%',
+                        height: '100%',
+                        borderTop: '1px solid #fff',
+                        zIndex: 999999,
+                        borderRadius: 0,
+                        border: 'none',
+                        overflowY: 'scroll'
                     }
                 }}
             >
+                {
+                    mobile &&
+                    <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}>
+                        <IconButton onClick={handleModalClose}>
+                            <ArrowBackIosIcon />
+                        </IconButton>
+                    </Box>
+                }
                 {modalContent}
             </Box>
             
@@ -41,3 +59,4 @@ const MainModal = (props) => {
 }
 
 export default MainModal
+

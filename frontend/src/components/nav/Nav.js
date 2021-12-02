@@ -12,7 +12,7 @@ const Nav = () => {
             <Box
                 position='fixed'
                 sx={{
-                    zIndex: 9999,
+                    zIndex: 999,
                     color: '#fff',
                     width: '100%'
                 }}

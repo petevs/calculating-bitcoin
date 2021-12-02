@@ -66,7 +66,8 @@ const UploadCsvForm = (props) => {
             </Button>
             {pending && <LinearProgress />}
             <Typography variant='caption'>{file.name}</Typography>
-            <Button variant='contained' type='submit' disabled={!readyToSubmit}>Submit</Button>
+            <Button variant='contained' size='large' type='submit' disabled={!readyToSubmit}>Submit</Button>
+            <Button variant='outlined' size='large' onClick={handleModalClose}>Cancel</Button>
         </Box>
     )
 }
