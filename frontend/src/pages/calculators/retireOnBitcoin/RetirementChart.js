@@ -5,7 +5,6 @@ import { renderToString } from 'react-dom/server'
 import { useState } from 'react'
 import Bitcoin from "components/Bitcoin"
 import Currency from "components/Currency"
-import moment from 'moment'
 
 const RetirementChart = ({ data, reducerState }) => {
 
@@ -31,6 +30,22 @@ const RetirementChart = ({ data, reducerState }) => {
         default:
             return 'Bitcoin Holdings'
     }
+}
+
+console.log(chartType)
+const handleYAnnotation = (chartName) => {
+  switch(chartName) {
+    case ('portfolioValue'):
+      return {
+        y: reducerState.results.startingPortfolioValue,
+        y2: reducerState.results.portfolioValueAtRetirement,
+      }
+    default:
+      return {
+        y: reducerState.currentBitcoinHoldings,
+        y2: reducerState.results.bitcoinRequiredUsingPriceTarget,
+      }
+  }
 }
 
 const formatY = (chartType, x) => {
@@ -147,8 +162,8 @@ const tooltip = {
           ],
           yaxis: [
             {
-              y: reducerState.currentBitcoinHoldings,
-              y2: reducerState.results.bitcoinRequiredUsingPriceTarget,
+              y: handleYAnnotation(chartType).y,
+              y2: handleYAnnotation(chartType).y2,
               borderColor: '#fff',
               label: {
                 orientation: 'horizontal',

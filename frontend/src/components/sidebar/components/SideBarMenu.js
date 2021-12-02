@@ -1,6 +1,6 @@
 import SideBarList from './SideBarList';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import CalculateIcon from '@mui/icons-material/Calculate';
+// import CalculateIcon from '@mui/icons-material/Calculate';
 import AddPortfolio from './AddPortfolio';
 // import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 // import SideBarListItem from './SideBarListItem';
@@ -32,35 +32,35 @@ const SideBarMenu = () => {
         }
     ]
     
-    const calculatorMenu = [
-        {
-            title: 'Calculators',
-            icon: <CalculateIcon />,
-            data: [
-                {
-                    text: 'All Calculators',
-                    to: '/calculators'
-                },
-                {
-                    text: 'Retire on Bitcoin',
-                    to: '/calculators/retire-on-bitcoin'
-                },
-                {
-                    text: 'Tax Liability',
-                    to: '/calculators/tax-liability'
-                },
-                {
-                    text: 'Trade Preview',
-                    to: '/calculators/'
-                },
-                {
-                    text: 'Speculative Attack',
-                    to: '/calculators/'
-                },
+    // const calculatorMenu = [
+    //     {
+    //         title: 'Calculators',
+    //         icon: <CalculateIcon />,
+    //         data: [
+    //             {
+    //                 text: 'All Calculators',
+    //                 to: '/calculators'
+    //             },
+    //             {
+    //                 text: 'Retire on Bitcoin',
+    //                 to: '/calculators/retire-on-bitcoin'
+    //             },
+    //             {
+    //                 text: 'Tax Liability',
+    //                 to: '/calculators/tax-liability'
+    //             },
+    //             {
+    //                 text: 'Trade Preview',
+    //                 to: '/calculators/'
+    //             },
+    //             {
+    //                 text: 'Speculative Attack',
+    //                 to: '/calculators/'
+    //             },
 
-            ]
-        }
-    ]
+    //         ]
+    //     }
+    // ]
 
     return (
         <>
@@ -75,7 +75,7 @@ const SideBarMenu = () => {
                 </SideBarList>
                 )
             }
-            {calculatorMenu.map(item => 
+            {/* {calculatorMenu.map(item => 
                 <SideBarList
                     key={item.title}
                     title={item.title}
@@ -84,7 +84,7 @@ const SideBarMenu = () => {
                 >
                 </SideBarList>
                 )
-            }
+            } */}
             {/* <SideBarListItem
                 icon={<CollectionsBookmarkIcon />}
                 text='My Bookmarks'

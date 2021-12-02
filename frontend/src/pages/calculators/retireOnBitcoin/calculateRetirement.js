@@ -189,6 +189,8 @@ export const calculateRetirement = (inputs) => {
       bitcoinRequiredUsingPriceTarget: calculation.bitcoinRetireToday(),
       bitcoinRequiredUsingGrowthRate: calculation.bitcoinRetireTodayUsingGR(),
       currentInvestmentRequired: calculation.currentInvestmentRequired(),
+      startingPortfolioValue: calculation.currentBitcoinHoldings * calculation.currentPriceOfBitcoin
+
     }
 
 

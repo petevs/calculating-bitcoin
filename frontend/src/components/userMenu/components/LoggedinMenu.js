@@ -15,7 +15,7 @@ const LoggedinMenu = () => {
             >
                 Portfolios
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
                 component={Link}
                 to='/calculators'
             >
@@ -32,7 +32,7 @@ const LoggedinMenu = () => {
                 to='/bookmarks'
             >
                 Bookmarks
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
                 component={Link}
                 to='/account'
