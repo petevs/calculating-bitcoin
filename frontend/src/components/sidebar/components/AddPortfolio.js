@@ -6,7 +6,7 @@ import { ListItemIcon } from '@material-ui/core';
 import useAuth from 'hooks/useAuth';
 import { Redirect } from 'react-router-dom'
 
-const AddPortfolio = () => {
+const AddPortfolio = (props) => {
 
     const { handleModalOpen } = useModal()
     const { loggedIn } = useAuth()
@@ -25,7 +25,7 @@ const AddPortfolio = () => {
     return (
         <>
             <ListItemButton 
-                sx={buttonStyle}
+                sx={{...buttonStyle, ...props.sx}}
                 onClick={() => handleOpen()}
             >
                 <ListItemIcon>
@@ -46,5 +46,5 @@ const buttonStyle = {
     color: 'orange',
     '& .MuiSvgIcon-root': {
         color: 'orange'
-    }
+    },
 }
