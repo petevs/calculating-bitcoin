@@ -46,8 +46,6 @@ const RetirementCalc = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
-    console.log(reducerState)
-
     const Content = () => {
         switch(reducerState.status) {
             case 'calculating':
@@ -57,7 +55,7 @@ const RetirementCalc = () => {
                 <>
                     <RetirementSummary state={reducerState} />
                     <Box sx={{display: 'grid', gridTemplateColumns: '1fr', alignItems: 'start'}}>
-                        <RetirementChart data={reducerState.results.paymentSchedule} />
+                        <RetirementChart data={reducerState.results.paymentSchedule} reducerState={reducerState} />
                     </Box>
                     <RetirementCalcTabs
                         tabs={[

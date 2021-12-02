@@ -5,8 +5,11 @@ import { renderToString } from 'react-dom/server'
 import { useState } from 'react'
 import Bitcoin from "components/Bitcoin"
 import Currency from "components/Currency"
+import moment from 'moment'
 
-const RetirementChart = ({ data }) => {
+const RetirementChart = ({ data, reducerState }) => {
+
+  console.log(reducerState)
 
   const [chartType, setChartType] = useState('bitcoinBalance')
   const [xAxisType, setXAxisType] = useState('year')
@@ -115,7 +118,7 @@ const tooltip = {
           // opposite: true,
         },
         xaxis: {
-          type: xAxisType === 'year' ? "datetime" : "",
+          type: xAxisType === 'year' ? "numeric" : "",
           categories: categories,
           labels: {
             style: {
@@ -132,6 +135,27 @@ const tooltip = {
           theme: "dark",
         },
         annotations: {
+          xaxis: [
+            {
+              x: xAxisType === 'year' ? reducerState.yearOfRetirement() : reducerState.retirementAge,
+              borderColor: '#fff',
+              label: {
+                orientation: 'vertical',
+                text: 'Retirement'
+              }
+            }
+          ],
+          yaxis: [
+            {
+              y: reducerState.currentBitcoinHoldings,
+              y2: reducerState.results.bitcoinRequiredUsingPriceTarget,
+              borderColor: '#fff',
+              label: {
+                orientation: 'horizontal',
+                text: 'Bitcoin Required'
+              }
+            }
+          ]
         },
         grid: {
           show: false,
