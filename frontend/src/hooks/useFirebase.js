@@ -29,7 +29,7 @@ const useFirebase = () => {
             [portfolioId]: {
                 ...values,
                 transactions: {},
-                reccuringTransactions: {},
+                recurringTransactions: {},
             }
         })
 
@@ -45,7 +45,7 @@ const useFirebase = () => {
             [portfolioId]: {
                 ...values,
                 transactions: state.portfolio.portfolioObj[portfolioId].transactions,
-                reccuringTransactions: state.portfolio.portfolioObj[portfolioId].recurringTransactions ? state.portfolio.portfolioObj[portfolioId].recurringTransactions : {},
+                recurringTransactions: state.portfolio.portfolioObj[portfolioId].recurringTransactions ? state.portfolio.portfolioObj[portfolioId].recurringTransactions : {},
             }
         })
 

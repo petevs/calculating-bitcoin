@@ -16,7 +16,6 @@ const PortfolioForm = ({title, portfolioName, portfolioDescription, id, visibili
 
     console.log(state)
 
-
     const initialForm = {
         portfolioName: portfolioName || '',
         portfolioDescription: portfolioDescription || '',
