@@ -31,7 +31,7 @@ const PortfolioTabs = ({ tabs }) => {
 
     return (
         <Box sx={tabsStyle}>
-            <Tabs value={value} onChange={handleChange} variant='scrollable'>
+            <Tabs value={value} onChange={handleChange} variant='scrollable' scrollButtons='auto' allowScrollButtonsMobile>
                 {
                     tabs.map(tab => <Tab key={tab.key} label={tab.title} />)
                 }
