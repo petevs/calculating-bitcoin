@@ -9,6 +9,8 @@ const PortfolioMain = () => {
 
     const { state } = useContext(GlobalContext)
 
+    console.log(state)
+
    return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
             <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}>
@@ -16,7 +18,7 @@ const PortfolioMain = () => {
             </Box>
             <Box sx={style}>
                 {
-                    state.portfolio.portfolioList().filter(item => item.visibility !== 'public').map(item => 
+                    state.portfolio.portfolioList().filter(item => item.uid === state.auth.uid).map(item => 
                         <PortfolioCard key={item.id} {...item} />
                     )
                 }
