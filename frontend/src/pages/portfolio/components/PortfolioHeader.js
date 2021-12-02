@@ -35,7 +35,7 @@ const PortfolioHeader = (props) => {
                 <Button
                     onClick={() => deletePortfolio(props.id)} 
                     startIcon={<DeleteIcon />}
-                disabled={props.disableEditing}
+                    disabled={props.disableEditing}
                 >
                         Delete
                 </Button>
@@ -45,7 +45,7 @@ const PortfolioHeader = (props) => {
                 >
                     Clone
                 </Button>
-                <SharePortfolio {...props} />
+                <SharePortfolio {...props} disabled={props.disableEditing}/>
             </Box>
         </Box>
     )

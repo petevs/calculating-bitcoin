@@ -15,6 +15,7 @@ const SharePortfolio = (props) => {
                 <Button
                     startIcon={<SendIcon />}
                     onClick={handleClick}
+                    disabled={props.disabled}
                 >
                     Share
                 </Button>

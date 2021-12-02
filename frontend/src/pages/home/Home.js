@@ -35,7 +35,7 @@ const Home = () => {
                 <Typography variant='body1' sx={{color: '#fff'}}>
                     We're still under development but feel free to play around with the calculators on here.
                 </Typography>
-                <Box sx={{display: 'grid', gridAutoFlow: 'row', justifyItems: 'start'}}>
+                <Box sx={{display: 'grid', gridAutoFlow: 'row', justifyItems: 'start', paddingTop: '1rem', gap: '1rem'}}>
                     <Button 
                         size='medium' 
                         startIcon={<ArrowRightAltIcon />}
