@@ -93,6 +93,9 @@ const TransactionForm = (props) => {
                 onFocus={() => handleFocus('price')}
                 decimalScale={2}
                 fixedDecimalScale={2}
+                inputProps={{
+                    type: 'numeric'
+                }}
             />
             <FormControlLabel 
                 sx={historicalSwitch} 

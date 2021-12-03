@@ -32,6 +32,10 @@ const DateField = (props) => {
                     onChange={onChange}
                     renderInput={(params) => <TextField {...params} />}
                     {...props.params}
+                    sx={{
+                        overflow: 'scroll',
+                        height: '100%',
+                    }}
                 />
             :   <DesktopDatePicker
                     disableFuture
