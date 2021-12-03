@@ -1,8 +1,7 @@
 import useModal from 'hooks/useModal'
 import PortfolioForm from 'components/PortfolioForm'
 import AddIcon from '@mui/icons-material/Add';
-import { ListItemButton } from '@mui/material';
-import { ListItemIcon } from '@material-ui/core';
+import { ListItemButton, ListItemIcon } from '@mui/material';
 import useAuth from 'hooks/useAuth';
 import { Redirect } from 'react-router-dom'
 

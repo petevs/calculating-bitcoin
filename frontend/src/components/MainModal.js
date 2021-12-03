@@ -18,7 +18,8 @@ const MainModal = (props) => {
             disableEnforceFocus
             disableAutoFocus
             sx={{
-                zIndex: 1201
+                zIndex: 1201,
+                overflowY: 'scroll'
             }}
         >
             <Box
