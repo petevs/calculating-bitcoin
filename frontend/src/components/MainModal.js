@@ -1,9 +1,7 @@
-limport { iconButtonClasses, Modal } from '@mui/material'
 import { Box } from '@mui/system'
 import useModal from 'hooks/useModal'
 import React from 'react'
-import { useMediaQuery, IconButton } from '@mui/material'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { useMediaQuery, Modal } from '@mui/material'
 
 const MainModal = (props) => {
 
