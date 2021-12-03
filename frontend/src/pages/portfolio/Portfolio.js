@@ -15,6 +15,7 @@ import PortfolioTabs from './components/PortfolioTabs'
 import { Alert, AlertTitle } from '@mui/material'
 import GlobalContext from 'state/GlobalContext'
 import { useContext } from 'react'
+import TaxTab from './components/TaxTab'
 
 
 const Portfolio = () => {
@@ -75,7 +76,7 @@ const Portfolio = () => {
                     <PortfolioTabs 
                         tabs={[
                             {key: 1, title: 'Total Performance', content: <Report summary={summary} />},
-                            {key: 2, title: 'Tax Liability', content: 'Coming soon...'},
+                            {key: 2, title: 'Tax Liability', content: <TaxTab {...summary}/>},
                             {key: 3, title: 'Weighted Cost Table', content: 'Coming soon...'},
                         ]}
                     />
