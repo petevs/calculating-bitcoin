@@ -59,13 +59,15 @@ export class PaymentDetails {
   
   }
   
-  export class IncomeTax {
-    constructor(income) {
+  class IncomeTax {
+    constructor(income, taxBrackets, personalAmount) {
       this.income = income
+      this.taxBrackets = taxBrackets
+      this.personalAmount = personalAmount
     }
   
     calculateTax () {
-
+  
         const taxableIncome = this.income - this.personalAmount
         
         let taxPayable = 0
@@ -97,4 +99,55 @@ export class PaymentDetails {
   
     }
   
-  } 
+    calculateCPP () {
+      if(this.income < 3500){
+        return 0
+      }
+  
+      if(this.income > (64900 + 3500)) {
+        return (64900 - 3500) * .1140
+      }
+  
+      return (this.income - 3500) * .1140
+  
+  
+    }
+  
+  }
+
+
+  const albertaTaxBrackets = [
+    { from: 0, to: 131220, rate: .10},
+    { from: 131220, to: 157464, rate: .12},
+    { from: 157464, to: 209952, rate: .13},
+    { from: 209952, to: 314928, rate: .14},
+    { from: 314928, to: undefined, rate: .15},
+  ]
+  
+  const albertaPersonalAmount = 19369
+  
+  const federalTaxBrackets = [
+    { from: 0, to: 50197, rate: .15},
+    { from: 50197, to: 100392, rate: .2050},
+    { from: 100392, to: 155625, rate: .26},
+    { from: 155625, to: 221708, rate: .2938},
+    { from: 221708, to: undefined, rate: .33},
+  ]
+  
+  const federalPersonalAmount = 14398
+
+
+  export const taxesOwed = (income) => {
+
+    const provincial = new IncomeTax(income, albertaTaxBrackets, albertaPersonalAmount)
+    const federal = new IncomeTax(income, federalTaxBrackets, federalPersonalAmount)
+    const totalTax = provincial.calculateTax() + federal.calculateTax()
+  
+    return {
+      provincial: provincial.calculateTax(),
+      federal: federal.calculateTax(),
+      total: totalTax,
+      cpp: federal.calculateCPP()
+    }
+  
+  }
