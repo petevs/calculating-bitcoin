@@ -6,6 +6,10 @@ import { TextField, MenuItem } from '@mui/material'
 import NumberFormat from 'react-number-format'
 import { Box } from '@mui/system'
 import PageTitle from 'layouts/components/PageTitle';
+import Currency from 'components/Currency'
+import Scorecard from 'components/Scorecard'
+import { PaymentDetails } from './taxCalcs'
+
 
 const TaxLiability = () => {
 
@@ -18,7 +22,7 @@ const TaxLiability = () => {
             <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}>
                 <PageTitle>Tax Liability</PageTitle>
             </Box>
-            <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>
+            <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', alignItems: 'start'}}>
                 <Box sx={{display: 'grid', gridTemplatColumns: '1fr', gap: '1rem', padding: '2rem'}}>
                     <TextField
                         select
@@ -37,17 +41,53 @@ const TaxLiability = () => {
                         onValueChange={(e) => setIncome(e.floatValue)}
                     />
                 </Box>
-                <NumberFormat
-                    displayType='text'
-                    value={taxesOwed(income, province).total}
-                    thousandSeparator={true}
-                    decimalScale={0}
-                    prefix='$'
-                    style={{
-                        fontSize: '2rem',
-                        color: '#fff'
-                    }}
-                />
+                <Box sx={{display: 'grid', alignContent: 'start', gap: '1rem'}}>
+                    <Scorecard
+                        title='Federal Taxes'
+                        value={taxesOwed(income, province).provincial}
+                        numberFormat={{
+                            prefix: '$',
+                            thousandSeparator: true,
+                            decimalScale: 0
+                        }}
+                    />
+                    <Scorecard
+                        title='Provincial Taxes'
+                        value={taxesOwed(income, province).federal}
+                        numberFormat={{
+                            prefix: '$',
+                            thousandSeparator: true,
+                            decimalScale: 0
+                        }}
+                    />
+                    <Scorecard
+                        title='CPP'
+                        value={taxesOwed(income, province).cpp}
+                        numberFormat={{
+                            prefix: '$',
+                            thousandSeparator: true,
+                            decimalScale: 0
+                        }}
+                    />
+                    <Scorecard
+                        title='Total Taxes Owed'
+                        value={taxesOwed(income, province).total}
+                        numberFormat={{
+                            prefix: '$',
+                            thousandSeparator: true,
+                            decimalScale: 0
+                        }}
+                    />
+                    <Scorecard
+                        title='Income After Tax'
+                        value={income - taxesOwed(income, province).total}
+                        numberFormat={{
+                            prefix: '$',
+                            thousandSeparator: true,
+                            decimalScale: 0
+                        }}
+                    />
+                </Box>
             </Box>
         </Page>
     )

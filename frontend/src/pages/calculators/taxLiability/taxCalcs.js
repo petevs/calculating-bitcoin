@@ -118,14 +118,11 @@ export class PaymentDetails {
   }
 
 
-
-
-
   export const taxesOwed = (income, province) => {
 
     const provincial = new IncomeTax(income, taxRates[province].taxBrackets, taxRates[province].basicPersonalAmount)
     const federal = new IncomeTax(income, taxRates['federal'].taxBrackets, taxRates['federal'].basicPersonalAmount)
-    const totalTax = provincial.calculateTax() + federal.calculateTax()
+    const totalTax = provincial.calculateTax() + federal.calculateTax() + federal.calculateCPP()
   
     return {
       provincial: provincial.calculateTax(),
