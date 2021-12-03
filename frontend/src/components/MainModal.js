@@ -35,13 +35,13 @@ const MainModal = (props) => {
                     color: '#fff',
                     padding: '1rem',
                     borderRadius: '6px',
+                    overflowY: 'scroll',
                     '@media (max-width: 640px)': {
                         width: '100%',
                         height: '100%',
                         borderTop: '1px solid #fff',
                         borderRadius: 0,
                         border: 'none',
-                        overflowY: 'scroll',
                     }
                 }}
             >
