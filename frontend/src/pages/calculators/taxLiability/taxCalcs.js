@@ -64,42 +64,37 @@ export class PaymentDetails {
       this.income = income
     }
   
-    provincialTax () {
+    calculateTax () {
+
+        const taxableIncome = this.income - this.personalAmount
+        
+        let taxPayable = 0
   
-      const basicPersonalAmount = 19369
-      
-      const taxBrackets = [
-        { amount: 131220, rate: .10 },
-        { amount: 157464, rate: 0.12 },
-        { amount: 209952, rate: 0.13 },
-        { amount: 314928, rate: 0.14 },
-        { amount: 314928, rate: 0.15 }
-      ]
+        this.taxBrackets.forEach(bracket => {
   
-      const taxableIncome = this.income - basicPersonalAmount
+          //If taxable income is greater than the tax bracket
+          if(taxableIncome > bracket.to){
+              const currentTaxPayable = (bracket.to - bracket.from) * bracket.rate
+              taxPayable += currentTaxPayable
+              return
+          }
   
-      let taxPayable = 0
+          if(taxableIncome < bracket.to && taxableIncome > bracket.from){
+              const currentTaxPayable = (taxableIncome - bracket.from) * bracket.rate
+              taxPayable += currentTaxPayable
+              return
+          }
   
-      const lastBracket = taxBracket.length - 1
+          if(bracket.to === undefined && taxableIncome > bracket.from){
+              const currentTaxPayable = (taxableIncome - bracket.from) * bracket.rate
+              taxPayable += currentTaxPayable
+              return
+          }
   
-      //Add Tax for First Bracket
-      taxPayable += taxableIncome * taxBracket[0].rate
+        })
   
-      //If less than first tax bracket
-      if(taxableIncome < taxBracket[0].amount){
         return taxPayable
-      }
   
-      //If more than first tax bracket
-      taxBrackets.forEach((bracket, idx) => {
-        if(idx === 0 || idx === lastBracket){ return }
-        if(taxableIncome > bracket.amount){
-          const taxableAmount = 
-          tackBrackets[idx-1].rate
-        }
-      }
-      )
-  
-  
+    }
   
   } 
