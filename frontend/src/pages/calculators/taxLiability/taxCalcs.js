@@ -1,3 +1,5 @@
+import {taxRates} from './taxData'
+
 export class PaymentDetails {
     constructor(pv, n, py, iy) {
       this.a = pv
@@ -116,31 +118,13 @@ export class PaymentDetails {
   }
 
 
-  const albertaTaxBrackets = [
-    { from: 0, to: 131220, rate: .10},
-    { from: 131220, to: 157464, rate: .12},
-    { from: 157464, to: 209952, rate: .13},
-    { from: 209952, to: 314928, rate: .14},
-    { from: 314928, to: undefined, rate: .15},
-  ]
-  
-  const albertaPersonalAmount = 19369
-  
-  const federalTaxBrackets = [
-    { from: 0, to: 50197, rate: .15},
-    { from: 50197, to: 100392, rate: .2050},
-    { from: 100392, to: 155625, rate: .26},
-    { from: 155625, to: 221708, rate: .2938},
-    { from: 221708, to: undefined, rate: .33},
-  ]
-  
-  const federalPersonalAmount = 14398
 
 
-  export const taxesOwed = (income) => {
 
-    const provincial = new IncomeTax(income, albertaTaxBrackets, albertaPersonalAmount)
-    const federal = new IncomeTax(income, federalTaxBrackets, federalPersonalAmount)
+  export const taxesOwed = (income, province) => {
+
+    const provincial = new IncomeTax(income, taxRates[province].taxBrackets, taxRates[province].basicPersonalAmount)
+    const federal = new IncomeTax(income, taxRates['federal'].taxBrackets, taxRates['federal'].basicPersonalAmount)
     const totalTax = provincial.calculateTax() + federal.calculateTax()
   
     return {
