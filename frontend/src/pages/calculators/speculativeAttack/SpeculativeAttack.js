@@ -24,6 +24,8 @@ const SpeculativeAttack = () => {
                     return ' / week'
                 case 365:
                     return ' / day'
+                case 4:
+                    return ' / quarter'
                 case 2:
                     return ' / twice a year'
                 default:
@@ -50,6 +52,8 @@ const SpeculativeAttack = () => {
                     return ' / day'
                 case 2:
                     return ' / twice a year'
+                case 4:
+                    return ' / quarter'
                 default:
                     return ' / month'
             }

@@ -65,7 +65,15 @@ const result = new Loan(inputs.paymentAmount, inputs.numberOfYears, inputs.py, (
                 } 
                 label='Interest Only' 
             />
-            <Typography variant='h2'><Currency value={result.loanAmount()} /></Typography>
+            <Typography variant='h2'>
+                <Currency value={
+                    inputs.interestOnly
+                    ? result.interestOnly()
+                    : result.loanAmount()
+                } 
+                />
+                
+            </Typography>
         </>
     )
 }

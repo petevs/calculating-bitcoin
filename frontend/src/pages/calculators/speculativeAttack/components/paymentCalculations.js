@@ -71,4 +71,8 @@ export class Loan {
     loanAmount() {
         return this.pmt * ((((1 + this.r) ** this.n) - 1) / (this.r * (1 + this.r) ** this.n))
     }
+
+    interestOnly() {
+      return this.pmt / this.r
+    }
 }
