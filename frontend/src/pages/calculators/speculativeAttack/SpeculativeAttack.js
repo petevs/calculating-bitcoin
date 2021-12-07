@@ -7,27 +7,36 @@ import NumberFormat from 'react-number-format';
 import { PaymentDetails } from '../taxLiability/taxCalcs';
 import Currency from 'components/Currency';
 import { MenuItem } from '@material-ui/core';
+import AmortizationSchedule from './components/AmortizationSchedule';
 
 const SpeculativeAttack = () => {
 
     const [inputs, setInputs] = useState({
-        loanAmount: 1000000,
+        loanAmount: 100000,
         interestRate: 2.5,
         numberOfYears: 5,
-        py: 12
+        py: 12,
+        friendlyPeriod: function() {
+            switch(this.py) {
+                case 1:
+                    return ' / year'
+                case 26:
+                    return ' / every other week'
+                case 52:
+                    return ' / week'
+                case 365:
+                    return ' / day'
+                case 2:
+                    return ' / twice a year'
+                default:
+                    return ' / month'
+            }
+        }
     })
 
     const result = new PaymentDetails(inputs.loanAmount, inputs.numberOfYears, inputs.py, (inputs.interestRate / 100))
 
-    const friendlyPeriod = (value) => {
-        console.log(value)
-        switch(value) {
-            case value === 1:
-                return ' / year'
-            default:
-                return ' / month'
-        }
-    }
+    console.log(result.amortizationSchedule())
 
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem', color: '#fff'}}>
@@ -83,7 +92,8 @@ const SpeculativeAttack = () => {
                 <MenuItem value={1}>Annually</MenuItem>
             </TextField>
 
-            <Typography variant='h2'><Currency value={result.loanPayment()} /> / {inputs.py}</Typography>
+            <Typography variant='h2'><Currency value={result.loanPayment()} /> <span style={{fontSize: '1rem', textTransform: 'uppercase'}}>{inputs.friendlyPeriod()}</span></Typography>
+            <AmortizationSchedule rows={result.amortizationSchedule().table} />
         </Page>
     )
 }

@@ -47,6 +47,7 @@ export class PaymentDetails {
         amortizationTable.push({
           id: i + 1,
           period: i + 1,
+          payment: payment,
           interestPayment: interest,
           principlePayment: principle,
           balance: balance
@@ -54,7 +55,7 @@ export class PaymentDetails {
       }
   
       return {
-        table: amortizationTable[this.n],
+        table: amortizationTable,
         summary: totals
         }
     }
