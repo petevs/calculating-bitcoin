@@ -2,11 +2,10 @@ import { useState } from 'react'
 import { Box } from '@mui/system'
 import Page from 'components/Page'
 import PageTitle from 'layouts/components/PageTitle';
-import { TextField, Typography } from '@mui/material';
+import { TextField, Typography, MenuItem } from '@mui/material';
 import NumberFormat from 'react-number-format';
 import { PaymentDetails } from '../taxLiability/taxCalcs';
 import Currency from 'components/Currency';
-import { MenuItem } from '@material-ui/core';
 import AmortizationSchedule from './components/AmortizationSchedule';
 
 const SpeculativeAttack = () => {
@@ -47,6 +46,9 @@ const SpeculativeAttack = () => {
             <ul style={{color: '#fff'}}>
                 <li>How much loan can I afford?</li>
                 <li>Payment Schedule</li>
+                <li>Calculate by Available Cash Flow Per Month</li>
+                <li>Pay back with bitcoin appreciation</li>
+                <li>Back up payment methods to meet if income stalls debt-to-equity ratio</li>
             </ul>
             <NumberFormat
                 customInput={TextField}
