@@ -8,6 +8,7 @@ const CalculatePayment = ({inputs, setInputs}) => {
 
     const result = new PaymentDetails(inputs.loanAmount, inputs.numberOfYears, inputs.py, (inputs.interestRate / 100))
 
+    
     return (
         <>
             <NumberFormat

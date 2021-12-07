@@ -4,6 +4,7 @@ import Page from 'components/Page'
 import PageTitle from 'layouts/components/PageTitle';
 import CalculatePayment from './components/CalculatePayment';
 import CalculateLoanAmount from './components/CalculateLoanAmount';
+import { ToggleButtonGroup, ToggleButton } from '@mui/material'
 
 const SpeculativeAttack = () => {
 
@@ -55,6 +56,17 @@ const SpeculativeAttack = () => {
         }
     })
 
+    const [type, setType] = useState('loan')
+
+    const handleChange = () => {
+        if(type === 'loan'){
+            setType('payment')
+            return
+        }
+
+        setType('loan')
+    }
+
     // const testLoan = new Loan(result.loanPayment(), inputs.numberOfYears, inputs.py, (inputs.interestRate / 100))
 
 
@@ -71,8 +83,21 @@ const SpeculativeAttack = () => {
                 <li>Pay back with bitcoin appreciation</li>
                 <li>Back up payment methods to meet if income stalls debt-to-equity ratio</li>
             </ul>
-            <CalculatePayment inputs={inputs} setInputs={setInputs} />
-            <CalculateLoanAmount inputs={loanInputs} setInputs={setLoanInputs} />
+            <ToggleButtonGroup
+                value={type}
+                onChange={handleChange}
+                size='small'
+                color='primary'
+                sx={{justifySelf: 'center', marginBottom: '1rem'}}
+            >
+                <ToggleButton value='loan'>Calculate Loan Amount</ToggleButton>
+                <ToggleButton value='payment'>Calculate Payment Amount</ToggleButton>
+            </ToggleButtonGroup>
+            {
+                type === 'loan'
+                ? <CalculateLoanAmount inputs={loanInputs} setInputs={setLoanInputs} />
+                : <CalculatePayment inputs={inputs} setInputs={setInputs} />
+            }
         </Page>
     )
 }
