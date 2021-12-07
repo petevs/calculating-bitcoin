@@ -55,7 +55,7 @@ const SideBarMenu = () => {
                 },
                 {
                     text: 'Speculative Attack',
-                    to: '/calculators/'
+                    to: '/calculators/speculative-attack'
                 },
 
             ]
