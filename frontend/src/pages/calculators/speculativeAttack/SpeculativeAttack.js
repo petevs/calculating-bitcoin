@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { Box } from '@mui/system'
 import Page from 'components/Page'
 import PageTitle from 'layouts/components/PageTitle';
-import { TextField, Typography, MenuItem } from '@mui/material';
+import { TextField, Typography, MenuItem, FormControlLabel, Switch } from '@mui/material';
 import NumberFormat from 'react-number-format';
-import { PaymentDetails } from '../taxLiability/taxCalcs';
 import Currency from 'components/Currency';
 import AmortizationSchedule from './components/AmortizationSchedule';
+import { Loan, PaymentDetails } from './components/paymentCalculations';
 
 const SpeculativeAttack = () => {
 
@@ -15,6 +15,7 @@ const SpeculativeAttack = () => {
         interestRate: 2.5,
         numberOfYears: 5,
         py: 12,
+        interestOnly: false,
         friendlyPeriod: function() {
             switch(this.py) {
                 case 1:
@@ -35,8 +36,9 @@ const SpeculativeAttack = () => {
 
     const result = new PaymentDetails(inputs.loanAmount, inputs.numberOfYears, inputs.py, (inputs.interestRate / 100))
 
-    console.log(result.amortizationSchedule())
+    const testLoan = new Loan(result.loanPayment(), inputs.numberOfYears, inputs.py, (inputs.interestRate / 100))
 
+    
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem', color: '#fff'}}>
             <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}>
@@ -69,15 +71,26 @@ const SpeculativeAttack = () => {
                     ...inputs, 
                     interestRate: e.floatValue
                 })}
-            />
+            />            
             <NumberFormat
                 customInput={TextField}
-                label='Number of Years'
+                label='Payback Period (Years)'
                 value={inputs.numberOfYears}
                 onValueChange={(e) => setInputs({
                     ...inputs, 
                     numberOfYears: e.floatValue
                 })}
+            />
+            <FormControlLabel
+                sx={switchStyle} 
+                control={
+                    <Switch 
+                        size='small'
+                        checked={inputs.interestOnly}
+                        onChange={() => setInputs({...inputs, interestOnly: !inputs.interestOnly})} 
+                    />
+                } 
+                label='Interest Only' 
             />
             <TextField
                 select
@@ -94,10 +107,22 @@ const SpeculativeAttack = () => {
                 <MenuItem value={1}>Annually</MenuItem>
             </TextField>
 
-            <Typography variant='h2'><Currency value={result.loanPayment()} /> <span style={{fontSize: '1rem', textTransform: 'uppercase'}}>{inputs.friendlyPeriod()}</span></Typography>
+            
+            <Typography variant='h2'><Currency value={inputs.interestOnly ? result.interestOnlyPayment() : result.loanPayment()} /> <span style={{fontSize: '1rem', textTransform: 'uppercase'}}>{inputs.friendlyPeriod()}</span></Typography>
             <AmortizationSchedule rows={result.amortizationSchedule().table} />
         </Page>
     )
 }
 
 export default SpeculativeAttack
+
+const switchStyle = {
+    '& .MuiTypography-root': {
+            fontSize: '.875rem',
+            color: 'rgba(255, 255, 255, 0.7)'
+        },
+    marginLeft: 0, 
+    marginRight: 0, 
+    justifyContent: 'start',
+    textTransform: 'uppercase'
+}
