@@ -68,6 +68,18 @@ export class PaymentDetails {
       this.taxBrackets = taxBrackets
       this.personalAmount = personalAmount
     }
+
+    calculatePension () {
+      if(this.income < 61600) {
+        return 61600 * 0.0983
+      }
+
+      const tierOne = 61600 * 0.0983
+      const tierTwo = (this.income - 61600) * .1226
+
+      return tierOne + tierTwo
+
+    }
   
     calculateTax () {
   
