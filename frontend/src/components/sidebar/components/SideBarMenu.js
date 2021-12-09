@@ -51,7 +51,7 @@ const SideBarMenu = () => {
                 },
                 {
                     text: 'Trade Preview',
-                    to: '/calculators/'
+                    to: '/calculators/trade-preview'
                 },
                 {
                     text: 'Speculative Attack',
