@@ -20,12 +20,12 @@ const CalculatorsMain = () => {
                 {
                     text: 'Trade Preview',
                     description: 'COMING SOON: Preview the implications of a potential trade',
-                    to: '/calculators'
+                    to: '/calculators/trade-preview'
                 },
                 {
                     text: 'Speculative Attack',
                     description: 'COMING SOON: Run the numbers on borrowing to buy bitcoin',
-                    to: '/calculators'
+                    to: '/calculators/speculative-attack'
                 },
     ]
 
