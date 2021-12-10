@@ -23,6 +23,7 @@ const CurrencyConverter = () => {
     const [from, setFrom] = useState('USD')
     const [fromAmount, setFromAmount] = useState(0)
     const [result, setResult] = useState(0)
+    const [fxRate, setFxRate] = useState()
     const [calculating, setCalculating] = useState(false)
 
     const to = () => {
@@ -39,6 +40,7 @@ const CurrencyConverter = () => {
         setCalculating(true)
         const { data } = await axios.get(`https://freecurrencyapi.net/api/v2/latest?apikey=a92a4ea0-59fa-11ec-a998-31c751871727&base_currency=${from}`)
         const exchangeRate = data.data[to()]
+        setFxRate(exchangeRate)
         setResult(exchangeRate * fromAmount)
         setCalculating(false)
     }
@@ -68,7 +70,7 @@ const CurrencyConverter = () => {
             />
             <Button variant='contained' onClick={() => convert()}>Convert</Button>
             <Typography variant='h2' sx={{color: '#fff'}}>
-                {calculating ? <CircularProgress /> : <Currency value={result} />}
+                {calculating ? <CircularProgress /> : <> <Currency value={result} /> <span style={{fontSize: '.875rem'}}>Exchange Rate: {fxRate}</span> </>}
             </Typography>
         </Page>
     )
