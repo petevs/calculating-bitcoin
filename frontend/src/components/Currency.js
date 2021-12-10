@@ -7,6 +7,7 @@ const Currency = (props) => {
             thousandSeparator={true} 
             prefix='$'
             decimalScale={2}
+            fixedDecimalScale={2}
             {...props} 
         />
     )
