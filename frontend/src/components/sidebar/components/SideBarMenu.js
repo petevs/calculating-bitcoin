@@ -57,6 +57,10 @@ const SideBarMenu = () => {
                     text: 'Speculative Attack',
                     to: '/calculators/speculative-attack'
                 },
+                {
+                    text: 'Currency Converter',
+                    to: '/calculators/currency-converter'
+                },
 
             ]
         }
