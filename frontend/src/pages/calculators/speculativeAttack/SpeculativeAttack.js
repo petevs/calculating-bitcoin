@@ -77,16 +77,8 @@ const SpeculativeAttack = () => {
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem', color: '#fff'}}>
             <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}>
-                <PageTitle>Speculative Attack</PageTitle>
+                <PageTitle>Loan Calculator</PageTitle>
             </Box>
-
-            <ul style={{color: '#fff'}}>
-                <li>How much loan can I afford?</li>
-                <li>Payment Schedule</li>
-                <li>Calculate by Available Cash Flow Per Month</li>
-                <li>Pay back with bitcoin appreciation</li>
-                <li>Back up payment methods to meet if income stalls debt-to-equity ratio</li>
-            </ul>
             <ToggleButtonGroup
                 value={type}
                 onChange={handleChange}

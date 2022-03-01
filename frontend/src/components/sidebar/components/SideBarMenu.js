@@ -37,28 +37,28 @@ const SideBarMenu = () => {
             title: 'Calculators',
             icon: <CalculateIcon />,
             data: [
-                {
-                    text: 'All Calculators',
-                    to: '/calculators'
-                },
+                // {
+                //     text: 'All Calculators',
+                //     to: '/calculators'
+                // },
                 {
                     text: 'Retire on Bitcoin',
                     to: '/calculators/retire-on-bitcoin'
                 },
+                // {
+                //     text: 'Tax Liability',
+                //     to: '/calculators/tax-liability'
+                // },
+                // {
+                //     text: 'Trade Preview',
+                //     to: '/calculators/trade-preview'
+                // },
                 {
-                    text: 'Tax Liability',
-                    to: '/calculators/tax-liability'
-                },
-                {
-                    text: 'Trade Preview',
-                    to: '/calculators/trade-preview'
-                },
-                {
-                    text: 'Speculative Attack',
+                    text: 'Loan Calculator',
                     to: '/calculators/speculative-attack'
                 },
                 {
-                    text: 'Currency Converter',
+                    text: 'Fiat Currency Converter',
                     to: '/calculators/currency-converter'
                 },
 
