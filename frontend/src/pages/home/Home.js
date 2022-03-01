@@ -23,38 +23,66 @@ const Home = () => {
         } else {
             <Redirect to={"/login"} />
         }
-
     }
+
+    const headline = {
+        color: '#fff',
+        fontSize: '3rem',
+        fontWeight: 700,
+        letterSpacing: '-1px',
+        textAlign: 'center',
+        '@media (max-width: 768px)': {
+            fontSize: '3rem',
+            lineHeight: '3rem'
+        }
+    }
+
+    const buttonBox = {
+        display: 'grid', 
+        gridAutoFlow: 'column', 
+        justifyContent: 'center', 
+        padding: '2rem',
+        gap: '1rem',
+        borderBottom: 'thin solid rgba(255, 255, 255, 0.12)',
+        '@media (max-width: 768px)': {
+            gridAutoFlow: 'row',
+            justifyContent: 'stretch',
+            padding: '2rem'
+        }
+}
 
     return (
         <Page sx={{justifyContent: 'stretch', alignContent: 'start', gap: '1rem'}}>
-            <Box sx={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)', padding: '0 0 1rem 0'}}>
-                <PageTitle>Welcome</PageTitle>
+            <Box sx={{padding: '4rem 0 0rem 0'}}>
+                <Typography sx={headline}>Make Mock Bitcoin Portfolios</Typography>
             </Box>
             <Box>
-                <Typography variant='body1' sx={{color: '#fff'}}>
-                    We're still under development but feel free to play around with the calculators on here.
+                <Typography variant='h6' sx={{color: '#fff', textAlign: 'center'}}>
+                    Quickly create Bitcoin portfolios to see how different strategies performed over time.
                 </Typography>
-                <Box sx={{display: 'grid', gridAutoFlow: 'row', justifyItems: 'start', paddingTop: '1rem', gap: '1rem'}}>
+                <Box sx={buttonBox}>
                     <Button 
                         size='medium' 
-                        startIcon={<ArrowRightAltIcon />}
+                        // startIcon={<ArrowRightAltIcon />}
                         component={Link}
                         to='/portfolio'
+                        variant='outlined'
                     >
                         My Portfolios
                     </Button>
                     <Button 
                         size='medium' 
-                        startIcon={<ArrowRightAltIcon />}
+                        // endIcon={<ArrowRightAltIcon />}
                         component={Link}
                         to='/portfolios/public'
+                        variant='outlined'
                     >
                         Public Portfolios
                     </Button>
                     <Button 
-                        startIcon={<AddIcon />}
+                        // startIcon={<AddIcon />}
                         onClick={handleOpen}
+                        variant='outlined'
                     >
                         Add Portfolio
                     </Button>
